@@ -1,0 +1,255 @@
+TAP version 13
+# Subtest: every encounter has bounded balance with evidence provenance
+ok 1 - every encounter has bounded balance with evidence provenance
+  ---
+  duration_ms: 1.8922
+  ...
+# Subtest: travelling both directions reapplies encounter level while preserving forge and equipped choices
+ok 2 - travelling both directions reapplies encounter level while preserving forge and equipped choices
+  ---
+  duration_ms: 0.3567
+  ...
+# Subtest: native recorder runs normally and only a real selected-boss kill reaches the lab
+ok 3 - native recorder runs normally and only a real selected-boss kill reaches the lab
+  ---
+  duration_ms: 4.0109
+  ...
+# Subtest: lab pickup queues close without opening equipment or changing the loadout
+ok 4 - lab pickup queues close without opening equipment or changing the loadout
+  ---
+  duration_ms: 2.6133
+  ...
+# Subtest: loot suppression releases every native flow output in order
+ok 5 - loot suppression releases every native flow output in order
+  ---
+  duration_ms: 2.5933
+  ...
+# Subtest: an excluded boss is observed once and old death tasks cannot complete a later encounter
+ok 6 - an excluded boss is observed once and old death tasks cannot complete a later encounter
+  ---
+  duration_ms: 1.9111
+  ...
+# Subtest: an excluded aggregate encounter waits for its native unlock rather than a first phase death
+ok 7 - an excluded aggregate encounter waits for its native unlock rather than a first phase death
+  ---
+  duration_ms: 1.2848
+  ...
+# Subtest: terminal phase death completes the lab even when the native record is waiting for a story tag
+ok 8 - terminal phase death completes the lab even when the native record is waiting for a story tag
+  ---
+  duration_ms: 0.9701
+  ...
+# Subtest: a nearby miniboss without a boss-record engagement event still has one native death observer
+ok 9 - a nearby miniboss without a boss-record engagement event still has one native death observer
+  ---
+  duration_ms: 1.3918
+  ...
+# Subtest: encounter streaming activates only its authored leaf layers once, without activating the campaign tree
+ok 10 - encounter streaming activates only its authored leaf layers once, without activating the campaign tree
+  ---
+  duration_ms: 1.8691
+  ...
+# Subtest: a phase fight prepares its first native spawner only and leaves the guardian and ending controllers alone
+ok 11 - a phase fight prepares its first native spawner only and leaves the guardian and ending controllers alone
+  ---
+  duration_ms: 1.5401
+  ...
+# Subtest: a spawner without an ID uses only its exact authored actor and preserves native domain data
+ok 12 - a spawner without an ID uses only its exact authored actor and preserves native domain data
+  ---
+  duration_ms: 2.8398
+  ...
+# Subtest: each encounter has a unique identity, native class, portrait and explicit preparation profile
+ok 13 - each encounter has a unique identity, native class, portrait and explicit preparation profile
+  ---
+  duration_ms: 2313.6583
+  ...
+# Subtest: statue trials use five distinct native variants and only the selected trial is active
+ok 14 - statue trials use five distinct native variants and only the selected trial is active
+  ---
+  duration_ms: 83.9434
+  ...
+# Subtest: resetting the young mistress leaves the later chapter cinematic completion intact
+ok 15 - resetting the young mistress leaves the later chapter cinematic completion intact
+  ---
+  duration_ms: 46.0768
+  ...
+# Subtest: an early summer encounter restores its native layer and removes the late winter population
+ok 16 - an early summer encounter restores its native layer and removes the late winter population
+  ---
+  duration_ms: 16.9281
+  ...
+# Subtest: the sword formation starts before its stair trigger and completes only after its second wave
+ok 17 - the sword formation starts before its stair trigger and completes only after its second wave
+  ---
+  duration_ms: 0.4269
+  ...
+# Subtest: the final battle uses its native inner bell rather than crossing the offstage distance from the mountain
+ok 18 - the final battle uses its native inner bell rather than crossing the offstage distance from the mountain
+  ---
+  duration_ms: 18.1705
+  ...
+# Subtest: cinematics use the native authored skip and respect non-skippable segments and transition animations
+ok 19 - cinematics use the native authored skip and respect non-skippable segments and transition animations
+  ---
+  duration_ms: 2.2141
+  ...
+# Subtest: preparation waits until native cinematic state has fully cleared
+ok 20 - preparation waits until native cinematic state has fully cleared
+  ---
+  duration_ms: 1.3091
+  ...
+# Subtest: only visible dialogue content is advanced through its native skip action
+ok 21 - only visible dialogue content is advanced through its native skip action
+  ---
+  duration_ms: 1.1294
+  ...
+# Subtest: post-victory movies use native flow completion instead of returning to campaign menus
+ok 22 - post-victory movies use native flow completion instead of returning to campaign menus
+  ---
+  duration_ms: 1.1136
+  ...
+# Subtest: capture serializes the live backpack before reading gear, without traversing world actors
+ok 23 - capture serializes the live backpack before reading gear, without traversing world actors
+  ---
+  duration_ms: 3.831
+  ...
+# Subtest: capture rejects a missing live inventory instead of accepting an old checkpoint
+ok 24 - capture rejects a missing live inventory instead of accepting an old checkpoint
+  ---
+  duration_ms: 1.7736
+  ...
+# Subtest: a short click only selects difficulty, native completed hold launches exactly once
+ok 25 - a short click only selects difficulty, native completed hold launches exactly once
+  ---
+  duration_ms: 4.8891
+  ...
+# Subtest: cancel discards an incomplete hold and a late asset callback cannot replace navigation
+ok 26 - cancel discards an incomplete hold and a late asset callback cannot replace navigation
+  ---
+  duration_ms: 1.3336
+  ...
+# Subtest: write completes before travel; duplicate callbacks cannot travel twice
+ok 27 - write completes before travel; duplicate callbacks cannot travel twice
+  ---
+  duration_ms: 4.9103
+  ...
+# Subtest: write failure, read failure and wrong map never open a world
+ok 28 - write failure, read failure and wrong map never open a world
+  ---
+  duration_ms: 8.4142
+  ...
+# Subtest: menu cancellation does not write; confirmation prepares one replay
+ok 29 - menu cancellation does not write; confirmation prepares one replay
+  ---
+  duration_ms: 2.0671
+  ...
+# Subtest: world changes clear timers and preserve original lifecycle calls
+ok 30 - world changes clear timers and preserve original lifecycle calls
+  ---
+  duration_ms: 2.7297
+  ...
+# Subtest: menu preserves original methods, replaces Continue action and labels the lab
+ok 31 - menu preserves original methods, replaces Continue action and labels the lab
+  ---
+  duration_ms: 2.1811
+  ...
+# Subtest: retry retains chosen loadout, resets world and position, and refills remedies
+ok 32 - retry retains chosen loadout, resets world and position, and refills remedies
+  ---
+  duration_ms: 3.1736
+  ...
+# Subtest: campaign-only nightmare is rejected; ordinary difficulty does not allocate campaign binding
+ok 33 - campaign-only nightmare is rejected; ordinary difficulty does not allocate campaign binding
+  ---
+  duration_ms: 0.3634
+  ...
+# Subtest: travel waits for write; duplicate and late callbacks do not load twice
+ok 34 - travel waits for write; duplicate and late callbacks do not load twice
+  ---
+  duration_ms: 3.7937
+  ...
+# Subtest: save/read failure and unexpected map fail before world travel
+ok 35 - save/read failure and unexpected map fail before world travel
+  ---
+  duration_ms: 3.1606
+  ...
+# Subtest: difficulty back does not save; valid choice loads only after widget deactivation
+ok 36 - difficulty back does not save; valid choice loads only after widget deactivation
+  ---
+  duration_ms: 1.9232
+  ...
+# Subtest: death captures fresh gear before resetting encounter; native death stays untouched outside lab
+ok 37 - death captures fresh gear before resetting encounter; native death stays untouched outside lab
+  ---
+  duration_ms: 2.5091
+  ...
+# Subtest: arsenal uses native limits and forging, then restores encounter cycle
+ok 38 - arsenal uses native limits and forging, then restores encounter cycle
+  ---
+  duration_ms: 3.4731
+  ...
+# Subtest: native arsenal error always restores encounter cycle
+ok 39 - native arsenal error always restores encounter cycle
+  ---
+  duration_ms: 1.6943
+  ...
+# Subtest: weapon admission follows possible campaign acquisition, not art or player ownership
+ok 40 - weapon admission follows possible campaign acquisition, not art or player ownership
+  ---
+  duration_ms: 0.9222
+  ...
+# Subtest: prologue auto-close is scoped to the exact question in the lab difficulty flow
+ok 41 - prologue auto-close is scoped to the exact question in the lab difficulty flow
+  ---
+  duration_ms: 1.1721
+  ...
+# Subtest: death during equipment capture waits for fresh gear and queues one retry
+ok 42 - death during equipment capture waits for fresh gear and queues one retry
+  ---
+  duration_ms: 1.2417
+  ...
+# Subtest: global collection source includes secret maps, ignores test map and never reads player acquisitions
+ok 43 - global collection source includes secret maps, ignores test map and never reads player acquisitions
+  ---
+  duration_ms: 1.6888
+  ...
+# Subtest: results wait for the terminal phase and duplicate native kill signals open one screen
+ok 44 - results wait for the terminal phase and duplicate native kill signals open one screen
+  ---
+  duration_ms: 2.519
+  ...
+# Subtest: an authoritative native completion tag accepts the aggregate codex row
+ok 45 - an authoritative native completion tag accepts the aggregate codex row
+  ---
+  duration_ms: 1.1448
+  ...
+# Subtest: opening selection cancels the pending victory transition
+ok 46 - opening selection cancels the pending victory transition
+  ---
+  duration_ms: 1.1536
+  ...
+# Subtest: preparation uses the native system host initialization and captures equipment on close
+ok 47 - preparation uses the native system host initialization and captures equipment on close
+  ---
+  duration_ms: 2.6515
+  ...
+# Subtest: lab encounters do not start the native platform achievement progression listener
+ok 48 - lab encounters do not start the native platform achievement progression listener
+  ---
+  duration_ms: 1.4009
+  ...
+# Subtest: the in-combat selector pauses safely while the main-menu selector leaves world pause untouched
+ok 49 - the in-combat selector pauses safely while the main-menu selector leaves world pause untouched
+  ---
+  duration_ms: 1.4664
+  ...
+1..49
+# tests 49
+# suites 0
+# pass 49
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2666.0588

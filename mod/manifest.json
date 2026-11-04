@@ -1,0 +1,1949 @@
+{
+  "version": "0.5",
+  "gameAppId": 4115450,
+  "gameBuild": 26266538,
+  "slot": "ManualSave3",
+  "hotkey": "F8",
+  "pak": {
+    "name": "zzz_CodexBossLab_P.pak",
+    "sha256": "1b11006a7b7e4eafad64cb3bea876d309b40b9bed3b14c38a0b0713d89bda2cb"
+  },
+  "bundle": [
+    {
+      "name": "zzz_CodexBossLab_P.pak",
+      "sha256": "1b11006a7b7e4eafad64cb3bea876d309b40b9bed3b14c38a0b0713d89bda2cb"
+    },
+    {
+      "name": "zzz_CodexBossLab_P.utoc",
+      "sha256": "d928e4c5e3c83b70005d791fa82cea85b27f2beb5d14fcf9beede6a653dcbdb7"
+    },
+    {
+      "name": "zzz_CodexBossLab_P.ucas",
+      "sha256": "62ed0bddabcb050a6a0de5e4fcfb74a5e9d3b70dcb6d6ecdd373a573efc843b7"
+    }
+  ],
+  "patchedOriginals": [
+    {
+      "path": "UI/Widget/StartMenu.js",
+      "originalSha256": "1b96f8e479cb20de2ccb56d0ed2f50c94611f6f0a9a553d22ae3d3df2bad0e20"
+    },
+    {
+      "path": "Gameplay/GameModeBuild.js",
+      "originalSha256": "16d7c48d469562bd6c0037f45843eff80f91bbe3e345c8eb83d5ea44454f65eb"
+    },
+    {
+      "path": "UI/Widget/DeadMenu.js",
+      "originalSha256": "b7ee0ff861ca1286d1eab99a218ee0303c9da3615045d58a44360e0dd05e4b2c"
+    },
+    {
+      "path": "UI/Widget/Character_V1.js",
+      "originalSha256": "235b3d6c23bd49efc70c9bf52eb6598f114b3635ae8e942ee7c86a01443421e4"
+    },
+    {
+      "path": "UI/Widget/Confirmation.js",
+      "originalSha256": "7a5ae7b74c9dc28be1096015cfbc40600fe5438cecde17ef48235b5f4f5c44c8"
+    },
+    {
+      "path": "UI/Widget/LoadGame.js",
+      "originalSha256": "a36a635734b95f45b6fa087e920831d951bb3050f3bcfcfceeec9a4bbe05587d"
+    },
+    {
+      "path": "UI/ListViewEntry/LoadGameSlot.js",
+      "originalSha256": "5855f028ba9f529bbeb5fdf0d5eeaa58db1d6824b6edf8011a4f8e4e8276f74b"
+    },
+    {
+      "path": "Gameplay/BossCombatRecorder.js",
+      "originalSha256": "7002ea28f63c696824ecdc7bf7bbabd6a5156477287f0fdf11fa5edddc4766d6"
+    },
+    {
+      "path": "FlowNode/LootItems.js",
+      "originalSha256": "75bc5f60fa448c956b1930e40803d58600aa94b893038e65ac0da3e81e875f42"
+    },
+    {
+      "path": "UI/Widget/PickupWeapon.js",
+      "originalSha256": "67c57dc60229cebe3f6ddde508f77ee7403e585e2eaacf7f907648d269350a00"
+    },
+    {
+      "path": "FlowNode/PushPersonnelListNode.js",
+      "originalSha256": "5ad1b4d057946b423e2235597550ca06b405cdc36fe9da6930aa8ab2659686bf"
+    },
+    {
+      "path": "UI/Widget/BellMenu.js",
+      "originalSha256": "ea1ea97753d76f49222c3e2dc8cac55338977602df091b6e3496a50ee8e5e89b"
+    }
+  ],
+  "packagePaths": [
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/acquisition.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/arsenal.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/battle.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/boss-catalog.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/campaign-proof.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/cinema.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/gear.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/hold.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/model.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/qa-config.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/runtime.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/selector.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/snapshot.js",
+    "ProjectPBZ/Content/JavaScript/CodexBossLab/validation.js",
+    "ProjectPBZ/Content/JavaScript/FlowNode/LootItems.js",
+    "ProjectPBZ/Content/JavaScript/FlowNode/PushPersonnelListNode.js",
+    "ProjectPBZ/Content/JavaScript/Gameplay/BossCombatRecorder.js",
+    "ProjectPBZ/Content/JavaScript/Gameplay/GameModeBuild.js",
+    "ProjectPBZ/Content/JavaScript/UI/ListViewEntry/LoadGameSlot.js",
+    "ProjectPBZ/Content/JavaScript/UI/Widget/BellMenu.js",
+    "ProjectPBZ/Content/JavaScript/UI/Widget/Character_V1.js",
+    "ProjectPBZ/Content/JavaScript/UI/Widget/Confirmation.js",
+    "ProjectPBZ/Content/JavaScript/UI/Widget/DeadMenu.js",
+    "ProjectPBZ/Content/JavaScript/UI/Widget/LoadGame.js",
+    "ProjectPBZ/Content/JavaScript/UI/Widget/PickupWeapon.js",
+    "ProjectPBZ/Content/JavaScript/UI/Widget/StartMenu.js"
+  ],
+  "catalog": {
+    "encounters": 60,
+    "sourceEntries": 65,
+    "excluded": [
+      {
+        "id": "BP_Monster_ZuoShang_Young_Tutorial",
+        "reason": "Sequence-controlled encounter without a registered preparation bell. A complete standalone replay has not been validated."
+      },
+      {
+        "id": "BP_Monster_ZuoShang",
+        "reason": "Sequence-controlled encounter without a registered preparation bell. A complete standalone replay has not been validated."
+      },
+      {
+        "id": "BP_Monster_HookMan_HorseCartCombat",
+        "reason": "Sequence-controlled encounter without a registered preparation bell. A complete standalone replay has not been validated."
+      },
+      {
+        "id": "BP_Monster_YuCong_FirstTime",
+        "reason": "Sequence-controlled encounter without a registered preparation bell. A complete standalone replay has not been validated."
+      },
+      {
+        "id": "BP_Monster_QiShu_Bing",
+        "reason": "Only placement found is in DL_3721Unload; direct loading did not complete. No active campaign entrance validated."
+      }
+    ],
+    "sections": 11,
+    "statueTrials": 5,
+    "experimental": []
+  },
+  "equipment": {
+    "mode": "campaign-obtainable-arsenal",
+    "counts": {
+      "weapons": 24,
+      "edges": 24,
+      "accessories": 51,
+      "medicines": 15,
+      "missed": 0,
+      "catalog": [
+        {
+          "id": "Tang",
+          "nameKey": "Weapon_001",
+          "name": "SANGUINE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_HeiShang.T_Weapon_HeiShang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_HeiShang.T_Icon_Weapon_HeiShang",
+          "origins": [
+            {
+              "policy": "DT_NormalGamePolicy.InitWeaponList"
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ROUGE INFERNAL"
+        },
+        {
+          "id": "WoodenSwordHun",
+          "nameKey": "Weapon_000",
+          "name": "SANGUINE DE BOIS",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_WoodBlade.T_Weapon_WoodBlade",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_WoodBlade.T_Icon_Weapon_WoodBlade",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": true
+        },
+        {
+          "id": "Double",
+          "nameKey": "Weapon_022",
+          "name": "DOUBLE SANGUINE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_HeiShangShuangRen.T_Weapon_HeiShangShuangRen",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_HeiShangShuangRen.T_Icon_Weapon_HeiShangShuangRen",
+          "origins": [
+            {
+              "map": "XiGu",
+              "saveGuid": "PBZ_Xigu_WP-BP_Rubbish_C_UAID_E89C25A7512001CB02_2061020586",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "OMBRES INSAISISSABLES"
+        },
+        {
+          "id": "IronBlade",
+          "nameKey": "Weapon_002",
+          "name": "LAME ÉBRÉCHÉE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_CanGang.T_Weapon_CanGang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_CanGang.T_Icon_Weapon_CanGang",
+          "origins": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_BCFCE7058A98629202_2118471085_7A33C3DE4574B62E697BA9AB995F48F8"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "LAME ÉBRÉCHÉE"
+        },
+        {
+          "id": "Long",
+          "nameKey": "Weapon_012",
+          "name": "SANGUINE ALLONGÉE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_ChangXingHeiShang.T_Weapon_ChangXingHeiShang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_ChangXingHeiShang.T_Icon_Weapon_ChangXingHeiShang",
+          "origins": [
+            {
+              "map": "XiGu",
+              "saveGuid": "PBZ_Xigu_WP-BP_Rubbish_C_UAID_60CF84809909589302_2018031477",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "LAME ARDENTE"
+        },
+        {
+          "id": "GuiTouBlade",
+          "nameKey": "Weapon_017",
+          "name": "LAME FANTÔME ÉCARLATE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_HongZhuangGuiZhan.T_Weapon_HongZhuangGuiZhan",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_HongZhuangGuiZhan.T_Icon_Weapon_HongZhuangGuiZhan",
+          "origins": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A754349B4202_1202426897_2B1258084E1233073EBF36928C93F826"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "LAME FANTÔME ÉCARLATE"
+        },
+        {
+          "id": "ChiZheCanJian",
+          "nameKey": "Weapon_008",
+          "name": "LAME BRISÉE DU FANATIQUE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_ChiZheCanJian.T_Weapon_ChiZheCanJian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_ChiZheCanJian.T_Icon_Weapon_ChiZheCanJian",
+          "origins": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75434204302_1162253320_CE57137B48D30DC1980DC0BFA8C0CE89"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "L'ÉPÉE IVRE DU FANATIQUE"
+        },
+        {
+          "id": "ZhanMaBlade",
+          "nameKey": "Weapon_013",
+          "name": "LAME GUERRIÈRE DU HORS-LA-LOI",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_WangMingZhanMaDao.T_Weapon_WangMingZhanMaDao",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_WangMingZhanMaDao.T_Icon_Weapon_WangMingZhanMaDao",
+          "origins": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "BP_MobDomain_C_UAID_E89C25A75434F16202_1670209279+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "LAME GUERRIÈRE DU HORS-LA-LOI"
+        },
+        {
+          "id": "SnakeDual",
+          "nameKey": "Weapon_027",
+          "name": "SERPENT BLANC ET VIPÈRE ROUGE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_BaiMangChiLian.T_Weapon_BaiMangChiLian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_BaiMangChiLian.T_Icon_Weapon_BaiMangChiLian",
+          "origins": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "SERPENT BLANC ET VIPÈRE ROUGE"
+        },
+        {
+          "id": "RenOuQingTongJian",
+          "nameKey": "Weapon_007",
+          "name": "ÉPÉE DE BRONZE DE TIANXUAN",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_TianXuanQingTongJian.T_Weapon_TianXuanQingTongJian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_TianXuanQingTongJian.T_Icon_Weapon_TianXuanQingTongJian",
+          "origins": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434106602_2138288597_D17894D6466D6AB36660D2BEB9AA0F87"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ÉPÉE DE BRONZE DE TIANXUAN"
+        },
+        {
+          "id": "YuuBlade",
+          "nameKey": "Weapon_023",
+          "name": "SCIES DÉMONIAQUES",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_YaoJu.T_Weapon_YaoJu",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_YaoJu.T_Icon_Weapon_YaoJu",
+          "origins": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434854402_1102470946_93A9B92847E3E90A78113E896599035D"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "SCIES DÉMONIAQUES"
+        },
+        {
+          "id": "LuanYing",
+          "nameKey": "Weapon_003",
+          "name": "ÉPÉE DU LORIOT SAUVAGE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_LuanYingJian.T_Weapon_LuanYingJian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_LuanYingJian.T_Icon_Weapon_LuanYingJian",
+          "origins": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434854402_1102470946_EC0A79CA4F0CA1744D59FDACD3A60FD7",
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434854402_1102470946_0EBC0A22436742D16D09079BDA8F0AB0"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "TIANMIAO · LORIOT SAUVAGE"
+        },
+        {
+          "id": "PoJun",
+          "nameKey": "Weapon_018",
+          "name": "BRISE-ARMÉE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_PoJun.T_Weapon_PoJun",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_PoJun.T_Icon_Weapon_PoJun",
+          "origins": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "BP_MobDomain_C_UAID_BCFCE7078B5A81B202_2035342337+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "BRISE-ARMÉE"
+        },
+        {
+          "id": "SlitheringSword",
+          "nameKey": "Weapon_009",
+          "name": "ÉPÉE AGILE DU SERPENT",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_LingSheRuanJian.T_Weapon_LingSheRuanJian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_LingSheRuanJian.T_Icon_Weapon_LingSheRuanJian",
+          "origins": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434F9CA02_1624396199_3CCAA82C447EAA2AEC2FC29A1F5F41AF",
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434F9CA02_1624396199_EF3569EE48C3E07BE445F0BD5B4CE00E"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ÉPÉE AGILE DU SERPENT"
+        },
+        {
+          "id": "BaiShanShuangJian",
+          "nameKey": "Weapon_010",
+          "name": "ÉPÉES-TEMPÊTE DE BAISHAN",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_BaiShanFengLeiJian.T_Weapon_BaiShanFengLeiJian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_BaiShanFengLeiJian.T_Icon_Weapon_BaiShanFengLeiJian",
+          "origins": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A754346F6602_1373056726_BA1F48A04BE66438B119BAA1A24B81D9",
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A754346F6602_1373056726_FF872DEF4F8B6638BA5E2BB8B1CC01D6"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ÉPÉES-TEMPÊTE DE BAISHAN"
+        },
+        {
+          "id": "DualHook",
+          "nameKey": "Weapon_028",
+          "name": "CROCHETS D'ADIEU",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_BieLiCanGou.T_Weapon_BieLiCanGou",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_BieLiCanGou.T_Icon_Weapon_BieLiCanGou",
+          "origins": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "BP_MobDomain_C_UAID_BCFCE7058A8B268002_2121169317+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CROCHETS D'ADIEU"
+        },
+        {
+          "id": "TianShaShuangYue",
+          "nameKey": "Weapon_026",
+          "name": "CROISSANTS CÉLESTES",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_TianshashuangYue.T_Weapon_TianshashuangYue",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_TianShaShuangYue.T_Icon_Weapon_TianShaShuangYue",
+          "origins": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "PBZ_MobDomain_C_UAID_60CF848A6689B9D402_1667506968+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CROISSANTS CÉLESTES"
+        },
+        {
+          "id": "HorizontalBlade",
+          "nameKey": "Weapon_019",
+          "name": "SABRE TITAN",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_DangKouXiongRen.T_Weapon_DangKouXiongRen",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_DangKouXiongRen.T_Icon_Weapon_DangKouXiongRen",
+          "origins": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_FogDoor_C_UAID_74563CC57EE2514C02_1635098143_0745BEC14E1A6829674B249961F6BF36"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "SABRE TITAN"
+        },
+        {
+          "id": "JadeDualChakram",
+          "nameKey": "Weapon_029",
+          "name": "DOUCE MORT",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_YuShuangHuan.T_Weapon_YuShuangHuan",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_YuShuangHuan.T_Icon_Weapon_YuShuangHuan",
+          "origins": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_FlowActor_C_UAID_74563CC57EE2693A02_1903499240_D9BD81B043B295FD853CF59232A1AE12"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "DOUCE MORT"
+        },
+        {
+          "id": "BaiYing",
+          "nameKey": "Weapon_016",
+          "name": "OMBRE BLANCHE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_BaiYing.T_Weapon_BaiYing",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_BaiYing.T_Icon_Weapon_BaiYing",
+          "origins": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_FlowActor_C_UAID_60CF848A66893ECB02_1475352943_652A70A14AF69859EF407F9DDA1E2073"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "OMBRE BLANCHE"
+        },
+        {
+          "id": "RenOuYanYueDao",
+          "nameKey": "Weapon_020",
+          "name": "GUANDAO",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_YanYueDao.T_Weapon_YanYueDao",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_YanYueDao.T_Icon_Weapon_YanYueDao",
+          "origins": [
+            {
+              "map": "XiMeng",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Ximeng_WP-BP_FlowActor_C_UAID_60CF848A91CA9B9E02_1410829991_232EECD8421E844BAC3C8282320B9323"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "GUANDAO"
+        },
+        {
+          "id": "CiGuHunDun",
+          "nameKey": "Weapon_004",
+          "name": "CHAOS GLACIAL",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_CiGuHunDun.T_Weapon_CiGuHunDun",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_CiGuHunDun.T_Icon_Weapon_CiGuHunDun",
+          "origins": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75433A3D602_1816841266_BF9C74F3434C72DB77E22682C2F06BA3",
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75433A3D602_1816841266_11987A964FA136E4C30A7CBB45757552"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CHAOS GLACIAL"
+        },
+        {
+          "id": "Jigsaw",
+          "nameKey": "Weapon_015",
+          "name": "SCIE CRANTÉE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_DuanZhiJu.T_Weapon_DuanZhiJu",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_DuanZhiJu.T_Icon_Weapon_DuanZhiJu",
+          "origins": [
+            {
+              "map": "DuanHunYa",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Duanhun_WP-BP_FlowActor_C_UAID_74563C6BC2BD39D802_2059120646_1F3D7B4640E1BDF6442FA08A0F425847"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "SCIE CRANTÉE"
+        },
+        {
+          "id": "FangHuaXieShan",
+          "nameKey": "Weapon_031",
+          "name": "ÉVENTAIL DE LA DAME",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_ShengMuXieShan.T_Weapon_ShengMuXieShan",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_ShengMuXieShan.T_Icon_Weapon_ShengMuXieShan",
+          "origins": [
+            {
+              "map": "DuanHunYa",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Duanhun_WP-BP_FlowActor_C_UAID_E89C25A754345E6102_1202170289_FC24980347D4529A86545689D9F61E38",
+                "PBZ_Duanhun_WP-BP_FlowActor_C_UAID_E89C25A754345E6102_1202170289_51AD8D254AE05355C51643AB634BE0F1"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ÉVENTAIL DE LA DAME"
+        },
+        {
+          "id": "ZiMingJian",
+          "nameKey": "Weapon_011",
+          "name": "LAME DORÉE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_ZiMingJian.T_Weapon_ZiMingJian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_ZiMingJian.T_Icon_Weapon_ZiMingJian",
+          "origins": [
+            {
+              "map": "DuanHunYa",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": true,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "LAME DORÉE"
+        },
+        {
+          "id": "WoodenSword",
+          "nameKey": "Weapon_000",
+          "name": "SANGUINE DE BOIS",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_WoodBlade.T_Weapon_WoodBlade",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_WoodBlade.T_Icon_Weapon_WoodBlade",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "scenario-variant",
+          "main": true
+        },
+        {
+          "id": "Tang_HorseCartCombat",
+          "nameKey": "Weapon_001",
+          "name": "SANGUINE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_HeiShang.T_Weapon_HeiShang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_HeiShang.T_Icon_Weapon_HeiShang",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "scenario-variant",
+          "main": true
+        },
+        {
+          "id": "TangPrologue",
+          "nameKey": "Weapon_001",
+          "name": "SANGUINE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_HeiShang.T_Weapon_HeiShang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_HeiShang.T_Icon_Weapon_HeiShang",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "scenario-variant",
+          "main": true
+        },
+        {
+          "id": "ZhuGuangBaoQi",
+          "nameKey": "",
+          "name": "",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_ZhuGuangBaoQi.T_Weapon_ZhuGuangBaoQi",
+          "white": "/Game/PBZContent/UI/Hud/White/Weapon/New0306/T_Weapon_ZhuGuangBaoQi_w.T_Weapon_ZhuGuangBaoQi_w",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": true
+        },
+        {
+          "id": "XieHuo",
+          "nameKey": "Weapon_014",
+          "name": "LAME ARDENTE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_XieHuo.T_Weapon_XieHuo",
+          "white": "/Game/PBZContent/UI/Hud/White/Weapon/New0306/T_Weapon_XieHuo_w.T_Weapon_XieHuo_w",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": true
+        },
+        {
+          "id": "MoQie",
+          "nameKey": "Weapon_021",
+          "name": "",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_MoQie.T_Weapon_MoQie",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_MoQie.T_Icon_Weapon_MoQie",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": true
+        },
+        {
+          "id": "HeiMoShang",
+          "nameKey": "Weapon_005",
+          "name": "ROUGE INFERNAL",
+          "render": "/Game/PBZContent/UI/Hud/Art/T_Render_Weapon_HeiMoShang.T_Render_Weapon_HeiMoShang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_HeiMoShang.T_Icon_Weapon_HeiMoShang",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": true
+        },
+        {
+          "id": "HeiMoShangPrologue",
+          "nameKey": "Weapon_001",
+          "name": "SANGUINE",
+          "render": "/Game/PBZContent/UI/Hud/Art/T_Render_Weapon_HeiMoShang.T_Render_Weapon_HeiMoShang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_Weapon_HeiShang.T_Icon_Weapon_HeiShang",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "scenario-variant",
+          "main": true
+        },
+        {
+          "id": "BrutalAxe",
+          "nameKey": "PhantomEdges_001",
+          "name": "HACHE REDOUTABLE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_JuXiongFu.T_ShaqiWeapon_JuXiongFu",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_JuXiongFu.T_Icon_ShaqiWeapon_JuXiongFu",
+          "origins": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434C94902_1718600709_F4CC7D2D402F43A850F57C90828FDF22"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "HACHE REDOUTABLE"
+        },
+        {
+          "id": "UnnamedBow",
+          "nameKey": "PhantomEdges_009",
+          "name": "ARC DE PLUMES",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_YuGong.T_ShaqiWeapon_YuGong",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_YuGong.T_Icon_ShaqiWeapon_YuGong",
+          "origins": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_NPCSpawner_C_UAID_BCFCE7B8967373BC02_2003774205_B3C3523E461E385039C46F885DC6825E"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ARC DE PLUMES"
+        },
+        {
+          "id": "ShachiHook",
+          "nameKey": "PhantomEdges_014",
+          "name": "FAUCILLES ENCHAÎNÉES DU CHASSEUR",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_ZhuiMingSuoLian.T_ShaqiWeapon_ZhuiMingSuoLian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_ZhuiMingSuoLian.T_Icon_ShaqiWeapon_ZhuiMingSuoLian",
+          "origins": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434EA4202_1100267204_316DD51E42435922664480BCC8F0E197",
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434EA4202_1100267204_FA279F0C4199F91D9E03D8B22731B23F",
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434EA4202_1100267204_BA72DDB7425BF1D3C1EC37A12E6FE9A6"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "FAUCILLES ENCHAÎNÉES DU CHASSEUR"
+        },
+        {
+          "id": "TieGongZhuQuanTao",
+          "nameKey": "PhantomEdges_017",
+          "name": "GANTELETS DE FER",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_TieQuanTao.T_ShaqiWeapon_TieQuanTao",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_TieQuanTao.T_Icon_ShaqiWeapon_TieQuanTao",
+          "origins": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75434214302_1399775498_368198F846B8C875284AA1AFD982A7AC"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "GANTELETS DE FER"
+        },
+        {
+          "id": "ZhuoBiDun",
+          "nameKey": "PhantomEdges_004",
+          "name": "BASTION",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_ZhuoBiDun.T_ShaqiWeapon_ZhuoBiDun",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_ZhuoBiDun.T_Icon_ShaqiWeapon_ZhuoBiDun",
+          "origins": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_74563C6BC2BD3EE802_2092999791_E86C944649ABFDCDB8D17A8AB6153D67"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "BASTION"
+        },
+        {
+          "id": "MiaoShouFeiDao",
+          "nameKey": "PhantomEdges_010",
+          "name": "DAGUE DE LANCER",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_MiaoShouFeiDao.T_ShaqiWeapon_MiaoShouFeiDao",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_MiaoShouFeiDao.T_Icon_ShaqiWeapon_MiaoShouFeiDao",
+          "origins": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_NPCSpawner_C_UAID_BCFCE706288DC5AE02_1082517790_DE2031454969F464D05DC9AC5A967917"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "DAGUE DE LANCER"
+        },
+        {
+          "id": "KuYeSiZhuChuan",
+          "nameKey": "PhantomEdges_013",
+          "name": "CHAPELET DU TEMPLE KUYE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Weapon_KuYeSiNianZhu.T_Weapon_KuYeSiNianZhu",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_Kuyesizhuchuan.T_Icon_ShaqiWeapon_Kuyesizhuchuan",
+          "origins": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_74563C6BC2BD0EBA02_1117546896_4D07E2874067BCB336DFD294377FBDF9"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CHAPELET DU TEMPLE KUYE"
+        },
+        {
+          "id": "CaoOuSiXian",
+          "nameKey": "PhantomEdges_025",
+          "name": "CLOCHE DU MARIONNETTISTE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_CaoOuSiXian.T_ShaqiWeapon_CaoOuSiXian",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_Caoousixian.T_Icon_ShaqiWeapon_Caoousixian",
+          "origins": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_NPCSpawner_C_UAID_BCFCE7B8967391CE02_1252478676_140053144D803616904A4984C80DBC6F"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CLOCHE ABYSSALE"
+        },
+        {
+          "id": "CuiXinPiPa",
+          "nameKey": "PhantomEdges_024",
+          "name": "PIPA DÉCHIRE-CŒUR",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_CuiXinPiPa.T_ShaqiWeapon_CuiXinPiPa",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_CuiXinPiPa.T_Icon_ShaqiWeapon_CuiXinPiPa",
+          "origins": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434094B02_1841610189_4590DD0B44CD05279466AE932AAB41AA"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "Pipa illusoire"
+        },
+        {
+          "id": "HuoLiuXing",
+          "nameKey": "PhantomEdges_015",
+          "name": "MÉTÉORES DE FEU",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_HuoLiuXing.T_ShaqiWeapon_HuoLiuXing",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_HuoLiuXing.T_Icon_ShaqiWeapon_HuoLiuXing",
+          "origins": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_NPCSpawner_C_UAID_BCFCE7B969EF8BCB02_1689277521_EB1297A44828A64054541D8A7FBD4B50"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "MÉTÉORES DE FEU"
+        },
+        {
+          "id": "TanLang",
+          "nameKey": "PhantomEdges_005",
+          "name": "GUEULE-DE-LOUP",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_TanLang.T_ShaqiWeapon_TanLang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_TanLang.T_Icon_ShaqiWeapon_TanLang",
+          "origins": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_FlowActor_C_UAID_60CF8480990968B302_1836509921_37365073422A4ABFD57C4FA92863F42E"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "GUEULE-DE-LOUP"
+        },
+        {
+          "id": "YouLongTou",
+          "nameKey": "PhantomEdges_011",
+          "name": "DÉLUGE DE YOU LOONG",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_YouLongTou.T_ShaqiWeapon_YouLongTou",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_YouLongTou.T_Icon_ShaqiWeapon_YouLongTou",
+          "origins": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_FlowActor_C_UAID_60CF84809909F00203_1431752210_A7103A96484852934C8E6FAEFDF99ECA"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "DÉLUGE DE YOU LOONG"
+        },
+        {
+          "id": "JinGua",
+          "nameKey": "PhantomEdges_002",
+          "name": "CITROUILLE DORÉE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_ChangBingJinGua.T_ShaqiWeapon_ChangBingJinGua",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_ChangBingJinGua.T_Icon_ShaqiWeapon_ChangBingJinGua",
+          "origins": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A754347A4402_1766481447_686485E645926DA6AF9D17B5E1F8F9D0"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CITROUILLE DORÉE"
+        },
+        {
+          "id": "JianKeZhaoJiLing",
+          "nameKey": "PhantomEdges_026",
+          "name": "INVOCATION DE L'ÉPÉISTE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_JianKeZhaoJiLing.T_ShaqiWeapon_JianKeZhaoJiLing",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_JianKeZhaoJiLing.T_Icon_ShaqiWeapon_JianKeZhaoJiLing",
+          "origins": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_74563CC57EE2FD3B02_1145930585_7FCFB62E40F9A917BCE58FA7FFAEA380"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "INVOCATION DE L'ÉPÉISTE"
+        },
+        {
+          "id": "HuangJinHuoChong",
+          "nameKey": "PhantomEdges_008",
+          "name": "FEU DE L'AURORE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_HuangJinHuoChong.T_ShaqiWeapon_HuangJinHuoChong",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_HuangJinHuoChong.T_Icon_ShaqiWeapon_HuangJinHuoChong",
+          "origins": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_NPCSpawner_C_UAID_60CF84DCBBBEECB502_1979388186_8A48624442C86D7E857DF2B1103AD656"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "FEU DE L'AURORE"
+        },
+        {
+          "id": "ThunderSpear",
+          "nameKey": "PhantomEdges_019",
+          "name": "LANCE TONNERRE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_LeiTingQiang.T_ShaqiWeapon_LeiTingQiang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_LeiTingQiang.T_Icon_ShaqiWeapon_LeiTingQiang",
+          "origins": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_FlowActor_C_UAID_60CF84809909ACCF02_1428353427_E2478DAB48882FBC558E258ED4DDEF2D"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "LANCE TONNERRE"
+        },
+        {
+          "id": "LionHead",
+          "nameKey": "PhantomEdges_012",
+          "name": "CRINIÈRE FLAMBOYANTE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_LieYanShiTou.T_ShaqiWeapon_LieYanShiTou",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_LieYanShiTou.T_Icon_ShaqiWeapon_LieYanShiTou",
+          "origins": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_NPCSpawner_C_UAID_DC567B52853CECB502_1885701369_0D516CFE4D484E45734612B26F79E32C"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CRINIÈRE FLAMBOYANTE"
+        },
+        {
+          "id": "DuYanGong",
+          "nameKey": "PhantomEdges_109",
+          "name": "ARC BORGNE",
+          "render": "/Game/PBZContent/UI/Hud/Art/T_Render_Weapon_Gong.T_Render_Weapon_Gong",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_DuYanGong.T_Icon_ShaqiWeapon_DuYanGong",
+          "origins": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_FlowActor_C_UAID_BCFCE7058A98647C02_1215193346_D6D9ED6F4137CF260209669ADF199778"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ARC BORGNE"
+        },
+        {
+          "id": "XueDiZi",
+          "nameKey": "PhantomEdges_020",
+          "name": "GUILLOTINE VOLANTE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_XueDiZi.T_ShaqiWeapon_XueDiZi",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_XueDiZi.T_Icon_ShaqiWeapon_XueDiZi",
+          "origins": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_FlowActor_C_UAID_E89C25A754342B5F02_1711000648_DF2E95954494A5216A2F52B16F0D867F"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "GUILLOTINE VOLANTE"
+        },
+        {
+          "id": "XuKongHuaShan",
+          "nameKey": "PhantomEdges_023",
+          "name": "ÉVENTAIL RADIEUX D'INANIS",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_XuKongHuaShan.T_ShaqiWeapon_XuKongHuaShan",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_XuKongHuaShan.T_Icon_ShaqiWeapon_XuKongHuaShan",
+          "origins": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "ÉVENTAIL RADIEUX D'INANIS"
+        },
+        {
+          "id": "NiTouche",
+          "nameKey": "PhantomEdges_022",
+          "name": "CHAR BLINDÉ",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_NiTouChe.T_ShaqiWeapon_NiTouChe",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_NiTouChe.T_Icon_ShaqiWeapon_NiTouChe",
+          "origins": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_NPCSpawner_C_UAID_BCFCE7B969EF8BCB02_1682443520_AE1442C547BAE57BC6CA98ADCFD28430"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CHAR BLINDÉ"
+        },
+        {
+          "id": "YouLongCha",
+          "nameKey": "PhantomEdges_016",
+          "name": "TRIDENT DE LOONG",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_YouLongCha.T_ShaqiWeapon_YouLongCha",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_YouLongCha.T_Icon_ShaqiWeapon_YouLongCha",
+          "origins": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_FlowActor_C_UAID_BCFCE7058A989DDC02_1363442499_104545FB4F76C89B546DBEB1F453EA0D"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "TRIDENT DE LOONG"
+        },
+        {
+          "id": "TigerCannon",
+          "nameKey": "PhantomEdges_006",
+          "name": "CANON TIGRE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_HuPao.T_ShaqiWeapon_HuPao",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_HuPao.T_Icon_ShaqiWeapon_HuPao",
+          "origins": [
+            {
+              "map": "XiMeng",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Ximeng_WP-BP_FlowActor_C_UAID_60CF848A91CA9B9E02_1410818986_9F8387824B391466A39AA7A1DBFF86A8"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "CANON TIGRE"
+        },
+        {
+          "id": "MoJian",
+          "nameKey": "PhantomEdges_018",
+          "name": "TAILLE D'ENCRE",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_MoXueWuHen.T_ShaqiWeapon_MoXueWuHen",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_MoXueWuHen.T_Icon_ShaqiWeapon_MoXueWuHen",
+          "origins": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_NPCSpawner_C_UAID_60CF84DCBD1804B602_1451480416_D9D8F18F431E28B6EBB8DB93B1D21F09"
+              ]
+            }
+          ],
+          "accepted": true,
+          "artworkComplete": true,
+          "reason": "campaign-acquisition",
+          "main": false,
+          "level": 30,
+          "nativeMaximum": 30,
+          "forgedName": "TAILLE D'ENCRE"
+        },
+        {
+          "id": "XueSeLingDang",
+          "nameKey": "",
+          "name": "",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_XueSeLingDang.T_ShaqiWeapon_XueSeLingDang",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_XueSeLingDang.T_ShaqiWeapon_XueSeLingDang",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": false
+        },
+        {
+          "id": "BaWangLianQiu",
+          "nameKey": "",
+          "name": "",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_BaWangLianQiu.T_ShaqiWeapon_BaWangLianQiu",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_BaWangLianQiu.T_ShaqiWeapon_BaWangLianQiu",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": false
+        },
+        {
+          "id": "MoShou",
+          "nameKey": "PhantomEdges_007",
+          "name": "",
+          "render": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_ShaqiWeapon_MoShou.T_ShaqiWeapon_MoShou",
+          "white": "/Game/PBZContent/UI/Hud/Art/Temp_Render/T_Icon_ShaqiWeapon_MoShou.T_Icon_ShaqiWeapon_MoShou",
+          "origins": [],
+          "accepted": false,
+          "artworkComplete": true,
+          "reason": "no-campaign-acquisition",
+          "main": false
+        }
+      ],
+      "acquisition": {
+        "source": "BP_UIGameplayLogicComponent.BP_MapItem.MapItemDatas + DT_MapData + DT_NormalGamePolicy",
+        "main": {
+          "Tang": [
+            {
+              "policy": "DT_NormalGamePolicy.InitWeaponList"
+            }
+          ],
+          "GuiTouBlade": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A754349B4202_1202426897_2B1258084E1233073EBF36928C93F826"
+              ]
+            }
+          ],
+          "IronBlade": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_BCFCE7058A98629202_2118471085_7A33C3DE4574B62E697BA9AB995F48F8"
+              ]
+            }
+          ],
+          "Long": [
+            {
+              "map": "XiGu",
+              "saveGuid": "PBZ_Xigu_WP-BP_Rubbish_C_UAID_60CF84809909589302_2018031477",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "Double": [
+            {
+              "map": "XiGu",
+              "saveGuid": "PBZ_Xigu_WP-BP_Rubbish_C_UAID_E89C25A7512001CB02_2061020586",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "ChiZheCanJian": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75434204302_1162253320_CE57137B48D30DC1980DC0BFA8C0CE89"
+              ]
+            }
+          ],
+          "ZhanMaBlade": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "BP_MobDomain_C_UAID_E89C25A75434F16202_1670209279+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "CiGuHunDun": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75433A3D602_1816841266_BF9C74F3434C72DB77E22682C2F06BA3",
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75433A3D602_1816841266_11987A964FA136E4C30A7CBB45757552"
+              ]
+            }
+          ],
+          "SnakeDual": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "JadeDualChakram": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_FlowActor_C_UAID_74563CC57EE2693A02_1903499240_D9BD81B043B295FD853CF59232A1AE12"
+              ]
+            }
+          ],
+          "HorizontalBlade": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_FogDoor_C_UAID_74563CC57EE2514C02_1635098143_0745BEC14E1A6829674B249961F6BF36"
+              ]
+            }
+          ],
+          "DualHook": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "BP_MobDomain_C_UAID_BCFCE7058A8B268002_2121169317+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "PoJun": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "BP_MobDomain_C_UAID_BCFCE7078B5A81B202_2035342337+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "TianShaShuangYue": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "PBZ_MobDomain_C_UAID_60CF848A6689B9D402_1667506968+MobGroupScript_AddWeaponAfterCombat_C_0",
+              "nodeGuids": []
+            }
+          ],
+          "BaiYing": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_FlowActor_C_UAID_60CF848A66893ECB02_1475352943_652A70A14AF69859EF407F9DDA1E2073"
+              ]
+            }
+          ],
+          "FangHuaXieShan": [
+            {
+              "map": "DuanHunYa",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Duanhun_WP-BP_FlowActor_C_UAID_E89C25A754345E6102_1202170289_FC24980347D4529A86545689D9F61E38",
+                "PBZ_Duanhun_WP-BP_FlowActor_C_UAID_E89C25A754345E6102_1202170289_51AD8D254AE05355C51643AB634BE0F1"
+              ]
+            }
+          ],
+          "Jigsaw": [
+            {
+              "map": "DuanHunYa",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Duanhun_WP-BP_FlowActor_C_UAID_74563C6BC2BD39D802_2059120646_1F3D7B4640E1BDF6442FA08A0F425847"
+              ]
+            }
+          ],
+          "ZiMingJian": [
+            {
+              "map": "DuanHunYa",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "RenOuYanYueDao": [
+            {
+              "map": "XiMeng",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Ximeng_WP-BP_FlowActor_C_UAID_60CF848A91CA9B9E02_1410829991_232EECD8421E844BAC3C8282320B9323"
+              ]
+            }
+          ],
+          "YuuBlade": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434854402_1102470946_93A9B92847E3E90A78113E896599035D"
+              ]
+            }
+          ],
+          "LuanYing": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434854402_1102470946_EC0A79CA4F0CA1744D59FDACD3A60FD7",
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434854402_1102470946_0EBC0A22436742D16D09079BDA8F0AB0"
+              ]
+            }
+          ],
+          "RenOuQingTongJian": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434106602_2138288597_D17894D6466D6AB36660D2BEB9AA0F87"
+              ]
+            }
+          ],
+          "SlitheringSword": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434F9CA02_1624396199_3CCAA82C447EAA2AEC2FC29A1F5F41AF",
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434F9CA02_1624396199_EF3569EE48C3E07BE445F0BD5B4CE00E"
+              ]
+            }
+          ],
+          "BaiShanShuangJian": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A754346F6602_1373056726_BA1F48A04BE66438B119BAA1A24B81D9",
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A754346F6602_1373056726_FF872DEF4F8B6638BA5E2BB8B1CC01D6"
+              ]
+            }
+          ]
+        },
+        "edges": {
+          "ShachiHook": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434EA4202_1100267204_316DD51E42435922664480BCC8F0E197",
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434EA4202_1100267204_FA279F0C4199F91D9E03D8B22731B23F",
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434EA4202_1100267204_BA72DDB7425BF1D3C1EC37A12E6FE9A6"
+              ]
+            }
+          ],
+          "BrutalAxe": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_FlowActor_C_UAID_E89C25A75434C94902_1718600709_F4CC7D2D402F43A850F57C90828FDF22"
+              ]
+            }
+          ],
+          "UnnamedBow": [
+            {
+              "map": "XiGu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Xigu_WP-BP_NPCSpawner_C_UAID_BCFCE7B8967373BC02_2003774205_B3C3523E461E385039C46F885DC6825E"
+              ]
+            }
+          ],
+          "MiaoShouFeiDao": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_NPCSpawner_C_UAID_BCFCE706288DC5AE02_1082517790_DE2031454969F464D05DC9AC5A967917"
+              ]
+            }
+          ],
+          "TieGongZhuQuanTao": [
+            {
+              "map": "FuJiZhiLin",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Fujizhilin_WP-BP_FlowActor_C_UAID_E89C25A75434214302_1399775498_368198F846B8C875284AA1AFD982A7AC"
+              ]
+            }
+          ],
+          "MoJian": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_NPCSpawner_C_UAID_60CF84DCBD1804B602_1451480416_D9D8F18F431E28B6EBB8DB93B1D21F09"
+              ]
+            }
+          ],
+          "XueDiZi": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_DengDingShanDao_WP-BP_FlowActor_C_UAID_E89C25A754342B5F02_1711000648_DF2E95954494A5216A2F52B16F0D867F"
+              ]
+            }
+          ],
+          "XuKongHuaShan": [
+            {
+              "map": "DengDingShanDao",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": []
+            }
+          ],
+          "HuoLiuXing": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_NPCSpawner_C_UAID_BCFCE7B969EF8BCB02_1689277521_EB1297A44828A64054541D8A7FBD4B50"
+              ]
+            }
+          ],
+          "LionHead": [
+            {
+              "map": "PangZhen",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_NPCSpawner_C_UAID_DC567B52853CECB502_1885701369_0D516CFE4D484E45734612B26F79E32C"
+              ]
+            }
+          ],
+          "NiTouche": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_NPCSpawner_C_UAID_BCFCE7B969EF8BCB02_1682443520_AE1442C547BAE57BC6CA98ADCFD28430"
+              ]
+            }
+          ],
+          "DuYanGong": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_FlowActor_C_UAID_BCFCE7058A98647C02_1215193346_D6D9ED6F4137CF260209669ADF199778"
+              ]
+            }
+          ],
+          "YouLongCha": [
+            {
+              "map": "MeiGuHu",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Pangzhen_WP-BP_FlowActor_C_UAID_BCFCE7058A989DDC02_1363442499_104545FB4F76C89B546DBEB1F453EA0D"
+              ]
+            }
+          ],
+          "TigerCannon": [
+            {
+              "map": "XiMeng",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Ximeng_WP-BP_FlowActor_C_UAID_60CF848A91CA9B9E02_1410818986_9F8387824B391466A39AA7A1DBFF86A8"
+              ]
+            }
+          ],
+          "ThunderSpear": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_FlowActor_C_UAID_60CF84809909ACCF02_1428353427_E2478DAB48882FBC558E258ED4DDEF2D"
+              ]
+            }
+          ],
+          "YouLongTou": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_FlowActor_C_UAID_60CF84809909F00203_1431752210_A7103A96484852934C8E6FAEFDF99ECA"
+              ]
+            }
+          ],
+          "HuangJinHuoChong": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_NPCSpawner_C_UAID_60CF84DCBBBEECB502_1979388186_8A48624442C86D7E857DF2B1103AD656"
+              ]
+            }
+          ],
+          "TanLang": [
+            {
+              "map": "HouJie",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Houjie_WP-BP_FlowActor_C_UAID_60CF8480990968B302_1836509921_37365073422A4ABFD57C4FA92863F42E"
+              ]
+            }
+          ],
+          "KuYeSiZhuChuan": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_74563C6BC2BD0EBA02_1117546896_4D07E2874067BCB336DFD294377FBDF9"
+              ]
+            }
+          ],
+          "CuiXinPiPa": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A75434094B02_1841610189_4590DD0B44CD05279466AE932AAB41AA"
+              ]
+            }
+          ],
+          "CaoOuSiXian": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_NPCSpawner_C_UAID_BCFCE7B8967391CE02_1252478676_140053144D803616904A4984C80DBC6F"
+              ]
+            }
+          ],
+          "ZhuoBiDun": [
+            {
+              "map": "LuJiaCun",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_74563C6BC2BD3EE802_2092999791_E86C944649ABFDCDB8D17A8AB6153D67"
+              ]
+            }
+          ],
+          "JinGua": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_E89C25A754347A4402_1766481447_686485E645926DA6AF9D17B5E1F8F9D0"
+              ]
+            }
+          ],
+          "JianKeZhaoJiLing": [
+            {
+              "map": "ZhengDaoDaYing",
+              "saveGuid": "None",
+              "mobDomain": "None",
+              "nodeGuids": [
+                "PBZ_Zhengdaodaying_WP-BP_FlowActor_C_UAID_74563CC57EE2FD3B02_1145930585_7FCFB62E40F9A917BCE58FA7FFAEA380"
+              ]
+            }
+          ]
+        },
+        "maps": [
+          "XiGu",
+          "FuJiZhiLin",
+          "DengDingShanDao",
+          "PangZhen",
+          "MeiGuHu",
+          "DuanHunYa",
+          "DuanHunShan",
+          "XiMeng",
+          "HouJie",
+          "LuJiaCun",
+          "ZhengDaoDaYing",
+          "MeiGu_YiJi"
+        ],
+        "excludedMaps": [
+          "Test",
+          "XueSeSenLin",
+          "HuanShuShi"
+        ]
+      }
+    },
+    "upgradeCeiling": 30,
+    "balance": "native MobGroup area level plus authored offset; explicit regional baseline where absent",
+    "reincarnationCount": 0,
+    "encounterCycle": 0,
+    "forge": "SnapSoulWeapon where supported by native forge UI",
+    "filter": "global campaign collectible catalog, independent of player acquisitions; test and obsolete maps excluded"
+  },
+  "ui": {
+    "title": "BOSSES",
+    "nativePortraits": true,
+    "nativeFonts": true,
+    "difficulties": [
+      1,
+      2,
+      3
+    ],
+    "nativeHoldSeconds": 1.5
+  },
+  "checkpoint": {
+    "mode": "pristine encounter plus targeted native backpack serialization",
+    "fullWorldForceSave": false
+  },
+  "platform": {
+    "achievementProgression": false,
+    "nativeAchievementAdapter": false,
+    "network": "temporary Windows firewall block during the protected session"
+  },
+  "qa": {
+    "mode": "manual",
+    "debugShortcuts": false
+  },
+  "validation": {
+    "packageRoundTrip": true,
+    "ioStoreContainerVerified": true,
+    "liveEvidence": "See validation report supplied with the release; arrival checks are distinct from fight completion."
+  }
+}

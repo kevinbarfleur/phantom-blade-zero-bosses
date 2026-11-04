@@ -1,0 +1,13 @@
+Extensions JavaScript du laboratoire et générateurs du catalogue.
+
+Les scripts runtime-v2.js, selector.js, hold.js et battle.js gèrent le parcours
+du joueur. model.js et gear.js construisent les points de contrôle temporaires.
+Les catalogues décrivent les rencontres, leur équilibre et les sources d'armes.
+
+validation.js sert aux essais locaux. Le paquet jouable le désactive avec
+qa-config.js en mode manual. Les raccourcis de validation restent inactifs.
+
+Les générateurs Python lisent les exports natifs du jeu dans le dossier de
+travail local. Ces exports et les sauvegardes personnelles ne sont pas inclus
+ici. Ce dossier permet l'audit du mod ; il ne remplace pas le lanceur protégé.
+Le constructeur attend PBZ_LOCAL_SAVE_PROFILE et les mêmes exports de travail.

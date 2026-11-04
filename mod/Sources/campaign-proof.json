@@ -1,0 +1,61 @@
+{
+  "source": "DT_MapData + DT_NormalGamePolicy",
+  "activeMaps": {
+    "XiGu": {
+      "row": "XiGu",
+      "level": "PBZ_Xigu_WP"
+    },
+    "FuJiZhiLin": {
+      "row": "FuJiZhiLin",
+      "level": "PBZ_Fujizhilin_WP"
+    },
+    "LuJiaCun": {
+      "row": "LuJiaCun",
+      "level": "PBZ_Zhengdaodaying_WP"
+    },
+    "PangZhen": {
+      "row": "PangZhen",
+      "level": "PBZ_Pangzhen_WP"
+    },
+    "HouJie": {
+      "row": "HouJie",
+      "level": "PBZ_Houjie_WP"
+    },
+    "ZhengDaoDaYing": {
+      "row": "ZhengDaoDaYing",
+      "level": "PBZ_Zhengdaodaying_WP"
+    },
+    "MeiGuHu": {
+      "row": "MeiGuHu",
+      "level": "PBZ_Pangzhen_WP"
+    },
+    "DengDingShanDao": {
+      "row": "DengDingShanDao",
+      "level": "PBZ_DengDingShanDao_WP"
+    },
+    "MeiGu_YiJi": {
+      "row": "HuanShuShi",
+      "level": "PBZ_Huanshuyiji2_WP"
+    },
+    "XiMeng": {
+      "row": "XiMeng",
+      "level": "PBZ_Ximeng_WP"
+    },
+    "DuanHunYa": {
+      "row": "DuanHunYa",
+      "level": "PBZ_Duanhun_WP"
+    },
+    "DuanHunShan": {
+      "row": "DuanHunShan",
+      "level": "PBZ_Duanhun_WP"
+    }
+  },
+  "initialMain": {
+    "Tang": [
+      {
+        "policy": "DT_NormalGamePolicy.InitWeaponList"
+      }
+    ]
+  },
+  "initialEdges": {}
+}
