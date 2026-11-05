@@ -3,7 +3,28 @@
 const UE=require("ue"),puerts=require("puerts");
 const config=require("./qa-config"),bosses=require("./boss-catalog").filter(b=>b.available!==false);
 const enabled=config.mode!=="manual";
-const automated=["survey","arrival","combat","retry","direct"].includes(config.mode);
+const automated=["survey","arrival","combat","retry","direct","system-flow"].includes(config.mode);
+let systemFlowPawn=null,systemFlowTicks=0;
+const exitTrace={pawn:null,start:0,samples:[]};
+function cinemaExitTrace(context,session){
+    if(!exitTrace.apis){exitTrace.apis=true;const apis={};for(const name of ['PBZTeleportCoverSubsystem','PBZLevelSequenceManager','PBZMediaSequenceQueryLibrary','PlayerCameraManager'])try{apis[name]={instance:Object.getOwnPropertyNames(UE[name].prototype),static:Object.getOwnPropertyNames(UE[name])};}catch(_){}ui(context,'intro-exit-apis',session,{apis});}
+    if(!session.ux.directIntroObserved)return;
+    const pawn=UE.GameplayStatics.GetPlayerCharacter(context,0),name=pawn?.GetName();
+    if(exitTrace.pawn!==name){exitTrace.pawn=name;exitTrace.start=Date.now();exitTrace.samples=[];exitTrace.tick=0;exitTrace.finished=0;}
+    if(++exitTrace.tick%3!==0)return;
+    if(!session.cinematicActive){exitTrace.finished=exitTrace.finished||Date.now();if(Date.now()-exitTrace.finished>7000)return;}
+    const camera=UE.GameplayStatics.GetPlayerController(context,0)?.PlayerCameraManager,layout=UE.PBZBlueprintFunctionLibrary.GetUILayOut(context),layers={};
+    for(const name of ['UI.Layer.Menu','UI.Layer.Sequence','UI.Layer.BlackScreen']){const tag=new UE.GameplayTag();tag.TagName=name;const w=layout?.Layers.Get(tag)?.GetActiveWidget();layers[name]=w?{name:w.GetName(),class:UE.KismetSystemLibrary.GetPathName(w.GetClass()),active:w.IsActivated(),opacity:w.GetRenderOpacity()}:null;}
+    const visible=[];
+    for(const path of ['/Game/PBZContent/Blueprint/FlowGraph/UI/WBP_FlowSequencer.WBP_FlowSequencer_C','/Game/PBZContent/UI/Hud/WB_TempLoadingScreen.WB_TempLoadingScreen_C','/Game/PBZContent/Blueprint/FlowGraph/UI/WB_BlackScreen_Flow.WB_BlackScreen_Flow_C']){
+        const cls=UE.Class.Find(path);if(!cls)continue;const all=puerts.$ref(UE.NewArray(UE.UserWidget));UE.WidgetBlueprintLibrary.GetAllWidgetsOfClass(context,all,cls,false);const widgets=puerts.$unref(all);
+        for(let i=0;i<widgets.Num();i++){const w=widgets.Get(i);visible.push({name:w.GetName(),visible:w.IsVisible(),active:w.IsActivated(),opacity:w.GetRenderOpacity(),imageBlack:w.ImageBlack?.GetRenderOpacity(),background:w.ImageBlackBackGround?.GetRenderOpacity()});}
+    }
+    const manager=UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context,UE.PBZUIManagerSubsystem.StaticClass()),tag=new UE.GameplayTag();tag.TagName='UI.Layer.Sequence';const w=manager.GetActivateWidgetByLayer(tag,UE.Class.Find('/Game/PBZContent/Blueprint/FlowGraph/UI/WBP_FlowSequencer.WBP_FlowSequencer_C'));
+    const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(pawn),inSequence=new UE.GameplayTag();inSequence.TagName='CharacterState.InLevelSequence';
+    exitTrace.samples.push({ms:Date.now()-exitTrace.start,cover:UE.PBZTeleportCoverSubsystem.IsAnyTeleportCoverActive(context),cinematic:!!session.cinematicActive,inSequence:asc?.HasMatchingGameplayTag(inSequence),playing:w?.InLevelSeqPlayer?.IsPlaying(),fade:camera?.FadeAmount,remaining:camera?.FadeTimeRemaining,health:UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(pawn,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health',UE.BasicAttributeSet.StaticClass())),layers,visible});
+    if(exitTrace.samples.length%10===0)ui(context,'intro-exit-trace',session,{samples:exitTrace.samples});
+}
 const direct={results:[],index:0,ticks:0,lastBoss:null,done:false,capturing:false};
 const trainingFlow={phase:"waiting",done:false};
 const held={};
@@ -41,10 +62,10 @@ function ui(context,phase,session,extra={}){
 }
 function menu(context,session,api){
     if(["ux","flow","review"].includes(config.mode)&&!survey.started){survey.started=true;setTimeout(()=>api.showMenu(context),2500);return;}
-    if(!enabled||!["survey","arrival","combat","retry","direct"].includes(config.mode)||survey.started)return;
+    if(!enabled||!["survey","arrival","combat","retry","direct","system-flow"].includes(config.mode)||survey.started)return;
     survey.started=true;
     survey.ids=config.ids.length?config.ids:bosses.map(b=>b.id);
-    setTimeout(()=>api.replay(context,2,bosses.find(b=>b.id===survey.ids[0])),3500);
+    setTimeout(()=>api.replay(context,2,bosses.find(b=>b.id===survey.ids[0]),true,config.skipIntroduction===true),3500);
 }
 function mark(context,phase){
     try{
@@ -326,7 +347,7 @@ function tick(context,controller,session,capture,api){
         }
     }
     if(config.mode==="training-flow"){trainingFlowTick(context,session,capture,api);return;}
-    if(["combat","arrival","direct"].includes(config.mode)){
+    if(["combat","arrival","direct","system-flow","review","ux"].includes(config.mode)){
         const player=UE.GameplayStatics.GetPlayerCharacter(context,0),name=player&&player.GetName();
         if(name&&combat.protectedPlayer!==name){
             UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute("Health_Min",UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,1);
@@ -347,6 +368,14 @@ function tick(context,controller,session,capture,api){
         return;
     }
     arrivalWait.ticks=0;
+    if(["system-flow","review","ux"].includes(config.mode)){
+        if(session.boss.training)return;
+        cinemaExitTrace(context,session);
+        const pawn=UE.GameplayStatics.GetPlayerCharacter(context,0)?.GetName();
+        if(session.cinematicActive||!session.ux.directIntroObserved){systemFlowTicks=0;return;}
+        if(pawn!==systemFlowPawn&&++systemFlowTicks>=240){systemFlowPawn=pawn;api.prepareEquipment(context);ui(context,'system-flow-inventory',session);}
+        return;
+    }
     if(config.mode==="direct"){directTick(context,session,capture,api);return;}
     if(config.mode==="arrival")return;
     surveyTick(context,session,capture,api);

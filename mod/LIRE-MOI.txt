@@ -1,7 +1,7 @@
-BOSSES 0.6.1 - Steam build 26367565
+BOSSES 0.6.2 - Steam build 26367565
 
 Lire LIRE-MOI.md. Telecharger separement le ZIP officiel PBZModLoader 1.0.0 de LLKKFF et le laisser dans Telechargements ou ici. Ne pas installer le chargeur manuellement. Ouvrir Lancer-Bosses.cmd normalement. Une demande Windows sert au gardien des sauvegardes et du reseau. Fermer le jeu puis attendre la restauration avant de reprendre la campagne. Apres arret brutal : Restaurer-Campagne.cmd. Conserver .state jusqu a restauration.
 
-BOSSES -> refuge d Inanis -> inventaire natif -> Inanis -> combat -> difficulte -> maintien 1,5 s. F8 ouvre les options.
+BOSSES -> refuge d Inanis -> inventaire natif -> Inanis -> combat -> difficulte et enchainement automatique -> maintien 1,5 s. En combat : inventaire -> SYSTEME -> Quitter le jeu -> Recommencer ou Retourner a l entrainement. F8 ouvre aussi les options.
 
 Version experimentale : tous les combats et les QTE finaux ne sont pas valides sur ce build. Vibrations physiques non confirmees.

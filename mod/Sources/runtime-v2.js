@@ -99,6 +99,9 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 session.prepareOnArrival=!!boss.training;
                 session.mode=boss.training?"training":"direct-fight";
                 session.skipIntroduction=skipIntroduction;
+                session.introPresentation=null;
+                delete session.ux?.introPresentationReleased;
+                delete session.ux?.introAdditionalLoadingHidden;
                 session.cinematicActive=false;session.cinemaSource=null;
                 session.trainingInteractionsDisabled=false;
                 session.trainingTicks=0;
@@ -108,7 +111,7 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 session.trialReady=false;session.nativeSpawnerReady=false;session.trialPrepareAttempts=0;session.layersPrepared=false;
                 session.ux={...session.ux,nativeTrialPrepared:false,nativeLayersPrepared:false,preparationPaused:false,preparationClosed:false,resultShown:false,prepareRequested:!!boss.training,automatedQA:validation.automated};
                 delete session.ux.trialPreparationError;delete session.ux.layerPreparationError;delete session.ux.nativeEncounterPrepared;delete session.ux.nativeSpawnerFound;
-                for(const key of ["directReady","directPlacement","directIntroObserved","directKind","nativeArrivalLoaded","nativeEntryCrossed","arrivalEvents","introPreparationTimedOut","introPreparationCancelled","arenaBellsSuppressed","directCombatStarted","inanisVisible","inanisInteractionReady","inanisSelections","trainingExitBlocked","trainingHiddenActors","trainingDisabledActors","trainingHiddenEffects","trainingBoundaryReturns"])delete session.ux[key];
+                for(const key of ["introExitBlackSuppressed","introExitBlackDuration","introExitSequence","systemLabActionsReady","systemLabActionsVisible","directReady","directPlacement","directIntroObserved","directKind","nativeArrivalLoaded","nativeEntryCrossed","arrivalEvents","introPreparationTimedOut","introPreparationCancelled","arenaBellsSuppressed","directCombatStarted","inanisVisible","inanisInteractionReady","inanisSelections","trainingExitBlocked","trainingHiddenActors","trainingDisabledActors","trainingHiddenEffects","trainingBoundaryReturns"])delete session.ux[key];
                 battle.install(session,victory);
                 instance.SetLoadingScreen("PBZ_WP"); busy = false;
                 log("Loading " + boss.id + "; difficulty=" + difficulty);
@@ -249,6 +252,7 @@ function chooseDifficulty(context, boss = session.boss) {
             const onSelect = difficulty => {
                 if(ended||selected!==null||!difficulties.includes(difficulty))return;
                 selected=difficulty;
+                session.autoNext=!!widget.codexAutoNext;
                 try{
                     hold.beginLaunch(widget,session);
                     if(!replay(instance,selected,boss))fail(instance,"Le chargement du combat n'a pas pu commencer. Réessaie depuis la sélection.");
@@ -272,7 +276,6 @@ function showMenu(context, screen = "bosses") {
     if (busy || activeDialog || !valid(context)) return false;
     if(screen==="bosses"){
         if(session.completionToken)session.completionToken.cancelled=true;
-        session.autoNext=false;
     }
     try {
         const controller=UE.GameplayStatics.GetPlayerController(context,0);
@@ -426,7 +429,7 @@ function beginKeys(context) {
             const controller = UE.GameplayStatics.GetPlayerController(context, 0);
             if (!valid(controller)) return;
             const down = controller.IsInputKeyDown(key); if (down && !keyHeld) showMenu(context); keyHeld = down;
-            if(!busy)validation.tick(context,controller,session,captureCheckpoint,{replay,showMenu,victory,travel:writeEncounter,openTraining});
+            if(!busy)validation.tick(context,controller,session,captureCheckpoint,{replay,showMenu,victory,travel:writeEncounter,openTraining,prepareEquipment});
         } catch (error) { log("Input: " + String(error));if(validation.ui)validation.ui(diagnosticContext,"runtime-error",session,{error:String(error),stack:error?.stack});stopKeys(); }
     }, 33);
     // Some native victories return from an instanced arena to the campaign map.
@@ -448,7 +451,7 @@ function patchStartMenu(Type) {
     p.bindButtonClicked = function (name, handler) { if (name === "ContinueGame"||name==="LoadGame") handler = () => openTraining(this); return bind.call(this, name, handler); };
     for (const method of ["InitText", "BP_OnActivated", "CheckTag", "UpdateVersionText"]) wrap(p, method, function () { labelMenu(this); });
     wrap(p,"BP_OnActivated",function(){if(validation.menu)validation.menu(this,session,{replay,showMenu});});
-    wrap(p,"BP_OnActivated",function(){if(["training","training-flow"].includes(validation.mode)&&!session.trainingAutoStarted){session.trainingAutoStarted=true;setTimeout(()=>openTraining(this),2500);}});
+    wrap(p,"BP_OnActivated",function(){if(["training","training-flow","settings-probe"].includes(validation.mode)&&!session.trainingAutoStarted){session.trainingAutoStarted=true;setTimeout(()=>openTraining(this),2500);}});
 }
 function patchGameMode(Type) {
     const p = Type.prototype;
@@ -521,4 +524,5 @@ exports.replay = replay; exports.captureCheckpoint = captureCheckpoint; exports.
 inanis.configure(()=>session,context=>showMenu(valid(worldContext)?worldContext:context));
 exports.isActive=()=>session.active;
 exports.patchTeleport=Type=>training.patchTeleport(Type,()=>session.active&&!!session.boss.training,context=>showMenu(context));
+exports.patchSettings=Type=>require("./system-menu").patch(Type,()=>session,{replay,openTraining,fail});
 exports.openTraining=openTraining;

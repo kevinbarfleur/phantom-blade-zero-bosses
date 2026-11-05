@@ -1,6 +1,6 @@
 {
-  "version": "0.6.1",
-  "revision": "loader-r1-26367565",
+  "version": "0.6.2",
+  "revision": "loader-r2-26367565",
   "gameAppId": 4115450,
   "gameBuild": 26367565,
   "deployment": "temporary-pbzmodloader",
@@ -591,7 +591,7 @@
     },
     {
       "path": "ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js",
-      "sha256": "86f647721bd2a8c16e3778e71f81e3340bc352f23d0e242a1c30b2683e8969c3",
+      "sha256": "d68c7045776aea5622534901a19b14083777eb0b0e069e2a62e80b283f2f0e94",
       "source": "mod"
     }
   ],

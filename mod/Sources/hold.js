@@ -12,6 +12,7 @@ function configure(widget,session,boss){
     slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Bottom);
     padding.Right=180;padding.Bottom=170;slot.SetPadding(padding);
     widget.codexDifficulty=session.difficulty||2;
+    widget.codexAutoNext=!!session.autoNext;
     let completed=false,closed=false,timer=null;
     const bindings=[],qaTimeouts=[];let qaProgress=null;
     const feedback={holding:false,playing:0,lastProgress:0,charge:null,finish:null};
@@ -90,6 +91,24 @@ function configure(widget,session,boss){
     widget.BP_OnWidgetDeactivated.Add(cleanup);
     button.CompleteHold.Add(complete);
     session.ux={...session.ux,holdSeconds:button.GetRequiredHoldTime(),nativeHold:true};
+    if(boss){
+        const heading=UE.NewObject(UE.TextBlock.StaticClass(),widget),headingSlot=root.AddChildToOverlay(heading),hp=new UE.Margin();hp.Left=155;hp.Top=475;
+        headingSlot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);headingSlot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);headingSlot.SetPadding(hp);
+        heading.SetText(text("ENCHAÎNEMENT AUTOMATIQUE"));if(widget.Desc1)heading.SetFont(widget.Desc1.Font);heading.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
+        const line=UE.NewObject(UE.Image.StaticClass(),widget),lineSlot=root.AddChildToOverlay(line),lp=new UE.Margin();lp.Left=155;lp.Top=450;
+        line.SetDesiredSizeOverride(new UE.Vector2D(650,1));line.SetColorAndOpacity(new UE.LinearColor(1,1,1,0.25));line.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
+        lineSlot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);lineSlot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);lineSlot.SetPadding(lp);
+        const toggle=UE.WidgetBlueprintLibrary.Create(widget,widget.Normal.GetClass(),UE.GameplayStatics.GetPlayerController(widget,0));
+        const size=UE.NewObject(UE.SizeBox.StaticClass(),widget);size.SetWidthOverride(650);size.AddChild(toggle);
+        const toggleSlot=root.AddChildToOverlay(size),tp=new UE.Margin();tp.Left=130;tp.Top=525;
+        toggleSlot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);toggleSlot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);toggleSlot.SetPadding(tp);
+        const refresh=()=>{toggle.SetButtonText(text(widget.codexAutoNext?"OUI · COMBAT SUIVANT":"NON · RETOUR À LA SÉLECTION"));toggle.SetIsSelected(widget.codexAutoNext,false);};
+        const clicked=()=>{if(closed||completed)return;widget.codexAutoNext=!widget.codexAutoNext;refresh();};
+        toggle.OnButtonBaseClicked.Add(clicked);refresh();widget.codexAutoNextButton=toggle;
+        if(toggle.SetNavigationRuleExplicit&&widget.Hard.SetNavigationRuleExplicit){widget.Hard.SetNavigationRuleExplicit(UE.EUINavigation.Down,toggle);toggle.SetNavigationRuleExplicit(UE.EUINavigation.Up,widget.Hard);}
+        const dispose=()=>{widget.BP_OnWidgetDeactivated.Remove(dispose);if(valid(toggle))toggle.OnButtonBaseClicked.Remove(clicked);for(const object of [size,heading,line])try{if(valid(object))object.RemoveFromParent();}catch(_){}widget.codexAutoNextButton=null;};
+        widget.BP_OnWidgetDeactivated.Add(dispose);
+    }
     // Same charge/success Wwise events and sound subsystem as native weapon
     // upgrades, including the game's existing motion/haptics routing/settings.
     for(const [key,name]of [["charge","SFX_UI_Int_LevelUp_Weapon_Charge"],["finish","SFX_UI_Int_LevelUp_Weapon_Success"]]){
@@ -118,7 +137,7 @@ function configure(widget,session,boss){
         heading.SetText(text("DIFFICULTÉ"));if(widget.Desc1)heading.SetFont(widget.Desc1.Font);heading.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
         session.ux.difficultyPortrait=true;
     }catch(error){session.ux.portraitError=String(error);}
-    if(["ux","flow","review","training"].includes(require("./qa-config").mode)){
+    if(["flow","review","training"].includes(require("./qa-config").mode)){
         // Exercise the same native progress handler as real CommonUI input:
         // release at half progress, then complete one full 1.5 second hold.
         qaTimeouts.push(setTimeout(()=>{if(!closed){button.OnActionProgress(0.5);session.ux.cancelCheck="half-progress";}},6000));
