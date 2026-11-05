@@ -157,10 +157,11 @@ exports.hasObserved=name=>!!scope?.excluded[name];
 exports.prepareEncounter=(context,session)=>{
     const boss=session.boss,p=boss.profile;
     if(!session.active||session.completed)return;
-    if(!session.layersPrepared&&(p.loadLayers?.length||p.unloadLayers?.length)){
+    const afterArrival=p.restoreLayersAfterArrival&&!session.layersRestoredAfterArrival&&session.directArrival?.released&&!session.cinematicActive;
+    if((!session.layersPrepared||afterArrival)&&(p.loadLayers?.length||p.unloadLayers?.length)){
         // The pipeline reapplies its saved layers during world initialization.
         // Wait for the stable preparation point before changing the live state.
-        if(session.arrivalAnchorPending)return;
+        if(session.arrivalAnchorPending||session.worldLoadingComplete===false)return;
         try{
             const manager=UE.WorldPartitionBlueprintLibrary.GetDataLayerManager(context);
             if(!manager)return;
@@ -172,6 +173,11 @@ exports.prepareEncounter=(context,session)=>{
                 manager.SetDataLayerRuntimeState(asset,state,false);
             }
             session.layersPrepared=true;session.ux={...session.ux,nativeLayersPrepared:true};
+            delete session.ux.layerPreparationError;
+            // The native landing cover can finish streaming after the first
+            // world preparation. Reconcile the selected season once at its
+            // playable exit, without continuously rewriting a phase's layers.
+            if(afterArrival){session.layersRestoredAfterArrival=true;session.ux.layersRestoredAfterArrival=true;}
         }catch(error){session.ux={...session.ux,layerPreparationError:String(error)};}
         return;
     }

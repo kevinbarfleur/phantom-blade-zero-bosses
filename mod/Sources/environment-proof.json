@@ -1,0 +1,68 @@
+{
+  "region": "PBZ_Fujizhilin_WP",
+  "encounters": [
+    "BP_Monster_HuaQianXIao",
+    "BP_Monster_LuanShi",
+    "BP_Monster_JingYe",
+    "BP_Monster_ChiLian"
+  ],
+  "loadLayers": [
+    "/Game/DataLayers/T01_FirstStage_WP/LA/A03_0_FuJiZhiLin_Summer.A03_0_FuJiZhiLin_Summer",
+    "/Game/DataLayers/T01_FirstStage_WP/LD/FujiZhilin/NPC_YiGeBuLiu_fjzl.NPC_YiGeBuLiu_fjzl"
+  ],
+  "unloadLayers": [
+    "/Game/DataLayers/T01_FirstStage_WP/LA/A03_0_FuJiZhiLin_Winter.A03_0_FuJiZhiLin_Winter",
+    "/Game/DataLayers/T01_FirstStage_WP/LD/FujiZhilin/Monster_YiGeBuLiu_fjzl1.Monster_YiGeBuLiu_fjzl1"
+  ],
+  "resetTags": [
+    "fjzl.风雪数据层.激活",
+    "quest.一个不留.营地变怪"
+  ],
+  "controllers": [
+    {
+      "path": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_DataLayer_Snow",
+      "nodeIDs": [
+        "3E140FC04EFA19F11D369A8C39037306",
+        "07AD3C064B4BC193134422A14074CBA1",
+        "07EF50F64535136E918ABA885446FA6A",
+        "C85EF85341CBEF7C62CF36A092BCF70D",
+        "29A59875459FDE70A1105FA23D0A2F01",
+        "C79FE35F492F7EEB0C4F499C357BF99D",
+        "E9DB23034B87B8CFF94A6589C09642AC",
+        "95C45C89461FD534A96E7F822C6D0E5B",
+        "961088994B8AB445F6A289858C49C441",
+        "2A2460EB4744D37BBA6787A854FCCE34"
+      ]
+    },
+    {
+      "path": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_YiGeBuLiu_BianGuai_FJZL",
+      "nodeIDs": [
+        "915EA17E4BA875DDF3EA79A944764EA7",
+        "B0153E4146C0232E37FFD6AFA629348F",
+        "C757C7D841FB703EA3D6268E2ED3626D",
+        "9DE0D6CD43E5D15CDA2DFFABC2CB41F1",
+        "F37945004D5433CFFCD0408D6D2E2C14",
+        "1E23113444F9F66552B6D086CD4E471C",
+        "AB0AF41146029AE6A1A5E385A667A00C",
+        "4657AC56482DB2C4391B45ACE46A3D4A",
+        "F0DA4D024A6CC6B0F2E29CBEB2153389",
+        "A32E036743CE19ACB5358E9B01B604CC",
+        "154B1F4C4A6D4C42A0E5799AD09C41B7",
+        "19423B8E4CE18B357AA44B85E92B08A4",
+        "0259EED546F9D4B6E3DFB4BFDB95A6AF",
+        "2E3A980E438CA6764F1DE5B2D269AF96",
+        "486759BC4D91283315E60AA1155055FC",
+        "3EE9D77C4B1EE4F26FC9ABAE7DEFB2D2",
+        "B6FEACAA4ACCBEB8197637906592D522",
+        "1E9BFE0741D922D34FB2C79A2E6863BE",
+        "2551C59F42FC8B9B628FBF85F114596F"
+      ]
+    }
+  ],
+  "resetActors": [
+    "BP_FlowActor_C_UAID_E89C25A754344BBB02_1963572983",
+    "BP_FlowActor_C_UAID_E89C25A75434F0CB02_1953620243"
+  ],
+  "postArrivalLayerPass": true,
+  "gameplayValidated": false
+}

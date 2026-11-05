@@ -1,1 +1,1 @@
-Code du mod et preuves du catalogue. Le paquet executable est Payload/ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js. Les quatre tests *.test.cjs utilisent des doublures des API natives et ne valident pas le jeu reel. Aucun code ni binaire du chargeur tiers n est redistribue.
+Code du mod et preuves du catalogue. Le paquet executable est Payload/ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js. Les cinq tests *.test.cjs utilisent des doublures des API natives et ne valident pas le jeu reel. Aucun code ni binaire du chargeur tiers n est redistribue.

@@ -114,7 +114,7 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 session.trainingTipShown=false;session.inanisInteraction=null;session.inanisSpawnRequested=0;
                 session.arrivalAnchorPending=true;
                 session.preparationShown=false;
-                session.trialReady=false;session.nativeSpawnerReady=false;session.trialPrepareAttempts=0;session.layersPrepared=false;
+                session.trialReady=false;session.nativeSpawnerReady=false;session.trialPrepareAttempts=0;session.layersPrepared=false;session.layersRestoredAfterArrival=false;
                 session.ux={...session.ux,nativeTrialPrepared:false,nativeLayersPrepared:false,preparationPaused:false,preparationClosed:false,resultShown:false,prepareRequested:!!boss.training,automatedQA:validation.automated};
                 delete session.ux.trialPreparationError;delete session.ux.layerPreparationError;delete session.ux.nativeEncounterPrepared;delete session.ux.nativeSpawnerFound;
                 for(const key of ["introExitBlackSuppressed","introExitBlackDuration","introExitSequence","systemLabActionsReady","systemLabActionsVisible","directReady","directPlacement","directIntroObserved","directKind","nativeArrivalLoaded","nativeEntryCrossed","arrivalEvents","introPreparationTimedOut","introPreparationCancelled","arenaBellsSuppressed","directCombatStarted","inanisVisible","inanisInteractionReady","inanisSelections","trainingExitBlocked","trainingHiddenActors","trainingDisabledActors","trainingHiddenEffects","trainingBoundaryReturns"])delete session.ux[key];
@@ -461,7 +461,7 @@ function labelMenu(menu) {
     if (menu.ContinueGame) menu.ContinueGame.SetButtonText(text("BOSSES"));
     for (const name of ["NewGame", "BonusCollection"]) if (menu[name]) menu[name].SetVisibility(UE.ESlateVisibility.Collapsed);
     if(menu.LoadGame)menu.LoadGame.SetVisibility(UE.ESlateVisibility.Collapsed);
-    if (menu.Version) menu.Version.SetText(text(""));
+    if (menu.Version) menu.Version.SetText(text("BOSSES"+(globalThis.__CodexBossesLoader?.version?" "+globalThis.__CodexBossesLoader.version:"")));
 }
 function patchStartMenu(Type) {
     const p = Type.prototype, bind = p.bindButtonClicked;

@@ -1,4 +1,4 @@
-BOSSES 0.7.0-preview.2 - PREVERSION NON VALIDEE EN JEU
+BOSSES 0.7.0-preview.3 - PREVERSION NON VALIDEE EN JEU
 
 Lire LIRE-MOI.md. La 0.6.2 reste disponible pour jouer sans ces nouvelles fonctions experimentales.
 

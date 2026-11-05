@@ -1,10 +1,10 @@
 {
-  "version": "0.7.0-preview.2",
+  "version": "0.7.0-preview.3",
   "gameBuild": 26367565,
   "runtimeCompatible": null,
   "gameplayValidated": false,
   "codeTests": {
-    "passed": 139,
+    "passed": 145,
     "failed": 0
   },
   "deploymentTests": {
@@ -14,7 +14,7 @@
   },
   "liveTest": {
     "executed": false,
-    "reason": "User is absent and requested code tests only. No live game test or UAC request was performed for this revision."
+    "reason": "Environment repair and version display have code tests only; live validation is pending."
   },
   "features": {
     "timerModes": [
@@ -36,5 +36,18 @@
     "New option layout, HUD placement, native death on the 66th actual hit and controller navigation are unverified.",
     "Final QTEs, phase transitions and all 60 complete fights remain unverified.",
     "The previous 0.6.2 gameplay checks do not validate these new features."
-  ]
+  ],
+  "environmentRepair": {
+    "encounters": [
+      "BP_Monster_HuaQianXIao",
+      "BP_Monster_LuanShi",
+      "BP_Monster_JingYe",
+      "BP_Monster_ChiLian"
+    ],
+    "source": "Sources/environment-proof.json",
+    "latePopulationReset": true,
+    "summerLayersRestored": true,
+    "postArrivalReconciliation": true,
+    "gameplayValidated": false
+  }
 }

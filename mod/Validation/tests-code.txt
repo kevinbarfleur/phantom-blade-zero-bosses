@@ -2,704 +2,734 @@ TAP version 13
 # Subtest: normal launch does not load or patch the lab
 ok 1 - normal launch does not load or patch the lab
   ---
-  duration_ms: 1.5438
+  duration_ms: 1.4029
   ...
 # Subtest: all native exports resolve before patches; adapter blocks only active lab progression
 ok 2 - all native exports resolve before patches; adapter blocks only active lab progression
   ---
-  duration_ms: 1.3666
+  duration_ms: 1.0863
   ...
 # Subtest: missing native export leaves all native methods unpatched
 ok 3 - missing native export leaves all native methods unpatched
   ---
-  duration_ms: 0.9101
+  duration_ms: 0.6995
   ...
 # Subtest: duplicate install refuses to wrap methods again
 ok 4 - duplicate install refuses to wrap methods again
   ---
-  duration_ms: 1.5592
+  duration_ms: 1.4754
   ...
 # Subtest: the actual bundled script is inert without the protected launcher flag
 ok 5 - the actual bundled script is inert without the protected launcher flag
   ---
-  duration_ms: 18.3643
+  duration_ms: 17.1404
   ...
 # Subtest: standalone fights hide arena checkpoint, child model, interaction and detached strings without deleting it
 ok 6 - standalone fights hide arena checkpoint, child model, interaction and detached strings without deleting it
   ---
-  duration_ms: 1.5282
+  duration_ms: 1.662
   ...
 # Subtest: campaign and sanctuary retain their own bell handling
 ok 7 - campaign and sanctuary retain their own bell handling
   ---
-  duration_ms: 1.1103
+  duration_ms: 1.3476
   ...
 # Subtest: a native refresh cannot leave the arena bell visible after the next sweep
 ok 8 - a native refresh cannot leave the arena bell visible after the next sweep
   ---
-  duration_ms: 0.6483
+  duration_ms: 0.71
   ...
 # Subtest: child enumeration hides a detached model without an inline GetChildActor accessor
 ok 9 - child enumeration hides a detached model without an inline GetChildActor accessor
   ---
-  duration_ms: 1.9379
+  duration_ms: 1.5953
   ...
 # Subtest: a not-yet-created child never interrupts arrival processing
 ok 10 - a not-yet-created child never interrupts arrival processing
   ---
-  duration_ms: 1.2868
+  duration_ms: 0.8355
   ...
 # Subtest: arrival holds gravity and input until the native streaming cover confirms the destination
 ok 11 - arrival holds gravity and input until the native streaming cover confirms the destination
   ---
-  duration_ms: 2.5246
+  duration_ms: 2.4521
   ...
 # Subtest: a running introduction owns player placement; no teleport interrupts it
 ok 12 - a running introduction owns player placement; no teleport interrupts it
   ---
-  duration_ms: 0.8358
+  duration_ms: 0.6747
   ...
 # Subtest: an invisible native introduction blocks placement before its first visible frame
 ok 13 - an invisible native introduction blocks placement before its first visible frame
   ---
-  duration_ms: 1.2817
+  duration_ms: 0.8814
   ...
 # Subtest: a sequence queued after a cover request cancels its late teleport callback
 ok 14 - a sequence queued after a cover request cancels its late teleport callback
   ---
-  duration_ms: 1.0698
+  duration_ms: 0.864
   ...
 # Subtest: a sequence appearing while the streaming cover is active prevents re-entry and a second introduction
 ok 15 - a sequence appearing while the streaming cover is active prevents re-entry and a second introduction
   ---
-  duration_ms: 0.9955
+  duration_ms: 0.8763
   ...
 # Subtest: a late after-push callback cannot move a player whose streaming cover has already closed
 ok 16 - a late after-push callback cannot move a player whose streaming cover has already closed
   ---
-  duration_ms: 0.9369
+  duration_ms: 0.9766
   ...
 # Subtest: callbacks from an earlier world cannot place a player in the next encounter
 ok 17 - callbacks from an earlier world cannot place a player in the next encounter
   ---
-  duration_ms: 1.0226
+  duration_ms: 0.7634
   ...
 # Subtest: native cover retains the final approach facing instead of the remote trigger heading
 ok 18 - native cover retains the final approach facing instead of the remote trigger heading
   ---
-  duration_ms: 1.2105
+  duration_ms: 0.8909
   ...
 # Subtest: a cinematic entry crosses its native boundary after landing while remaining covered
 ok 19 - a cinematic entry crosses its native boundary after landing while remaining covered
   ---
-  duration_ms: 1.0312
+  duration_ms: 1.155
   ...
 # Subtest: direct checkpoints retain the destination and the chosen gear independently
 ok 20 - direct checkpoints retain the destination and the chosen gear independently
   ---
-  duration_ms: 103.3941
+  duration_ms: 95.5739
   ...
 # Subtest: every encounter has bounded balance with evidence provenance
 ok 21 - every encounter has bounded balance with evidence provenance
   ---
-  duration_ms: 1.4777
+  duration_ms: 1.1023
   ...
 # Subtest: travelling both directions reapplies encounter level while preserving forge and equipped choices
 ok 22 - travelling both directions reapplies encounter level while preserving forge and equipped choices
   ---
-  duration_ms: 1.284
+  duration_ms: 1.0283
   ...
 # Subtest: direct entry starts the native combat AI once and targets no other phase
 ok 23 - direct entry starts the native combat AI once and targets no other phase
   ---
-  duration_ms: 1.8597
+  duration_ms: 1.8991
   ...
 # Subtest: introductions, loading and native encounter controllers keep ownership of their AI
 ok 24 - introductions, loading and native encounter controllers keep ownership of their AI
   ---
-  duration_ms: 5.9709
+  duration_ms: 5.2418
   ...
 # Subtest: the registered spawner pawn takes precedence over same-class pooled actors
 ok 25 - the registered spawner pawn takes precedence over same-class pooled actors
   ---
-  duration_ms: 1.5142
+  duration_ms: 0.9336
   ...
 # Subtest: non-cinematic preparation waits for final streaming and uses the encounter pawn
 ok 26 - non-cinematic preparation waits for final streaming and uses the encounter pawn
   ---
-  duration_ms: 1.6306
+  duration_ms: 0.8824
   ...
 # Subtest: a non-cinematic NPC encounter uses its authored combat transition without changing execution rules
 ok 27 - a non-cinematic NPC encounter uses its authored combat transition without changing execution rules
   ---
-  duration_ms: 2.953
+  duration_ms: 2.6497
   ...
 # Subtest: native recorder runs normally and only a real selected-boss kill reaches the lab
 ok 28 - native recorder runs normally and only a real selected-boss kill reaches the lab
   ---
-  duration_ms: 1.8916
+  duration_ms: 1.9857
   ...
 # Subtest: lab pickup queues close without opening equipment or changing the loadout
 ok 29 - lab pickup queues close without opening equipment or changing the loadout
   ---
-  duration_ms: 1.3666
+  duration_ms: 1.8984
   ...
 # Subtest: loot suppression releases every native flow output in order
 ok 30 - loot suppression releases every native flow output in order
   ---
-  duration_ms: 1.7576
+  duration_ms: 0.8442
   ...
 # Subtest: an excluded boss is observed once and old death tasks cannot complete a later encounter
 ok 31 - an excluded boss is observed once and old death tasks cannot complete a later encounter
   ---
-  duration_ms: 1.083
+  duration_ms: 1.0514
   ...
 # Subtest: an excluded aggregate encounter waits for its native unlock rather than a first phase death
 ok 32 - an excluded aggregate encounter waits for its native unlock rather than a first phase death
   ---
-  duration_ms: 0.8345
+  duration_ms: 0.7398
   ...
 # Subtest: terminal phase death completes the lab even when the native record is waiting for a story tag
 ok 33 - terminal phase death completes the lab even when the native record is waiting for a story tag
   ---
-  duration_ms: 1.2202
+  duration_ms: 0.9222
   ...
 # Subtest: a nearby miniboss without a boss-record engagement event still has one native death observer
 ok 34 - a nearby miniboss without a boss-record engagement event still has one native death observer
   ---
-  duration_ms: 1.2416
+  duration_ms: 0.9548
   ...
 # Subtest: encounter streaming activates only its authored leaf layers once, without activating the campaign tree
 ok 35 - encounter streaming activates only its authored leaf layers once, without activating the campaign tree
   ---
-  duration_ms: 1.5376
+  duration_ms: 1.71
+  ...
+# Subtest: seasonal restoration waits for world readiness and reconciles once after the landing cover
+ok 36 - seasonal restoration waits for world readiness and reconciles once after the landing cover
+  ---
+  duration_ms: 1.1361
+  ...
+# Subtest: a refused final seasonal layer pass remains retryable without claiming success
+ok 37 - a refused final seasonal layer pass remains retryable without claiming success
+  ---
+  duration_ms: 1.1728
   ...
 # Subtest: a phase fight prepares its first native spawner only and leaves the guardian and ending controllers alone
-ok 36 - a phase fight prepares its first native spawner only and leaves the guardian and ending controllers alone
+ok 38 - a phase fight prepares its first native spawner only and leaves the guardian and ending controllers alone
   ---
-  duration_ms: 1.8813
+  duration_ms: 0.9262
   ...
 # Subtest: a spawner without an ID uses only its exact authored actor and preserves native domain data
-ok 37 - a spawner without an ID uses only its exact authored actor and preserves native domain data
+ok 39 - a spawner without an ID uses only its exact authored actor and preserves native domain data
   ---
-  duration_ms: 1.1784
+  duration_ms: 0.8986
   ...
 # Subtest: each encounter has a unique identity, native class, portrait and explicit preparation profile
-ok 38 - each encounter has a unique identity, native class, portrait and explicit preparation profile
+ok 40 - each encounter has a unique identity, native class, portrait and explicit preparation profile
   ---
-  duration_ms: 1600.607
+  duration_ms: 1342.3339
   ...
 # Subtest: statue trials use five distinct native variants and only the selected trial is active
-ok 39 - statue trials use five distinct native variants and only the selected trial is active
+ok 41 - statue trials use five distinct native variants and only the selected trial is active
   ---
-  duration_ms: 73.9114
+  duration_ms: 60.1731
   ...
 # Subtest: resetting the young mistress leaves the later chapter cinematic completion intact
-ok 40 - resetting the young mistress leaves the later chapter cinematic completion intact
+ok 42 - resetting the young mistress leaves the later chapter cinematic completion intact
   ---
-  duration_ms: 39.2338
+  duration_ms: 38.2774
   ...
 # Subtest: an early summer encounter restores its native layer and removes the late winter population
-ok 41 - an early summer encounter restores its native layer and removes the late winter population
+ok 43 - an early summer encounter restores its native layer and removes the late winter population
   ---
-  duration_ms: 15.5587
+  duration_ms: 11.9771
   ...
 # Subtest: the sword formation starts before its stair trigger and completes only after its second wave
-ok 42 - the sword formation starts before its stair trigger and completes only after its second wave
+ok 44 - the sword formation starts before its stair trigger and completes only after its second wave
   ---
-  duration_ms: 0.2463
+  duration_ms: 0.1836
   ...
 # Subtest: the final battle uses its native inner bell rather than crossing the offstage distance from the mountain
-ok 43 - the final battle uses its native inner bell rather than crossing the offstage distance from the mountain
+ok 45 - the final battle uses its native inner bell rather than crossing the offstage distance from the mountain
   ---
-  duration_ms: 16.2644
+  duration_ms: 11.6895
   ...
 # Subtest: cinematics use the native authored skip and respect non-skippable segments and transition animations
-ok 44 - cinematics use the native authored skip and respect non-skippable segments and transition animations
+ok 46 - cinematics use the native authored skip and respect non-skippable segments and transition animations
   ---
-  duration_ms: 1.8515
+  duration_ms: 3.1662
   ...
 # Subtest: preparation waits until native cinematic state has fully cleared
-ok 45 - preparation waits until native cinematic state has fully cleared
+ok 47 - preparation waits until native cinematic state has fully cleared
   ---
-  duration_ms: 0.8697
+  duration_ms: 1.3999
   ...
 # Subtest: a transparent activated sequence counts as pending without pretending it has already played
-ok 46 - a transparent activated sequence counts as pending without pretending it has already played
+ok 48 - a transparent activated sequence counts as pending without pretending it has already played
   ---
-  duration_ms: 1.7627
+  duration_ms: 2.2257
   ...
 # Subtest: only visible dialogue content is advanced through its native skip action
-ok 47 - only visible dialogue content is advanced through its native skip action
+ok 49 - only visible dialogue content is advanced through its native skip action
   ---
-  duration_ms: 0.7342
+  duration_ms: 1.5395
   ...
 # Subtest: post-victory movies use native flow completion instead of returning to campaign menus
-ok 48 - post-victory movies use native flow completion instead of returning to campaign menus
+ok 50 - post-victory movies use native flow completion instead of returning to campaign menus
   ---
-  duration_ms: 0.8255
+  duration_ms: 1.7422
   ...
 # Subtest: boss introductions and their dialogue remain visible and keep native player controls
-ok 49 - boss introductions and their dialogue remain visible and keep native player controls
+ok 51 - boss introductions and their dialogue remain visible and keep native player controls
   ---
-  duration_ms: 0.7896
+  duration_ms: 1.3677
   ...
 # Subtest: an immediate retry skips only the native skippable introduction
-ok 50 - an immediate retry skips only the native skippable introduction
+ok 52 - an immediate retry skips only the native skippable introduction
   ---
-  duration_ms: 0.7713
+  duration_ms: 1.3335
   ...
 # Subtest: skippable campaign conversation does not interrupt a direct boss entry
-ok 51 - skippable campaign conversation does not interrupt a direct boss entry
+ok 53 - skippable campaign conversation does not interrupt a direct boss entry
   ---
-  duration_ms: 1.02
+  duration_ms: 1.2466
   ...
 # Subtest: the selected standalone intro disables only the timed post-cinema story black screen
-ok 52 - the selected standalone intro disables only the timed post-cinema story black screen
+ok 54 - the selected standalone intro disables only the timed post-cinema story black screen
   ---
-  duration_ms: 1.0337
+  duration_ms: 1.6696
   ...
 # Subtest: intro cleanup waits for the native sequence and player lock, then removes its surface once
-ok 53 - intro cleanup waits for the native sequence and player lock, then removes its surface once
+ok 55 - intro cleanup waits for the native sequence and player lock, then removes its surface once
   ---
-  duration_ms: 0.9917
+  duration_ms: 1.5403
   ...
 # Subtest: a released intro surface restores its opacity while hidden before reuse by later scenes
-ok 54 - a released intro surface restores its opacity while hidden before reuse by later scenes
+ok 56 - a released intro surface restores its opacity while hidden before reuse by later scenes
   ---
-  duration_ms: 0.6953
+  duration_ms: 1.1613
   ...
 # Subtest: the post-intro additional loading overlay stays native but transparent once arrival is ready
-ok 55 - the post-intro additional loading overlay stays native but transparent once arrival is ready
+ok 57 - the post-intro additional loading overlay stays native but transparent once arrival is ready
   ---
-  duration_ms: 2.0828
+  duration_ms: 2.5541
   ...
 # Subtest: an unstarted, stale or campaign intro can never remove another camera fade
-ok 56 - an unstarted, stale or campaign intro can never remove another camera fade
+ok 58 - an unstarted, stale or campaign intro can never remove another camera fade
   ---
-  duration_ms: 3.5417
+  duration_ms: 6.1994
   ...
 # Subtest: campaign, training, ending and unrelated phase cinematics keep their authored black screens
-ok 57 - campaign, training, ending and unrelated phase cinematics keep their authored black screens
+ok 59 - campaign, training, ending and unrelated phase cinematics keep their authored black screens
   ---
-  duration_ms: 3.0751
+  duration_ms: 4.3763
+  ...
+# Subtest: each early forest encounter restores its season and ordinary population from a late-game donor
+ok 60 - each early forest encounter restores its season and ordinary population from a late-game donor
+  ---
+  duration_ms: 2.6744
+  ...
+# Subtest: retry and chosen equipment cannot reintroduce the late forest population
+ok 61 - retry and chosen equipment cannot reintroduce the late forest population
+  ---
+  duration_ms: 0.4317
+  ...
+# Subtest: the later winter encounter and other chapters keep their own campaign environment
+ok 62 - the later winter encounter and other chapters keep their own campaign environment
+  ---
+  duration_ms: 0.3553
   ...
 # Subtest: capture serializes the live backpack before reading gear, without traversing world actors
-ok 58 - capture serializes the live backpack before reading gear, without traversing world actors
+ok 63 - capture serializes the live backpack before reading gear, without traversing world actors
   ---
-  duration_ms: 2.583
+  duration_ms: 2.2745
   ...
 # Subtest: live equipment replaces stale serialized slots while preserving weapon stats
-ok 59 - live equipment replaces stale serialized slots while preserving weapon stats
+ok 64 - live equipment replaces stale serialized slots while preserving weapon stats
   ---
-  duration_ms: 1.9099
+  duration_ms: 1.8537
   ...
 # Subtest: capture rejects a missing live inventory instead of accepting an old checkpoint
-ok 60 - capture rejects a missing live inventory instead of accepting an old checkpoint
+ok 65 - capture rejects a missing live inventory instead of accepting an old checkpoint
   ---
-  duration_ms: 1.9322
+  duration_ms: 1.3559
   ...
 # Subtest: auto-next is a draft until launch and cancelling removes its delegate
-ok 61 - auto-next is a draft until launch and cancelling removes its delegate
+ok 66 - auto-next is a draft until launch and cancelling removes its delegate
   ---
-  duration_ms: 4.5932
+  duration_ms: 3.2362
   ...
 # Subtest: difficulty changes preserve the auto-next draft; a completed hold submits it once
-ok 62 - difficulty changes preserve the auto-next draft; a completed hold submits it once
+ok 67 - difficulty changes preserve the auto-next draft; a completed hold submits it once
   ---
-  duration_ms: 3.0403
+  duration_ms: 2.4572
   ...
 # Subtest: timer mode is independent from automatic chaining and is submitted with the held confirmation
-ok 63 - timer mode is independent from automatic chaining and is submitted with the held confirmation
+ok 68 - timer mode is independent from automatic chaining and is submitted with the held confirmation
   ---
-  duration_ms: 1.0495
+  duration_ms: 0.9994
   ...
 # Subtest: 66 HITS selects native Hard without campaign nightmare and normal difficulties disable the challenge
-ok 64 - 66 HITS selects native Hard without campaign nightmare and normal difficulties disable the challenge
+ok 69 - 66 HITS selects native Hard without campaign nightmare and normal difficulties disable the challenge
   ---
-  duration_ms: 0.8477
+  duration_ms: 0.9186
   ...
 # Subtest: a short click only selects difficulty, native completed hold launches exactly once
-ok 65 - a short click only selects difficulty, native completed hold launches exactly once
+ok 70 - a short click only selects difficulty, native completed hold launches exactly once
   ---
-  duration_ms: 1.0642
+  duration_ms: 1.0915
   ...
 # Subtest: cancel discards an incomplete hold and a late asset callback cannot replace navigation
-ok 66 - cancel discards an incomplete hold and a late asset callback cannot replace navigation
+ok 71 - cancel discards an incomplete hold and a late asset callback cannot replace navigation
   ---
-  duration_ms: 2.0669
+  duration_ms: 1.6101
   ...
 # Subtest: native charge feedback starts once, stops on release and is cleaned up when cancelling
-ok 67 - native charge feedback starts once, stops on release and is cleaned up when cancelling
-  ---
-  duration_ms: 1.9153
-  ...
-# Subtest: late charge assets do not play after release or cancellation; completion uses the native success event
-ok 68 - late charge assets do not play after release or cancellation; completion uses the native success event
-  ---
-  duration_ms: 1.1085
-  ...
-# Subtest: launch retains the confirmation screen and covers its selector until world loading takes over
-ok 69 - launch retains the confirmation screen and covers its selector until world loading takes over
-  ---
-  duration_ms: 1.353
-  ...
-# Subtest: a failed launch restores the selector and closes the retained confirmation
-ok 70 - a failed launch restores the selector and closes the retained confirmation
-  ---
-  duration_ms: 1.2284
-  ...
-# Subtest: a released old-world controller cannot interrupt the next arrival or other cleanup
-ok 71 - a released old-world controller cannot interrupt the next arrival or other cleanup
-  ---
-  duration_ms: 1.1005
-  ...
-# Subtest: a camera destroyed after controller validation still permits failure recovery
-ok 72 - a camera destroyed after controller validation still permits failure recovery
-  ---
-  duration_ms: 0.9796
-  ...
-# Subtest: talking to Inanis ends the native interaction before opening selection and debounces held input
-ok 73 - talking to Inanis ends the native interaction before opening selection and debounces held input
-  ---
-  duration_ms: 3.0487
-  ...
-# Subtest: leaving training or changing worlds cancels a pending Inanis selection
-ok 74 - leaving training or changing worlds cancels a pending Inanis selection
-  ---
-  duration_ms: 2.6605
-  ...
-# Subtest: Hua resets the authored introduction that changes her from a cinematic actor into a fight
-ok 75 - Hua resets the authored introduction that changes her from a cinematic actor into a fight
-  ---
-  duration_ms: 1.4309
-  ...
-# Subtest: the first sword encounter resets its native spawner component flow and post-fight flag
-ok 76 - the first sword encounter resets its native spawner component flow and post-fight flag
-  ---
-  duration_ms: 0.3099
-  ...
-# Subtest: native incoming-hit listener accepts enemies and owned projectiles, excludes friends, self and outgoing hits
-ok 77 - native incoming-hit listener accepts enemies and owned projectiles, excludes friends, self and outgoing hits
-  ---
-  duration_ms: 2.9823
-  ...
-# Subtest: 66 rapid native events are all counted and the native death effect is applied once
-ok 78 - 66 rapid native events are all counted and the native death effect is applied once
-  ---
-  duration_ms: 2.561
-  ...
-# Subtest: a stopped listener cannot affect the next world or count duplicate notifications
-ok 79 - a stopped listener cannot affect the next world or count duplicate notifications
-  ---
-  duration_ms: 0.8796
-  ...
-# Subtest: world real time excludes pause, loading and movies, but counts native QTE time
-ok 80 - world real time excludes pause, loading and movies, but counts native QTE time
-  ---
-  duration_ms: 1.4075
-  ...
-# Subtest: unresolved incoming sources flag the result instead of silently claiming a valid hit budget
-ok 81 - unresolved incoming sources flag the result instead of silently claiming a valid hit budget
-  ---
-  duration_ms: 1.1414
-  ...
-# Subtest: scripted hits during a cinematic or a paused menu neither spend the budget nor invalidate it
-ok 82 - scripted hits during a cinematic or a paused menu neither spend the budget nor invalidate it
-  ---
-  duration_ms: 1.0075
-  ...
-# Subtest: arrival readiness alone cannot start a stopwatch before native combat has begun
-ok 83 - arrival readiness alone cannot start a stopwatch before native combat has begun
-  ---
-  duration_ms: 0.9964
-  ...
-# Subtest: a cyclic ownership graph cannot spin or make a friendly projectile hostile
-ok 84 - a cyclic ownership graph cannot spin or make a friendly projectile hostile
-  ---
-  duration_ms: 1.6816
-  ...
-# Subtest: a completed series starts fresh and QTE state cannot leak into a run with disabled options
-ok 85 - a completed series starts fresh and QTE state cannot leak into a run with disabled options
-  ---
-  duration_ms: 1.0816
-  ...
-# Subtest: a reflected projectile owned by the player is excluded even when its old instigator is an enemy
-ok 86 - a reflected projectile owned by the player is excluded even when its old instigator is an enemy
-  ---
-  duration_ms: 1.1281
-  ...
-# Subtest: a native world-clock reset immediately refreshes QTE detection without charging negative time
-ok 87 - a native world-clock reset immediately refreshes QTE detection without charging negative time
+ok 72 - native charge feedback starts once, stops on release and is cleaned up when cancelling
   ---
   duration_ms: 0.9838
   ...
-# Subtest: the HUD shows cumulative time and the hit budget, with a distinct paused and failed state
-ok 88 - the HUD shows cumulative time and the hit budget, with a distinct paused and failed state
+# Subtest: late charge assets do not play after release or cancellation; completion uses the native success event
+ok 73 - late charge assets do not play after release or cancellation; completion uses the native success event
   ---
-  duration_ms: 2.1363
+  duration_ms: 0.9561
+  ...
+# Subtest: launch retains the confirmation screen and covers its selector until world loading takes over
+ok 74 - launch retains the confirmation screen and covers its selector until world loading takes over
+  ---
+  duration_ms: 1.1382
+  ...
+# Subtest: a failed launch restores the selector and closes the retained confirmation
+ok 75 - a failed launch restores the selector and closes the retained confirmation
+  ---
+  duration_ms: 0.9249
+  ...
+# Subtest: a released old-world controller cannot interrupt the next arrival or other cleanup
+ok 76 - a released old-world controller cannot interrupt the next arrival or other cleanup
+  ---
+  duration_ms: 0.796
+  ...
+# Subtest: a camera destroyed after controller validation still permits failure recovery
+ok 77 - a camera destroyed after controller validation still permits failure recovery
+  ---
+  duration_ms: 0.8914
+  ...
+# Subtest: talking to Inanis ends the native interaction before opening selection and debounces held input
+ok 78 - talking to Inanis ends the native interaction before opening selection and debounces held input
+  ---
+  duration_ms: 2.7957
+  ...
+# Subtest: leaving training or changing worlds cancels a pending Inanis selection
+ok 79 - leaving training or changing worlds cancels a pending Inanis selection
+  ---
+  duration_ms: 3.6967
+  ...
+# Subtest: Hua resets the authored introduction that changes her from a cinematic actor into a fight
+ok 80 - Hua resets the authored introduction that changes her from a cinematic actor into a fight
+  ---
+  duration_ms: 1.2583
+  ...
+# Subtest: the first sword encounter resets its native spawner component flow and post-fight flag
+ok 81 - the first sword encounter resets its native spawner component flow and post-fight flag
+  ---
+  duration_ms: 0.2507
+  ...
+# Subtest: native incoming-hit listener accepts enemies and owned projectiles, excludes friends, self and outgoing hits
+ok 82 - native incoming-hit listener accepts enemies and owned projectiles, excludes friends, self and outgoing hits
+  ---
+  duration_ms: 2.7932
+  ...
+# Subtest: 66 rapid native events are all counted and the native death effect is applied once
+ok 83 - 66 rapid native events are all counted and the native death effect is applied once
+  ---
+  duration_ms: 2.941
+  ...
+# Subtest: a stopped listener cannot affect the next world or count duplicate notifications
+ok 84 - a stopped listener cannot affect the next world or count duplicate notifications
+  ---
+  duration_ms: 1.657
+  ...
+# Subtest: world real time excludes pause, loading and movies, but counts native QTE time
+ok 85 - world real time excludes pause, loading and movies, but counts native QTE time
+  ---
+  duration_ms: 1.6516
+  ...
+# Subtest: unresolved incoming sources flag the result instead of silently claiming a valid hit budget
+ok 86 - unresolved incoming sources flag the result instead of silently claiming a valid hit budget
+  ---
+  duration_ms: 1.4266
+  ...
+# Subtest: scripted hits during a cinematic or a paused menu neither spend the budget nor invalidate it
+ok 87 - scripted hits during a cinematic or a paused menu neither spend the budget nor invalidate it
+  ---
+  duration_ms: 1.2268
+  ...
+# Subtest: arrival readiness alone cannot start a stopwatch before native combat has begun
+ok 88 - arrival readiness alone cannot start a stopwatch before native combat has begun
+  ---
+  duration_ms: 1.1853
+  ...
+# Subtest: a cyclic ownership graph cannot spin or make a friendly projectile hostile
+ok 89 - a cyclic ownership graph cannot spin or make a friendly projectile hostile
+  ---
+  duration_ms: 1.9044
+  ...
+# Subtest: a completed series starts fresh and QTE state cannot leak into a run with disabled options
+ok 90 - a completed series starts fresh and QTE state cannot leak into a run with disabled options
+  ---
+  duration_ms: 1.363
+  ...
+# Subtest: a reflected projectile owned by the player is excluded even when its old instigator is an enemy
+ok 91 - a reflected projectile owned by the player is excluded even when its old instigator is an enemy
+  ---
+  duration_ms: 1.2155
+  ...
+# Subtest: a native world-clock reset immediately refreshes QTE detection without charging negative time
+ok 92 - a native world-clock reset immediately refreshes QTE detection without charging negative time
+  ---
+  duration_ms: 1.3092
+  ...
+# Subtest: the HUD shows cumulative time and the hit budget, with a distinct paused and failed state
+ok 93 - the HUD shows cumulative time and the hit budget, with a distinct paused and failed state
+  ---
+  duration_ms: 2.2645
   ...
 # Subtest: the overlay remains invisible in training and non-interactive movies, but visible during QTE
-ok 89 - the overlay remains invisible in training and non-interactive movies, but visible during QTE
+ok 94 - the overlay remains invisible in training and non-interactive movies, but visible during QTE
   ---
-  duration_ms: 0.9336
+  duration_ms: 1.1747
   ...
 # Subtest: an unresolved hit source is visible in the HUD and a disabled timer creates no empty clock
-ok 90 - an unresolved hit source is visible in the HUD and a disabled timer creates no empty clock
+ok 95 - an unresolved hit source is visible in the HUD and a disabled timer creates no empty clock
   ---
-  duration_ms: 1.7793
+  duration_ms: 1.741
   ...
 # Subtest: a native construction failure removes the partial overlay before a later retry
-ok 91 - a native construction failure removes the partial overlay before a later retry
+ok 96 - a native construction failure removes the partial overlay before a later retry
   ---
-  duration_ms: 1.2404
+  duration_ms: 1.4649
   ...
 # Subtest: a backwards wall clock does not prevent the HUD from attaching to a replacement world
-ok 92 - a backwards wall clock does not prevent the HUD from attaching to a replacement world
+ok 97 - a backwards wall clock does not prevent the HUD from attaching to a replacement world
   ---
-  duration_ms: 0.7951
+  duration_ms: 1.0562
   ...
 # Subtest: clock starts at the first playable frame and excludes loading, pause and cinematics; QTE remains timed
-ok 93 - clock starts at the first playable frame and excludes loading, pause and cinematics; QTE remains timed
+ok 98 - clock starts at the first playable frame and excludes loading, pause and cinematics; QTE remains timed
   ---
-  duration_ms: 1.1685
+  duration_ms: 0.777
   ...
 # Subtest: retry resets the attempt while preserving series time, hit budget and previous attempts
-ok 94 - retry resets the attempt while preserving series time, hit budget and previous attempts
+ok 99 - retry resets the attempt while preserving series time, hit budget and previous attempts
   ---
-  duration_ms: 0.3259
+  duration_ms: 0.2277
   ...
 # Subtest: QTE after the native kill is counted but the victory presentation delay is excluded
-ok 95 - QTE after the native kill is counted but the victory presentation delay is excluded
+ok 100 - QTE after the native kill is counted but the victory presentation delay is excluded
   ---
-  duration_ms: 0.2663
+  duration_ms: 0.1769
   ...
 # Subtest: the 66th hit fails once, blocks further hits and cannot be reset by retry or next boss
-ok 96 - the 66th hit fails once, blocks further hits and cannot be reset by retry or next boss
+ok 101 - the 66th hit fails once, blocks further hits and cannot be reset by retry or next boss
   ---
-  duration_ms: 0.1686
+  duration_ms: 0.1157
   ...
 # Subtest: single fight mode does not imply automatic chaining and displays each attempt separately
-ok 97 - single fight mode does not imply automatic chaining and displays each attempt separately
+ok 102 - single fight mode does not imply automatic chaining and displays each attempt separately
   ---
-  duration_ms: 0.433
+  duration_ms: 0.3131
   ...
 # Subtest: abandon freezes the run; changing options creates an independent challenge
-ok 98 - abandon freezes the run; changing options creates an independent challenge
+ok 103 - abandon freezes the run; changing options creates an independent challenge
   ---
-  duration_ms: 0.8885
+  duration_ms: 0.7938
   ...
 # Subtest: time formatting preserves hours and hundredths without rounding a split up
-ok 99 - time formatting preserves hours and hundredths without rounding a split up
+ok 104 - time formatting preserves hours and hundredths without rounding a split up
   ---
-  duration_ms: 0.2106
+  duration_ms: 0.1878
   ...
 # Subtest: resuming after an unobserved pause or movie never charges that entire gap as combat time
-ok 100 - resuming after an unobserved pause or movie never charges that entire gap as combat time
+ok 105 - resuming after an unobserved pause or movie never charges that entire gap as combat time
   ---
-  duration_ms: 0.1472
+  duration_ms: 0.1241
   ...
 # Subtest: duplicate death notifications do not add deaths and a terminal result cannot be reopened
-ok 101 - duplicate death notifications do not add deaths and a terminal result cannot be reopened
+ok 106 - duplicate death notifications do not add deaths and a terminal result cannot be reopened
   ---
-  duration_ms: 0.2747
+  duration_ms: 0.3119
   ...
 # Subtest: a loading flag prevents a contradictory ready signal from starting the first attempt
-ok 102 - a loading flag prevents a contradictory ready signal from starting the first attempt
+ok 107 - a loading flag prevents a contradictory ready signal from starting the first attempt
   ---
-  duration_ms: 0.2767
+  duration_ms: 0.2531
   ...
 # Subtest: a 60-boss series keeps lost attempts and its shared budget without charging inter-fight waits
-ok 103 - a 60-boss series keeps lost attempts and its shared budget without charging inter-fight waits
+ok 108 - a 60-boss series keeps lost attempts and its shared budget without charging inter-fight waits
   ---
-  duration_ms: 0.3056
+  duration_ms: 0.2591
   ...
 # Subtest: seeded mixed event sequences preserve finite clocks, budget bounds and immutable terminal results
-ok 104 - seeded mixed event sequences preserve finite clocks, budget bounds and immutable terminal results
+ok 109 - seeded mixed event sequences preserve finite clocks, budget bounds and immutable terminal results
   ---
-  duration_ms: 24.1479
+  duration_ms: 22.817
   ...
 # Subtest: system restart requires confirmation, retains loadout and uses skip-intro retry
-ok 105 - system restart requires confirmation, retains loadout and uses skip-intro retry
+ok 110 - system restart requires confirmation, retains loadout and uses skip-intro retry
   ---
-  duration_ms: 1.7487
+  duration_ms: 2.0234
   ...
 # Subtest: system training action delegates to the normal equipment-preserving travel
-ok 106 - system training action delegates to the normal equipment-preserving travel
+ok 111 - system training action delegates to the normal equipment-preserving travel
   ---
-  duration_ms: 1.1175
+  duration_ms: 1.5447
   ...
 # Subtest: cancel, closed panel, inactive lab and changed encounter cannot launch a stale confirmation
-ok 107 - cancel, closed panel, inactive lab and changed encounter cannot launch a stale confirmation
+ok 112 - cancel, closed panel, inactive lab and changed encounter cannot launch a stale confirmation
   ---
-  duration_ms: 4.5396
+  duration_ms: 6.0308
   ...
 # Subtest: ordinary campaign and refuge never expose a destructive combat transition
-ok 108 - ordinary campaign and refuge never expose a destructive combat transition
+ok 113 - ordinary campaign and refuge never expose a destructive combat transition
   ---
-  duration_ms: 1.3443
+  duration_ms: 2.3441
   ...
 # Subtest: deferred native focus and cancel restore the lab action without stealing another tab
-ok 109 - deferred native focus and cancel restore the lab action without stealing another tab
+ok 114 - deferred native focus and cancel restore the lab action without stealing another tab
   ---
-  duration_ms: 0.8112
+  duration_ms: 1.4751
   ...
 # Subtest: the sanctuary removes its portal and bell, disables NPC interactions and preserves scenery
-ok 110 - the sanctuary removes its portal and bell, disables NPC interactions and preserves scenery
+ok 115 - the sanctuary removes its portal and bell, disables NPC interactions and preserves scenery
   ---
-  duration_ms: 2.1114
+  duration_ms: 2.4302
   ...
 # Subtest: campaign teleport keeps its native behavior outside training
-ok 111 - campaign teleport keeps its native behavior outside training
+ok 116 - campaign teleport keeps its native behavior outside training
   ---
-  duration_ms: 0.8052
+  duration_ms: 1.337
   ...
 # Subtest: disabling NPC dialogue preserves the spawner overlap that keeps Inanis visible
-ok 112 - disabling NPC dialogue preserves the spawner overlap that keeps Inanis visible
+ok 117 - disabling NPC dialogue preserves the spawner overlap that keeps Inanis visible
   ---
-  duration_ms: 0.7517
+  duration_ms: 1.2833
   ...
 # Subtest: independently spawned doorway effects are hidden without changing the blue flower or player collision
-ok 113 - independently spawned doorway effects are hidden without changing the blue flower or player collision
+ok 118 - independently spawned doorway effects are hidden without changing the blue flower or player collision
   ---
-  duration_ms: 1.6373
+  duration_ms: 1.8686
   ...
 # Subtest: retry retains chosen loadout, resets world and position, and refills remedies
-ok 114 - retry retains chosen loadout, resets world and position, and refills remedies
+ok 119 - retry retains chosen loadout, resets world and position, and refills remedies
   ---
-  duration_ms: 2.2102
+  duration_ms: 1.7861
   ...
 # Subtest: campaign-only nightmare is rejected; ordinary difficulty does not allocate campaign binding
-ok 115 - campaign-only nightmare is rejected; ordinary difficulty does not allocate campaign binding
+ok 120 - campaign-only nightmare is rejected; ordinary difficulty does not allocate campaign binding
   ---
-  duration_ms: 0.3528
+  duration_ms: 0.2264
+  ...
+# Subtest: the title screen identifies the actual loader version so a previous release is recognizable
+ok 121 - the title screen identifies the actual loader version so a previous release is recognizable
+  ---
+  duration_ms: 4.831
   ...
 # Subtest: travel waits for write; duplicate and late callbacks do not load twice
-ok 116 - travel waits for write; duplicate and late callbacks do not load twice
+ok 122 - travel waits for write; duplicate and late callbacks do not load twice
   ---
-  duration_ms: 4.6494
+  duration_ms: 3.2681
   ...
 # Subtest: save/read failure and unexpected map fail before world travel
-ok 117 - save/read failure and unexpected map fail before world travel
+ok 123 - save/read failure and unexpected map fail before world travel
   ---
-  duration_ms: 4.8487
+  duration_ms: 6.0984
   ...
 # Subtest: difficulty back does not save; confirmation writes while the difficulty screen remains active
-ok 118 - difficulty back does not save; confirmation writes while the difficulty screen remains active
+ok 124 - difficulty back does not save; confirmation writes while the difficulty screen remains active
   ---
-  duration_ms: 1.6658
+  duration_ms: 2.1182
   ...
 # Subtest: auto-next commits on a valid launch only and survives returning to selection
-ok 119 - auto-next commits on a valid launch only and survives returning to selection
+ok 125 - auto-next commits on a valid launch only and survives returning to selection
   ---
-  duration_ms: 1.6225
+  duration_ms: 2.6501
   ...
 # Subtest: a new timed 66 HITS series commits only after its checkpoint succeeds and always uses native Hard
-ok 120 - a new timed 66 HITS series commits only after its checkpoint succeeds and always uses native Hard
+ok 126 - a new timed 66 HITS series commits only after its checkpoint succeeds and always uses native Hard
   ---
-  duration_ms: 1.9478
+  duration_ms: 1.9801
   ...
 # Subtest: a failed launch keeps the current run and auto-next setting intact
-ok 121 - a failed launch keeps the current run and auto-next setting intact
+ok 127 - a failed launch keeps the current run and auto-next setting intact
   ---
-  duration_ms: 1.468
+  duration_ms: 1.9673
   ...
 # Subtest: the 66th-hit death opens failure actions once and cannot silently auto-retry
-ok 122 - the 66th-hit death opens failure actions once and cannot silently auto-retry
+ok 128 - the 66th-hit death opens failure actions once and cannot silently auto-retry
   ---
-  duration_ms: 2.0626
+  duration_ms: 2.4069
   ...
 # Subtest: death captures fresh gear before resetting encounter; native death stays untouched outside lab
-ok 123 - death captures fresh gear before resetting encounter; native death stays untouched outside lab
+ok 129 - death captures fresh gear before resetting encounter; native death stays untouched outside lab
   ---
-  duration_ms: 2.5443
+  duration_ms: 2.2785
   ...
 # Subtest: arsenal uses native limits and forging, then restores encounter cycle
-ok 124 - arsenal uses native limits and forging, then restores encounter cycle
+ok 130 - arsenal uses native limits and forging, then restores encounter cycle
   ---
-  duration_ms: 2.4822
+  duration_ms: 1.8566
   ...
 # Subtest: native arsenal error always restores encounter cycle
-ok 125 - native arsenal error always restores encounter cycle
+ok 131 - native arsenal error always restores encounter cycle
   ---
-  duration_ms: 1.2347
+  duration_ms: 0.9428
   ...
 # Subtest: weapon admission follows possible campaign acquisition, not art or player ownership
-ok 126 - weapon admission follows possible campaign acquisition, not art or player ownership
+ok 132 - weapon admission follows possible campaign acquisition, not art or player ownership
   ---
-  duration_ms: 1.0414
+  duration_ms: 0.9524
   ...
 # Subtest: prologue auto-close is scoped to the exact question in the lab difficulty flow
-ok 127 - prologue auto-close is scoped to the exact question in the lab difficulty flow
+ok 133 - prologue auto-close is scoped to the exact question in the lab difficulty flow
   ---
-  duration_ms: 1.3906
+  duration_ms: 1.6126
   ...
 # Subtest: death during equipment capture waits for fresh gear and queues one retry
-ok 128 - death during equipment capture waits for fresh gear and queues one retry
+ok 134 - death during equipment capture waits for fresh gear and queues one retry
   ---
-  duration_ms: 1.5218
+  duration_ms: 1.6673
   ...
 # Subtest: global collection source includes secret maps, ignores test map and never reads player acquisitions
-ok 129 - global collection source includes secret maps, ignores test map and never reads player acquisitions
+ok 135 - global collection source includes secret maps, ignores test map and never reads player acquisitions
   ---
-  duration_ms: 1.4176
+  duration_ms: 1.4771
   ...
 # Subtest: results wait for the terminal phase and duplicate native kill signals open one screen
-ok 130 - results wait for the terminal phase and duplicate native kill signals open one screen
+ok 136 - results wait for the terminal phase and duplicate native kill signals open one screen
   ---
-  duration_ms: 1.5267
+  duration_ms: 2.3498
   ...
 # Subtest: an authoritative native completion tag accepts the aggregate codex row
-ok 131 - an authoritative native completion tag accepts the aggregate codex row
+ok 137 - an authoritative native completion tag accepts the aggregate codex row
   ---
-  duration_ms: 1.8324
+  duration_ms: 1.5122
   ...
 # Subtest: opening selection cancels the pending victory transition
-ok 132 - opening selection cancels the pending victory transition
+ok 138 - opening selection cancels the pending victory transition
   ---
-  duration_ms: 1.2461
+  duration_ms: 1.4655
   ...
 # Subtest: equipment is prepared separately and the native system host captures it on close
-ok 133 - equipment is prepared separately and the native system host captures it on close
+ok 139 - equipment is prepared separately and the native system host captures it on close
   ---
-  duration_ms: 2.3342
+  duration_ms: 2.6093
   ...
 # Subtest: lab encounters do not start the native platform achievement progression listener
-ok 134 - lab encounters do not start the native platform achievement progression listener
+ok 140 - lab encounters do not start the native platform achievement progression listener
   ---
-  duration_ms: 1.3304
+  duration_ms: 1.5396
   ...
 # Subtest: returning from training to a title screen reloads the refuge before opening inventory
-ok 135 - returning from training to a title screen reloads the refuge before opening inventory
+ok 141 - returning from training to a title screen reloads the refuge before opening inventory
   ---
-  duration_ms: 1.494
+  duration_ms: 1.6195
   ...
 # Subtest: training equipment waits for the native loading screen to end before pausing the world
-ok 136 - training equipment waits for the native loading screen to end before pausing the world
+ok 142 - training equipment waits for the native loading screen to end before pausing the world
   ---
-  duration_ms: 1.7896
+  duration_ms: 1.9209
   ...
 # Subtest: the in-combat selector pauses safely while the main-menu selector leaves world pause untouched
-ok 137 - the in-combat selector pauses safely while the main-menu selector leaves world pause untouched
+ok 143 - the in-combat selector pauses safely while the main-menu selector leaves world pause untouched
   ---
-  duration_ms: 1.647
+  duration_ms: 2.1635
   ...
 # Subtest: selector and difficulty keep a shared pause across CommonUI deactivation and Back
-ok 138 - selector and difficulty keep a shared pause across CommonUI deactivation and Back
+ok 144 - selector and difficulty keep a shared pause across CommonUI deactivation and Back
   ---
-  duration_ms: 2.2713
+  duration_ms: 1.5844
   ...
 # Subtest: closing mod menus preserves a pause owned by another native screen
-ok 139 - closing mod menus preserves a pause owned by another native screen
+ok 145 - closing mod menus preserves a pause owned by another native screen
   ---
-  duration_ms: 1.2662
+  duration_ms: 1.524
   ...
-1..139
-# tests 139
+1..145
+# tests 145
 # suites 0
-# pass 139
+# pass 145
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1877.1891
+# duration_ms 1583.4229
