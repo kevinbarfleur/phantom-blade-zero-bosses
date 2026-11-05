@@ -16,6 +16,12 @@ function shortName(boss){
 function find(widget, id) { return widget[id] || UE.Widget.Find(id, widget.WidgetTree); }
 function hide(widget, names) { for (const id of names) { const w=find(widget,id); if(w)w.SetVisibility(UE.ESlateVisibility.Collapsed); } }
 function preview(widget, boss) {
+    if(boss?.action==="training"){
+        const image=find(widget,"CurrentBellImage");if(image)image.SetVisibility(UE.ESlateVisibility.Collapsed);
+        if(widget.QuestName)widget.QuestName.SetPBZFormatText(text("ENTRAÎNEMENT"));
+        if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text("Le refuge d'Inanis\nPréparez et essayez votre équipement.\nArsenal complet · Niv. 30\nLe niveau s'ajuste ensuite au combat choisi."));
+        widget.codexPreview=null;return;
+    }
     if(boss&&boss.action){
         const current=widget.codexCurrentBoss;
         boss=boss.action==="next"?bosses[bosses.findIndex(b=>b.id===current.id)+1]||current:current;
@@ -35,7 +41,7 @@ function preview(widget, boss) {
     const location=boss.locationKey?UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.locationKey)):"";
     const full=boss.label||UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.nameKey));
     const epithet=full.includes(",")?full.slice(full.indexOf(",")+1).trim():"";
-    if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text((epithet?epithet+"\n":"")+location+"\nArsenal ajusté · Niv. "+(boss.balance?.weaponLevel||30)+"\n"+(boss.profile?.bell?"Équipement libre à la cloche":"Équipement libre avant le combat")));
+    if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text((epithet?epithet+"\n":"")+location+"\nArsenal ajusté · Niv. "+(boss.balance?.weaponLevel||30)+"\nArrivée directe au combat\nÉquipement : entraînement"));
     const detail=widget.codexDetailPanel||widget.VerticalBox_94;
     if(detail) {detail.SetRenderOpacity(1);detail.SetVisibility(UE.ESlateVisibility.HitTestInvisible);}
 }
@@ -50,9 +56,10 @@ function initList(widget) {
         {id:"replay",label:"REJOUER",action:"replay"},
         ...(bosses[bosses.findIndex(b=>b.id===widget.codexCurrentBoss.id)+1]?[{id:"next",label:"BOSS SUIVANT",action:"next"}]:[]),
         {id:"select",label:"SÉLECTION DES BOSS",action:"select"},
+        {id:"training",label:"ENTRAÎNEMENT",action:"training"},
         {id:"main",label:"MENU PRINCIPAL",action:"main"},
         {id:"auto",label:"ENCHAÎNEMENT AUTOMATIQUE · "+(widget.codexAutoNext?"OUI":"NON"),action:"auto"}
-    ]:bosses;
+    ]:[...(!widget.codexInTraining?[{id:"training",label:"ENTRAÎNEMENT",action:"training"}]:[]),...bosses];
     for(const boss of entries) {
         if(boss.chapter && chapter!==boss.chapter.id){chapter=boss.chapter.id;add({header:true,id:"chapter:"+chapter,label:boss.chapter.label,nameKey:boss.chapter.key,chapterLabel:!!boss.chapter.key});}
         add(boss);

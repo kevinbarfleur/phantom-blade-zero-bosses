@@ -37,6 +37,78 @@ function Relative-Saved([string]$Path) {
     if (-not $fullPath.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase)) { throw 'Fichier hors des sauvegardes.' }
     return $fullPath.Substring($prefix.Length)
 }
+
+$OwnedRoots=@('ProjectPBZ/PBZModLoader','ProjectPBZ/Content/JavaScript/PBZModLoader')
+$MainRelative='ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js'
+function Game-Path([string]$Relative) {
+    if($Relative.Contains('\') -or $Relative.Contains(':') -or @($Relative.Split('/')|Where-Object {$_ -in '.','..',''}).Count -or [IO.Path]::IsPathRooted($Relative)){throw 'Chemin de deploiement invalide.'}
+    if($Relative -ne 'platform/steam/version.dll' -and $Relative -notmatch '^ProjectPBZ/(PBZModLoader|Content/JavaScript/PBZModLoader)(/|$)'){throw 'Chemin hors du chargeur BOSSES.'}
+    $full=[IO.Path]::GetFullPath((Join-Path $GameRoot $Relative))
+    if(-not $full.StartsWith([IO.Path]::GetFullPath($GameRoot)+'\',[StringComparison]::OrdinalIgnoreCase)){throw 'Chemin hors du jeu.'}
+    $check=$full
+    while($check -and $check.Length -ge $GameRoot.Length){
+        if((Test-Path -LiteralPath $check) -and ((Get-Item -LiteralPath $check -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)){throw 'Lien de fichiers refuse dans le deploiement.'}
+        $check=Split-Path -Parent $check
+    }
+    return $full
+}
+function Validate-Deployment($Manifest) {
+    if($Manifest.deployment -ne 'temporary-pbzmodloader'){throw 'Format de paquet non pris en charge.'}
+    . (Join-Path $PackageRoot 'Acquire-Dependency.ps1')
+    $script:DependencyRoot=Get-BossesDependency
+    $spec=Get-Content -LiteralPath (Join-Path $PackageRoot 'Dependencies/PBZModLoader-1.0.0.json') -Raw|ConvertFrom-Json
+    $entries=@($Manifest.files);$paths=@{}
+    if($entries.Count -ne @($spec.files).Count+1){throw 'Nombre de fichiers du chargeur inattendu.'}
+    foreach($entry in $entries){
+        [void](Game-Path $entry.path)
+        if($paths.ContainsKey($entry.path)){throw 'Fichier de deploiement en double.'};$paths[$entry.path]=$true
+        if($entry.source -eq 'mod' -and $entry.path -eq $MainRelative){$local=Join-Path (Join-Path $PackageRoot 'Payload') $entry.path}
+        elseif($entry.source -eq 'dependency'){
+            $expected=@($spec.files|Where-Object path -eq $entry.path)
+            if($expected.Count -ne 1 -or $expected[0].sha256 -ne $entry.sha256){throw 'Dependance non reconnue.'}
+            $local=Join-Path $script:DependencyRoot $entry.path
+        }else{throw 'Source de fichier refusee.'}
+        if((Hash-File $local) -ne $entry.sha256){throw 'Empreinte du deploiement incorrecte.'}
+    }
+    if(-not $paths.ContainsKey($MainRelative)){throw 'Entree BOSSES absente.'}
+    return $entries
+}
+function Install-Deployment($Entries) {
+    foreach($entry in $Entries){
+        $destination=Game-Path $entry.path
+        $root=if($entry.source -eq 'mod'){Join-Path $PackageRoot 'Payload'}else{$script:DependencyRoot}
+        New-Item -ItemType Directory -Path (Split-Path -Parent $destination) -Force|Out-Null
+        Copy-Item -LiteralPath (Join-Path $root $entry.path) -Destination $destination -Force
+        if((Hash-File $destination) -ne $entry.sha256){throw 'Installation non verifiee.'}
+    }
+}
+function Restore-Deployment($Transaction) {
+    if($Transaction.version -ne '0.6.1-loader'){throw 'Transaction de chargeur inconnue.'}
+    $proxy=Game-Path 'platform/steam/version.dll'
+    if(Test-Path -LiteralPath $proxy){
+        $entry=@($Transaction.modFiles|Where-Object path -eq 'platform/steam/version.dll')
+        if($entry.Count -ne 1 -or (Hash-File $proxy) -ne $entry[0].sha256){throw 'Le proxy installe a change ; retrait automatique refuse.'}
+    }
+    foreach($relative in $OwnedRoots){
+        $root=Game-Path $relative
+        if(-not (Test-Path -LiteralPath $root)){continue}
+        foreach($file in Get-ChildItem -LiteralPath $root -Recurse -File -Force){
+            $rel=$file.FullName.Substring($GameRoot.Length+1).Replace('\','/')
+            [void](Game-Path $rel)
+            $target=Join-Path (Join-Path $RunRoot 'removed-runtime') $rel
+            New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force|Out-Null
+            Move-Item -LiteralPath $file.FullName -Destination $target -Force
+        }
+        $directories=@(Get-ChildItem -LiteralPath $root -Recurse -Directory -Force|Sort-Object {$_.FullName.Length} -Descending)
+        foreach($directory in $directories){
+            [void](Game-Path $directory.FullName.Substring($GameRoot.Length+1).Replace('\','/'))
+            if([IO.Directory]::GetFileSystemEntries($directory.FullName).Count -eq 0){Remove-Item -LiteralPath $directory.FullName -Force}
+        }
+        if([IO.Directory]::GetFileSystemEntries($root).Count -eq 0){Remove-Item -LiteralPath $root -Force}
+    }
+    if(Test-Path -LiteralPath $proxy){Move-Item -LiteralPath $proxy -Destination (Join-Path $RunRoot 'removed-version.dll') -Force}
+}
+
 function Restore-Transaction($Transaction) {
     if ((Get-GameProcesses).Count -gt 0) { throw 'Ferme Phantom Blade Zero avant la restauration.' }
     Set-Status 'restoring' 'Restauration de la campagne avant le retour du reseau Steam.'
@@ -74,27 +146,15 @@ function Restore-Transaction($Transaction) {
         Copy-Item -LiteralPath $backupPath -Destination $livePath -Force
         if ((Hash-File $livePath) -ne $entry.sha256) { throw ('Restauration invalide : ' + $entry.relative) }
     }
-    $modFiles = @($Transaction.modFiles)
-    if (-not $Transaction.modFiles) { $modFiles = @([pscustomobject]@{name='zzz_CodexBossLab_P.pak';sha256=$Transaction.pakHash}) }
-    foreach ($modFile in $modFiles) {
-        $installedPath = Join-Path (Split-Path -Parent $ModPath) $modFile.name
-        if (Test-Path -LiteralPath $installedPath) {
-            $acceptedHashes = @($modFile.sha256) + @($modFile.previousHashes)
-            if ((Hash-File $installedPath) -notin $acceptedHashes) { throw 'Un fichier installe a change ; retrait automatique refuse.' }
-            Move-Item -LiteralPath $installedPath -Destination (Join-Path $RunRoot ('removed-'+$modFile.name)) -Force
-        }
-    }
+    Restore-Deployment $Transaction
     # Network is restored only after all original save hashes have matched.
     foreach ($ruleName in $Transaction.rules) {
         Get-NetFirewallRule -Name $ruleName -ErrorAction SilentlyContinue | Remove-NetFirewallRule
     }
+    if ($restartSteam) { New-Item -ItemType File -Path (Join-Path $RunRoot 'steam-restart.request') -Force|Out-Null }
     $Transaction.completed = $true
     Write-JsonAtomic $TransactionFile $Transaction
     Set-Status 'restored' 'Campagne restauree et verifiee ; mod retire ; regles temporaires retirees.'
-    if ($restartSteam) {
-        try { Start-Process -FilePath (Join-Path $SteamRoot 'steam.exe') -ArgumentList '-silent' -WindowStyle Hidden | Out-Null }
-        catch { Set-Status 'restored' 'Campagne restauree ; reseau retabli. Steam peut etre relance manuellement.' }
-    }
 }
 try {
     New-Item -ItemType Directory -Path $RunRoot -Force | Out-Null
@@ -112,22 +172,16 @@ try {
     }
     $manifest = Get-Content -LiteralPath (Join-Path $PackageRoot 'manifest.json') -Raw | ConvertFrom-Json
     if (-not $RecoverOnly -and -not $Persistent -and $manifest.qa.mode -ne 'manual') { throw 'Ce paquet est reserve aux essais automatiques. Utilise la version jouable.' }
-    $pakSource = Join-Path $PackageRoot $manifest.pak.name
-    if ((Hash-File $pakSource) -ne $manifest.pak.sha256) { throw 'Empreinte du paquet incorrecte.' }
-    $bundleFiles = @($manifest.bundle)
-    if (-not $manifest.bundle) { $bundleFiles = @($manifest.pak) }
-    foreach ($file in $bundleFiles) {
-        if ($file.name -notmatch '^zzz_CodexBossLab_P\.(pak|utoc|ucas)$') { throw 'Nom de fichier de paquet inattendu.' }
-        if ((Hash-File (Join-Path $PackageRoot $file.name)) -ne $file.sha256) { throw 'Empreinte d un fichier du paquet incorrecte.' }
-    }
+    $bundleFiles = @(Validate-Deployment $manifest)
     $acf = Get-Content -LiteralPath (Join-Path $SteamRoot 'steamapps\appmanifest_4115450.acf') -Raw
     $installedBuild = [regex]::Match($acf,'"buildid"\s+"(\d+)"').Groups[1].Value
-    if (-not $RecoverOnly -and $installedBuild -ne [string]$manifest.gameBuild) { throw ('Build non compatible : ' + $installedBuild) }
+    if (-not $RecoverOnly -and $installedBuild -ne [string]$manifest.gameBuild) { throw ('Build non compatible : ' + $installedBuild + '. Ce mod attend le build ' + $manifest.gameBuild + ' ; utilise une version du mod adaptee a la mise a jour du jeu.') }
+    if ($manifest.validation.runtimeCompatible -eq $false) { throw 'Ce build du jeu refuse les anciens paquets de scripts. BOSSES doit etre migre vers PBZModLoader ; ce candidat ne peut pas etre lance.' }
     if ($ValidateOnly) { Set-Status 'validated' 'Paquet, chemins et build verifies. Aucune modification.'; exit 0 }
     if ((Get-GameProcesses).Count -gt 0) { throw 'Le jeu est deja ouvert.' }
-    foreach ($file in $bundleFiles) {
-        if (Test-Path -LiteralPath (Join-Path (Split-Path -Parent $ModPath) $file.name)) { throw 'Un paquet Boss Lab existe deja : utilise Restaurer avant de continuer.' }
-    }
+    foreach($relative in $OwnedRoots){if(Test-Path -LiteralPath (Game-Path $relative)){throw 'Un chargeur existe deja. Ce candidat temporaire exige une installation sans chargeur.'}}
+    foreach($name in @('version.dll','hid.dll','winmm.dll','dsound.dll','dxgi.dll')){if(Test-Path -LiteralPath (Join-Path $GameRoot ('platform/steam/'+$name))){throw 'Un proxy existe deja ; il ne sera pas remplace.'}}
+    if(@(Get-ChildItem -LiteralPath (Split-Path -Parent $ModPath) -Filter 'zzz_CodexBossLab_P.*' -File -ErrorAction SilentlyContinue).Count){throw 'Ancien paquet BOSSES encore installe.'}
     foreach ($profile in Get-NetFirewallProfile -PolicyStore ActiveStore) {
         if ($profile.Enabled.ToString() -ne 'True') { throw 'Le pare-feu doit etre actif sur tous les profils pour ce test.' }
     }
@@ -147,6 +201,8 @@ try {
     $programs = @(Get-ChildItem -LiteralPath $GameRoot -Recurse -File -Filter '*.exe' | ForEach-Object { $_.FullName })
     $programs += @((Join-Path $SteamRoot 'steam.exe'),(Join-Path $SteamRoot 'bin\cef\cef.win64\steamwebhelper.exe'))
     $programs = @($programs | Where-Object { Test-Path -LiteralPath $_ } | Sort-Object -Unique)
+    $programs=@($programs)+@($bundleFiles|Where-Object {$_.path.EndsWith('.exe')}|ForEach-Object {Game-Path $_.path})
+    $programs=@($programs|Sort-Object -Unique)
     $ruleSpecs = @()
     $tag = 'CodexBossLab-' + (Split-Path -Leaf $RunRoot)
     for ($i=0; $i -lt $programs.Count; $i++) {
@@ -154,7 +210,7 @@ try {
             $ruleSpecs += [pscustomobject]@{name=($tag+'-'+$i+'-'+$direction);program=$programs[$i];direction=$direction}
         }
     }
-    $transaction = [pscustomobject]@{version='0.1';completed=$false;files=$files;rules=@($ruleSpecs | ForEach-Object {$_.name});pakHash=$manifest.pak.sha256;modFiles=$bundleFiles;programs=$programs}
+    $transaction = [pscustomobject]@{version='0.6.1-loader';completed=$false;files=$files;rules=@($ruleSpecs | ForEach-Object {$_.name});modFiles=$bundleFiles;programs=$programs}
     Write-JsonAtomic $TransactionFile $transaction
     Set-Status 'preparing' 'Copies verifiees ; mise en place du blocage reseau temporaire.'
     foreach ($spec in $ruleSpecs) {
@@ -165,14 +221,7 @@ try {
         $filter = Get-NetFirewallApplicationFilter -AssociatedNetFirewallRule $rule
         if ($rule.Action.ToString() -ne 'Block' -or $rule.Enabled.ToString() -ne 'True' -or $filter.Program -ne $spec.program) { throw 'Regle de blocage non effective.' }
     }
-    if (-not $ProbeOnly) {
-        New-Item -ItemType Directory -Path (Split-Path -Parent $ModPath) -Force | Out-Null
-        foreach ($file in $bundleFiles) {
-            $destination = Join-Path (Split-Path -Parent $ModPath) $file.name
-            Copy-Item -LiteralPath (Join-Path $PackageRoot $file.name) -Destination $destination
-            if ((Hash-File $destination) -ne $file.sha256) { throw 'Installation non verifiee.' }
-        }
-    }
+    Install-Deployment $bundleFiles
     Set-Status 'ready' 'Copies et paquet verifies ; Steam et les executables PBZ bloques sur le reseau.'
     if ($Persistent) {
         $controllerDeadline = [DateTime]::UtcNow.AddHours(8)
@@ -190,32 +239,20 @@ try {
                     # Only this mod's three fixed files may be replaced. The
                     # controller never evaluates commands supplied by a request.
                     Set-Status 'staging' 'Verification de la revision avant le prochain test.'
-                    $nextManifest = Get-Content -LiteralPath (Join-Path $PackageRoot 'manifest.json') -Raw | ConvertFrom-Json
-                    $nextFiles = @($nextManifest.bundle)
-                    if ([string]$nextManifest.gameBuild -ne $installedBuild -or $nextFiles.Count -ne 3) { throw 'Revision incompatible.' }
-                    $names = @($nextFiles | ForEach-Object { $_.name } | Sort-Object -Unique)
-                    if ($names.Count -ne 3) { throw 'Revision ambigue.' }
-                    foreach ($next in $nextFiles) {
-                        if ($next.name -notmatch '^zzz_CodexBossLab_P\.(pak|utoc|ucas)$') { throw 'Fichier de revision interdit.' }
-                        if ((Hash-File (Join-Path $PackageRoot $next.name)) -ne $next.sha256) { throw 'Revision non verifiee.' }
-                        $old = @($transaction.modFiles | Where-Object name -eq $next.name)
-                        if ($old.Count -ne 1) { throw 'Paquet precedent ambigu.' }
-                        $installed = Join-Path (Split-Path -Parent $ModPath) $next.name
-                        if ((Hash-File $installed) -ne $old[0].sha256) { throw 'Le paquet installe a ete modifie hors du gardien.' }
+                    $nextManifest=Get-Content -LiteralPath (Join-Path $PackageRoot 'manifest.json') -Raw|ConvertFrom-Json
+                    if([string]$nextManifest.gameBuild -ne $installedBuild){throw 'Revision incompatible.'}
+                    $nextFiles=@(Validate-Deployment $nextManifest)
+                    if($nextFiles.Count -ne @($transaction.modFiles).Count){throw 'Schema de revision different.'}
+                    foreach($next in $nextFiles){
+                        $old=@($transaction.modFiles|Where-Object path -eq $next.path)
+                        if($old.Count -ne 1){throw 'Fichier de revision inconnu.'}
+                        if((Hash-File (Game-Path $next.path)) -ne $old[0].sha256){throw 'Un fichier installe a change.'}
+                        if($next.path -ne $MainRelative -and $next.sha256 -ne $old[0].sha256){throw 'Seule l entree BOSSES peut changer pendant ces tests.'}
                     }
-                    $nextTransactionFiles = @()
-                    foreach ($next in $nextFiles) {
-                        $old = @($transaction.modFiles | Where-Object name -eq $next.name)[0]
-                        $accepted = @($old.sha256) + @($old.previousHashes) | Where-Object { $_ } | Sort-Object -Unique
-                        $nextTransactionFiles += [pscustomobject]@{name=$next.name;sha256=$next.sha256;previousHashes=@($accepted)}
-                    }
-                    $transaction.modFiles = $nextTransactionFiles
+                    $transaction.modFiles=$nextFiles
                     Write-JsonAtomic $TransactionFile $transaction
-                    foreach ($next in $nextFiles) {
-                        $installed = Join-Path (Split-Path -Parent $ModPath) $next.name
-                        Copy-Item -LiteralPath (Join-Path $PackageRoot $next.name) -Destination $installed -Force
-                        if ((Hash-File $installed) -ne $next.sha256) { throw 'Installation de revision non verifiee.' }
-                    }
+                    $main=@($nextFiles|Where-Object path -eq $MainRelative)
+                    Install-Deployment $main
                     Remove-Item -LiteralPath $stageRequest
                     Set-Status 'ready' 'Nouvelle revision verifiee ; lancement possible sans nouvelle elevation.'
                 }

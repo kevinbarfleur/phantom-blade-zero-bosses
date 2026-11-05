@@ -1,6 +1,15 @@
 "use strict";
 const UE=require("ue"),puerts=require("puerts");
 const path="/Game/PBZContent/Blueprint/FlowGraph/UI/WBP_FlowSequencer.WBP_FlowSequencer_C";
+// An activated sequencer can still be transparent while its assets arrive.
+// Arrival must already yield ownership then, before its first visible frame.
+function pending(context){
+    const cls=UE.Class.Find(path);if(!cls)return false;
+    const manager=UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context,UE.PBZUIManagerSubsystem.StaticClass());
+    const tag=new UE.GameplayTag();tag.TagName="UI.Layer.Sequence";
+    const widget=manager&&manager.GetActivateWidgetByLayer(tag,cls);
+    return !!widget&&UE.KismetSystemLibrary.IsValid(widget)&&widget.IsActivated();
+}
 function tick(context,session){
     if(!session.active)return false;
     if(session.completed&&UE.WidgetBlueprintLibrary?.GetAllWidgetsOfClass){
@@ -33,7 +42,7 @@ function tick(context,session){
             // Use the game's own skip action: it advances to an authored skip
             // marker, waits for the media frame, then restores gameplay state.
             // Non-skippable sequences and QTE segments keep their native rules.
-            if(widget.CanSkip&&!widget.IsAnyAnimationPlaying()&&Date.now()-(session.lastCinematicSkip||0)>1500){
+            if((session.completed||session.skipIntroduction)&&widget.CanSkip&&!widget.IsAnyAnimationPlaying()&&Date.now()-(session.lastCinematicSkip||0)>1500){
                 session.lastCinematicSkip=Date.now();widget.ActionProgress(1);
                 session.cinematicsSkipped=(session.cinematicsSkipped||0)+1;
             }
@@ -48,7 +57,7 @@ function tick(context,session){
             const content=puerts.$ref(false);dialogue.HasContent(dialogue.DialogueFlowContentData,content);
             if(puerts.$unref(content)){
                 session.cinemaSource="dialogue";
-                if(dialogue.CanSkip&&Date.now()-(session.lastDialogueSkip||0)>1500){session.lastDialogueSkip=Date.now();dialogue.SkipCurrentLine();}
+                if((session.completed||session.skipIntroduction||session.mode==="direct-fight")&&dialogue.CanSkip&&Date.now()-(session.lastDialogueSkip||0)>1500){session.lastDialogueSkip=Date.now();dialogue.SkipCurrentLine();}
                 return true;
             }
         }
@@ -59,6 +68,7 @@ function tick(context,session){
     const active=!!asc&&asc.HasMatchingGameplayTag(tag);session.cinemaSource=active?"player-state":null;return active;
 }
 exports.tick=tick;
+exports.pending=pending;
 exports.presentationActive=context=>{
     if(!UE.WidgetBlueprintLibrary?.GetAllWidgetsOfClass)return false;
     for(const name of ["W_BossDead","W_BossDead_Red"]){

@@ -3,6 +3,13 @@ const UE=require("ue"),puerts=require("puerts");
 let scope=null;
 const patched={recorder:false,loot:false,pickup:false,settlement:false};
 const same=(a,b)=>String(a).toLowerCase()===String(b).toLowerCase();
+function authoredPawn(context,profile){
+    const id=profile.nativeSpawnerID||profile.primarySpawnerID;
+    if(!id||id==="None"||!UE.SGameAIWorldSubsystem)return null;
+    const system=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.SGameAIWorldSubsystem.StaticClass());
+    const pawn=system?.GetSpawner(id)?.GetPawn();
+    return pawn&&UE.KismetSystemLibrary.IsValid(pawn)?pawn:null;
+}
 function stop(){
     if(scope)for(const task of scope.tasks||[])try{task.Cancel();}catch(_){}
     scope=null;
@@ -116,6 +123,36 @@ exports.install=install;exports.patchRecorder=patchRecorder;exports.patchLoot=pa
 exports.status=()=>({...patched,observed:scope?Object.keys(scope.excluded).length:0,observerError:scope?.session.observerError||null});
 exports.stop=stop;
 exports.poll=poll;
+exports.activateDirectCombat=(context,session)=>{
+    const boss=session.boss;
+    if(!scope||!session.active||session.completed||boss.training||boss.profile.nativeController||["BP_Monster_MuXiaoKui","BP_Monster_ZuoShang_Ending"].includes(boss.id))return;
+    if(session.arrivalAnchorPending||session.cinematicActive||!session.directArrival?.released)return;
+    if(boss.profile.directEntry?.sequences?.length&&!session.ux?.directIntroObserved)return;
+    const path=boss.classes[0],cls=UE.Class.Find(path);if(!cls)return;
+    const out=puerts.$ref(UE.NewArray(UE.Actor));UE.GameplayStatics.GetAllActorsOfClass(context,cls,out);
+    const actors=puerts.$unref(out),authored=authoredPawn(context,boss.profile),candidates=authored?[authored]:Array.from({length:actors.Num()},(_,i)=>actors.Get(i)),player=UE.GameplayStatics.GetPlayerCharacter(context,0).K2_GetActorLocation();
+    const dead=new UE.GameplayTag();dead.TagName="CharacterState.Dead";
+    scope.directStarted=scope.directStarted||{};
+    for(const actor of candidates){
+        const name=actor.GetName();if(actor.bHidden||scope.directStarted[name])continue;
+        if(!same(UE.KismetSystemLibrary.GetPathName(actor.GetClass()),path))continue;
+        const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(actor);if(asc?.HasMatchingGameplayTag(dead))continue;
+        const at=actor.K2_GetActorLocation();if(Math.hypot(at.X-player.X,at.Y-player.Y,at.Z-player.Z)>5000)continue;
+        const library=puerts.blueprint.tojs(UE.Class.Load("/HuaShira/Animation/Seqs/BP_PBZSequenceFunctionLibrary.BP_PBZSequenceFunctionLibrary_C"));
+        const activation=boss.profile.nativeCombatActivation;
+        if(!boss.profile.directEntry?.sequences?.length&&(activation?.becomeMonster||activation?.attackable)){
+            const flow=puerts.blueprint.tojs(UE.Class.Load("/Game/PBZContent/Blueprint/FlowGraph/FunctionLib/BP_FlowUtils.BP_FlowUtils_C"));
+            // Native SetBecomeMonster / SetAttackEnable nodes, with their
+            // authored intent and original execution rules; no campaign save.
+            if(activation.becomeMonster)flow.SetActorBecomeMonster(actor,true,false,false,false,context);
+            if(activation.attackable)flow.SetActorAttackable(actor,true,false,true,false,false,context);
+        }
+        // ForceIntoCombat uses the authored AI component and the real player
+        // target. Later phases and scripted native controllers keep their flow.
+        library.StartAI(actor,true,context);scope.directStarted[name]=true;
+        session.ux={...session.ux,directCombatStarted:true};
+    }
+};
 exports.hasObserved=name=>!!scope?.excluded[name];
 exports.prepareEncounter=(context,session)=>{
     const boss=session.boss,p=boss.profile;
@@ -145,6 +182,9 @@ exports.prepareEncounter=(context,session)=>{
     const id=boss.trial?p.nativeSpawnerID:p.primarySpawnerID;
     if((!id||id==="None")&&!p.primarySpawnerActor)return;
     if(!boss.trial&&(session.arrivalAnchorPending||session.cinematicActive))return;
+    // A second native teleport cover can stream the approach cells out again.
+    // Never force a cinematic pawn to spawn before its destination is loaded.
+    if(!boss.trial&&p.directEntry&&!session.ux?.nativeArrivalLoaded&&!session.directArrival?.released)return;
     if(!boss.trial&&p.arena){const at=UE.GameplayStatics.GetPlayerCharacter(context,0).K2_GetActorLocation();if(Math.hypot(at.X-p.arena.X,at.Y-p.arena.Y,at.Z-p.arena.Z)>15000)return;}
     if((session.trialPrepareAttempts||0)>=120)return;
     session.trialPrepareAttempts=(session.trialPrepareAttempts||0)+1;
@@ -157,20 +197,9 @@ exports.prepareEncounter=(context,session)=>{
             try{const system=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.SGameAIWorldSubsystem.StaticClass());session.ux={...session.ux,nativeSpawnerFound:!!system?.GetSpawner(id)};}
             catch(error){session.ux={...session.ux,spawnerDiagnosticError:String(error)};}
         }
-        let actor=null;
-        if(!boss.trial){
-            const cls=UE.Class.Find(boss.classes[0]);
-            if(cls){
-                const out=puerts.$ref(UE.NewArray(UE.Actor));UE.GameplayStatics.GetAllActorsOfClass(context,cls,out);const actors=puerts.$unref(out);
-                const dead=new UE.GameplayTag();dead.TagName="CharacterState.Dead";
-                for(let i=0;i<actors.Num();i++){
-                    const candidate=actors.Get(i);if(candidate.bHidden)continue;
-                    const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(candidate);if(asc?.HasMatchingGameplayTag(dead))continue;
-                    const at=candidate.K2_GetActorLocation();if(p.arena&&Math.hypot(at.X-p.arena.X,at.Y-p.arena.Y,at.Z-p.arena.Z)>1500)continue;
-                    actor=candidate;break;
-                }
-            }
-        }
+        // The actor pool can retain same-class stand-ins. The registered
+        // encounter spawner owns the actual live combat pawn.
+        let actor=authoredPawn(context,p);
         if(!actor&&id&&id!=="None")actor=library.SpawnRealMonsterAndHidden(id,false,true,false,context);
         if(!actor&&p.primarySpawnerActor){
             // Some campaign spawners have no registered ID. Use that exact

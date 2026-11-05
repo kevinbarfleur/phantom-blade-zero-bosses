@@ -1,57 +1,55 @@
 # BOSSES — Phantom Blade Zero
 
-Mod communautaire non officiel pour rejouer les boss : **60 rencontres regroupées par chapitre**, portraits, cinq épreuves distinctes de l'homme au masque d'or et trois difficultés. Version **0.5 expérimentale**. Le menu révèle les boss du jeu : attention aux spoilers.
+Mod communautaire pour rejouer **60 rencontres regroupées par chapitre**, avec portraits et trois difficultés. **0.6.1 expérimentale — Steam build 26367565.** Le menu révèle les boss : attention aux spoilers.
 
-**[Télécharger PBZ-Bosses-0.5.zip](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases/download/v0.5/PBZ-Bosses-0.5.zip)** · [Versions et notes](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases)
+Cette version remplace le chargement de la 0.5, devenu incompatible après la mise à jour du jeu. Elle utilise **PBZModLoader 1.0.0 de LLKKFF**, sans remplacer les scripts originaux du jeu.
 
-![Sélection des boss](mod/Captures/01-selection.jpg)
+![Sélection des combats](mod/Captures/01-selector.jpg)
 
 ## Installation
 
-**Prérequis :** Windows, Steam, Phantom Blade Zero **build 26266538**, pare-feu Windows actif et droits administrateur. Lancer le jeu au moins une fois ; **une seule sauvegarde principale locale** doit exister.
-
-Cette version attend l'installation par défaut :
+Windows, pare-feu Windows actif, droits administrateur et **une seule sauvegarde principale locale**. Installation Steam par défaut uniquement :
 
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\PBZ
 ```
 
-Les bibliothèques Steam personnalisées ne sont pas prises en charge. Le lanceur refuse un build différent.
+1. Après une mise à jour du jeu, le lancer **une fois depuis Steam en ligne, sans mod**, jusqu'au menu principal, puis le fermer. Cela laisse le jeu terminer sa préparation avant la session protégée.
+2. [Télécharger BOSSES 0.6.1](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases/download/v0.6.1/PBZ-Bosses-0.6.1.zip) et **tout extraire** dans un dossier permanent et inscriptible. Une copie indépendante de ses sauvegardes reste recommandée.
+3. Télécharger **PBZModLoader 1.0.0**, fichier principal, sur la [page officielle de LLKKFF](https://www.nexusmods.com/phantombladezero/mods/113?tab=files). Laisser son ZIP dans Téléchargements, ou le placer à côté de `Lancer-Bosses.cmd`. **Ne pas l'installer manuellement.** Le lanceur reconnaît et vérifie cette archive précise.
+4. Ouvrir `Lancer-Bosses.cmd` normalement, puis valider la demande Windows du gardien. Il protège les sauvegardes, bloque temporairement le réseau et installe les fichiers nécessaires pour cette session.
 
-1. Fermer le jeu et conserver une copie indépendante de ses sauvegardes par précaution.
-2. Télécharger le ZIP ci-dessus et **tout extraire** dans un dossier permanent et inscriptible.
-3. Ouvrir `Lancer-Bosses.cmd` et valider la demande Windows, nécessaire aux copies protégées, à l'installation et au pare-feu.
-4. Le jeu démarre avec **BOSSES**. Aucun outil supplémentaire n'est nécessaire. Ne pas installer manuellement le `.pak` : utiliser le lanceur fourni.
+Le dossier [`mod/`](mod/) fournit le même paquet si vous clonez le dépôt. Le chargeur tiers est téléchargé séparément conformément aux conditions de son auteur.
 
-Le dossier [`mod/`](mod/) contient aussi tous les fichiers prêts à utiliser si vous clonez ce dépôt.
+**Ancienne version :** restaurer d'abord sa session avec son propre `Restaurer-Campagne.cmd`. Extraire ensuite la nouvelle version dans un autre dossier. Une installation contenant déjà un chargeur ou un proxy DLL est refusée ; ce paquet ne gère pas la cohabitation avec d'autres mods.
 
 ## Jouer
 
-1. **BOSSES** → choisir un combat : portrait et niveau d'arsenal s'affichent à droite.
-2. Choisir Voyageur, Pionnier ou Explorateur des enfers, puis **maintenir le bouton indiqué 1,5 seconde**. Aucun choix de tutoriel.
-3. Préparer son équipement à la cloche avant le boss. L'inventaire met le jeu en pause ; le fermer pour rejoindre l'arène.
+1. **BOSSES** → refuge d'Inanis. Préparer et tester l'équipement avec l'inventaire natif ; l'arsenal y est niveau 30 avec la forge.
+2. Parler à **Inanis**, ou appuyer sur **F8**, pour ouvrir la liste des combats.
+3. Choisir un boss, puis Voyageur, Pionnier ou Explorateur des enfers. **Maintenir le bouton indiqué 1,5 seconde** pour partir directement à l'introduction ou au combat. Aucun tutoriel à choisir.
 
-Une mort recharge le même combat avec l'équipement choisi et les remèdes remplis. **F8**, ou le bouton à la cloche, rouvre la sélection. Après victoire : **Rejouer**, **Boss suivant**, **Sélection des boss** ou **Menu principal**. L'enchaînement automatique est facultatif.
+Les niveaux des armes s'adaptent au combat, avec un plafond de 30 et sans bonus NG+. L'arsenal contient **24 armes, 24 lames spectrales, 51 accessoires et 15 remèdes obtenables en campagne**, indépendamment de vos découvertes personnelles. Les récompenses d'équipement sont bloquées pour éviter les doublons. L'équilibrage reste provisoire.
 
-L'arsenal comprend **24 armes, 24 lames spectrales, 51 accessoires et 15 remèdes** obtenables en campagne. Forge conservée, niveaux adaptés au combat, plafond à 30, sans bonus NG+. Les récompenses d'équipement sont bloquées pour éviter les doublons. L'équilibrage reste provisoire.
+Une mort recharge le combat avec le même équipement et les remèdes remplis. F8 rouvre les options : refuge, sélection, nouvelle tentative ou menu principal. Après victoire, choisir de rejouer, de passer au suivant ou de revenir à la sélection ; l'enchaînement automatique est facultatif. Le portail de sortie du refuge et les dialogues de campagne y sont désactivés ; Inanis reste visible et ouvre les combats.
 
-## Sauvegardes et réseau
+## Terminer et restaurer
 
-Les sauvegardes sont copiées et vérifiées avant d'utiliser l'état temporaire du laboratoire. **Le réseau du jeu et de Steam est bloqué pendant la session**, y compris les fonctions en ligne de Steam. Les chemins de progression des succès identifiés sont désactivés ; aucune garantie générale d'absence de ban.
+**Fermer le jeu et attendre la restauration avant de reprendre la campagne.** Le gardien ferme Steam, restaure et vérifie les sauvegardes originales, retire les fichiers temporaires, rétablit le réseau puis un surveillant relance Steam avec les droits normaux. L'équipement du laboratoire ne rejoint pas la campagne.
 
-Pour terminer, **fermer le jeu et attendre la restauration** avant la campagne. Le gardien ferme Steam, restaure et vérifie les originaux, retire le mod, rétablit le réseau et relance Steam. L'équipement du laboratoire n'est pas ajouté à la campagne.
+Après un crash ou un arrêt brutal : fermer le jeu, puis lancer **`Restaurer-Campagne.cmd` depuis le dossier utilisé pour la session**. Ne pas déplacer ou supprimer ce dossier, `.state` ou `.dependencies` avant restauration. Pour désinstaller, restaurer d'abord, puis supprimer le dossier.
 
-**Après un crash ou un arrêt brutal :** fermer le jeu puis lancer `Restaurer-Campagne.cmd`. **Ne pas déplacer ou supprimer le dossier du mod ni `.state` avant restauration** : ils contiennent les copies de secours. Pour désinstaller, restaurer d'abord, puis supprimer le dossier.
+Le réseau des exécutables du jeu, du chargeur et de Steam est bloqué pendant la session. Les chemins de progression des succès identifiés sont neutralisés. Cela ne constitue pas une garantie générale d'absence de ban. Si le jeu réclame une connexion, restaurer, terminer un lancement normal en ligne, fermer le jeu et réessayer ; ne pas contourner ses contrôles.
 
-## Limites et problèmes connus
+## Limites et dépannage
 
-- **Mu Xiaokui et le combat final :** phases chargées ; QTE et sortie vers le menu de victoire à confirmer en jouant normalement.
-- **Appui long :** événements natifs vérifiés automatiquement ; pression physique au clavier ou à la manette encore à confirmer.
+- **Validation 0.6.1 :** voir [le rapport](mod/Validation/validation.json). Les essais historiques de la 0.5 ne prouvent pas le bon fonctionnement des 60 combats après la mise à jour.
+- **Mu Xiaokui et combat final :** QTE, dernières phases et sortie de victoire restent à confirmer en jouant normalement.
+- **Appui long :** barre et événements de charge natifs utilisés ; vibration physique de la manette encore à confirmer selon le matériel et les réglages.
 - **Cinq séquences exclues :** deux rencontres de prologue/tutoriel de Zuo Shang, le chariot, la première apparition de Yucong et Hansui. Leur rejeu autonome n'est pas validé.
-- **Compatibilité :** autres mods, plusieurs profils et autres PC non validés. Interface contrôlée en français, en 16:9.
-- **Mises à jour :** peuvent rendre le mod incompatible. Ne pas contourner le contrôle du build ni remplacer les fichiers pendant une session.
-- **Restauration refusée :** le réseau reste bloqué si la vérification échoue. Fermer le jeu et Steam, garder `.state`, relancer la restauration. Consulter le `status.json` ou `error.txt` de la session.
+- Autres PC, autres mods, plusieurs profils et bibliothèques Steam personnalisées non pris en charge. Interface vérifiée en français, en 16:9. Pas de rechargement à chaud : fermer complètement le jeu pour changer le mod.
+- **Build différent :** attendre une adaptation du mod. Ne pas modifier le numéro attendu pour forcer le lancement.
+- **Restauration refusée :** garder `.state`, fermer jeu et Steam, puis relancer la restauration. Le réseau reste bloqué tant que la restauration n'est pas vérifiée. Consulter le dernier `status.json` ou `error.txt` de la session.
+- Le redémarrage Windows avec erreur **0x133** signalé pendant les essais n'est pas expliqué ni corrigé par cette version.
 
-**Validation :** 49 tests de code réussis ; 60 contrôles automatiques des événements natifs et de l'arsenal, dont **58 menus de victoire observés**. Les dégâts de test sont désactivés dans le paquet jouable ; ces essais ne remplacent pas des combats humains complets. [Détails](mod/VALIDATION.txt) · [Arsenal](mod/ARSENAL.txt) · [Sources d'audit](mod/Sources/).
-
-**Bug ?** Ouvrir une [issue](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/issues) avec build, boss, difficulté et étapes. Ne pas joindre `.state`, des sauvegardes ou des journaux non relus : ils peuvent contenir des données personnelles.
+Pour signaler un bug, ouvrir une [issue](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/issues) avec build, boss, difficulté et étapes. Ne pas joindre de sauvegarde, `.state` ou journal non relu : ils peuvent contenir des données personnelles.

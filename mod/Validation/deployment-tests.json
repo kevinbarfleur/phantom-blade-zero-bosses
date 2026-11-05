@@ -1,0 +1,34 @@
+{
+  "passed": 7,
+  "failed": 0,
+  "cases": [
+    {
+      "case": "traversal",
+      "passed": true
+    },
+    {
+      "case": "absolute",
+      "passed": true
+    },
+    {
+      "case": "native-script",
+      "passed": true
+    },
+    {
+      "case": "duplicate",
+      "passed": true
+    },
+    {
+      "case": "hash",
+      "passed": true
+    },
+    {
+      "case": "foreign-proxy",
+      "passed": true
+    },
+    {
+      "case": "valid",
+      "passed": true
+    }
+  ]
+}

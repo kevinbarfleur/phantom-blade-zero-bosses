@@ -3,31 +3,45 @@
 const UE=require("ue"),puerts=require("puerts");
 const config=require("./qa-config"),bosses=require("./boss-catalog").filter(b=>b.available!==false);
 const enabled=config.mode!=="manual";
-const automated=["survey","arrival","combat","retry"].includes(config.mode);
+const automated=["survey","arrival","combat","retry","direct"].includes(config.mode);
+const direct={results:[],index:0,ticks:0,lastBoss:null,done:false,capturing:false};
+const trainingFlow={phase:"waiting",done:false};
 const held={};
 const survey={started:false,index:0,ticks:0,results:[],capturing:false,lastBoss:null};
 const combat={index:0,ticks:0,results:[],lastBoss:null,stage:"waiting",lastKill:0};
 const retry={stage:"waiting",ticks:0,done:false};
 const arrivalWait={boss:null,ticks:0};
 const uiEvents=[];
+let uiFlush=null,uiContext=null;
+function flushUI(){
+    uiFlush=null;
+    try{
+        const sl=UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(uiContext,UE.PBZSaveLoadSubsystem.StaticClass()),ok=puerts.$ref(false),value=puerts.$ref(new UE.JsonObjectWrapper());
+        UE.JSONUtility.ParseStringToJson(JSON.stringify({phase:uiEvents[uiEvents.length-1]?.phase,events:uiEvents}),ok,value);
+        if(puerts.$unref(ok)){sl.SaveAdvancedObjectDataAndSync("CodexBossLabUIQA",puerts.$unref(value));sl.SaveAdvancedSaveGameNow();}
+    }catch(_){}
+}
 function ui(context,phase,session,extra={}){
     if(!enabled)return;
     try{
         let position=null;
         if(session.active){const p=UE.GameplayStatics.GetPlayerCharacter(context,0)?.K2_GetActorLocation();if(p)position={X:p.X,Y:p.Y,Z:p.Z};}
         uiEvents.push({phase,time:Date.now(),encounter:session.boss?.id,active:session.active,ux:JSON.parse(JSON.stringify(session.ux||{})),pending:!!session.arrivalAnchorPending,cinematic:!!session.cinematicActive,position,...extra});
+        const loader=globalThis.__CodexBossesLoader;
+        if(loader)uiEvents[uiEvents.length-1].loader={phase:loader.phase,nativeHooks:loader.hooks.length,achievementAdapterGuard:!!loader.achievementAdapterGuard,achievementStartsSuppressed:loader.achievementStartsSuppressed||0};
         if(session.lastWrite)uiEvents[uiEvents.length-1].lastWrite={...session.lastWrite};
         uiEvents[uiEvents.length-1].cinemaSource=session.cinemaSource||null;
         uiEvents[uiEvents.length-1].engaged={...session.engaged};
         if(uiEvents.length>50)uiEvents.shift();
-        const sl=UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context,UE.PBZSaveLoadSubsystem.StaticClass()),ok=puerts.$ref(false),value=puerts.$ref(new UE.JsonObjectWrapper());
-        UE.JSONUtility.ParseStringToJson(JSON.stringify({phase,events:uiEvents}),ok,value);
-        if(puerts.$unref(ok)){sl.SaveAdvancedObjectDataAndSync("CodexBossLabUIQA",puerts.$unref(value));sl.SaveAdvancedSaveGameNow();}
+        // Native callbacks can arrive during load/save locks. Persist the QA
+        // trace on a later frame, coalescing same-frame events into one save.
+        uiContext=UE.GameplayStatics.GetGameInstance(context);
+        if(uiFlush===null)uiFlush=setTimeout(flushUI,100);
     }catch(_){}
 }
 function menu(context,session,api){
     if(["ux","flow","review"].includes(config.mode)&&!survey.started){survey.started=true;setTimeout(()=>api.showMenu(context),2500);return;}
-    if(!enabled||!["survey","arrival","combat","retry"].includes(config.mode)||survey.started)return;
+    if(!enabled||!["survey","arrival","combat","retry","direct"].includes(config.mode)||survey.started)return;
     survey.started=true;
     survey.ids=config.ids.length?config.ids:bosses.map(b=>b.id);
     setTimeout(()=>api.replay(context,2,bosses.find(b=>b.id===survey.ids[0])),3500);
@@ -79,6 +93,14 @@ function surveyTick(context,session,capture,api){
 function selectedActors(context,boss){
     const result=[],seen={};
     const classes=[...boss.classes,...boss.supportClasses||[]];
+    if(UE.SGameAIWorldSubsystem){
+        const system=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.SGameAIWorldSubsystem.StaticClass());
+        const id=boss.profile.nativeSpawnerID||boss.profile.primarySpawnerID,pawn=id&&system?.GetSpawner(id)?.GetPawn();
+        if(pawn&&UE.KismetSystemLibrary.IsValid(pawn)){
+            const name=pawn.GetName(),path=UE.KismetSystemLibrary.GetPathName(pawn.GetClass());
+            if(classes.some(c=>c.toLowerCase()===path.toLowerCase())){result.push({actor:pawn,name,path});seen[name]=true;}
+        }
+    }
     for(const path of classes){
         const cls=UE.Class.Load(path),actors=puerts.$ref(UE.NewArray(UE.Actor));
         UE.GameplayStatics.GetAllActorsOfClass(context,cls,actors);
@@ -102,7 +124,7 @@ function probe(context,boss){
         const dead=new UE.GameplayTag();dead.TagName="CharacterState.Dead";
         const inCombat=new UE.GameplayTag();inCombat.TagName="CharacterState.InCombat";
         const attr=name=>UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(actor,UE.PBZBlueprintFunctionLibrary.MakeAttribute(name,UE.BasicAttributeSet.StaticClass()));
-        return {class:path,name,position,hidden:!!actor.bHidden,dead:!!asc?.HasMatchingGameplayTag(dead),inCombat:!!asc?.HasMatchingGameplayTag(inCombat),health:attr("Health"),healthMin:attr("Health_Min"),healthMax:attr("Health_Max")};
+        return {class:path,name,position,hidden:!!actor.bHidden,meshVisible:actor.GetMesh?.()?.IsVisible?.(),controller:actor.GetController?.()?.GetName(),dead:!!asc?.HasMatchingGameplayTag(dead),inCombat:!!asc?.HasMatchingGameplayTag(inCombat),health:attr("Health"),healthMin:attr("Health_Min"),healthMax:attr("Health_Max")};
     });
 }
 function environmentProbe(context,boss){
@@ -146,7 +168,7 @@ function combatMark(context,phase){
 function inventorySummary(gear){
     const inv=gear.Inventory;
     const stats=(infos,key)=>Object.fromEntries(Object.entries(infos).sort(([a],[b])=>a.localeCompare(b)).map(([id,w])=>[id,{level:w[key],forged:!!w.AlreadySnapSoul,cycle:w.ReincarnationCount||0}]));
-    return {main:Object.keys(inv.MainWeaponInfos).sort(),edges:Object.keys(inv.ShaChiWeaponInfo).sort(),mainStats:stats(inv.MainWeaponInfos,"WeaponLevel"),edgeStats:stats(inv.ShaChiWeaponInfo,"ShaChiWeaponLevel"),equipped:inv.MainWeapons,edgeSlots:inv.ShaqiWeapons,current:inv.CurrentMainWeaponID,accessories:inv.AssemblyAccessory};
+    return {main:Object.keys(inv.MainWeaponInfos).sort(),edges:Object.keys(inv.ShaChiWeaponInfo).sort(),mainStats:stats(inv.MainWeaponInfos,"WeaponLevel"),edgeStats:stats(inv.ShaChiWeaponInfo,"ShaChiWeaponLevel"),equipped:inv.MainWeapons,edgeSlots:inv.ShaqiWeapons,current:inv.CurrentMainWeaponID,accessories:inv.AccessoryIDs};
 }
 function inspectQTE(context){
     const cls=UE.Class.Find("/Game/PBZContent/UI/QTE/W_QTEBase.W_QTEBase_C");
@@ -175,6 +197,7 @@ function killForValidation(actor){
 }
 function retryTick(context,session,capture){
     if(config.mode!=="retry"||!survey.started||retry.done||retry.capturing)return;
+    if(session.cinematicActive)return;
     if(++retry.ticks<600)return;
     if(retry.stage==="waiting"){
         retry.stage="checkpoint";retry.capturing=true;retry.beforeDeaths=session.deathRetries||0;
@@ -290,7 +313,20 @@ function combatTick(context,session,capture,api){
 }
 function tick(context,controller,session,capture,api){
     if(!enabled || !session.active)return;
-    if(config.mode==="combat"){
+    if(config.mode==="training"&&session.boss.training&&session.ux?.preparationClosed&&session.inanisInteraction&&!session.inanisQaRequested){
+        session.inanisQaTicks=(session.inanisQaTicks||0)+1;
+        if(session.inanisQaTicks===90){
+            const actor=session.inanisInteraction,player=UE.GameplayStatics.GetPlayerCharacter(context,0),component=UE.PBZInteractComponent.GetInteractComponent(player);
+            ui(context,"inanis-native-probe",session,{valid:actor.IsValidInteract(player),outsideValid:actor.IsValidInteractOutOverlap(player),interactType:actor.GetInteractType(),actorClass:UE.KismetSystemLibrary.GetPathName(actor.GetClass()),componentMethods:Object.getOwnPropertyNames(UE.PBZInteractComponent.prototype),currentActor:component.CurrentInteractActor?.GetName(),expectedActor:actor.GetName(),distances:[component.DistanceA,component.DistanceB,component.DistanceC],interactText:{namespace:actor.InteractText.Namespace,key:actor.InteractText.Key,value:UE.KismetTextLibrary.Conv_TextToString(actor.InteractText.ValueCache)}});
+        }
+        if(session.inanisQaTicks===180){
+            session.inanisQaRequested=true;
+            ui(context,"inanis-native-dispatch",session);
+            UE.PBZInteractComponent.GetInteractComponent(UE.GameplayStatics.GetPlayerCharacter(context,0)).StartInteract();
+        }
+    }
+    if(config.mode==="training-flow"){trainingFlowTick(context,session,capture,api);return;}
+    if(["combat","arrival","direct"].includes(config.mode)){
         const player=UE.GameplayStatics.GetPlayerCharacter(context,0),name=player&&player.GetName();
         if(name&&combat.protectedPlayer!==name){
             UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute("Health_Min",UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,1);
@@ -311,6 +347,7 @@ function tick(context,controller,session,capture,api){
         return;
     }
     arrivalWait.ticks=0;
+    if(config.mode==="direct"){directTick(context,session,capture,api);return;}
     if(config.mode==="arrival")return;
     surveyTick(context,session,capture,api);
     if(config.mode==="survey")return;
@@ -343,16 +380,102 @@ function tick(context,controller,session,capture,api){
         held[key]=down;
     }
 }
+function directMark(context,phase){
+    const sl=UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context,UE.PBZSaveLoadSubsystem.StaticClass());
+    const ok=puerts.$ref(false),value=puerts.$ref(new UE.JsonObjectWrapper());
+    UE.JSONUtility.ParseStringToJson(JSON.stringify({phase,time:Date.now(),results:direct.results,index:direct.index,total:survey.ids?.length||0,done:direct.done}),ok,value);
+    if(puerts.$unref(ok)){sl.SaveAdvancedObjectDataAndSync("CodexBossLabDirectQA",puerts.$unref(value));sl.SaveAdvancedSaveGameNow();}
+}
+function directTick(context,session,capture,api){
+    if(direct.done||direct.capturing)return;
+    if(direct.lastBoss!==session.boss.id){direct.lastBoss=session.boss.id;direct.ticks=0;direct.result={id:session.boss.id,probes:[]};direct.results.push(direct.result);}
+    const result=direct.result;direct.ticks++;
+    if(direct.ticks%60!==0)return;
+    const actors=probe(context,session.boss),pawn=UE.GameplayStatics.GetPlayerCharacter(context,0),player=pawn.K2_GetActorLocation();
+    const health=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(pawn,UE.PBZBlueprintFunctionLibrary.MakeAttribute("Health",UE.BasicAttributeSet.StaticClass()));
+    if(!session.cinematicActive){
+        result.highestPlayerHealth=Math.max(result.highestPlayerHealth||health,health);
+        result.playerDamaged=!!result.playerDamaged||health<result.highestPlayerHealth-1;
+        result.bossDamaged=!!result.bossDamaged||actors.some(a=>!a.hidden&&!a.dead&&a.health<a.healthMax-1);
+    }
+    result.probes.push({tick:direct.ticks,cinematic:!!session.cinematicActive,engaged:{...session.engaged},actors,player:{X:player.X,Y:player.Y,Z:player.Z,health}});
+    // QA recovery keeps the view readable after a real hit; damage evidence is
+    // recorded above before restoring health. Never active in the manual build.
+    if(!session.cinematicActive){
+        const maximum=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(pawn,UE.PBZBlueprintFunctionLibrary.MakeAttribute("Health_Max",UE.BasicAttributeSet.StaticClass()));
+        if(health<maximum*0.25)UE.AttributeUtils.ModifyCharacterAttributeValue(pawn,UE.PBZBlueprintFunctionLibrary.MakeAttribute("Health",UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,maximum);
+        // A protected QA pawn can survive throws outside the arena. Bring it
+        // back for the next real weapon hit; never change the opponent's HP.
+        const opponent=selectedActors(context,session.boss).find(x=>!x.actor.bHidden)?.actor;
+        if(result.playerDamaged&&opponent){
+            const at=opponent.K2_GetActorLocation();
+            if(Math.hypot(at.X-player.X,at.Y-player.Y,at.Z-player.Z)>1500){
+                const forward=opponent.GetActorForwardVector(),target=new UE.Vector(at.X-forward.X*240,at.Y-forward.Y*240,at.Z+70),hit=puerts.$ref(new UE.HitResult());
+                pawn.K2_SetActorLocation(target,false,hit,true);
+                UE.GameplayStatics.GetPlayerController(context,0).SetControlRotation(new UE.Rotator(0,Math.atan2(at.Y-target.Y,at.X-target.X)*180/Math.PI,0));
+                result.qaPositionRecoveries=(result.qaPositionRecoveries||0)+1;
+            }
+        }
+    }
+    if(UE.SGameAIWorldSubsystem){
+        const system=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.SGameAIWorldSubsystem.StaticClass()),id=session.boss.profile.nativeSpawnerID||session.boss.profile.primarySpawnerID;
+        const spawner=id&&system?.GetSpawner(id),pawn=spawner?.GetPawn();
+        result.nativeSpawner={id,found:!!spawner,pawn:pawn?.GetName(),class:pawn&&UE.KismetSystemLibrary.GetPathName(pawn.GetClass()),position:pawn?.K2_GetActorLocation()};
+    }
+    result.ux={...session.ux};directMark(context,"observing-native-entry");
+    const ready=!session.cinematicActive&&direct.ticks>=360&&result.playerDamaged&&result.bossDamaged&&actors.some(a=>!a.hidden&&!a.dead&&(a.inCombat||Object.keys(session.engaged||{}).length)&&Math.hypot(a.position.X-player.X,a.position.Y-player.Y,a.position.Z-player.Z)<4000);
+    const limit=18000;
+    if(!ready&&direct.ticks<limit)return;
+    result.nativeFightReady=ready;result.introObserved=!!session.ux.directIntroObserved;result.preparationOpened=!!session.preparationShown;
+    direct.capturing=true;
+    capture(context,()=>{
+        result.gear=inventorySummary(session.gear);direct.index++;direct.capturing=false;
+        direct.done=direct.index>=survey.ids.length;directMark(context,direct.done?"direct-series-complete":"direct-entry-complete");
+        if(direct.done){api.showMenu(context);return;}
+        setTimeout(()=>api.travel(context,2,bosses.find(b=>b.id===survey.ids[direct.index]),false),1000);
+    });
+}
+function trainingFlowTick(context,session,capture,api){
+    if(trainingFlow.done||trainingFlow.capturing)return;
+    if(session.boss.training&&session.ux.preparationClosed&&trainingFlow.phase==="waiting"){
+        trainingFlow.before=inventorySummary(session.gear);trainingFlow.phase="travel";trainingFlow.ticks=0;
+        api.replay(context,2,bosses.find(b=>b.id==="BP_Monster_MobMan_Elite_Sword"),false);return;
+    }
+    if(session.boss.training||!["travel","retry"].includes(trainingFlow.phase)||session.arrivalAnchorPending||session.cinematicActive)return;
+    if(trainingFlow.phase==="retry"){
+        if((session.deathRetries||0)<=trainingFlow.beforeDeaths)return;
+        const player=UE.GameplayStatics.GetPlayerCharacter(context,0),asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player),tag=new UE.GameplayTag();tag.TagName="CharacterState.Dead";
+        if(!asc||asc.HasMatchingGameplayTag(tag))return;
+    }
+    if(++trainingFlow.ticks<120)return;
+    trainingFlow.capturing=true;
+    capture(context,()=>{
+        const after=inventorySummary(session.gear),before=trainingFlow.before;
+        if(trainingFlow.phase==="retry"){
+            const result=trainingFlow.result,position=UE.GameplayStatics.GetPlayerCharacter(context,0).K2_GetActorLocation();
+            result.retry=after;result.retryEquipmentPreserved=JSON.stringify(result.after)===JSON.stringify(after);result.deathRetries=session.deathRetries;result.retryPosition={X:position.X,Y:position.Y,Z:position.Z};
+            trainingFlow.done=true;trainingFlow.capturing=false;trainingFlowMark(context,result);api.showMenu(context);return;
+        }
+        const result={before,after,choiceApplied:before.equipped[0]==="Long",equipmentPreserved:JSON.stringify(before.equipped)===JSON.stringify(after.equipped)&&JSON.stringify(before.edgeSlots)===JSON.stringify(after.edgeSlots),beforeLevel:before.mainStats.Long.level,afterLevel:after.mainStats.Long.level,expectedLevel:session.boss.balance.weaponLevel,forgePreserved:before.mainStats.Long.forged===after.mainStats.Long.forged};
+        trainingFlow.result=result;trainingFlow.beforeDeaths=session.deathRetries||0;trainingFlow.phase="retry";trainingFlow.ticks=0;trainingFlow.capturing=false;
+        trainingFlowMark(context,result);killForValidation(UE.GameplayStatics.GetPlayerCharacter(context,0));
+    });
+}
+function trainingFlowMark(context,result){
+    const sl=UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context,UE.PBZSaveLoadSubsystem.StaticClass()),ok=puerts.$ref(false),value=puerts.$ref(new UE.JsonObjectWrapper());
+    UE.JSONUtility.ParseStringToJson(JSON.stringify(result),ok,value);
+    if(puerts.$unref(ok)){sl.SaveAdvancedObjectDataAndSync("CodexBossLabTrainingFlowQA",puerts.$unref(value));sl.SaveAdvancedSaveGameNow();}
+}
 exports.tick=tick;
 exports.enabled=enabled;
 exports.automated=automated;
 exports.mode=config.mode;
 exports.ui=ui;
 exports.focusSelector=widget=>{
-    if(!["ux","flow","review"].includes(config.mode)||!config.ids.length||!widget?.codexBossItems||widget.codexScreen==="victory")return;
+    if(!["ux","flow","review","training"].includes(config.mode)||!config.ids.length||!widget?.codexBossItems||widget.codexScreen==="victory")return;
     const item=widget.codexBossItems.find(item=>item.codexBossEntry?.id===config.ids[0]);
     if(item){widget.CommonListView_89.BP_SetSelectedItem(item);widget.CommonListView_89.BP_ScrollItemIntoView(item);}
-    if(item&&["flow","review"].includes(config.mode))setTimeout(()=>{if(UE.KismetSystemLibrary.IsValid(widget)&&widget.IsActivated())widget.codexSelectBoss(item.codexBossEntry,widget);},3000);
+    if(item&&["flow","review","training"].includes(config.mode))setTimeout(()=>{if(UE.KismetSystemLibrary.IsValid(widget)&&widget.IsActivated())widget.codexSelectBoss(item.codexBossEntry,widget);},3000);
 };
 exports.menu=menu;
 exports.mark=mark;

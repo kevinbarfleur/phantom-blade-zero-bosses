@@ -6,8 +6,12 @@ const validation = require("./validation");
 const battle = require("./battle"), hold = require("./hold");
 const gearReader = require("./gear");
 const cinema=require("./cinema");
+const training=require("./training"),arrival=require("./arrival");
+const inanis=require("./inanis");
+const arena=require("./arena");
 let pending = null, busy = false, activeDialog = null;
 let difficultyFlow = null;
+let menuPause = null;
 let queuedDeath = false;
 let keyTimer = null, keyHeld = false, worldContext = null, worldGeneration = 0;
 const session = { active: false, initialized: false, gear: null, difficulty: UE.EDifficultMode.Normal, report: "", arsenal: null };
@@ -20,6 +24,7 @@ function valid(object) { try { return !!object && UE.KismetSystemLibrary.IsValid
 function saveLoadFor(context) { return UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context, UE.PBZSaveLoadSubsystem.StaticClass()); }
 function slotFor(difficulty) { return difficulty === UE.EDifficultMode.NightMare ? "NightmareRun0" : "ManualSave3"; }
 function fail(context, message) {
+    if(hold.endLaunch)hold.endLaunch(session,true);
     if (pending && pending.timer) clearTimeout(pending.timer);
     if (pending && pending.retryTimer) clearTimeout(pending.retryTimer);
     pending = null; busy = false; log("ERROR " + message);
@@ -72,12 +77,12 @@ function closeMenus(instance,done){
     };
     step();
 }
-function writeEncounter(context, difficulty, boss = session.boss, prepare = true) {
+function writeEncounter(context, difficulty, boss = session.boss, prepare = true, skipIntroduction = false) {
     try {
         const instance = UE.GameplayStatics.GetGameInstance(context), saveLoad = saveLoadFor(instance), slot = slotFor(difficulty);
         if (!valid(instance) || !saveLoad) throw new Error("Interface de sauvegarde indisponible");
         busy = true;
-        const pristine = model.bossSnapshot(snapshot, boss);
+        const pristine = model.bossSnapshot(snapshot, boss,{direct:!boss.training});
         const root = model.encounterSave(pristine, session.gear, difficulty, session.initialized, difficulty === UE.EDifficultMode.NightMare, boss.balance);
         const request = requestFor(instance, "encounter"), param = new UE.SaveGameParam();
         param.SaveSlotName = slot; param.bShowSaveTip = false;
@@ -91,12 +96,19 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 const result = puerts.$unref(resultRef);
                 if (!result || result.ResultType !== UE.ESaveLoadResultType.Success || String(result.LevelName) !== pristine.PBZGameSystem.CurrentLevelName) throw new Error("Le point de départ n'a pas été reconnu");
                 session.active = true; session.difficulty = difficulty; session.boss = boss; session.completed = false;session.completionToken=null;session.victory=null;
-                session.prepareOnArrival=prepare;
+                session.prepareOnArrival=!!boss.training;
+                session.mode=boss.training?"training":"direct-fight";
+                session.skipIntroduction=skipIntroduction;
+                session.cinematicActive=false;session.cinemaSource=null;
+                session.trainingInteractionsDisabled=false;
+                session.trainingTicks=0;
+                session.trainingTipShown=false;session.inanisInteraction=null;session.inanisSpawnRequested=0;
                 session.arrivalAnchorPending=true;
                 session.preparationShown=false;
                 session.trialReady=false;session.nativeSpawnerReady=false;session.trialPrepareAttempts=0;session.layersPrepared=false;
-                session.ux={...session.ux,nativeTrialPrepared:false,nativeLayersPrepared:false,preparationPaused:false,preparationClosed:false,resultShown:false,prepareRequested:prepare,automatedQA:validation.automated};
+                session.ux={...session.ux,nativeTrialPrepared:false,nativeLayersPrepared:false,preparationPaused:false,preparationClosed:false,resultShown:false,prepareRequested:!!boss.training,automatedQA:validation.automated};
                 delete session.ux.trialPreparationError;delete session.ux.layerPreparationError;delete session.ux.nativeEncounterPrepared;delete session.ux.nativeSpawnerFound;
+                for(const key of ["directReady","directPlacement","directIntroObserved","directKind","nativeArrivalLoaded","nativeEntryCrossed","arrivalEvents","introPreparationTimedOut","introPreparationCancelled","arenaBellsSuppressed","directCombatStarted","inanisVisible","inanisInteractionReady","inanisSelections","trainingExitBlocked","trainingHiddenActors","trainingDisabledActors","trainingHiddenEffects","trainingBoundaryReturns"])delete session.ux[key];
                 battle.install(session,victory);
                 instance.SetLoadingScreen("PBZ_WP"); busy = false;
                 log("Loading " + boss.id + "; difficulty=" + difficulty);
@@ -115,10 +127,10 @@ function captureCheckpoint(context, then) {
         const instance = UE.GameplayStatics.GetGameInstance(context), saveLoad = saveLoadFor(instance);
         busy = true;
         const request = requestFor(instance, "equipment"), param = new UE.SaveGameParam();
-        const metadata = {version:"0.5", encounter:session.boss.id, initialized:session.initialized, difficulty:session.difficulty, balance:session.boss.balance, arsenal:session.arsenal, nativeDifficulties:difficulties, deathRetries:session.deathRetries||0, validation:session.validation||null,ux:{...session.ux,preparationShown:!!session.preparationShown,arrivalAnchored:!session.arrivalAnchorPending,cinematicsSkipped:session.cinematicsSkipped||0},rewardsSuppressed:session.rewardsSuppressed||0,completed:!!session.completed,hooks:battle.status?battle.status():session.hooks||null};
+        const metadata = {version:"0.6-prototype", encounter:session.boss.id, initialized:session.initialized, difficulty:session.difficulty, balance:session.boss.balance, arsenal:session.arsenal, nativeDifficulties:difficulties, deathRetries:session.deathRetries||0, validation:session.validation||null,ux:{...session.ux,preparationShown:!!session.preparationShown,arrivalAnchored:!session.arrivalAnchorPending,cinematicsSkipped:session.cinematicsSkipped||0},rewardsSuppressed:session.rewardsSuppressed||0,completed:!!session.completed,hooks:battle.status?battle.status():session.hooks||null};
         param.SaveSlotName = slotFor(session.difficulty); param.bShowSaveTip = false;
         session.gear=model.captureGear(gearReader.capture(context,saveLoad,param));
-        const pristine=model.bossSnapshot(snapshot,session.boss);
+        const pristine=model.bossSnapshot(snapshot,session.boss,{direct:!session.boss.training});
         const root=model.encounterSave(pristine,session.gear,session.difficulty,true,false,session.boss.balance);
         root.CodexBossLabSession=metadata;
         replaceWhenReady(saveLoad,param,JSON.stringify(root),request,(_slot, _json, _index, success) => {
@@ -128,37 +140,65 @@ function captureCheckpoint(context, then) {
             try {
                 busy = false;
                 log("Loadout checkpoint captured");
-                if (queuedDeath) { queuedDeath = false; writeEncounter(instance, session.difficulty,session.boss,false); }
+                if (queuedDeath) { queuedDeath = false; writeEncounter(instance, session.difficulty,session.boss,false,true); }
                 else if (then) then(instance);
             } catch (error) { fail(instance, "Équipement non enregistré : " + String(error)); }
         });
         return true;
     } catch (error) { fail(context, String(error)); return false; }
 }
-function replay(context, difficulty = session.difficulty, boss = session.boss, prepare = true) {
+function replay(context, difficulty = session.difficulty, boss = session.boss, prepare = true, skipIntroduction = false) {
     if (busy || !difficulties.includes(difficulty)) return false;
-    if (session.active && valid(worldContext)) return captureCheckpoint(context, instance => writeEncounter(instance, difficulty, boss,prepare));
-    return writeEncounter(context, difficulty, boss,prepare);
+    if (session.active && valid(worldContext)&&valid(UE.GameplayStatics.GetPlayerCharacter(worldContext,0))) return captureCheckpoint(worldContext, instance => writeEncounter(instance, difficulty, boss,prepare,skipIntroduction));
+    return writeEncounter(context, difficulty, boss,prepare,skipIntroduction);
 }
 function gameplayTag(name) { const tag = new UE.GameplayTag(); tag.TagName = name; return tag; }
+function openTraining(context){
+    const live=valid(worldContext)&&valid(UE.GameplayStatics.GetPlayerCharacter(worldContext,0))?worldContext:null;
+    if(session.active&&session.boss.training&&live){prepareEquipment(live);return true;}
+    return replay(context,session.difficulty,training.destination,false);
+}
 function pauseMenu(context,widget){
-    const pausedBefore=UE.GameplayStatics.IsGamePaused(context),generation=worldGeneration;
-    if(!pausedBefore)UE.GameplayStatics.SetGamePaused(context,true);
+    // CommonUI deactivates the selector when it pushes difficulty, then
+    // reactivates it on Back. Those screens share one pause lifetime.
+    if(!menuPause||menuPause.generation!==worldGeneration)menuPause={generation:worldGeneration,context:valid(worldContext)?worldContext:context,pausedBefore:UE.GameplayStatics.IsGamePaused(context),records:[]};
+    const group=menuPause;
+    if(group.records.some(record=>record.widget===widget))return UE.GameplayStatics.IsGamePaused(context);
+    const record={widget,active:true};
+    const activate=()=>{record.active=true;if(menuPause===group&&valid(group.context))UE.GameplayStatics.SetGamePaused(group.context,true);};
     const close=()=>{
-        widget.BP_OnWidgetDeactivated.Remove(close);
-        if(!pausedBefore&&generation===worldGeneration&&valid(worldContext))UE.GameplayStatics.SetGamePaused(worldContext,false);
+        record.active=false;
+        setTimeout(()=>{
+            if(menuPause!==group||group.generation!==worldGeneration||!valid(group.context))return;
+            const open=group.records.some(r=>valid(r.widget)&&(r.active||r.widget.IsActivated?.()));
+            if(open||difficultyFlow){UE.GameplayStatics.SetGamePaused(group.context,true);return;}
+            UE.GameplayStatics.SetGamePaused(group.context,group.pausedBefore);
+            clearMenuPause();
+        },0);
     };
-    widget.BP_OnWidgetDeactivated.Add(close);
+    record.activate=activate;record.close=close;group.records.push(record);
+    widget.BP_OnWidgetActivated?.Add(activate);widget.BP_OnWidgetDeactivated.Add(close);
+    activate();
     return UE.GameplayStatics.IsGamePaused(context);
+}
+function clearMenuPause(){
+    if(!menuPause)return;
+    for(const r of menuPause.records)if(valid(r.widget)){r.widget.BP_OnWidgetActivated?.Remove(r.activate);r.widget.BP_OnWidgetDeactivated.Remove(r.close);}
+    menuPause=null;
 }
 function prepareEquipment(context){
     try{
+        const player=UE.GameplayStatics.GetPlayerCharacter(context,0);
+        if(!valid(player))return openTraining(context);
         const controller=UE.GameplayStatics.GetPlayerController(context,0);
         const path=UE.KismetSystemLibrary.MakeSoftClassPath("/Game/PBZContent/UI/UINew/System/W_Systembase.W_Systembase_C");
         const klass=UE.KismetSystemLibrary.Conv_SoftClassPathToSoftClassRef(path);
         const action=UE.AsyncAction_PushContentToLayerForPlayer.PushContentToLayerForPlayer(controller,klass,gameplayTag("UI.Layer.GameSystem"),false);
         activeDialog=action;
-        action.BeforePush.Add(widget=>{if(valid(widget))UE.GameplayStatics.GetPlayerCharacter(context,0).BeforePushSystemV1(widget,false);});
+        action.BeforePush.Add(widget=>{
+            if(!valid(widget))return;
+            if(valid(player))player.BeforePushSystemV1(widget,false);
+        });
         action.AfterPush.Add(widget=>{
             activeDialog=null;if(!valid(widget)){if(validation.ui)validation.ui(context,"preparation-error",session,{error:"Native system screen was not created"});return;}
             session.preparationShown=true;
@@ -174,7 +214,13 @@ function prepareEquipment(context){
                 if(!busy&&generation===worldGeneration&&valid(worldContext))captureCheckpoint(worldContext);
             };
             widget.BP_OnWidgetDeactivated.Add(close);
-            if(["ux","flow"].includes(validation.mode)){
+            if(["ux","flow","training-flow","training"].includes(validation.mode)){
+                if(validation.mode==="training-flow")setTimeout(()=>{
+                    if(generation!==worldGeneration||!valid(context))return;
+                    const pack=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.PBZBackPackSubsystem.StaticClass());
+                    pack.ReplaceWeaponByIndex("Long",0);
+                    session.ux.trainingQaChoice=String(pack.MainWeapons.Get(0));
+                },2000);
                 setTimeout(()=>{if(generation===worldGeneration&&valid(context))captureCheckpoint(context);},4000);
                 setTimeout(()=>{if(generation===worldGeneration&&valid(widget))widget.DeactivateWidget();},12000);
             }
@@ -200,14 +246,22 @@ function chooseDifficulty(context, boss = session.boss) {
             if (!widget) { activeDialog = null; return; }
             hideCampaignMode(widget);
             let selected = null, ended = false;
-            const onSelect = difficulty => { if (difficulties.includes(difficulty)) selected = difficulty; };
+            const onSelect = difficulty => {
+                if(ended||selected!==null||!difficulties.includes(difficulty))return;
+                selected=difficulty;
+                try{
+                    hold.beginLaunch(widget,session);
+                    if(!replay(instance,selected,boss))fail(instance,"Le chargement du combat n'a pas pu commencer. Réessaie depuis la sélection.");
+                }catch(error){fail(instance,"Transition interrompue : "+String(error));}
+            };
             const onEnd = () => {
                 if (ended) return; ended = true; activeDialog = null;
                 if (difficultyFlow === flow) difficultyFlow = null;
                 try { widget["Change Difficult Delegate"].Remove(onSelect); widget.BP_OnWidgetDeactivated.Remove(onEnd); } catch (_) {}
-                if (selected !== null) setTimeout(() => replay(instance, selected, boss), 0);
             };
             widget["Change Difficult Delegate"].Add(onSelect); widget.BP_OnWidgetDeactivated.Add(onEnd);
+            if(session.active&&valid(widget))pauseMenu(context,widget);
+            if(validation.ui)validation.ui(context,"difficulty-opened",session,{paused:UE.GameplayStatics.IsGamePaused(context)});
             try { hold.configure(widget,session,boss); }
             catch(error) { log("Hold UI: "+String(error));session.ux={error:String(error)};widget.DeactivateWidget();fail(instance,"La confirmation du combat n'a pas pu s'ouvrir. Réessaie depuis la sélection."); }
         });
@@ -230,6 +284,7 @@ function showMenu(context, screen = "bosses") {
             widget.codexBossSelector=true;
             widget.codexScreen=screen;
             widget.codexCurrentBoss=session.boss;
+            widget.codexInTraining=!!session.boss.training;
             widget.codexAutoNext=!!session.autoNext;
             widget.codexSelectBoss=(boss,owner)=>{
                 if(boss.action){
@@ -237,9 +292,10 @@ function showMenu(context, screen = "bosses") {
                     owner.codexActionChosen=true;
                     owner.DeactivateWidget();
                     setTimeout(()=>{
-                        if(boss.action==="replay")replay(context);
+                        if(boss.action==="replay")replay(context,session.difficulty,session.boss,false,true);
                         if(boss.action==="next"){const next=nextBoss();if(next)replay(context,session.difficulty,next);}
                         if(boss.action==="select")showMenu(context);
+                        if(boss.action==="training")openTraining(context);
                         if(boss.action==="main")captureCheckpoint(context,()=>{session.active=false;require("../Library/TsHelper").default.returnStart(context);});
                     },0);return;
                 }
@@ -249,6 +305,7 @@ function showMenu(context, screen = "bosses") {
         });
         action.AfterPush.Add(widget=>{
             activeDialog=null;
+            session.selectorWidget=widget;
             if(session.active&&valid(widget))pauseMenu(context,widget);
             if(screen!=="victory"&&validation.ui)validation.ui(context,"boss-menu",session,{paused:UE.GameplayStatics.IsGamePaused(context)});
             if(screen==="victory"&&valid(widget)){
@@ -290,23 +347,51 @@ function scheduleCompletion(context,token,delay){
     setTimeout(finish,delay);
 }
 function stopKeys() {
+    arrival.release(session);
+    clearMenuPause();
+    if(session.loadingScreenListener){
+        const {instance,handler}=session.loadingScreenListener;
+        if(valid(instance))instance.OnEndLoadingScreen.Remove(handler);
+        session.loadingScreenListener=null;
+    }
     worldGeneration++; if (keyTimer !== null) clearInterval(keyTimer);
     keyTimer = null; worldContext = null; keyHeld = false;
 }
 function beginKeys(context) {
     stopKeys(); worldContext = context;
+    if(hold.endLaunch)hold.endLaunch(session);
     const diagnosticContext=UE.GameplayStatics.GetGameInstance(context);
     if(session.active)try{battle.install(session,victory);session.hooks=battle.status?battle.status():{};}catch(error){session.hooks={error:String(error)};log("Battle hooks: "+String(error));}
     const generation = worldGeneration, key = new UE.Key("F8"); let ticks = 0, arrivalTicks=0, stableTicks=0, preparing = false,lastPosition=null;
+    if(session.active){
+        session.worldLoadingComplete=false;
+        const handler=()=>{
+            if(generation!==worldGeneration)return;
+            session.worldLoadingComplete=true;
+            if(validation.ui)validation.ui(diagnosticContext,"loading-ended",session);
+        };
+        diagnosticContext.OnEndLoadingScreen.Add(handler);
+        session.loadingScreenListener={instance:diagnosticContext,handler};
+        arrival.begin(context,session);
+    }
     keyTimer = setInterval(() => {
         try {
             if (generation !== worldGeneration || !valid(context)) { if(validation.ui)validation.ui(diagnosticContext,"input-context-ended",session,{generation,currentGeneration:worldGeneration,contextValid:valid(context)});stopKeys(); return; }
             const player = UE.GameplayStatics.GetPlayerCharacter(context, 0);
             if(session.active&&valid(player)){
                 arrivalTicks++;
+                if(arrivalTicks%5===0)arena.tick(context,session);
                 if(arrivalTicks%10===0&&battle.prepareEncounter)battle.prepareEncounter(context,session);
                 if(arrivalTicks%15===0&&battle.poll)battle.poll(context,session);
-                if(arrivalTicks%10===0)session.cinematicActive=cinema.tick(context,session);
+                if(arrivalTicks%10===0){session.cinematicActive=cinema.tick(context,session);if(session.cinematicActive&&!session.boss.training)session.ux.directIntroObserved=true;}
+                arrival.tick(context,session);
+                training.tick(context,session);
+                if(arrivalTicks%15===0&&battle.activateDirectCombat)battle.activateDirectCombat(context,session);
+                if(session.boss.training&&!session.arrivalAnchorPending&&!session.trainingTipShown){
+                    session.trainingTipShown=true;
+                    const helper=require("../Library/UIHelper").default;
+                    if(typeof helper.showTipsText==="function")helper.showTipsText(context,text("ENTRAÎNEMENT · NIV. 30\nInventaire · Équipement    Inanis · Combats"));
+                }
                 if(validation.enabled&&arrivalTicks%180===0)validation.ui(diagnosticContext,"input-heartbeat",session,{ticks:arrivalTicks,paused:UE.GameplayStatics.IsGamePaused(context),busy,activeDialog:!!activeDialog});
                 if(session.arrivalAnchorPending&&!busy){
                     const p=player.K2_GetActorLocation(),position={X:p.X,Y:p.Y,Z:p.Z};
@@ -322,8 +407,12 @@ function beginKeys(context) {
                         }
                         session.arrivalAnchorPending=false;
                         if(validation.ui)validation.ui(context,"arrival-anchored",session,{stableTicks});
-                        if(session.prepareOnArrival&&!validation.automated){session.prepareOnArrival=false;prepareEquipment(context);}
                     }
+                }
+                // The native equipment host pauses the world. Opening it while
+                // MoviePlayer is still finishing the map can stall loading.
+                if(session.prepareOnArrival&&!validation.automated&&!session.arrivalAnchorPending&&session.worldLoadingComplete){
+                    session.prepareOnArrival=false;prepareEquipment(context);
                 }
             }
             if (session.active && !session.initialized && !preparing && valid(player) && ++ticks >= 45) {
@@ -337,7 +426,7 @@ function beginKeys(context) {
             const controller = UE.GameplayStatics.GetPlayerController(context, 0);
             if (!valid(controller)) return;
             const down = controller.IsInputKeyDown(key); if (down && !keyHeld) showMenu(context); keyHeld = down;
-            if(!busy)validation.tick(context,controller,session,captureCheckpoint,{replay,showMenu,victory,travel:writeEncounter});
+            if(!busy)validation.tick(context,controller,session,captureCheckpoint,{replay,showMenu,victory,travel:writeEncounter,openTraining});
         } catch (error) { log("Input: " + String(error));if(validation.ui)validation.ui(diagnosticContext,"runtime-error",session,{error:String(error),stack:error?.stack});stopKeys(); }
     }, 33);
     // Some native victories return from an instanced arena to the campaign map.
@@ -350,14 +439,16 @@ function wrap(proto, name, after) {
 }
 function labelMenu(menu) {
     if (menu.ContinueGame) menu.ContinueGame.SetButtonText(text("BOSSES"));
-    for (const name of ["NewGame", "LoadGame", "BonusCollection"]) if (menu[name]) menu[name].SetVisibility(UE.ESlateVisibility.Collapsed);
+    for (const name of ["NewGame", "BonusCollection"]) if (menu[name]) menu[name].SetVisibility(UE.ESlateVisibility.Collapsed);
+    if(menu.LoadGame)menu.LoadGame.SetVisibility(UE.ESlateVisibility.Collapsed);
     if (menu.Version) menu.Version.SetText(text(""));
 }
 function patchStartMenu(Type) {
     const p = Type.prototype, bind = p.bindButtonClicked;
-    p.bindButtonClicked = function (name, handler) { if (name === "ContinueGame") handler = () => showMenu(this); return bind.call(this, name, handler); };
+    p.bindButtonClicked = function (name, handler) { if (name === "ContinueGame"||name==="LoadGame") handler = () => openTraining(this); return bind.call(this, name, handler); };
     for (const method of ["InitText", "BP_OnActivated", "CheckTag", "UpdateVersionText"]) wrap(p, method, function () { labelMenu(this); });
     wrap(p,"BP_OnActivated",function(){if(validation.menu)validation.menu(this,session,{replay,showMenu});});
+    wrap(p,"BP_OnActivated",function(){if(["training","training-flow"].includes(validation.mode)&&!session.trainingAutoStarted){session.trainingAutoStarted=true;setTimeout(()=>openTraining(this),2500);}});
 }
 function patchGameMode(Type) {
     const p = Type.prototype;
@@ -375,7 +466,7 @@ function patchDeathMenu(Type) {
         session.deathRetries=(session.deathRetries||0)+1;
         log("Death: restoring encounter and retaining loadout");
         if (busy) { if (pending && pending.kind === "equipment") queuedDeath = true; }
-        else replay(this, session.difficulty,session.boss,false);
+        else replay(this, session.difficulty,session.boss,false,true);
     };
     p.Tick = function (...args) { if (!this.codexLabDeath) return tick.apply(this, args); };
     p.Destruct = function (...args) { if (!this.codexLabDeath) return destruct.apply(this, args); };
@@ -391,6 +482,11 @@ function patchBell(Type){
         this.TeleportBtn_BrokenBell.SetVisibility(UE.ESlateVisibility.Collapsed);
         button.OnButtonBaseClicked.Clear();
         button.OnButtonBaseClicked.Add(()=>showMenu(this));
+        for(const id of ["ItemUpgradeButton","ShopButton","AbilityCultivation","ManualSave"])if(this[id])this[id].SetVisibility(UE.ESlateVisibility.Collapsed);
+        if(this.JhsyButton){
+            this.JhsyButton.SetVisibility(UE.ESlateVisibility.Visible);this.JhsyButton.SetButtonText(text(session.boss.training?"ÉQUIPEMENT":"ENTRAÎNEMENT"));
+            this.JhsyButton.OnButtonBaseClicked.Clear();this.JhsyButton.OnButtonBaseClicked.Add(()=>{this.DeactivateWidget();setTimeout(()=>openTraining(this),0);});
+        }
     });
 }
 function patchConfirmation(Type) {
@@ -422,4 +518,7 @@ exports.patchSettlement=battle.patchSettlement;
 exports.patchBell=patchBell;
 exports.showMenu = showMenu; exports.chooseDifficulty = chooseDifficulty;
 exports.replay = replay; exports.captureCheckpoint = captureCheckpoint; exports.stop = stopKeys;
+inanis.configure(()=>session,context=>showMenu(valid(worldContext)?worldContext:context));
 exports.isActive=()=>session.active;
+exports.patchTeleport=Type=>training.patchTeleport(Type,()=>session.active&&!!session.boss.training,context=>showMenu(context));
+exports.openTraining=openTraining;

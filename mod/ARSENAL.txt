@@ -1,5 +1,5 @@
-BOSSES 0.5 — ARSENAL ADMIS
-Build Steam 26266538. Catalogue d'obtention de la campagne, indépendant des objets possédés.
+BOSSES 0.6.1 — ARSENAL ADMIS
+Catalogue établi sur le build Steam 26266538 ; arsenal chargé et contrôlé sur 26367565. Catalogue d'obtention de la campagne, indépendant des objets possédés.
 
 Le niveau s'ajuste au combat choisi et reste plafonné à 30. La forge est conservée.
 Les libellés ci-dessous proviennent du jeu. Le nom obtenu par forge peut remplacer le nom de base.

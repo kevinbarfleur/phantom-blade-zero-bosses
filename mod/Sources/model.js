@@ -1,14 +1,17 @@
 "use strict";
 const copy = value => JSON.parse(JSON.stringify(value));
 const GEAR_SECTIONS = ["Inventory", "AbilityNode_RenewalHun", "AbilityNode_RenewalHun_Climax", "PBZAppearanceComponent"];
-function bossSnapshot(pristine, boss) {
+function bossSnapshot(pristine, boss, options = {}) {
     if (!boss || !boss.profile) throw new Error("Point de départ du boss indisponible");
     if (boss.id === "BP_Monster_ZuoShang_Ending"&&!boss.profile.transform) return copy(pristine);
     const root=copy(pristine),p=boss.profile;
     root.PBZGameSystem.CurrentLevelName=p.level;
     root.PBZGameSystem.LastSaveActorID=p.bell;
-    root.PBZGameSystem.PlayerTransform=copy(p.transform);
-    root.PBZGameSystem.ReviveTransform=copy(p.transform);
+    const start=options.direct&&p.directEntry
+        ? (p.directEntry.crossing?{...p.directEntry.transform,Location:p.directEntry.crossing}:p.directEntry.transform)
+        :p.transform;
+    root.PBZGameSystem.PlayerTransform=copy(start);
+    root.PBZGameSystem.ReviveTransform=copy(start);
     root.PBZGameSystem.ReviveCameraRotation=copy(p.camera);
     root.PBZGameSystem.IsInTutorial=false;
     root.BellSaveID=p.bell;
@@ -41,6 +44,7 @@ function bossSnapshot(pristine, boss) {
     for(const key of Object.keys(ep.ExecuteNodeGuid||{}))
         if(matchesActor(key)||p.nodeIDs.some(id=>key.endsWith(id)))delete ep.ExecuteNodeGuid[key];
     root.AISystem.ActiveEventVolumes=[];
+    root.PBZGameSystem.CompleteAddItemMobDomainNames=(root.PBZGameSystem.CompleteAddItemMobDomainNames||[]).filter(key=>!matchesActor(key));
     for(const id of boss.members)delete root.BossRecord[id];
     ep.CurrentPlayingID=0;ep.FlowPlaySeqID="";ep.FlowTags=[];
     root.CodexBossLabEncounter={id:boss.id,profile:p};
@@ -89,7 +93,7 @@ function encounterSave(pristine, gear, difficulty, initialized, nightmare = fals
     root.PBZGameSystem.bIsFinishGame = false;
     root.Player.RemainingDays = 66;
     root.Player.IsCompleteRespawnSequence = false;
-    root.CodexBossLabSession = { version: "0.5", encounter: pristine.CodexBossLabEncounter?.id || "BP_Monster_ZuoShang_Ending", initialized: !!initialized, difficulty };
+    root.CodexBossLabSession = { version: "0.6-prototype", encounter: pristine.CodexBossLabEncounter?.id || "BP_Monster_ZuoShang_Ending", initialized: !!initialized, difficulty };
     return root;
 }
 exports.captureGear = captureGear;

@@ -1,5 +1,8 @@
 param([switch]$ValidateOnly)
 $ErrorActionPreference = 'Stop'
+$identity=[Security.Principal.WindowsIdentity]::GetCurrent()
+$principal=New-Object Security.Principal.WindowsPrincipal($identity)
+if($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){throw 'Ouvre Lancer-Bosses.cmd normalement. Seul le gardien doit recevoir les droits administrateur.'}
 $stateRoot = Join-Path $PSScriptRoot '.state'
 New-Item -ItemType Directory -Path $stateRoot -Force | Out-Null
 $unfinished = @(Get-ChildItem -LiteralPath $stateRoot -Directory | Where-Object {
@@ -11,8 +14,22 @@ $runDirectory = Join-Path $stateRoot ('run-' + [Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $runDirectory | Out-Null
 $core = Join-Path $PSScriptRoot 'Session-Core.ps1'
 if ($ValidateOnly) { & $core -RunDirectory $runDirectory -ValidateOnly; exit $LASTEXITCODE }
+# Check the package and current Steam build before requesting administrator rights.
+& $core -RunDirectory $runDirectory -ValidateOnly
+if ($LASTEXITCODE -ne 0) {
+    $preflightFile = Join-Path $runDirectory 'status.json'
+    if (Test-Path -LiteralPath $preflightFile) {
+        $preflight = Get-Content -LiteralPath $preflightFile -Raw | ConvertFrom-Json
+        throw $preflight.message
+    }
+    throw 'Verification du paquet impossible. Consulte .state avant de relancer.'
+}
 $arguments = '-NoProfile -ExecutionPolicy Bypass -File "' + $core + '" -RunDirectory "' + $runDirectory + '"'
 $worker = Start-Process -FilePath 'powershell.exe' -ArgumentList $arguments -Verb RunAs -WindowStyle Hidden -PassThru
+$watch=Join-Path $PSScriptRoot 'Veiller-Restauration.ps1'
+$watchArguments='-NoProfile -ExecutionPolicy Bypass -File "'+$watch+'" -RunDirectory "'+$runDirectory+'" -WorkerPid '+$worker.Id
+$watcherShell=Join-Path $PSHOME $(if($PSVersionTable.PSEdition -eq 'Core'){'pwsh.exe'}else{'powershell.exe'})
+Start-Process -FilePath $watcherShell -ArgumentList $watchArguments -WindowStyle Hidden|Out-Null
 $statusFile = Join-Path $runDirectory 'status.json'
 $deadline = [DateTime]::UtcNow.AddMinutes(2)
 do {

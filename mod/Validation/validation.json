@@ -1,0 +1,125 @@
+{
+  "version": "0.6.1",
+  "gameBuild": 26367565,
+  "codeTests": {
+    "passed": 92,
+    "failed": 0
+  },
+  "deploymentTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "runtimeCompatible": true,
+  "direct": [
+    {
+      "id": "BP_Monster_AHua_GuiTouDao",
+      "nativeFightReady": true,
+      "introObserved": true,
+      "playerDamaged": true,
+      "bossDamaged": true,
+      "arrivalEvents": [
+        {
+          "name": "streaming-cover-requested",
+          "time": 1793906059027
+        },
+        {
+          "name": "streaming-cover-finished",
+          "time": 1793906068138
+        },
+        {
+          "name": "native-entry-crossed",
+          "time": 1793906068285
+        },
+        {
+          "name": "native-intro-owns-arrival",
+          "time": 1793906070320
+        }
+      ],
+      "arenaBellCount": 1,
+      "hiddenBellChildCount": 1
+    },
+    {
+      "id": "BP_Monster_HuaQianXIao",
+      "nativeFightReady": true,
+      "introObserved": true,
+      "playerDamaged": true,
+      "bossDamaged": true,
+      "arrivalEvents": [
+        {
+          "name": "streaming-cover-requested",
+          "time": 1793906388214
+        },
+        {
+          "name": "streaming-cover-finished",
+          "time": 1793906394091
+        },
+        {
+          "name": "native-entry-crossed",
+          "time": 1793906394231
+        },
+        {
+          "name": "native-intro-owns-arrival",
+          "time": 1793906396244
+        }
+      ],
+      "arenaBellCount": 1,
+      "hiddenBellChildCount": 1
+    }
+  ],
+  "all60FullFightsValidated": false,
+  "controllerRumblePhysicallyVerified": false,
+  "trainingFlow": {
+    "choiceApplied": true,
+    "equipmentPreserved": true,
+    "beforeLevel": 30,
+    "afterLevel": 2,
+    "expectedLevel": 2,
+    "forgePreserved": true,
+    "retryEquipmentPreserved": true,
+    "deathRetries": 1
+  },
+  "refuge": {
+    "nativeInteractionDispatched": true,
+    "selectorOpened": true,
+    "paused": true,
+    "inanisVisible": true,
+    "inanisInteractionReady": true,
+    "inanisSelections": 1,
+    "trainingExitBlocked": true,
+    "trainingHiddenActors": 2
+  },
+  "refugeLaunch": {
+    "boss": "BP_Monster_AHua_GuiTouDao",
+    "holdSeconds": 1.5,
+    "nativeHold": true,
+    "cancelCheck": "released-without-launch",
+    "nativeHoldFeedbackStarted": true,
+    "nativeProgressCompleted": true,
+    "launchScreenRetained": true,
+    "directIntroObserved": true,
+    "nativeEntryCrossed": true,
+    "worldUnpausedAfterLoad": true,
+    "oldWorldCameraCleanupFixed": true,
+    "difficultyPausedVerified": true
+  },
+  "testLimitations": [
+    "Direct damage probes use QA-only player health recovery; opponents retain native HP.",
+    "Equipment choice and death are automated in training-flow.",
+    "Physical controller rumble and all 60 full fights remain unverified."
+  ],
+  "publicLauncher": {
+    "nativeTitleObserved": true,
+    "refugeInventoryObserved": true,
+    "manualBuildDebugShortcuts": false,
+    "fullLaunchAndAutomaticRestorationValidated": true,
+    "restoration": {
+      "completed": true,
+      "saveHashesMatched": 30,
+      "loaderAndProxyRemoved": true,
+      "temporaryFirewallRules": 0,
+      "steamRunning": true,
+      "restartRequestPending": false
+    },
+    "steamWatcherUnelevatedParentVerified": true
+  }
+}

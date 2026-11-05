@@ -382,24 +382,37 @@
         "BP_FlowActor_C_UAID_BCFCE788D449B4A302_1229063473",
         "BP_MobDomain_C_UAID_E89C25A75120EB5202_2003149524"
       ],
-      "clearTags": [],
+      "clearTags": [
+        "xg.残钢.爆血"
+      ],
       "nodeIDs": [
         "0BE2480C422A897EFC34B9AD76B3028D",
         "1A05EB37472CDA113E8FD298C2144FEC",
+        "1D6F30F54840490809C21F86C7EB8E7D",
         "21ACF4F1475C867415655B971BFE5CAD",
         "31A3B42A40C97B5BDC3D7A9CAFA2B6D2",
+        "3FA1DCFA46ED7568F87986A5909203BA",
         "402995EE4A24DDBE8CD5CB9F39A79244",
+        "4A52163C45FFCF1C0405F899E649B91E",
         "56CE75F84D14F85D8A73F3917FFB793F",
         "6CBF432A40DCEC77705444B4A43AEF6D",
         "72BF9937470087C2A559CFA76BEC88D9",
         "744841284E891C6B6A117DA97391C11E",
+        "77FD128247F447AB520E958F78E172F4",
+        "8072A3774496D2B5FFBA66AAF3C7ED86",
+        "8FF6674948FD90A613EDD1808BA92467",
         "A2A473E446532100CB4AB3BD065B3570",
+        "E0D482F344320DEED977D388BC68E4AB",
+        "E1FB1BD3492B8EC443B4218A1A1612F2",
         "E3E72D3D4075D4FC8B4EB7B109CA6074",
         "F83786844F6656D77CCC3A9DA5AB53EF",
-        "F8A8CCDD4B223201035D48B7ADF0FC0D"
+        "F8A8CCDD4B223201035D48B7ADF0FC0D",
+        "F8E58DBF46C8C592E749FA94D2652546",
+        "F93E96ED49104FF40B8865B42AF259C8"
       ],
       "graphs": [
-        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_CanGangBattlefield"
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_CanGangBattlefield",
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_XiuRen"
       ],
       "distance": 4465,
       "verified": false,
@@ -412,7 +425,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A751202B5402_1470310185"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A751202B5402_1470310185",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -21191.25908001671,
+            "Y": 291624.1577424929,
+            "Z": -26393.771
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 19.771204404117068
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_CanGangBattlefield",
+        "node": "F8378684-4F6656D7-7CCC3A9D-A5AB53EF",
+        "sequences": [],
+        "distanceToBoss": 2773.2,
+        "volumeOwner": "BP_FlowActor_C_UAID_BCFCE788D449B4A302_1229063473"
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_XiuRen"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "NiLiuerShang",
@@ -573,7 +614,42 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C84902_1754973530"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C84902_1754973530",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -50451.504,
+            "Y": 260351.6,
+            "Z": -24493.629
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -134.75646470680414
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_FuLaoDaChuChang",
+        "node": "7BBD16E1-4E93632C-9B53858B-9A7DD8BE",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq014/Seqs/Seq014.Seq014"
+        ],
+        "distanceToBoss": 2467.0,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": -48667.95650352982,
+          "Y": 261957.513549303,
+          "Z": -24493.629
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_FuLaoDaChuChang"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "NiLiuerShang",
@@ -871,7 +947,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C14402_1164908023"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C14402_1164908023",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -65077.816,
+            "Y": 194414.22,
+            "Z": -17684.598
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -168.298016990747
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_ZhuiMingChuChang",
+        "node": "FAF35546-44CC454B-DCA5A282-130D8392",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq022/Seqs/Seq022.Seq022"
+        ],
+        "distanceToBoss": 996.2,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434EA4202_1100302205",
+        "crossing": {
+          "X": -64113.54479125054,
+          "Y": 194803.81085715254,
+          "Z": -17684.598
+        }
+      }
     },
     "chapter": {
       "id": "NiLiuerShang",
@@ -949,19 +1053,36 @@
       ],
       "clearTags": [
         "achievment.红妆鬼斩.完成",
-        "xg.击杀.新娘阿花"
+        "xg.击杀.新娘阿花",
+        "xg.新娘阿花.出场"
       ],
       "nodeIDs": [
         "058BE41D41E77739D78BFEA516131B31",
+        "22053F4C408D85DDF34442A7B5449703",
         "299D328144F3488C4F3B1EB3C8F8282F",
+        "2A70B89E457A29B98CCC1AA781ED05B7",
         "2B1258084E1233073EBF36928C93F826",
+        "335014BB425D38BE3362778CC5D5EB87",
+        "3AA7F5EC40B6D0CBB4E5DA82489C70E3",
+        "3E56109E4F2553C37F92E2BB76D12C3F",
+        "559922C648D1BDE77A41A5BE43922A8A",
+        "644D7BED41F4AE18D5C23FB65A425586",
+        "66CDFA7D49FABADDE79E94BA7689ED2C",
+        "6FEAE02A4A26188CBEDA51B81F0B925D",
+        "7720DE6A47B8E42A04F40BA4BB0ED4D1",
+        "8012F0A64355CF5D69F84EBD341495DA",
         "9949ECEA444FE101928EF88C9B67A8D5",
+        "AE85F8F6493A5707E99826BCC19AEF7B",
         "AF6429BF4EE8DD7AAAEB05820920B85B",
+        "CEBC88E1456161A7F8F84FA70890EBCF",
         "DCD792014633AA785C6DB4B170C6F9DA",
-        "E723D85844262CF526DDA4B19F10A432"
+        "E5CFAD5D40E18AD7649E889368F02711",
+        "E723D85844262CF526DDA4B19F10A432",
+        "FC0ACE564D0F90AEC5C45E978C925339"
       ],
       "graphs": [
-        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_XinNiang_Death"
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_XinNiang_Death",
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/XinNiangAHua_ShaQiTa/BPF_Q_XinNiang_ChuChang"
       ],
       "distance": 13770,
       "verified": false,
@@ -974,7 +1095,42 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C44402_2043733559"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C44402_2043733559",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -69651.69,
+            "Y": 210061.08,
+            "Z": -19330.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 150.29428462879224
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/XinNiangAHua_ShaQiTa/BPF_Q_XinNiang_ChuChang",
+        "node": "3E56109E-4F2553C3-7F92E2BB-76D12C3F",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq016/Seqs/Seq016.Seq016"
+        ],
+        "distanceToBoss": 2859.3,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": -67365.38246921597,
+          "Y": 208741.0808050456,
+          "Z": -19330.0
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/XinNiangAHua_ShaQiTa/BPF_Q_XinNiang_ChuChang"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "NiLiuerShang",
@@ -1082,7 +1238,35 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6A7033A3D002_1370340626"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6A7033A3D002_1370340626",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -84994.88,
+            "Y": 204667.86,
+            "Z": 2015950.8
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -143.83422442775816
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HongFangZi/BPF_QingDaoFu_ChuChang",
+        "node": "3C5E2D91-4B8C2331-DB658189-8B217A30",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq101/Seqs/Seq101.Seq101"
+        ],
+        "distanceToBoss": 3094.7,
+        "volumeOwner": "BP_FlowActor_C_UAID_74563C6A7033A3D002_1370269596",
+        "crossing": {
+          "X": -83874.56587966222,
+          "Y": 205199.36378340304,
+          "Z": 2015950.8
+        }
+      }
     },
     "chapter": {
       "id": "NiLiuerShang",
@@ -1187,7 +1371,42 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C64402_2081298396"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C64402_2081298396",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -131324.52,
+            "Y": 171254.38,
+            "Z": -1389.2516
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -154.39758418455966
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_JianChiChuChang",
+        "node": "B76277E3-4ACCC337-C1AAF183-097F5A14",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq027/Seqs/Seq027.Seq027"
+        ],
+        "distanceToBoss": 1179.0,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": -130517.06014770932,
+          "Y": 171485.91528227623,
+          "Z": -1389.2516
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_JianChiChuChang"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "LinZhongShaJi",
@@ -1324,7 +1543,42 @@
       "unloadLayers": [
         "/Game/DataLayers/T01_FirstStage_WP/LA/A03_0_FuJiZhiLin_Winter.A03_0_FuJiZhiLin_Winter"
       ],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C84402_1746321865"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C84402_1746321865",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -42652.273,
+            "Y": 161879.08,
+            "Z": -93.06345999999999
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 156.77289938385232
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_QuanChiChuChang",
+        "node": "9860EF90-4BA16232-D05FB7BA-54DB496D",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq030/Seqs/Seq030.Seq030"
+        ],
+        "distanceToBoss": 376.7,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": -41453.18836648272,
+          "Y": 160228.68730683185,
+          "Z": -93.06345999999999
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_QuanChiChuChang"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "LinZhongShaJi",
@@ -1413,7 +1667,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434F16202_1670171278"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434F16202_1670171278",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -73111.11447013778,
+            "Y": 169962.13907504664,
+            "Z": 138.32334
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -15.365954088936032
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "LinZhongShaJi",
@@ -1558,7 +1829,35 @@
       "unloadLayers": [
         "/Game/DataLayers/T01_FirstStage_WP/LA/A03_0_FuJiZhiLin_Winter.A03_0_FuJiZhiLin_Winter"
       ],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C94402_1491894196"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434C94402_1491894196",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": 16584.209,
+            "Y": 153855.89,
+            "Z": -1914.6299
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -29.50394728520609
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_NongSheChuChang",
+        "node": "89245FAA-48F10610-59BBC7A5-B05234A1",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq034/Seqs/Seq034.Seq034"
+        ],
+        "distanceToBoss": 2762.2,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434214302_1403232499",
+        "crossing": {
+          "X": 15620.548007793355,
+          "Y": 154636.24728490182,
+          "Z": -1914.6299
+        }
+      }
     },
     "chapter": {
       "id": "LinZhongShaJi",
@@ -1662,7 +1961,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434106602_2138290599"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434106602_2138290599",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -34773.99060012869,
+            "Y": 125274.06297138648,
+            "Z": -4191.4253
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -5.363041546544648
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -1748,7 +2064,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BD0EBA02_1117544895"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BD0EBA02_1117544895",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -58479.38813415086,
+            "Y": 105079.64317421729,
+            "Z": -1893.125
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 143.46961787667905
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -1843,7 +2176,28 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434106602_2138279589"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434106602_2138279589",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -47429.04289582888,
+            "Y": 104783.29675826085,
+            "Z": 961.875
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -59.53958735745251
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/LuJiaCun/BPF_BiYuan_InCombat",
+        "node": "739F43B1-476E4D2F-5EB4B2B6-88FD19D2",
+        "sequences": [],
+        "distanceToBoss": 338.5,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A750C70BD502_1680015534"
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -1952,7 +2306,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434094B02_1841650191"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434094B02_1841650191",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -64249.35465325844,
+            "Y": 86005.88944890304,
+            "Z": -5713.4355
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 58.20172310001409
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -2061,7 +2432,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A754345F9802_e9a4eaa653c16b3f_1741779585"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A754345F9802_e9a4eaa653c16b3f_1741779585",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -48534.83054624575,
+            "Y": 97317.27758996411,
+            "Z": 2001594.9
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 91.24151632264316
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -2208,7 +2596,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434034502_1848778622"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434034502_1848778622",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -24693.539121203237,
+            "Y": 118817.43703833016,
+            "Z": 2002005.5
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -143.48220887391034
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -2387,7 +2792,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434004502_1084590648"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434004502_1084590648",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -66944.67,
+            "Y": 79680.625,
+            "Z": 1014.9624
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -116.18009065861372
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiChuChang",
+        "node": "56C06DEC-4750087A-58E72795-6247BAE8",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq045/Seqs/Seq045.Seq045"
+        ],
+        "distanceToBoss": 2471.7,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
+        "crossing": {
+          "X": -66520.56502227618,
+          "Y": 80845.84384977452,
+          "Z": 1014.9624
+        }
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -2559,7 +2992,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -66944.67,
+            "Y": 79680.625,
+            "Z": 1014.9624
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -111.25303502863937
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiChuChang",
+        "node": "56C06DEC-4750087A-58E72795-6247BAE8",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq045/Seqs/Seq045.Seq045"
+        ],
+        "distanceToBoss": 1843.6,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
+        "crossing": {
+          "X": -66520.56502227618,
+          "Y": 80845.84384977452,
+          "Z": 1014.9624
+        }
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -2727,7 +3188,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -66944.67,
+            "Y": 79680.625,
+            "Z": 1014.9624
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -120.83943126711556
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiChuChang",
+        "node": "56C06DEC-4750087A-58E72795-6247BAE8",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq045/Seqs/Seq045.Seq045"
+        ],
+        "distanceToBoss": 1929.1,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
+        "crossing": {
+          "X": -66520.56502227618,
+          "Y": 80845.84384977452,
+          "Z": 1014.9624
+        }
+      }
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -2866,7 +3355,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7058A98ED7702_1150320007"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7058A98ED7702_1150320007",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -167311.27,
+            "Y": 133622.48,
+            "Z": -5982.496
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -157.83036001306286
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/MainCh2/BPF_HongYiGuiChai_ChuChang",
+        "node": "C4D1FB96-4FFFE67E-E3CE9DAE-424EFE9D",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq051/Seqs/Seq051.Seq051"
+        ],
+        "distanceToBoss": 2655.2,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": -166368.70991013382,
+          "Y": 134062.0030107645,
+          "Z": -5982.496
+        }
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -2970,7 +3487,28 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7078B5A82B202_1202356523"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7078B5A82B202_1202356523",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -183586.37871740106,
+            "Y": 119873.48630013903,
+            "Z": -4023.9785
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -116.13836808248259
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/PangZhen/Q/BPF_ZhanQiYunJing",
+        "node": "84C8673E-4B43317F-1FAB88A6-264F67C6",
+        "sequences": [],
+        "distanceToBoss": 2085.9,
+        "volumeOwner": "fixed-volume"
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3088,7 +3626,28 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7058A8B278002_1148021495"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7058A8B278002_1148021495",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -165253.03444479356,
+            "Y": 97964.50919754489,
+            "Z": 2196.0212
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 152.00556189081803
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/InvidiaVer/BPF_INV_CameraChuanWu",
+        "node": "3FE3A43C-49FF8438-A51FA0A4-75761816",
+        "sequences": [],
+        "distanceToBoss": 2457.5,
+        "volumeOwner": "fixed-volume"
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3181,7 +3740,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BDFECF02_1634788640"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BDFECF02_1634788640",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -176399.80345693952,
+            "Y": 77198.17240128794,
+            "Z": 3011447.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -82.12006701462704
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3269,7 +3845,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF84809909E1B002_2023366968"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF84809909E1B002_2023366968",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -215801.91997046594,
+            "Y": 130711.11443188065,
+            "Z": -3820.824
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 123.75629513319926
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3379,7 +3972,36 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A7512642AF02_1937580472"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A7512642AF02_1937580472",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -250774.58,
+            "Y": 102235.98,
+            "Z": -3224.788
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -151.91016331041288
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/PangZhen/BPF_GuWanYueChuChang",
+        "node": "0BC1DB38-41974747-A561A8B5-8C671B4A",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq061/Seqs/Seq061.Seq061",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq060/Seqs/Seq060.Seq060"
+        ],
+        "distanceToBoss": 2902.5,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": -250001.70937242458,
+          "Y": 102931.87582053005,
+          "Z": -3224.788
+        }
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3460,7 +4082,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1604296805"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1604296805",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -244293.86035217467,
+            "Y": 97172.50588333062,
+            "Z": -1093.7563
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -164.66907250626224
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3541,7 +4180,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE704F72508D402_1590132792"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE704F72508D402_1590132792",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -273705.1721573793,
+            "Y": 73544.22707333052,
+            "Z": -7882.7896
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 109.59853305873582
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3686,7 +4342,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C89D6102_251741680d598c2a_1659446526"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C89D6102_251741680d598c2a_1659446526",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -267029.683746528,
+            "Y": 87729.79067953187,
+            "Z": 1992962.9
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 13.2164112802892
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3802,7 +4475,35 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF84809909ACCF02_1428350425"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF84809909ACCF02_1428350425",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -256637.03,
+            "Y": 48040.535,
+            "Z": -6078.781
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -6.415738998724743
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_ChangHongChuChang",
+        "node": "16A2C753-412E0345-731611AE-39643D56",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq106/Seqs/Seq106.Seq106"
+        ],
+        "distanceToBoss": 2579.5,
+        "volumeOwner": "BP_FlowActor_C_UAID_60CF84809909ACCF02_1428354428",
+        "crossing": {
+          "X": -256995.56156974589,
+          "Y": 48295.594039235126,
+          "Z": -6078.781
+        }
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -3952,7 +4653,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A7512642AF02_1937586477"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A7512642AF02_1937586477",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -272850.13481750194,
+            "Y": 44379.261742987896,
+            "Z": -3418.3398
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -123.19147681195122
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "SiZhen",
@@ -4030,21 +4748,34 @@
       "nodeIDs": [
         "0295E903424DB80434D15FAE99B97A6A",
         "0E5CE08C4B654FC38AD5D1A8B447DEDC",
+        "0EC4E17743DC4DBF46FD4CB4D8F28BEE",
         "1000A458440A8C99E254BD9F79940B8A",
+        "162572D340C68EFDFAC5E8A7A60977FB",
+        "284CD0AB4BFD681D428FE6AF74ADA7BD",
+        "3040D900402B563C2696FA9BF0B565F3",
         "3334B10B4B95BCD89EAAC4A0A57FC1A9",
         "51E9A66B479594A57B3C4AA9B0FE99D2",
         "6569532D4CEFA4701FF9AFA8C859E5F9",
         "71AC88A44D03C14361C2459B9FCDEFFC",
+        "781CEA3D444EA55963C32EA57D73EDB7",
         "78EB46344EB35D7E62061790728BB389",
         "7CFD4F9F4D07B47DD657AB81F858A5C0",
         "93740F7046052B496139FEBA1AB29FCF",
+        "96A884154EDBEEE335F97890C3F68697",
         "9B2412E64011648B068FCA9043863B03",
+        "A4C45E0E47E06BEECF308285C74B1A10",
         "AE5536A44316320BFFB440A6D8E3A9EF",
+        "B26B524342F6BAFB8D782E9201B7DF8A",
         "D26928D44D588EBF761786A7593F52EB",
+        "D7898BF448ED526E26816ABF79EEA091",
+        "E08B71F841C3F7025D1F9F9C27147007",
         "E0A56CCE4D0C6E42BBDC64B03FA8D39A",
-        "E97E7D76404CCECF40C63C96381A24E0"
+        "E49ACE7C40984027D4285592EE1CDC76",
+        "E97E7D76404CCECF40C63C96381A24E0",
+        "F651533C4081A8E6A528668A27A6FEC9"
       ],
       "graphs": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_XiaoXue",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_XiaoXueChuChang",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_XiaoXueDeath"
       ],
@@ -4057,7 +4788,42 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434724A02_2052073366"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434724A02_2052073366",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -7081.612,
+            "Y": 68983.35,
+            "Z": 5416.8765
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -119.76401110755721
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_XiaoXueChuChang",
+        "node": "0295E903-424DB804-34D15FAE-99B97A6A",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq073/Seqs/Seq073.Seq073"
+        ],
+        "distanceToBoss": 98.5,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434724A02_2052027362",
+        "crossing": {
+          "X": -7294.8500650660135,
+          "Y": 71012.17466655128,
+          "Z": 5416.8765
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_XiaoXue"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "YingxiongZuiren",
@@ -4133,10 +4899,12 @@
       ],
       "nodeIDs": [
         "006E3AAB4F7DD09E3DC523902E1A0348",
+        "040009CD4B952EB5E2E89E816591E2DB",
         "0D6EA5EB4830BBE5642114B423F2A171",
         "13D47CF84B71BC3E77D38A9CB65BE360",
         "18AB2B884B01C34A52FC41A44768311B",
         "27A0B61F497A7C39904316834F1D41AE",
+        "3BE3851B45B264A4B4A6D2968E81E612",
         "3F332F6D438F3E5084AF879202D234E4",
         "4362D91547DFAE267B61FD98D8F02638",
         "4BE1D5F3401540F6720BD3826BDEE519",
@@ -4146,15 +4914,26 @@
         "68339C054E2DAAD7859F2E8965D09FF8",
         "686485E645926DA6AF9D17B5E1F8F9D0",
         "6E42A2E04663AA9DC927BE9AA50881A9",
+        "7629184A4E0CBF529349268C4693C7EB",
+        "7647CF174E3F460103030CA88DAC44CB",
+        "9945A38C4C2BEC5672DDC69DFA04A7CD",
         "9B1394D74A5F2FE6C32F36936F187761",
+        "B24ED028468DDCFDB9EAECBCD7209A02",
         "C23F1EAD41C6385F00C1CFB2BD80F51A",
         "C56D1D1A4FF59490080C40A9DAA306FC",
+        "CD691F674EF3D7A50524559C1B3EA36A",
+        "D04728EE41FACE079C9495963977BA62",
         "D087148740AF4228C425F2A53AD0A05F",
         "D53C36AD473531634B2A66A55DCB1F81",
         "D68A3F224794BC2EBA4EAFB6CDAB6742",
-        "FB6A3BD749B449EE03F2ECA4069BFD86"
+        "E13DDB5945B52FA737AE27B75AFFB6D4",
+        "E2B52E4E44F8A2C0F3C032AA53CA3E58",
+        "EEA7962442D05BBDC645B6AAEEFE7896",
+        "FB6A3BD749B449EE03F2ECA4069BFD86",
+        "FCE5DF4B47E657971AC06B9DB66CEEBF"
       ],
       "graphs": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_WanJunKe",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_WanJunKeDeath"
       ],
       "distance": 2074,
@@ -4168,7 +4947,31 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434014502_1638726190"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434014502_1638726190",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": 21134.44671726495,
+            "Y": 74271.45746024321,
+            "Z": 6755.411
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 85.56367102212405
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_WanJunKe"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "YingxiongZuiren",
@@ -4280,7 +5083,28 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_0A6230820DE8996802_1785669150"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_0A6230820DE8996802_1785669150",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": 21599.066889237532,
+            "Y": 80138.32116746483,
+            "Z": 11080.292
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 132.16116286669077
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_HongYiNvJianKe_Leave",
+        "node": "1FA1CFA7-4B9586DF-1173CC9A-CCB9B2A7",
+        "sequences": [],
+        "distanceToBoss": 3170.7,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434C17102_1744213165"
+      }
     },
     "chapter": {
       "id": "YingxiongZuiren",
@@ -4452,7 +5276,35 @@
           "Z": 7108.2295
         }
       ],
-      "supportRadius": 6000
+      "supportRadius": 6000,
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": 28585.22,
+            "Y": 73690.47,
+            "Z": 7118.2295
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -63.998705403509256
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/Narrative/ZDDY/BPF_JianZhenChuChang",
+        "node": "E909E790-4B59AB3F-96300DB4-382C5E71",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq076/Seqs/Seq076.Seq076"
+        ],
+        "distanceToBoss": 3226.1,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": 26480.30851991797,
+          "Y": 72924.34490511088,
+          "Z": 7118.2295
+        }
+      }
     },
     "chapter": {
       "id": "YingxiongZuiren",
@@ -4538,11 +5390,14 @@
         "bsmw.击杀.乌冷霜"
       ],
       "nodeIDs": [
+        "0191B4DA4FAB9D7933696890909370B5",
         "047A20C1402DD0E00597CF9E8AC75F04",
         "0C7409C6431DB137C3206AA8FDE89234",
         "0CA7D8C2465BC899464F21BF35F591F7",
+        "13513A8C4CE680AFF42477B03A04DBE8",
         "19CE9F7A49D5E805DAD763AEE2153540",
         "1EECBFA149DC8748780848BE2D2AE30F",
+        "1F90886A49D5C86EE5944CAFED2F108B",
         "251D47D940A2424F91078EB2BE2900F3",
         "31E73DE54725630A1816E1BA48F6BBB5",
         "37B7CED74AA3E8BF4B82A786A3115B69",
@@ -4551,11 +5406,15 @@
         "3CCAA82C447EAA2AEC2FC29A1F5F41AF",
         "4166E32843DBA36E7DDADDA55BCD43A5",
         "48E5A37F4C86BB58D852BBA7967FE164",
+        "5298CBCD423F094FE012A985384611D5",
         "568BE5CD445E28512D245FB4AB93B399",
         "5CF20689433DAFEED50AC3B89EDD8671",
         "5D9F7C784BB3096D2851C98FC071922B",
+        "70352D2D4A4E6B66753D34A13D6A77A6",
         "79AA8BDE4690FC09250A79968BC82DC2",
+        "7EF0057C43072E1B0DE804B5A70DF620",
         "8C4B56594482AF1786CE278195552426",
+        "9AD7ADAB43179F0A6C507F8E87247410",
         "9FCFCE0D482E82AB9DF696A552CA12E3",
         "A1F9FE2B4B0BA0E5CE7CB48B26A08311",
         "AB5FAD8E472B987A797E7587D3543D65",
@@ -4565,14 +5424,17 @@
         "C02441CB4B836ABE86019BBB8483E75A",
         "C504975C40F32F1158E67BBB9EB6D095",
         "C58237F248607443DB083F86201D4E1D",
+        "CA86BE7A450405644A7D8D9F8D3A9322",
         "D75235C04A8588B5927869B16A33CFBB",
         "E3F375D2431E10D9CBCBB2B37D3F2BBD",
         "EF3569EE48C3E07BE445F0BD5B4CE00E",
+        "FADD18854F2F29BCB220319688227108",
         "FCBBF78A41409D7B60E65C9A5E71703A"
       ],
       "graphs": [
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_WuLengShuangChuChang",
-        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_WuLengShuangDeath"
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_WuLengShuangDeath",
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_WuLengShuang_preseq"
       ],
       "distance": 6190,
       "verified": false,
@@ -4585,7 +5447,42 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A754346A4A02_2137054667"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A754346A4A02_2137054667",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": 64717.64,
+            "Y": 67095.46,
+            "Z": 12183.704
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -46.431600683955125
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_WuLengShuangChuChang",
+        "node": "ACD1E032-40781786-007525BE-CF92B1C8",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq079/Seqs/Seq079.Seq079"
+        ],
+        "distanceToBoss": 287.4,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A754346B4A02_1324845845",
+        "crossing": {
+          "X": 62704.341336289865,
+          "Y": 68077.41136880754,
+          "Z": 12183.704
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_WuLengShuang_preseq"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "YingxiongZuiren",
@@ -4671,17 +5568,21 @@
         "zddy.剑偶玉璧.击杀成就计数"
       ],
       "nodeIDs": [
+        "062786434FDEA716577D2CBB8A59B34C",
+        "135A63414ED0D22CA88970AB91C24DD0",
         "14B859874312EC077D86BFB0D9732C36",
         "15852BCF4E00F9D216C740AAAA1DCD8F",
         "1D340B3F4151019E761A56A6AD14F32E",
         "1E97CE0940DB4738AB74D5906F8C64A9",
         "1F73A10A40027636B0CD1BB8D2016B95",
         "20868D714F333163DCABC5BE3B1C66C0",
+        "24C1E23D4923717D26ACA28E6BDB8D08",
         "301647B74F0EB295D8F4A1B4D6DD531D",
         "30351A024F841C031E616C963C09DD8F",
         "39DE3E2843D75CA5C1ACCEBD3DC55C61",
         "3FBC6E16469D8C3F58FC38B5D940A731",
         "4240800F4F5B04B15E49709A11121ED3",
+        "44089CB04266F25DCC978393AE6A6855",
         "4517D6ED44EA6EB5B05E1CAC2B4D7277",
         "46E13E4846944EF5D6B9F5B0ED10D424",
         "4DCAD91643D8B131AA6EB891DFF965B2",
@@ -4691,8 +5592,11 @@
         "5D1C67D9435C0450E22AFD91D74B370B",
         "62E13C9B45391A25E97EB496A7D5E096",
         "65518CD845DE46854BF4B484F9C412F1",
+        "66C053E14ADD47E481E4DE8B15367794",
         "672D71174404CFE396DD97B6254923CD",
+        "6ABF4EFA4290AEBA8A5EF6B4666C9BB5",
         "6C7C09AD42B3F7A992BD25BFA8D71AF6",
+        "70FA35EC41AE5D74CEE1B5A48E96BB4F",
         "749FB68E4718B25C5D838BB854457AC5",
         "7D4432714070A8F32345929FEA06E086",
         "7E2FA4D04EB2CCBFE8E960A15FCFBCCE",
@@ -4707,25 +5611,34 @@
         "A4AC6D4341693BBD3819DB963786EBB4",
         "A59B0DAF44D64B7450C43FBF3C0B90C1",
         "A5E7A61D4523C5E20E7E3BB172B1791B",
+        "A7EE30DC4A1011D9B05C4994D98541FF",
         "AE7EB6F84D38C4DA33CFBB9028CBB410",
         "AFC42F07445F33EDB2D8FC99F5C0D8BC",
         "B1C1AD68451BF8913D2F66812194870B",
         "B1D97C77484704542E3C29B50FF5ECA7",
         "BA1F48A04BE66438B119BAA1A24B81D9",
         "BAFF91C949B7A8FD47C8E389BD3CC2D8",
+        "BE2E212E4811F19636EB79AB77179404",
         "BE84B8FC4CFB9277B15DA38EB0AFE983",
         "BED7C7F640848E1F5006BDB0DF5FF966",
         "C0457D914C35DD67254847988A043EEF",
         "C3723C614A411BC91084BDB2BCA40F01",
+        "C9FC9DB443AE7C7DADF1729EA314DBD4",
         "D8F53B954CDB4494617D00B30B07533D",
+        "EED0B0D14FC5D9A81F132A865A19AA47",
         "EF5EBF544387DCB8D6F790A8F99A402A",
         "F01F4C5C4F94F9180345EAAF23242D76",
         "F277FABD461E495565CFC99D682A758E",
         "F27DB7A2442C0CED4DDA3393B46FB111",
+        "F48A96DE493A2CD7B47C22ABBEAC97DA",
+        "F9F2D10B475B2DD52B709AA477D518D0",
+        "FAC268F246408CFF3BFD80A9D84F47D0",
+        "FAF0040B43BBB6BE1A96068641A6EB2C",
         "FC9F1D2D435B2D8C744532A9B71B7AD0",
         "FF872DEF4F8B6638BA5E2BB8B1CC01D6"
       ],
       "graphs": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_JianOu",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_JianOuQiangOu_AfterDeath",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_JianOuQiangOu_ChuChang",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_JianOuQiangOu_Death"
@@ -4741,7 +5654,43 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434736602_1397830835"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434736602_1397830835",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": 29210.44,
+            "Y": 56319.934,
+            "Z": 6324.443
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -175.56837502563707
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_JianOuQiangOu_ChuChang",
+        "node": "30351A02-4F841C03-1E616C96-3C09DD8F",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq081-1/Seqs/Seq081-1.Seq081-1",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq081-2-1/Seqs/Seq081-2-1.Seq081-2-1"
+        ],
+        "distanceToBoss": 1140.1,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A754346F6602_1373057727",
+        "crossing": {
+          "X": 29603.842346921596,
+          "Y": 56516.99894725491,
+          "Z": 6324.443
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_JianOu"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "YingxiongZuiren",
@@ -4832,7 +5781,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635055101"
+      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635055101",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -69352.47667117635,
+            "Y": -44138.54041219217,
+            "Z": 14992.373
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -40.89301005933976
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "BeiPanYuJianJin",
@@ -4933,7 +5899,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_GreatBladeMan_C_UAID_74563CC57EE2514C02_1635095141"
+      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_GreatBladeMan_C_UAID_74563CC57EE2514C02_1635095141",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -61887.656,
+            "Y": -59928.9,
+            "Z": 19402.445
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 108.78374574014131
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HengDaoKeChuChang",
+        "node": "FB853103-432BD0E6-26AE47A8-5FE1C863",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/BlademanIntro/BlademanIntroAll.BlademanIntroAll"
+        ],
+        "distanceToBoss": 3190.4,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434B45A02_1214592282",
+        "crossing": {
+          "X": -63175.63116826989,
+          "Y": -60572.887551059925,
+          "Z": 19402.445
+        }
+      }
     },
     "chapter": {
       "id": "BeiPanYuJianJin",
@@ -5018,7 +6012,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563CC57EE2514C02_1635129166"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563CC57EE2514C02_1635129166",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -57882.91704074276,
+            "Y": -76753.59346875479,
+            "Z": 23462.705
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -19.70230449083599
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "BeiPanYuJianJin",
@@ -5162,7 +6173,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635138174"
+      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635138174",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -60718.15,
+            "Y": -99074.97,
+            "Z": 29640.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 89.99484273338349
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiChuchang",
+        "node": "175ECF80-483973D5-0C6BE884-14347BAB",
+        "sequences": [
+          "/HuaShira/Animation/Seqs/MBoss_Intro/MBoss_IntroAll.MBoss_IntroAll"
+        ],
+        "distanceToBoss": 1679.3,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75120CB8002_1238706382",
+        "crossing": {
+          "X": -60707.40309541318,
+          "Y": -99364.77080062313,
+          "Z": 29640.0
+        }
+      }
     },
     "chapter": {
       "id": "BeiPanYuJianJin",
@@ -5252,10 +6291,15 @@
         "1053C9CC4D4CA4D4D1F2CE8FB62E7AF4",
         "175ECF80483973D50C6BE88414347BAB",
         "1BB746484158F6895413068BB84D766C",
+        "1C499B754419716FE1C9F2AA8C25C518",
         "20BB0DA14810DEA42505AFA5764808C5",
         "20EF273A423953F83BC6C695245313B2",
         "31F5EBFE444B0BEA35077186F4A08BA5",
         "37880A3549798FE00CB7958BBEBF605E",
+        "3D4A75324A40F781A247B8AD2EB54528",
+        "449BC14E456EC1FC17CEC489B8BC876F",
+        "451B17CC48D1E5BA5AE568B6592DB079",
+        "49FD9BEB4E50C40002E19D90AB19309E",
         "51D31A154E36DF28465A9B9C20F88F78",
         "537CB15F4494D2790F642EA8ED5F6C40",
         "5643FAB04D06AD75A70CFBB3E9BE1775",
@@ -5264,33 +6308,44 @@
         "5BAC21994AAA0CD6EB8BC796B8D77D92",
         "64B13CEC4AF6DDB84D21699481C5D1F2",
         "6BBA82CA49B37A92BA5D43AA8A23128F",
+        "6E3DA7B1447D31AB3941FFAF6E7F16FC",
+        "6E49FCD14A1BB2521F91D38593A90F23",
+        "7AB2AB074D06C36815AC60B1967B8F12",
         "8265912C4DCBDC4352DF62A281426C93",
+        "82F0AC374968C5C6DB4EA7A6EE606EA5",
         "8F85E2AE4C824EC8C81EAE98CDD63E4D",
         "974F5EBB48BDA9A242B47D8930594DDB",
         "9AB6ED594FC5B0849196629ED4CEC611",
         "9E2E472547D4143E2813A2B488FE73ED",
+        "A36265644DCF879740B0A8A195708C8F",
         "A978CD264F1978E320AEDBAC1203777C",
         "AA13EC23412E90809FCC538729072F1C",
         "ACCDAA68408ECFA7419ABEB4DA716DF0",
         "B5318F51474E4ABE6CB3A281C08B3103",
+        "B994ABEF4B51D62648F73FB44CDD2BED",
+        "BA389E4B4D4CED27D97FC7892E015064",
         "BAB14FE146C020B3D35081813A1D9CA6",
         "BB8B84DD4535AE25AB8CF69F283ECBE2",
         "C4A6ECDC4D54EA6F6978C494C3B801D0",
+        "C51E142343AA4CB0A15AA598B11B6186",
         "CC9874234682042B0FDA0586740CD554",
         "D1F3476048BAC38093EE1B9F2AD6B74D",
         "D2D1193A4426FF4060AB1D8EED2053AC",
         "D53EBB2941577A72320CFBA4A68D5CD8",
+        "D7187E5B4D2E828B0AB231BFF3EE028C",
         "D86806B5460333D61A39A3ABDD73E03E",
         "DAEE2816474B84A81A0A10860FA888BB",
         "DF2E95954494A5216A2F52B16F0D867F",
         "DFE026F445ADCF167EB6B2A50AC1DA80",
         "E05545B5408D5BE46607249FBE037148",
-        "E4F11F4D4840BBF681A6DDB02BDF67CE"
+        "E4F11F4D4840BBF681A6DDB02BDF67CE",
+        "FC412C8F43D3C0CAC166FCA281449BE4"
       ],
       "graphs": [
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiChuchang",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiDeath",
-        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiDeath_2"
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiDeath_2",
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZi_idle"
       ],
       "distance": 8269,
       "verified": false,
@@ -5304,7 +6359,42 @@
         "/Game/DataLayers/T01_FirstStage_WP/Logic/BossLevelInstance.BossLevelInstance"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_MBoss_C_UAID_74563CC57EE2514C02_1635091137"
+      "primarySpawnerActor": "BP_AISpawner_C_BP_Monster_MBoss_C_UAID_74563CC57EE2514C02_1635091137",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -60718.15,
+            "Y": -99074.97,
+            "Z": 29640.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -89.8449761171604
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiChuchang",
+        "node": "175ECF80-483973D5-0C6BE884-14347BAB",
+        "sequences": [
+          "/HuaShira/Animation/Seqs/MBoss_Intro/MBoss_IntroAll.MBoss_IntroAll"
+        ],
+        "distanceToBoss": 2785.2,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75120CB8002_1238706382",
+        "crossing": {
+          "X": -60728.89690458682,
+          "Y": -98785.16919937688,
+          "Z": 29640.0
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZi_idle"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "BeiPanYuJianJin",
@@ -5393,7 +6483,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A6689B9D402_1721359969"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A6689B9D402_1721359969",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -51675.59619428423,
+            "Y": 13924.08762314858,
+            "Z": 2342.2722
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -102.9115056620945
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -5520,7 +6627,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_LA.Main_LA"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C76BD402_8a25b308a628627a_1405245326"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C76BD402_8a25b308a628627a_1405245326",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -75397.98215884001,
+            "Y": 26435.285214037744,
+            "Z": 2000911.8
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -35.417785688639
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -5603,7 +6727,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C7A0CB02_2042446446"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C7A0CB02_2042446446",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -68080.11325141288,
+            "Y": 77942.96917631936,
+            "Z": 848.13885
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 43.915248993355114
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -5702,7 +6843,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7058A98647C02_1215166326"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_BCFCE7058A98647C02_1215166326",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -8086.6997,
+            "Y": -3941.7896,
+            "Z": 1020.00024
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 122.320070939648
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ShouMengRenDouShi/BPF_DuYanGongKe_ChuChang",
+        "node": "6F0913FC-493A8B9F-F9647BAC-542649AA",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq082/Seqs/Seq082.Seq082"
+        ],
+        "distanceToBoss": 2933.5,
+        "volumeOwner": "BP_FlowActor_C_UAID_BCFCE7058A98647C02_1215194347",
+        "crossing": {
+          "X": -7697.108842847451,
+          "Y": -4906.060808749459,
+          "Z": 1020.00024
+        }
+      }
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -5804,7 +6973,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C77CB202_2135004107"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A750C77CB202_2135004107",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -107615.06507958814,
+            "Y": 1701.029160248683,
+            "Z": 852.7127
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -88.43474203965182
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -5923,7 +7109,28 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848217CA739202_1203643655"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848217CA739202_1203643655",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -124779.17977162976,
+            "Y": 73099.35325883902,
+            "Z": 849.5012
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -3.3341386040747376
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/MeiGuHu/BPF_LookAt_YanQianSui",
+        "node": "48A51838-421DDAF8-E5ED3FBB-18FBAC73",
+        "sequences": [],
+        "distanceToBoss": 2004.2,
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A750C73AED02_1180335012"
+      }
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -6005,22 +7212,33 @@
         "099ABBB74FA6BCF7CC4DCEBA34BB2288",
         "16FC7F2B4DB6BB93CDD990B2DAB2179E",
         "2679E4D042B8382E9422CC92FF90732F",
+        "26C92DB542A667C799F41ABCECCF0F96",
         "2C5F5D744F54FDB8796A36AE18769D7A",
+        "2F7AC91D41E12DD2EC599EB5A7CA3246",
         "38A7955B498327C03762A08132D5FA46",
+        "3F25EC7D4889503F923E6094DF41568E",
         "46DE81D24D2165E0E81FB2A8F4455757",
+        "48834FF0405138AEA93BC5BD83D67AC6",
         "59DF5897469E98D0852AF29125C3527E",
+        "64337AE44B43640D089C59A53E8DEDF9",
         "652A70A14AF69859EF407F9DDA1E2073",
+        "71ECDD9645961BA3E32E06AC12858D8D",
         "753BDEFA42885674342DC88E24B75DC0",
         "7CC6348C4C7DB8CF29B4309859D808E2",
+        "82B39117440B938EFEED90B87D848023",
         "8BF2C1E04496D793AAC37EAA08C664DD",
         "A2C3F25644784D394DA16EBF6FB22963",
+        "AAE7083849559DB5C2BEB382332E05F9",
         "DAEFAACC4393688551AD308EE797C264",
         "F237D5EF4CB3E65115EDD296FE0F9C95",
-        "F3A07A984644AC7529488FB570DDE654"
+        "F2BC1320425DC5F667D12BA2A45E1FC1",
+        "F3A07A984644AC7529488FB570DDE654",
+        "FCF51AAB4233492567290182AE952752"
       ],
       "graphs": [
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuXinMiMi/BPF_FengXueDaoKe_ChuChang",
-        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuXinMiMi/BPF_FengXueDaoKe_Death"
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuXinMiMi/BPF_FengXueDaoKe_Death",
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuXinMiMi/BPF_FengXueDaoKe_Preseq"
       ],
       "distance": 5197,
       "verified": false,
@@ -6031,7 +7249,42 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A66893ECB02_1475231941"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A66893ECB02_1475231941",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -150692.08,
+            "Y": -21731.443,
+            "Z": 914.2921
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 48.47403586989731
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuXinMiMi/BPF_FengXueDaoKe_ChuChang",
+        "node": "065683D0-4B095C81-86DED1B0-2B5D2FC5",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq126/Seqs/Seq126.Seq126"
+        ],
+        "distanceToBoss": 1822.0,
+        "volumeOwner": "BP_FlowActor_C_UAID_60CF848A6689E0CC02_2139638566",
+        "crossing": {
+          "X": -151863.7000428728,
+          "Y": -23017.87468304373,
+          "Z": 914.2921
+        }
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuXinMiMi/BPF_FengXueDaoKe_Preseq"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -6288,7 +7541,35 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434CBCC02_1307783693"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A75434CBCC02_1307783693",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": 17088.9092935895,
+            "Y": 153545.07409907997,
+            "Z": -1921.6066
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -25.0731834838046
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_SanTouMoOuRuZhan",
+        "node": "1076758D-46FCE924-8D9B9A9E-9E21766B",
+        "sequences": [],
+        "distanceToBoss": 3790.9,
+        "volumeOwner": "fixed-volume"
+      },
+      "attachedEntranceFlows": [
+        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_SanTouMoOuRuZhan"
+      ],
+      "nativeCombatActivation": {
+        "becomeMonster": true,
+        "attackable": true
+      }
     },
     "chapter": {
       "id": "DieXueZhiLu",
@@ -6382,7 +7663,24 @@
         "/Game/DataLayers/T01_FirstStage_WP/202405DemoVersion/MainGameFlow/Main_Logic.Main_Logic"
       ],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A91CA9B9E02_1410919045"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A91CA9B9E02_1410919045",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -214279.50049864853,
+            "Y": 77578.07469520655,
+            "Z": 7391.594
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 128.7928774245718
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "PoJu",
@@ -6481,7 +7779,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A91CA9B9E02_1410718921"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A91CA9B9E02_1410718921",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -189237.36950728725,
+            "Y": 91624.58159969808,
+            "Z": 3975.9692
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -123.01525395821798
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "PoJu",
@@ -6659,7 +7974,37 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A91CA9B9E02_1410879021"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_60CF848A91CA9B9E02_1410879021",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -202109.17,
+            "Y": 87088.38,
+            "Z": 5515.9185
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -113.7538569798137
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/QingSheDao/BPF_LeiDangOrYuer_ChuChang",
+        "node": "47302B4E-4BBD715A-B52D9085-D21D3D1E",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seqs018/Seqs/Seqs018.Seqs018",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq123-3/Seqs/Seq123-3.Seq123-3",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seqs019-1-flash-s019-2/Seqs019-1-flash-s019-2.Seqs019-1-flash-s019-2"
+        ],
+        "distanceToBoss": 2269.2,
+        "volumeOwner": "BP_FlowActor_C_UAID_60CF848A91CA9B9E02_1410715918",
+        "crossing": {
+          "X": -201669.6470077897,
+          "Y": 88030.94009851813,
+          "Z": 5515.9185
+        }
+      }
     },
     "chapter": {
       "id": "PoJu",
@@ -6804,7 +8149,39 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BDFF5C02_1144974083"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BDFF5C02_1144974083",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -196177.05,
+            "Y": -99770.71,
+            "Z": 33373.75
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 54.09831330668673
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/Narrative/DHY/BPF_Seq113_LiZheRuZhan",
+        "node": "DF7F3EFD-4868E5E5-16E8C091-A4185BAD",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq113/Seqs/Seq113.Seq113",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq114/Seqs/Seq114.Seq114",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq116/Seqs/Seq116.Seq116",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq115/Seqs/Seq115.Seq115",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq114/Seqs/Seq114.Seq114"
+        ],
+        "distanceToBoss": 3519.1,
+        "volumeOwner": "BP_FlowActor_C_UAID_74563C6BC2BD39D802_2059120646",
+        "crossing": {
+          "X": -196346.3400921181,
+          "Y": -100006.16883867598,
+          "Z": 33373.75
+        }
+      }
     },
     "chapter": {
       "id": "DuanHun",
@@ -6889,7 +8266,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BDFF5C02_1144912080"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BDFF5C02_1144912080",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -192856.88721774475,
+            "Y": -112806.50702838437,
+            "Z": 62147.605
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 165.7187681930703
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "DuanHun",
@@ -7036,7 +8430,24 @@
       },
       "loadLayers": [],
       "unloadLayers": [],
-      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A754345F6102_1484609467"
+      "primarySpawnerActor": "BP_AISpawner_C_UAID_E89C25A754345F6102_1484609467",
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -192681.28235717746,
+            "Y": -112820.45715180848,
+            "Z": 62119.05
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 153.77599263847586
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "DuanHun",
@@ -7232,7 +8643,36 @@
         "BP_NPCSpawner_C_UAID_BCFCE707898301DD02_1353401098"
       ],
       "primarySpawnerID": "ZuoShang_Seqs023+",
-      "distance": 4104
+      "distance": 4104,
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -193003.6,
+            "Y": -115937.52,
+            "Z": 4500009.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": -90.93732587540889
+          }
+        },
+        "waypoints": [],
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuanHunYa/BPF_ZuoShang_TheEnd_Chuchang",
+        "node": "5C855653-4BA17ED5-1A19CB9D-75B5C852",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seqs023+/Seqs/Seqs023+.Seqs023+",
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seqs023/Seqs/Seqs023.Seqs023"
+        ],
+        "distanceToBoss": 2011.2,
+        "volumeOwner": "fixed-volume",
+        "crossing": {
+          "X": -193003.5996039053,
+          "Y": -115297.52000000012,
+          "Z": 4500009.0
+        }
+      }
     },
     "chapter": {
       "id": "DuanHun",
@@ -7464,7 +8904,24 @@
       },
       "nativeSpawnerID": "MoTianOld_Seq018-Mask",
       "loadLayers": [],
-      "unloadLayers": []
+      "unloadLayers": [],
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -39101.11301335984,
+            "Y": 235702.8021891759,
+            "Z": 10008942.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 90.14870357398304
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "Statues",
@@ -7706,7 +9163,24 @@
       },
       "nativeSpawnerID": "MoTian2",
       "loadLayers": [],
-      "unloadLayers": []
+      "unloadLayers": [],
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -39096.272695807624,
+            "Y": 235826.40012761287,
+            "Z": 10008935.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 90.0359027888129
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "Statues",
@@ -7949,7 +9423,24 @@
       },
       "nativeSpawnerID": "MoTian3",
       "loadLayers": [],
-      "unloadLayers": []
+      "unloadLayers": [],
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -39096.75186042371,
+            "Y": 235767.81022276482,
+            "Z": 10008934.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 90.04743558466559
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "Statues",
@@ -8193,7 +9684,24 @@
       },
       "nativeSpawnerID": "MoTian4",
       "loadLayers": [],
-      "unloadLayers": []
+      "unloadLayers": [],
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -39095.32207010958,
+            "Y": 235883.66002169266,
+            "Z": 10008933.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 90.01480257551108
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "Statues",
@@ -8438,7 +9946,24 @@
       },
       "nativeSpawnerID": "MoTianOld_Seq018",
       "loadLayers": [],
-      "unloadLayers": []
+      "unloadLayers": [],
+      "directEntry": {
+        "transform": {
+          "Location": {
+            "X": -39101.15246752298,
+            "Y": 235944.47184220012,
+            "Z": 10008940.0
+          },
+          "Rotation": {
+            "Roll": 0,
+            "Pitch": 0,
+            "Yaw": 90.13641102055064
+          }
+        },
+        "waypoints": [],
+        "kind": "native-arena-approach",
+        "sequences": []
+      }
     },
     "chapter": {
       "id": "Statues",

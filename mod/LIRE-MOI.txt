@@ -1,32 +1,7 @@
-BOSSES 0.5 — GUIDE RAPIDE
+BOSSES 0.6.1 - Steam build 26367565
 
-Guide complet et limites :
-https://github.com/kevinbarfleur/phantom-blade-zero-bosses#readme
+Lire LIRE-MOI.md. Telecharger separement le ZIP officiel PBZModLoader 1.0.0 de LLKKFF et le laisser dans Telechargements ou ici. Ne pas installer le chargeur manuellement. Ouvrir Lancer-Bosses.cmd normalement. Une demande Windows sert au gardien des sauvegardes et du reseau. Fermer le jeu puis attendre la restauration avant de reprendre la campagne. Apres arret brutal : Restaurer-Campagne.cmd. Conserver .state jusqu a restauration.
 
-Windows, Steam et Phantom Blade Zero build 26266538 requis.
-Installation attendue : C:\Program Files (x86)\Steam\steamapps\common\PBZ
-Une sauvegarde principale locale unique doit déjà exister.
+BOSSES -> refuge d Inanis -> inventaire natif -> Inanis -> combat -> difficulte -> maintien 1,5 s. F8 ouvre les options.
 
-1. Extraire tout le dossier dans un emplacement permanent et inscriptible.
-2. Fermer le jeu puis ouvrir Lancer-Bosses.cmd. Valider la demande Windows.
-3. BOSSES -> combat -> difficulté -> maintenir le bouton indiqué 1,5 seconde.
-4. Préparer son équipement dans l'inventaire, puis rejoindre l'arène.
-5. Fermer le jeu puis attendre la restauration automatique avant la campagne.
-
-Une mort conserve l'équipement choisi. F8 ou le bouton de la cloche ouvre
-la sélection. Après victoire : rejouer, suivant, sélection ou menu principal.
-L'enchaînement automatique est facultatif.
-
-Le réseau du jeu ET de Steam est temporairement bloqué. Les succès identifiés
-sont désactivés dans le laboratoire. Aucune garantie générale contre les bans.
-Le gardien restaure et vérifie les originaux avant de retirer le blocage réseau.
-Steam est fermé puis relancé pendant cette restauration.
-
-Après un arrêt brutal : fermer le jeu puis lancer Restaurer-Campagne.cmd.
-Ne jamais supprimer ou déplacer ce dossier et son .state pendant une session.
-Les copies de secours et les résultats du laboratoire y sont conservés.
-
-Limites principales : sorties QTE de Mu Xiaokui et du combat final à confirmer ;
-appui long physique clavier/manette à confirmer ; équilibrage encore provisoire.
-58 menus de victoire ont été observés par des essais automatiques distincts
-d'un combat humain complet. Voir VALIDATION.txt et le README pour le détail.
+Version experimentale : tous les combats et les QTE finaux ne sont pas valides sur ce build. Vibrations physiques non confirmees.

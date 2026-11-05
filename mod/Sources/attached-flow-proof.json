@@ -1,0 +1,74 @@
+[
+  {
+    "id": "BP_Monster_MobMan_Elite_Sword",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_XiuRen"
+    ]
+  },
+  {
+    "id": "BP_Monster_PengMeng_Axe",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/BPF_FuLaoDaChuChang"
+    ]
+  },
+  {
+    "id": "BP_Monster_AHua_GuiTouDao",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/XiGu/XinNiangAHua_ShaQiTa/BPF_Q_XinNiang_ChuChang"
+    ]
+  },
+  {
+    "id": "BP_Monster_HuaQianXIao",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_JianChiChuChang"
+    ]
+  },
+  {
+    "id": "BP_Monster_LuanShi",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_QuanChiChuChang"
+    ]
+  },
+  {
+    "id": "BP_Monster_XiaoXue",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_XiaoXue"
+    ]
+  },
+  {
+    "id": "BP_Monster_WanJun_JinGua",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/ZhengDaoDaYing/BPF_WanJunKe"
+    ]
+  },
+  {
+    "id": "BP_Monster_WuLengShuang",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_WuLengShuang_preseq"
+    ]
+  },
+  {
+    "id": "BP_Monster_YuBi",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuLiZhiXian/BaiShanMiWen/BPF_JianOu"
+    ]
+  },
+  {
+    "id": "BP_Monster_MBoss",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZi_idle"
+    ]
+  },
+  {
+    "id": "BP_Monster_FengXueDaoKe",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuXinMiMi/BPF_FengXueDaoKe_Preseq"
+    ]
+  },
+  {
+    "id": "BP_Monster_YuCong_P1",
+    "attachedEntranceFlows": [
+      "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/FuJiZhiLin/BPF_SanTouMoOuRuZhan"
+    ]
+  }
+]
