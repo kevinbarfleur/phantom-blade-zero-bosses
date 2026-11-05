@@ -11,7 +11,8 @@ function confirm(panel,kind,getSession,api){
     const session=getSession();if(!session.active||panel.codexLabConfirm)return;
     const boss=session.boss;
     if(boss.training)return;
-    const message=kind==="retry"?"Recommencer ce combat avec votre équipement actuel ?":"Retourner à l'entraînement avec votre équipement actuel ?";
+    const challenge=session.run?.options.hits66,series=session.run?.options.timer==='series';
+    const message=kind==="retry"?"Recommencer ce combat avec votre équipement actuel ?"+(challenge?"\nLe compteur 66 HITS est conservé.":series?"\nLe temps cumulé est conservé.":""):"Retourner à l'entraînement avec votre équipement actuel ?"+(challenge||series?"\nLa série en cours prendra fin.":"");
     const action=UE.AsyncAction_ShowConfirmation.ShowConfirmationYesNo(panel,text("BOSSES"),text(message));let settled=false;
     validation.ui(panel,'system-action-confirm',session,{action:kind});
     panel.codexLabConfirm=action;

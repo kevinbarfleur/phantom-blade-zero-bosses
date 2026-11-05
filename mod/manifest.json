@@ -1,6 +1,6 @@
 {
-  "version": "0.6.2",
-  "revision": "loader-r2-26367565",
+  "version": "0.7.0-preview.1",
+  "revision": "run-r3-preview-26367565",
   "gameAppId": 4115450,
   "gameBuild": 26367565,
   "deployment": "temporary-pbzmodloader",
@@ -591,15 +591,15 @@
     },
     {
       "path": "ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js",
-      "sha256": "d68c7045776aea5622534901a19b14083777eb0b0e069e2a62e80b283f2f0e94",
+      "sha256": "cb06be13ff218e1df79ccb95ce3a48645840427eaf088a57aa74f8a05d72ec9d",
       "source": "mod"
     }
   ],
   "validation": {
-    "runtimeCompatible": true,
+    "runtimeCompatible": null,
     "gameplayValidated": false,
     "report": "Validation/validation.json",
-    "note": "Targeted encounters validated; all 60 full fights are not certified on this build."
+    "note": "New timer, hit event integration and native UI have not been validated in the running game."
   },
   "hotkey": "F8",
   "catalog": {

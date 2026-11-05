@@ -1,7 +1,7 @@
-BOSSES 0.6.2 - Steam build 26367565
+BOSSES 0.7.0-preview.1 - PREVERSION NON VALIDEE EN JEU
 
-Lire LIRE-MOI.md. Telecharger separement le ZIP officiel PBZModLoader 1.0.0 de LLKKFF et le laisser dans Telechargements ou ici. Ne pas installer le chargeur manuellement. Ouvrir Lancer-Bosses.cmd normalement. Une demande Windows sert au gardien des sauvegardes et du reseau. Fermer le jeu puis attendre la restauration avant de reprendre la campagne. Apres arret brutal : Restaurer-Campagne.cmd. Conserver .state jusqu a restauration.
+Lire LIRE-MOI.md. La 0.6.2 reste disponible pour jouer sans ces nouvelles fonctions experimentales.
 
-BOSSES -> refuge d Inanis -> inventaire natif -> Inanis -> combat -> difficulte et enchainement automatique -> maintien 1,5 s. En combat : inventaire -> SYSTEME -> Quitter le jeu -> Recommencer ou Retourner a l entrainement. F8 ouvre aussi les options.
+ZIP officiel PBZModLoader 1.0.0 de LLKKFF a telecharger separement. Ouvrir Lancer-Bosses.cmd normalement et valider Windows. Ne pas installer le chargeur manuellement. Fermer le jeu puis attendre la restauration. Apres arret brutal : Restaurer-Campagne.cmd. Conserver .state jusqu a restauration.
 
-Version experimentale : tous les combats et les QTE finaux ne sont pas valides sur ce build. Vibrations physiques non confirmees.
+Choisir un boss puis la difficulte, le chronometre et l enchainement. 66 HITS = regles Explorateur des enfers + budget commun de 66 coups. Le 66e termine le defi. Recommencer un combat conserve les coups. Une nouvelle selection validee commence une nouvelle serie.

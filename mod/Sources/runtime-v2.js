@@ -9,6 +9,7 @@ const cinema=require("./cinema");
 const training=require("./training"),arrival=require("./arrival");
 const inanis=require("./inanis");
 const arena=require("./arena");
+const runs=require("./run-driver");
 let pending = null, busy = false, activeDialog = null;
 let difficultyFlow = null;
 let menuPause = null;
@@ -24,6 +25,7 @@ function valid(object) { try { return !!object && UE.KismetSystemLibrary.IsValid
 function saveLoadFor(context) { return UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context, UE.PBZSaveLoadSubsystem.StaticClass()); }
 function slotFor(difficulty) { return difficulty === UE.EDifficultMode.NightMare ? "NightmareRun0" : "ManualSave3"; }
 function fail(context, message) {
+    session.pendingRunOptions=null;
     if(hold.endLaunch)hold.endLaunch(session,true);
     if (pending && pending.timer) clearTimeout(pending.timer);
     if (pending && pending.retryTimer) clearTimeout(pending.retryTimer);
@@ -96,6 +98,7 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 const result = puerts.$unref(resultRef);
                 if (!result || result.ResultType !== UE.ESaveLoadResultType.Success || String(result.LevelName) !== pristine.PBZGameSystem.CurrentLevelName) throw new Error("Le point de départ n'a pas été reconnu");
                 session.active = true; session.difficulty = difficulty; session.boss = boss; session.completed = false;session.completionToken=null;session.victory=null;
+                runs.enter(session,boss,session.pendingRunOptions);session.runOptions=session.run?.options||session.runOptions;session.pendingRunOptions=null;session.runFailureShown=false;session.runRuntimeError=null;
                 session.prepareOnArrival=!!boss.training;
                 session.mode=boss.training?"training":"direct-fight";
                 session.skipIntroduction=skipIntroduction;
@@ -131,6 +134,7 @@ function captureCheckpoint(context, then) {
         busy = true;
         const request = requestFor(instance, "equipment"), param = new UE.SaveGameParam();
         const metadata = {version:"0.6-prototype", encounter:session.boss.id, initialized:session.initialized, difficulty:session.difficulty, balance:session.boss.balance, arsenal:session.arsenal, nativeDifficulties:difficulties, deathRetries:session.deathRetries||0, validation:session.validation||null,ux:{...session.ux,preparationShown:!!session.preparationShown,arrivalAnchored:!session.arrivalAnchorPending,cinematicsSkipped:session.cinematicsSkipped||0},rewardsSuppressed:session.rewardsSuppressed||0,completed:!!session.completed,hooks:battle.status?battle.status():session.hooks||null};
+        metadata.run=session.run||null;
         param.SaveSlotName = slotFor(session.difficulty); param.bShowSaveTip = false;
         session.gear=model.captureGear(gearReader.capture(context,saveLoad,param));
         const pristine=model.bossSnapshot(snapshot,session.boss,{direct:!session.boss.training});
@@ -251,8 +255,9 @@ function chooseDifficulty(context, boss = session.boss) {
             let selected = null, ended = false;
             const onSelect = difficulty => {
                 if(ended||selected!==null||!difficulties.includes(difficulty))return;
-                selected=difficulty;
+                selected=widget.codexHits66?UE.EDifficultMode.Hard:difficulty;
                 session.autoNext=!!widget.codexAutoNext;
+                session.pendingRunOptions={timer:widget.codexTimerMode||"off",hits66:!!widget.codexHits66};
                 try{
                     hold.beginLaunch(widget,session);
                     if(!replay(instance,selected,boss))fail(instance,"Le chargement du combat n'a pas pu commencer. Réessaie depuis la sélection.");
@@ -289,6 +294,7 @@ function showMenu(context, screen = "bosses") {
             widget.codexCurrentBoss=session.boss;
             widget.codexInTraining=!!session.boss.training;
             widget.codexAutoNext=!!session.autoNext;
+            widget.codexRunSummary=runs.summary(session);
             widget.codexSelectBoss=(boss,owner)=>{
                 if(boss.action){
                     if(boss.action==="auto") {session.autoNext=!session.autoNext;owner.codexAutoNext=!!session.autoNext;selector.refreshActions(owner);return;}
@@ -296,10 +302,14 @@ function showMenu(context, screen = "bosses") {
                     owner.DeactivateWidget();
                     setTimeout(()=>{
                         if(boss.action==="replay")replay(context,session.difficulty,session.boss,false,true);
+                        if(boss.action==="restart-run"){
+                            const first=selector.bosses.find(b=>b.id===session.run?.firstBoss)||session.boss;
+                            session.pendingRunOptions={...session.run.options};replay(context,session.difficulty,first,false,true);
+                        }
                         if(boss.action==="next"){const next=nextBoss();if(next)replay(context,session.difficulty,next);}
                         if(boss.action==="select")showMenu(context);
                         if(boss.action==="training")openTraining(context);
-                        if(boss.action==="main")captureCheckpoint(context,()=>{session.active=false;require("../Library/TsHelper").default.returnStart(context);});
+                        if(boss.action==="main")captureCheckpoint(context,()=>{session.active=false;runs.stop();require("../Library/TsHelper").default.returnStart(context);});
                     },0);return;
                 }
                 if(!boss.profile)return fail(owner,"Le point de départ de ce combat est encore en préparation.");
@@ -311,7 +321,7 @@ function showMenu(context, screen = "bosses") {
             session.selectorWidget=widget;
             if(session.active&&valid(widget))pauseMenu(context,widget);
             if(screen!=="victory"&&validation.ui)validation.ui(context,"boss-menu",session,{paused:UE.GameplayStatics.IsGamePaused(context)});
-            if(screen==="victory"&&valid(widget)){
+            if(["victory","failure"].includes(screen)&&valid(widget)){
                 session.ux={...session.ux,resultShown:true};
                 if(validation.ui)validation.ui(context,"victory-menu",session);
                 const generation=worldGeneration;
@@ -328,14 +338,14 @@ function showMenu(context, screen = "bosses") {
 }
 function nextBoss(){return selector.bosses[selector.bosses.findIndex(b=>b.id===session.boss.id)+1]||null;}
 function victory(context,record){
-    if(!session.active||session.completed)return;
+    if(!session.active||session.completed||session.run?.phase==='failed')return;
     const boss=session.boss;
     // Multi-phase codex rows are ordered by the native fight, with the terminal
     // phase last. A first-phase kill must never open the results screen.
     const authoritative=boss.unlockTag&&boss.unlockTag!=="None";
     const alternative=boss.id==="BP_Monster_MBoss";
     if(!authoritative&&!alternative&&boss.classes.length>1 && String(record.path).toLowerCase()!==boss.classes[boss.classes.length-1].toLowerCase())return;
-    session.completed=true;session.victory=record;
+    runs.victory(context,session);session.completed=true;session.victory=record;
     const token={cancelled:false,retries:0};session.completionToken=token;
     scheduleCompletion(context,token,4500);
 }
@@ -343,13 +353,15 @@ function scheduleCompletion(context,token,delay){
     const generation=worldGeneration;
     const finish=()=>{
         if(generation!==worldGeneration||session.completionToken!==token||token.cancelled||!valid(context))return;
-        if(busy||activeDialog||session.cinematicActive||(cinema.presentationActive&&cinema.presentationActive(context))){token.retries++;setTimeout(finish,250);return;}
+        if(busy||activeDialog||session.cinematicActive||session.runInteractiveActive||(cinema.presentationActive&&cinema.presentationActive(context))){token.retries++;setTimeout(finish,250);return;}
+        runs.finishVictory(session,!!nextBoss());
         if(session.autoNext&&nextBoss())replay(context,session.difficulty,nextBoss());
         else showMenu(context,"victory");
     };
     setTimeout(finish,delay);
 }
 function stopKeys() {
+    runs.stop();
     arrival.release(session);
     clearMenuPause();
     if(session.loadingScreenListener){
@@ -362,6 +374,7 @@ function stopKeys() {
 }
 function beginKeys(context) {
     stopKeys(); worldContext = context;
+    if(session.active)runs.install(context,session);
     if(hold.endLaunch)hold.endLaunch(session);
     const diagnosticContext=UE.GameplayStatics.GetGameInstance(context);
     if(session.active)try{battle.install(session,victory);session.hooks=battle.status?battle.status():{};}catch(error){session.hooks={error:String(error)};log("Battle hooks: "+String(error));}
@@ -390,6 +403,7 @@ function beginKeys(context) {
                 arrival.tick(context,session);
                 training.tick(context,session);
                 if(arrivalTicks%15===0&&battle.activateDirectCombat)battle.activateDirectCombat(context,session);
+                if(!session.runRuntimeError)try{runs.tick(context,session);}catch(error){session.runRuntimeError=String(error);session.autoNext=false;fail(context,"Chronomètre / 66 HITS indisponible : "+String(error));}
                 if(session.boss.training&&!session.arrivalAnchorPending&&!session.trainingTipShown){
                     session.trainingTipShown=true;
                     const helper=require("../Library/UIHelper").default;
@@ -466,6 +480,14 @@ function patchDeathMenu(Type) {
     p.BP_OnActivated = function (...args) {
         if (!session.active) return activate.apply(this, args);
         this.codexLabDeath = true; this.isAlreadyReSpawn = true;
+        runs.death(this,session);
+        if(session.run?.phase==='failed'){
+            if(!session.runFailureShown){
+                session.runFailureShown=true;const generation=worldGeneration;let attempts=0;
+                const show=()=>{if(generation!==worldGeneration||!session.active||session.run?.phase!=='failed')return;if(!showMenu(valid(worldContext)?worldContext:this,"failure")&&++attempts<120)setTimeout(show,250);};setTimeout(show,250);
+            }
+            return;
+        }
         session.deathRetries=(session.deathRetries||0)+1;
         log("Death: restoring encounter and retaining loadout");
         if (busy) { if (pending && pending.kind === "equipment") queuedDeath = true; }

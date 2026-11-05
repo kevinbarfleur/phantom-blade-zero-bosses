@@ -48,6 +48,7 @@ function ui(context,phase,session,extra={}){
         let position=null;
         if(session.active){const p=UE.GameplayStatics.GetPlayerCharacter(context,0)?.K2_GetActorLocation();if(p)position={X:p.X,Y:p.Y,Z:p.Z};}
         uiEvents.push({phase,time:Date.now(),encounter:session.boss?.id,active:session.active,ux:JSON.parse(JSON.stringify(session.ux||{})),pending:!!session.arrivalAnchorPending,cinematic:!!session.cinematicActive,position,...extra});
+        if(session.run)uiEvents[uiEvents.length-1].run=JSON.parse(JSON.stringify(session.run));
         const loader=globalThis.__CodexBossesLoader;
         if(loader)uiEvents[uiEvents.length-1].loader={phase:loader.phase,nativeHooks:loader.hooks.length,achievementAdapterGuard:!!loader.achievementAdapterGuard,achievementStartsSuppressed:loader.achievementStartsSuppressed||0};
         if(session.lastWrite)uiEvents[uiEvents.length-1].lastWrite={...session.lastWrite};

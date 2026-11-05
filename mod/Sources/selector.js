@@ -41,7 +41,7 @@ function preview(widget, boss) {
     const location=boss.locationKey?UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.locationKey)):"";
     const full=boss.label||UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.nameKey));
     const epithet=full.includes(",")?full.slice(full.indexOf(",")+1).trim():"";
-    if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text((epithet?epithet+"\n":"")+location+"\nArsenal ajusté · Niv. "+(boss.balance?.weaponLevel||30)+"\nArrivée directe au combat\nÉquipement : entraînement"));
+    if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text((epithet?epithet+"\n":"")+location+"\nArsenal ajusté · Niv. "+(boss.balance?.weaponLevel||30)+(widget.codexRunSummary&&['victory','failure'].includes(widget.codexScreen)?"\n\n"+widget.codexRunSummary:"\nArrivée directe au combat\nÉquipement : entraînement")));
     const detail=widget.codexDetailPanel||widget.VerticalBox_94;
     if(detail) {detail.SetRenderOpacity(1);detail.SetVisibility(UE.ESlateVisibility.HitTestInvisible);}
 }
@@ -52,7 +52,12 @@ function initList(widget) {
     widget.codexBossItems=[];
     let chapter=null;
     const add=boss=>{const item=UE.NewObject(klass,widget);item.codexBossEntry=boss;widget.codexBossItems.push(item);items.Add(item);};
-    const entries=widget.codexScreen==="victory"?[
+    const entries=widget.codexScreen==="failure"?[
+        {id:"restart-run",label:"RECOMMENCER LE DÉFI",action:"restart-run"},
+        {id:"training",label:"ENTRAÎNEMENT",action:"training"},
+        {id:"select",label:"SÉLECTION DES BOSS",action:"select"},
+        {id:"main",label:"MENU PRINCIPAL",action:"main"}
+    ]:widget.codexScreen==="victory"?[
         {id:"replay",label:"REJOUER",action:"replay"},
         ...(bosses[bosses.findIndex(b=>b.id===widget.codexCurrentBoss.id)+1]?[{id:"next",label:"BOSS SUIVANT",action:"next"}]:[]),
         {id:"select",label:"SÉLECTION DES BOSS",action:"select"},
@@ -85,7 +90,7 @@ function patchSelector(Type) {
         const remembered=lastSelection;
         const result=activated.apply(this,args);
         if(!this.codexBossSelector)return result;
-        this.LoadGameText.SetText(text(this.codexScreen==="victory"?"VICTOIRE":"BOSSES"));
+        this.LoadGameText.SetText(text(this.codexScreen==="failure"?"66 HITS · DÉFI TERMINÉ":this.codexScreen==="victory"?"VICTOIRE":"BOSSES"));
         this.CommonListView_89.SetScrollbarVisibility(UE.ESlateVisibility.Visible);
         const box=this.CommonListView_89.GetParent();if(box)box.SetWidthOverride(850);
         this.CommonListView_89.SetClipping(UE.EWidgetClipping.ClipToBounds);
@@ -107,7 +112,7 @@ function patchSelector(Type) {
         if(this.QuestName)this.QuestName.SetAutoWrapText(true);
         hide(this,["GuidBox"]);
         const selected=this.codexBossItems.findIndex(item=>info(item).id===remembered);
-        this.CommonListView_89.SetSelectedIndex(this.codexScreen==="victory"?0:selected>=0?selected:1);
+        this.CommonListView_89.SetSelectedIndex(['victory','failure'].includes(this.codexScreen)?0:selected>=0?selected:1);
         this.codexPreview=null;preview(this,info(this.CommonListView_89.BP_GetSelectedItem())||bosses[0]);
         if(this.codexScreen!=="victory"&&selected>=0)this.CommonListView_89.BP_ScrollItemIntoView(this.codexBossItems[selected]);
         // Native activation and the fade can clear the old save-slot details.

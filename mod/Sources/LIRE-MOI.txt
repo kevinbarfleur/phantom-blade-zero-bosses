@@ -1,1 +1,1 @@
-Extraits du code du mod et preuves d acquisition. Le fichier executable complet est Payload/ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js. Les tests de code locaux utilisent aussi des donnees extraites du jeu, non redistribuees. Le chargeur tiers reste une dependance externe.
+Code du mod et preuves du catalogue. Le paquet executable est Payload/ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js. Les trois tests run-*.test.cjs utilisent des doublures des API natives et ne valident pas le jeu reel. Aucun code ni binaire du chargeur tiers n est redistribue.

@@ -1,310 +1,40 @@
 {
-  "version": "0.6.2",
+  "version": "0.7.0-preview.1",
   "gameBuild": 26367565,
+  "runtimeCompatible": null,
+  "gameplayValidated": false,
   "codeTests": {
-    "passed": 106,
+    "passed": 129,
     "failed": 0
   },
   "deploymentTests": {
     "passed": 7,
-    "failed": 0
+    "failed": 0,
+    "noGameMutation": true
   },
-  "runtimeCompatible": true,
-  "all60FullFightsValidated": false,
-  "controllerRumblePhysicallyVerified": false,
-  "introExit": {
-    "skipped": {
-      "encounter": "BP_Monster_AHua_GuiTouDao",
-      "nativeIntroReleased": true,
-      "presentationCleanupExecuted": true,
-      "additionalLoadingSuppressed": false,
-      "samplesAfterNativeRelease": 58,
-      "nativeCoverActiveAfterRelease": false,
-      "firstReleaseMs": 5145,
-      "firstAdditionalOverlayTransparentDelayMs": null,
-      "firstSecondHealthUnchanged": true,
-      "additionalOverlaySamples": [],
-      "scope": "Targeted QA launch; no continuous frame-by-frame video measurement."
-    },
-    "natural": {
-      "encounter": "BP_Monster_HuaQianXIao",
-      "nativeIntroReleased": true,
-      "presentationCleanupExecuted": true,
-      "additionalLoadingSuppressed": true,
-      "samplesAfterNativeRelease": 30,
-      "nativeCoverActiveAfterRelease": false,
-      "firstReleaseMs": 79270,
-      "firstAdditionalOverlayTransparentDelayMs": 92,
-      "firstSecondHealthUnchanged": true,
-      "additionalOverlaySamples": [
-        {
-          "ms": 79270,
-          "opacity": 1
-        },
-        {
-          "ms": 79362,
-          "opacity": 0
-        },
-        {
-          "ms": 79507,
-          "opacity": 0
-        },
-        {
-          "ms": 79639,
-          "opacity": 0
-        },
-        {
-          "ms": 79785,
-          "opacity": 0
-        },
-        {
-          "ms": 79901,
-          "opacity": 0
-        },
-        {
-          "ms": 80519,
-          "opacity": 0
-        },
-        {
-          "ms": 80652,
-          "opacity": 0
-        },
-        {
-          "ms": 80784,
-          "opacity": 0
-        },
-        {
-          "ms": 80914,
-          "opacity": 0
-        },
-        {
-          "ms": 81697,
-          "opacity": 0
-        },
-        {
-          "ms": 81827,
-          "opacity": 0
-        },
-        {
-          "ms": 81971,
-          "opacity": 0
-        },
-        {
-          "ms": 82116,
-          "opacity": 0
-        },
-        {
-          "ms": 82259,
-          "opacity": 0
-        },
-        {
-          "ms": 82404,
-          "opacity": 0
-        },
-        {
-          "ms": 82533,
-          "opacity": 0
-        },
-        {
-          "ms": 82661,
-          "opacity": 0
-        },
-        {
-          "ms": 82790,
-          "opacity": 0
-        },
-        {
-          "ms": 82933,
-          "opacity": 0
-        },
-        {
-          "ms": 84163,
-          "opacity": 0
-        },
-        {
-          "ms": 84284,
-          "opacity": 0
-        },
-        {
-          "ms": 84427,
-          "opacity": 0
-        },
-        {
-          "ms": 84570,
-          "opacity": 0
-        },
-        {
-          "ms": 84715,
-          "opacity": 0
-        },
-        {
-          "ms": 84857,
-          "opacity": 0
-        },
-        {
-          "ms": 85001,
-          "opacity": 0
-        },
-        {
-          "ms": 85146,
-          "opacity": 0
-        },
-        {
-          "ms": 85289,
-          "opacity": 0
-        },
-        {
-          "ms": 85434,
-          "opacity": 0
-        }
-      ],
-      "scope": "Targeted QA launch; no continuous frame-by-frame video measurement."
-    },
-    "initialArrivalFlashMayRemain": true,
-    "allBossIntroductionsValidated": false
+  "liveTest": {
+    "executed": false,
+    "reason": "Windows UAC was canceled or expired. No elevated test guardian started for this version."
   },
-  "automaticNextBossPreset": {
-    "layoutAndMouseToggleObserved": true,
-    "launchCommitAndCancelCoveredByCodeTests": true,
-    "fullAutomaticRunPlayedOn062": false
-  },
-  "nativeSystemActions": {
-    "nativeExitCategory": true,
-    "mouseConfirmAndCancelVerified": true,
-    "restartReachedSameEncounter": true,
-    "returnReachedInanis": true,
-    "equipmentPreserved": true,
-    "physicalControllerNavigationVerified": false
-  },
-  "restoration": {
-    "completed": true,
-    "saveHashesMatched": 30,
-    "loaderAndProxyRemoved": true,
-    "temporaryFirewallRules": 0,
-    "steamRunning": true,
-    "restartRequestPending": false
-  },
-  "testLimitations": [
-    "QA-only health minimum and delayed inventory opening are disabled in the distributed manual build.",
-    "Cinematic traces inspect native state and layers; they do not certify every rendered frame or every boss.",
-    "The full public launcher was validated on 0.6.1; 0.6.2 gameplay used its persistent protected test guardian. Launcher core files are unchanged.",
-    "Physical controller navigation, rumble, final QTEs and all 60 complete fights remain unverified."
-  ],
-  "previousVersionEvidence": {
-    "version": "0.6.1",
-    "runtimeCompatible": true,
-    "gameBuild": 26367565,
-    "direct": [
-      {
-        "id": "BP_Monster_AHua_GuiTouDao",
-        "nativeFightReady": true,
-        "introObserved": true,
-        "playerDamaged": true,
-        "bossDamaged": true,
-        "arrivalEvents": [
-          {
-            "name": "streaming-cover-requested",
-            "time": 1793906059027
-          },
-          {
-            "name": "streaming-cover-finished",
-            "time": 1793906068138
-          },
-          {
-            "name": "native-entry-crossed",
-            "time": 1793906068285
-          },
-          {
-            "name": "native-intro-owns-arrival",
-            "time": 1793906070320
-          }
-        ],
-        "arenaBellCount": 1,
-        "hiddenBellChildCount": 1
-      },
-      {
-        "id": "BP_Monster_HuaQianXIao",
-        "nativeFightReady": true,
-        "introObserved": true,
-        "playerDamaged": true,
-        "bossDamaged": true,
-        "arrivalEvents": [
-          {
-            "name": "streaming-cover-requested",
-            "time": 1793906388214
-          },
-          {
-            "name": "streaming-cover-finished",
-            "time": 1793906394091
-          },
-          {
-            "name": "native-entry-crossed",
-            "time": 1793906394231
-          },
-          {
-            "name": "native-intro-owns-arrival",
-            "time": 1793906396244
-          }
-        ],
-        "arenaBellCount": 1,
-        "hiddenBellChildCount": 1
-      }
+  "features": {
+    "timerModes": [
+      "off",
+      "fight",
+      "series"
     ],
-    "all60FullFightsValidated": false,
-    "controllerRumblePhysicallyVerified": false,
-    "trainingFlow": {
-      "choiceApplied": true,
-      "equipmentPreserved": true,
-      "beforeLevel": 30,
-      "afterLevel": 2,
-      "expectedLevel": 2,
-      "forgePreserved": true,
-      "retryEquipmentPreserved": true,
-      "deathRetries": 1
-    },
-    "refuge": {
-      "nativeInteractionDispatched": true,
-      "selectorOpened": true,
-      "paused": true,
-      "inanisVisible": true,
-      "inanisInteractionReady": true,
-      "inanisSelections": 1,
-      "trainingExitBlocked": true,
-      "trainingHiddenActors": 2
-    },
-    "refugeLaunch": {
-      "boss": "BP_Monster_AHua_GuiTouDao",
-      "holdSeconds": 1.5,
-      "nativeHold": true,
-      "cancelCheck": "released-without-launch",
-      "nativeHoldFeedbackStarted": true,
-      "nativeProgressCompleted": true,
-      "launchScreenRetained": true,
-      "directIntroObserved": true,
-      "nativeEntryCrossed": true,
-      "worldUnpausedAfterLoad": true,
-      "oldWorldCameraCleanupFixed": true,
-      "difficultyPausedVerified": true
-    },
-    "testLimitations": [
-      "Direct damage probes use QA-only player health recovery; opponents retain native HP.",
-      "Equipment choice and death are automated in training-flow.",
-      "Physical controller rumble and all 60 full fights remain unverified."
-    ],
-    "publicLauncher": {
-      "nativeTitleObserved": true,
-      "refugeInventoryObserved": true,
-      "manualBuildDebugShortcuts": false,
-      "fullLaunchAndAutomaticRestorationValidated": true,
-      "restoration": {
-        "completed": true,
-        "saveHashesMatched": 30,
-        "loaderAndProxyRemoved": true,
-        "temporaryFirewallRules": 0,
-        "steamRunning": true,
-        "restartRequestPending": false
-      },
-      "steamWatcherUnelevatedParentVerified": true
-    }
-  }
+    "automaticChainingIndependent": true,
+    "challengeNativeDifficulty": "Hard",
+    "hitBudget": 66,
+    "retryPreservesHitBudget": true,
+    "sourceEvent": "GameplayEvent.Actor.Hit.Target",
+    "sourceAttribution": "Native faction relation, selected boss classes and ownership chain",
+    "unknownSource": "Result flagged as unverified; no guessed hit count",
+    "qteDetection": "Native visible QTE widgets and sequence names containing QTE"
+  },
+  "limits": [
+    "Native event semantics for blocks, parries, damage-over-time and projectiles require in-game validation.",
+    "New option layout, HUD placement, native death on the 66th actual hit and controller navigation are unverified.",
+    "Final QTEs, phase transitions and all 60 complete fights remain unverified.",
+    "The previous 0.6.2 gameplay checks do not validate these new features."
+  ]
 }

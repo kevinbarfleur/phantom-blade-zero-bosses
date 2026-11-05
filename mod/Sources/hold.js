@@ -13,6 +13,8 @@ function configure(widget,session,boss){
     padding.Right=180;padding.Bottom=170;slot.SetPadding(padding);
     widget.codexDifficulty=session.difficulty||2;
     widget.codexAutoNext=!!session.autoNext;
+    widget.codexTimerMode=session.run?.options.timer||session.runOptions?.timer||"off";
+    widget.codexHits66=!!(session.run?.options.hits66||session.runOptions?.hits66);
     let completed=false,closed=false,timer=null;
     const bindings=[],qaTimeouts=[];let qaProgress=null;
     const feedback={holding:false,playing:0,lastProgress:0,charge:null,finish:null};
@@ -35,13 +37,15 @@ function configure(widget,session,boss){
     const feedbackBindings=[[button.UpdateHoldPercent,progressFeedback],[button.ButtonPressed,startFeedback],[button.ButtonReleased,stopFeedback],[button.OnHoldReset,stopFeedback]];
     for(const [delegate,handler]of feedbackBindings)delegate?.Add(handler);
     const label='MAINTENEZ <UIRowName id="UpgradeHold" height="24" LeftPadding="0" RightPadding="0"/> POUR AFFRONTER';
-    const select=value=>{
+    const select=(value,hits66=false)=>{
         if(completed||closed)return;
-        if(widget.codexDifficulty===value)return;
+        if(widget.codexDifficulty===value&&widget.codexHits66===hits66)return;
         widget.codexDifficulty=value;
+        widget.codexHits66=hits66;
         const entry=widget[["Easy","Normal","Hard"][value-1]];
         if(entry.SetIsSelected)entry.SetIsSelected(true,false);
         if(widget.SelectedButton)widget.SelectedButton(value-1);
+        if(widget.codexHitsButton){widget.codexHitsButton.SetIsSelected(hits66,false);if(hits66){entry.SetIsSelected(false,false);const desc=widget.Desc2;if(desc){const value=text("Explorateur des enfers · Budget partagé de 66 coups reçus.\nLe 66e coup met fin au défi. Les nouvelles tentatives conservent le compteur.");if(desc.SetPBZFormatText)desc.SetPBZFormatText(value);else desc.SetText(value);}}}
         button.ButtonResetHoldPercentage();button.Init(true,text(label),1);
     };
     for(const [id,value] of [["Easy",1],["Normal",2],["Hard",3]]){
@@ -68,7 +72,7 @@ function configure(widget,session,boss){
         if(completed||closed)return;completed=true;
         stopFeedback();
         if(feedback.finish)try{soundSystem()?.PBZPostEventGlobal(feedback.finish,undefined);}catch(_){}
-        if(require("./validation").ui)require("./validation").ui(widget,"hold-completed",session,{difficulty:widget.codexDifficulty});
+        if(require("./validation").ui)require("./validation").ui(widget,"hold-completed",session,{difficulty:widget.codexDifficulty,timer:widget.codexTimerMode,hits66:widget.codexHits66,autoNext:widget.codexAutoNext});
         widget["Change Difficult Delegate"].Broadcast(widget.codexDifficulty,false);
         // The launch owner keeps this screen covering the selector while the
         // loadout and encounter checkpoint are written. Back still closes it.
@@ -92,21 +96,32 @@ function configure(widget,session,boss){
     button.CompleteHold.Add(complete);
     session.ux={...session.ux,holdSeconds:button.GetRequiredHoldTime(),nativeHold:true};
     if(boss){
-        const heading=UE.NewObject(UE.TextBlock.StaticClass(),widget),headingSlot=root.AddChildToOverlay(heading),hp=new UE.Margin();hp.Left=155;hp.Top=475;
-        headingSlot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);headingSlot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);headingSlot.SetPadding(hp);
-        heading.SetText(text("ENCHAÎNEMENT AUTOMATIQUE"));if(widget.Desc1)heading.SetFont(widget.Desc1.Font);heading.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
+        const owned=[],delegates=[];
+        const hits=UE.WidgetBlueprintLibrary.Create(widget,widget.Normal.GetClass(),UE.GameplayStatics.GetPlayerController(widget,0));hits.SetButtonText(text('66 HITS'));
+        const hs=widget.Hard.GetParent().AddChildToVerticalBox(hits),hm=new UE.Margin();hm.Top=2;hs.SetPadding(hm);owned.push(hits);widget.codexHitsButton=hits;
+        const chooseHits=()=>select(3,true);hits.OnButtonBaseClicked.Add(chooseHits);hits.OnButtonBaseFocused.Add(chooseHits);delegates.push([hits.OnButtonBaseClicked,chooseHits],[hits.OnButtonBaseFocused,chooseHits]);
         const line=UE.NewObject(UE.Image.StaticClass(),widget),lineSlot=root.AddChildToOverlay(line),lp=new UE.Margin();lp.Left=155;lp.Top=450;
+        lp.Top=505;owned.push(line);
         line.SetDesiredSizeOverride(new UE.Vector2D(650,1));line.SetColorAndOpacity(new UE.LinearColor(1,1,1,0.25));line.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
         lineSlot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);lineSlot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);lineSlot.SetPadding(lp);
-        const toggle=UE.WidgetBlueprintLibrary.Create(widget,widget.Normal.GetClass(),UE.GameplayStatics.GetPlayerController(widget,0));
-        const size=UE.NewObject(UE.SizeBox.StaticClass(),widget);size.SetWidthOverride(650);size.AddChild(toggle);
-        const toggleSlot=root.AddChildToOverlay(size),tp=new UE.Margin();tp.Left=130;tp.Top=525;
-        toggleSlot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);toggleSlot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);toggleSlot.SetPadding(tp);
+        const option=(label,top)=>{
+            const heading=UE.NewObject(UE.TextBlock.StaticClass(),widget),slot=root.AddChildToOverlay(heading),margin=new UE.Margin();margin.Left=155;margin.Top=top;
+            slot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);slot.SetPadding(margin);
+            heading.SetText(text(label));if(widget.Desc1)heading.SetFont(widget.Desc1.Font);heading.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
+            const choice=UE.WidgetBlueprintLibrary.Create(widget,widget.Normal.GetClass(),UE.GameplayStatics.GetPlayerController(widget,0)),size=UE.NewObject(UE.SizeBox.StaticClass(),widget);size.SetWidthOverride(650);size.AddChild(choice);
+            const cs=root.AddChildToOverlay(size),cm=new UE.Margin();cm.Left=130;cm.Top=top+45;cs.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Left);cs.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);cs.SetPadding(cm);owned.push(heading,size);return choice;
+        };
+        const timer=option('CHRONOMÈTRE',535),modes=['off','fight','series'];
+        const refreshTimer=()=>{timer.SetButtonText(text({off:'DÉSACTIVÉ',fight:'COMBAT · UNE TENTATIVE',series:'SÉRIE · TEMPS CUMULÉ'}[widget.codexTimerMode]));timer.SetIsSelected(widget.codexTimerMode!=='off',false);};
+        const changeTimer=()=>{if(closed||completed)return;widget.codexTimerMode=modes[(modes.indexOf(widget.codexTimerMode)+1)%modes.length];button.ButtonResetHoldPercentage();refreshTimer();};
+        timer.OnButtonBaseClicked.Add(changeTimer);delegates.push([timer.OnButtonBaseClicked,changeTimer]);refreshTimer();widget.codexTimerButton=timer;
+        const toggle=option('ENCHAÎNEMENT AUTOMATIQUE',685);
         const refresh=()=>{toggle.SetButtonText(text(widget.codexAutoNext?"OUI · COMBAT SUIVANT":"NON · RETOUR À LA SÉLECTION"));toggle.SetIsSelected(widget.codexAutoNext,false);};
-        const clicked=()=>{if(closed||completed)return;widget.codexAutoNext=!widget.codexAutoNext;refresh();};
-        toggle.OnButtonBaseClicked.Add(clicked);refresh();widget.codexAutoNextButton=toggle;
-        if(toggle.SetNavigationRuleExplicit&&widget.Hard.SetNavigationRuleExplicit){widget.Hard.SetNavigationRuleExplicit(UE.EUINavigation.Down,toggle);toggle.SetNavigationRuleExplicit(UE.EUINavigation.Up,widget.Hard);}
-        const dispose=()=>{widget.BP_OnWidgetDeactivated.Remove(dispose);if(valid(toggle))toggle.OnButtonBaseClicked.Remove(clicked);for(const object of [size,heading,line])try{if(valid(object))object.RemoveFromParent();}catch(_){}widget.codexAutoNextButton=null;};
+        const clicked=()=>{if(closed||completed)return;widget.codexAutoNext=!widget.codexAutoNext;button.ButtonResetHoldPercentage();refresh();};
+        toggle.OnButtonBaseClicked.Add(clicked);delegates.push([toggle.OnButtonBaseClicked,clicked]);refresh();widget.codexAutoNextButton=toggle;
+        if(toggle.SetNavigationRuleExplicit&&widget.Hard.SetNavigationRuleExplicit){const chain=[widget.Hard,hits,timer,toggle];for(let i=0;i<chain.length-1;i++){chain[i].SetNavigationRuleExplicit(UE.EUINavigation.Down,chain[i+1]);chain[i+1].SetNavigationRuleExplicit(UE.EUINavigation.Up,chain[i]);}for(const id of ['Easy','Normal','Hard'])widget[id].SetNavigationRuleExplicit(UE.EUINavigation.Right,timer);}
+        if(widget.codexHits66){widget.codexHits66=false;select(3,true);if(hits.SetFocus)hits.SetFocus();}
+        const dispose=()=>{widget.BP_OnWidgetDeactivated.Remove(dispose);for(const [delegate,handler]of delegates)try{delegate.Remove(handler);}catch(_){}for(const object of owned)try{if(valid(object))object.RemoveFromParent();}catch(_){}widget.codexAutoNextButton=null;widget.codexTimerButton=null;widget.codexHitsButton=null;};
         widget.BP_OnWidgetDeactivated.Add(dispose);
     }
     // Same charge/success Wwise events and sound subsystem as native weapon

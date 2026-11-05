@@ -1,5 +1,5 @@
-# Preserve the exact release bytes and SHA-256 hashes on every platform.
-mod/** -text
 *.md text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
+# Preserve the exact release bytes and SHA-256 hashes on every platform.
+mod/** -text
