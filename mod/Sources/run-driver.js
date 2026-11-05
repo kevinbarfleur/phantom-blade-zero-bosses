@@ -19,7 +19,7 @@ function interactive(context,session){
 }
 function flags(context,session,player){
     const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player),now=UE.GameplayStatics.GetRealTimeSeconds(context)*1000;
-    if(scope.qteSampleAt===undefined||now-scope.qteSampleAt>=100){scope.qteSampleAt=now;scope.qteSample=interactive(context,session);}
+    if(scope.qteSampleAt===undefined||now<scope.qteSampleAt||now-scope.qteSampleAt>=100){scope.qteSampleAt=now;scope.qteSample=interactive(context,session);}
     const qte=scope.qteSample;
     const manager=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.PBZLevelSequenceManager.StaticClass());
     const sequence=!!manager?.IsInSequence()||!!asc?.HasMatchingGameplayTag(tag('CharacterState.InLevelSequence'))||cinema.pending(context)||!!(session.cinematicActive&&!['sequence','player-state'].includes(session.cinemaSource));
@@ -31,22 +31,24 @@ function flags(context,session,player){
 }
 function hostileSource(source,player,session){
     const queue=[source],seen=new Set(),known=[...(session.boss.classes||[]),...(session.boss.supportClasses||[])].map(p=>p.toLowerCase());
-    let friendly=false;
     for(let n=0;queue.length&&n<16;n++){
         const candidate=queue.shift();if(!valid(candidate)||seen.has(candidate))continue;seen.add(candidate);
-        if(candidate===player){friendly=true;continue;}
+        if(candidate===player)return false;
+        // The bullet interface identifies its current avatar, including after
+        // reflection. Its old faction or instigator may still name the enemy.
+        try{const avatar=candidate.GetOwnerAvatar?.();if(valid(avatar)&&avatar!==candidate){queue.unshift(avatar);continue;}}catch(_){}
         try{
             const mine=UE.FactionUtils.GetFaction(player),theirs=UE.FactionUtils.GetFaction(candidate);
             if(UE.BlueprintGameplayTagLibrary.IsGameplayTagValid(mine)&&UE.BlueprintGameplayTagLibrary.IsGameplayTagValid(theirs)){
                 const relation=UE.FactionUtils.GetFactionRelation(player,candidate);
                 if(relation===UE.ETeamAttitude.Hostile)return true;
-                if(relation===UE.ETeamAttitude.Friendly){friendly=true;continue;}
+                if(relation===UE.ETeamAttitude.Friendly)return false;
             }
         }catch(_){}
         try{if(known.includes(UE.KismetSystemLibrary.GetPathName(candidate.GetClass()).toLowerCase()))return true;}catch(_){}
-        for(const name of ['GetOwnerAvatar','GetInstigator','GetOwner'])try{if(typeof candidate[name]==='function')queue.push(candidate[name]());}catch(_){}
+        for(const name of ['GetInstigator','GetOwner'])try{if(typeof candidate[name]==='function')queue.push(candidate[name]());}catch(_){}
     }
-    return friendly?false:null;
+    return null;
 }
 function kill(player){
     const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);if(!asc)throw Error('Système de vie indisponible');

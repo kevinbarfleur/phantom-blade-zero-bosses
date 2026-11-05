@@ -26,6 +26,7 @@ function saveLoadFor(context) { return UE.SubsystemBlueprintLibrary.GetGameInsta
 function slotFor(difficulty) { return difficulty === UE.EDifficultMode.NightMare ? "NightmareRun0" : "ManualSave3"; }
 function fail(context, message) {
     session.pendingRunOptions=null;
+    delete session.pendingAutoNext;
     if(hold.endLaunch)hold.endLaunch(session,true);
     if (pending && pending.timer) clearTimeout(pending.timer);
     if (pending && pending.retryTimer) clearTimeout(pending.retryTimer);
@@ -99,6 +100,8 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 if (!result || result.ResultType !== UE.ESaveLoadResultType.Success || String(result.LevelName) !== pristine.PBZGameSystem.CurrentLevelName) throw new Error("Le point de départ n'a pas été reconnu");
                 session.active = true; session.difficulty = difficulty; session.boss = boss; session.completed = false;session.completionToken=null;session.victory=null;
                 runs.enter(session,boss,session.pendingRunOptions);session.runOptions=session.run?.options||session.runOptions;session.pendingRunOptions=null;session.runFailureShown=false;session.runRuntimeError=null;
+                if(session.pendingAutoNext!==undefined)session.autoNext=session.pendingAutoNext;
+                delete session.pendingAutoNext;
                 session.prepareOnArrival=!!boss.training;
                 session.mode=boss.training?"training":"direct-fight";
                 session.skipIntroduction=skipIntroduction;
@@ -256,7 +259,7 @@ function chooseDifficulty(context, boss = session.boss) {
             const onSelect = difficulty => {
                 if(ended||selected!==null||!difficulties.includes(difficulty))return;
                 selected=widget.codexHits66?UE.EDifficultMode.Hard:difficulty;
-                session.autoNext=!!widget.codexAutoNext;
+                session.pendingAutoNext=!!widget.codexAutoNext;
                 session.pendingRunOptions={timer:widget.codexTimerMode||"off",hits66:!!widget.codexHits66};
                 try{
                     hold.beginLaunch(widget,session);

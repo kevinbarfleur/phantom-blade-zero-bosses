@@ -1,8 +1,10 @@
 # BOSSES — Phantom Blade Zero
 
-Mod communautaire pour rejouer **60 rencontres regroupées par chapitre**, avec portraits, chronomètre et défi 66 HITS. **0.7.0-preview.1 expérimentale — Steam build 26367565.** Le menu révèle les boss : attention aux spoilers.
+Mod communautaire pour rejouer **60 rencontres regroupées par chapitre**, avec portraits, chronomètre et défi 66 HITS. **0.7.0-preview.2 expérimentale — Steam build 26367565.** Le menu révèle les boss : attention aux spoilers.
 
 **Préversion non validée en jeu.** Les tests automatisés de la logique passent, mais le nouvel affichage, le comptage des coups réels et la détection des QTE doivent être essayés dans le jeu. Pour une session normale, préférer la [0.6.2](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases/tag/v0.6.2).
+
+La preview.2 corrige les reprises du chrono après pause, l'attribution des projectiles renvoyés, les notifications de mort répétées et la conservation des options après un chargement refusé. La création du HUD nettoie aussi ses éléments si une API native échoue.
 
 Cette version reprend le lanceur protégé de la 0.6.2. Elle utilise **PBZModLoader 1.0.0 de LLKKFF**, sans remplacer les scripts originaux du jeu.
 
@@ -17,7 +19,7 @@ C:\Program Files (x86)\Steam\steamapps\common\PBZ
 ```
 
 1. Après une mise à jour du jeu, le lancer **une fois depuis Steam en ligne, sans mod**, jusqu'au menu principal, puis le fermer. Cela laisse le jeu terminer sa préparation avant la session protégée.
-2. [Télécharger BOSSES 0.7.0-preview.1](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases/download/v0.7.0-preview.1/PBZ-Bosses-0.7.0-preview.1.zip) et **tout extraire** dans un dossier permanent et inscriptible. Une copie indépendante de ses sauvegardes reste recommandée.
+2. [Télécharger BOSSES 0.7.0-preview.2](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases/download/v0.7.0-preview.2/PBZ-Bosses-0.7.0-preview.2.zip) et **tout extraire** dans un dossier permanent et inscriptible. Une copie indépendante de ses sauvegardes reste recommandée.
 3. Télécharger **PBZModLoader 1.0.0**, fichier principal, sur la [page officielle de LLKKFF](https://www.nexusmods.com/phantombladezero/mods/113?tab=files). Laisser son ZIP dans Téléchargements, ou le placer à côté de `Lancer-Bosses.cmd`. **Ne pas l'installer manuellement.** Le lanceur reconnaît et vérifie cette archive précise.
 4. Ouvrir `Lancer-Bosses.cmd` normalement, puis valider la demande Windows du gardien. Il protège les sauvegardes, bloque temporairement le réseau et installe les fichiers nécessaires pour cette session.
 
@@ -47,7 +49,7 @@ Sur l'écran de difficulté, une quatrième entrée **66 HITS** s'ajoute à Voya
 | Combat | Un chrono par tentative. Mort ou nouvelle tentative : remise à zéro du chrono de ce combat. |
 | Série | Temps de combat cumulé entre les boss et les tentatives perdues. |
 
-Le chrono démarre à l'entrée effective en combat. Menus, chargements et cinématiques reconnues sont exclus ; les QTE détectés sont comptés, y compris ceux qui suivent le signal de mort du boss. La détection des séquences interactives reste à confirmer dans les combats finaux.
+Le chrono démarre à l'entrée effective en combat. Menus, chargements et cinématiques reconnues sont exclus ; les QTE détectés sont comptés, y compris ceux qui suivent le signal de mort du boss. Les transitions sont échantillonnées : la mesure reste indicative, sans garantie de précision à l'image près. La détection des séquences interactives reste à confirmer dans les combats finaux.
 
 Pour chronométrer un boss, choisir **Combat** avec l'enchaînement désactivé. Pour une série complète, choisir le premier boss, **Série** et l'enchaînement activé. On peut aussi utiliser **Boss suivant** dans les résultats pour poursuivre manuellement la même série. Les temps s'affichent dans le HUD et les résultats.
 
@@ -67,8 +69,8 @@ Le réseau des exécutables du jeu, du chargeur et de Steam est bloqué pendant 
 
 ## Limites et dépannage
 
-- **Validation de cette préversion :** voir [le rapport](mod/Validation/validation.json). Tests de code uniquement pour les nouvelles fonctions ; pas de validation en jeu de la 0.7.0-preview.1. Les 60 combats complets ne sont pas certifiés.
-- **Transitions :** la 0.7.0-preview.1 retire la présentation résiduelle de l'introduction dès que le jeu rend les commandes. Un bref flash ou fondu avant le début de la cinématique peut subsister. Les introductions et transitions de phases de tous les boss restent à vérifier.
+- **Validation de cette préversion :** voir [le rapport](mod/Validation/validation.json). Tests de code uniquement pour les nouvelles fonctions ; pas de validation en jeu de la 0.7.0-preview.2. Les 60 combats complets ne sont pas certifiés.
+- **Transitions :** la 0.7.0-preview.2 retire la présentation résiduelle de l'introduction dès que le jeu rend les commandes. Un bref flash ou fondu avant le début de la cinématique peut subsister. Les introductions et transitions de phases de tous les boss restent à vérifier.
 - **Mu Xiaokui et combat final :** QTE, dernières phases et sortie de victoire restent à confirmer en jouant normalement.
 - **Appui long :** barre et événements de charge natifs utilisés ; vibration physique de la manette encore à confirmer selon le matériel et les réglages.
 - Les actions Système ont été essayées à la souris dans la 0.6.2 ; leur intégration aux nouvelles règles reste à valider. La navigation avec une manette physique reste à confirmer.
@@ -85,7 +87,7 @@ Pour signaler un bug, ouvrir une [issue](https://github.com/kevinbarfleur/phanto
 Les tests du suivi du temps, du budget et de l'affichage simulé ne nécessitent pas le jeu : avec Node.js, depuis le dossier qui contient `Sources/`, lancer :
 
 ```text
-node --test Sources/run-model.test.cjs Sources/run-driver.test.cjs Sources/run-hud.test.cjs
+node --test Sources/run-model.test.cjs Sources/run-driver.test.cjs Sources/run-hud.test.cjs Sources/v2.test.cjs
 ```
 
 Ces tests utilisent des doublures des API natives et ne remplacent pas les essais en jeu.

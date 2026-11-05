@@ -7,23 +7,30 @@ function attach(host,session){
     if(!session.active||!model.enabled(session.run))return;
     const root=UE.Widget.Find('Overlay_0',host.WidgetTree);if(!root?.AddChildToOverlay)return;
     stop();
-    const box=UE.NewObject(UE.VerticalBox.StaticClass(),host),size=UE.NewObject(UE.SizeBox.StaticClass(),host);size.SetWidthOverride(330);size.AddChild(box);
-    const slot=root.AddChildToOverlay(size),margin=new UE.Margin();margin.Right=90;margin.Top=65;
-    slot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Right);slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);slot.SetPadding(margin);
-    size.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
-    const fontObject=UE.Font.Load('/Game/PBZContent/UI/Fonts/STZHONGS_Font.STZHONGS_Font');
-    const add=fontSize=>{
-        const label=UE.NewObject(UE.TextBlock.StaticClass(),host),font=new UE.SlateFontInfo();font.FontObject=fontObject;font.TypefaceFontName='Default';font.Size=fontSize;
-        label.SetFont(font);label.SetJustification(UE.ETextJustify.Right);label.SetShadowOffset(new UE.Vector2D(1,1));label.SetShadowColorAndOpacity(new UE.LinearColor(0,0,0,0.9));
-        label.SetVisibility(UE.ESlateVisibility.HitTestInvisible);box.AddChildToVerticalBox(label);return label;
-    };
-    view={host,box:size,label:add(18),clock:add(32),hits:add(22),status:add(16),last:null};
-    update(session);
+    const box=UE.NewObject(UE.VerticalBox.StaticClass(),host),size=UE.NewObject(UE.SizeBox.StaticClass(),host);
+    try{
+        size.SetWidthOverride(330);size.AddChild(box);
+        const slot=root.AddChildToOverlay(size),margin=new UE.Margin();margin.Right=90;margin.Top=65;
+        slot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Right);slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);slot.SetPadding(margin);
+        size.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
+        const fontObject=UE.Font.Load('/Game/PBZContent/UI/Fonts/STZHONGS_Font.STZHONGS_Font');
+        const add=fontSize=>{
+            const label=UE.NewObject(UE.TextBlock.StaticClass(),host),font=new UE.SlateFontInfo();font.FontObject=fontObject;font.TypefaceFontName='Default';font.Size=fontSize;
+            label.SetFont(font);label.SetJustification(UE.ETextJustify.Right);label.SetShadowOffset(new UE.Vector2D(1,1));label.SetShadowColorAndOpacity(new UE.LinearColor(0,0,0,0.9));
+            label.SetVisibility(UE.ESlateVisibility.HitTestInvisible);box.AddChildToVerticalBox(label);return label;
+        };
+        view={host,box:size,label:add(18),clock:add(32),hits:add(22),status:add(16),last:null};
+        update(session);
+    }catch(error){
+        view=null;try{if(valid(size))size.RemoveFromParent();}catch(_){}
+        throw error;
+    }
 }
 function update(session,context){
     if(view&&!valid(view.box))view=null;
-    if(!view&&context&&session.active&&!session.boss.training&&model.enabled(session.run)&&Date.now()-lastSearch>1000){
-        lastSearch=Date.now();const cls=UE.Class.Find('/Game/PBZContent/UI/FrontEnd/W_FrontEndHUDLayout.W_FrontEndHUDLayout_C');
+    const now=Date.now();
+    if(!view&&context&&session.active&&!session.boss.training&&model.enabled(session.run)&&(now<lastSearch||now-lastSearch>1000)){
+        lastSearch=now;const cls=UE.Class.Find('/Game/PBZContent/UI/FrontEnd/W_FrontEndHUDLayout.W_FrontEndHUDLayout_C');
         if(cls){const out=puerts.$ref(UE.NewArray(UE.UserWidget));UE.WidgetBlueprintLibrary.GetAllWidgetsOfClass(context,out,cls,false);const all=puerts.$unref(out);for(let i=0;i<all.Num();i++)if(valid(all.Get(i))){attach(all.Get(i),session);break;}}
     }
     if(!view)return;

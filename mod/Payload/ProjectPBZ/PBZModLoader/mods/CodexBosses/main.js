@@ -29,6 +29,7 @@ function saveLoadFor(context) { return UE.SubsystemBlueprintLibrary.GetGameInsta
 function slotFor(difficulty) { return difficulty === UE.EDifficultMode.NightMare ? "NightmareRun0" : "ManualSave3"; }
 function fail(context, message) {
     session.pendingRunOptions=null;
+    delete session.pendingAutoNext;
     if(hold.endLaunch)hold.endLaunch(session,true);
     if (pending && pending.timer) clearTimeout(pending.timer);
     if (pending && pending.retryTimer) clearTimeout(pending.retryTimer);
@@ -102,6 +103,8 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 if (!result || result.ResultType !== UE.ESaveLoadResultType.Success || String(result.LevelName) !== pristine.PBZGameSystem.CurrentLevelName) throw new Error("Le point de départ n'a pas été reconnu");
                 session.active = true; session.difficulty = difficulty; session.boss = boss; session.completed = false;session.completionToken=null;session.victory=null;
                 runs.enter(session,boss,session.pendingRunOptions);session.runOptions=session.run?.options||session.runOptions;session.pendingRunOptions=null;session.runFailureShown=false;session.runRuntimeError=null;
+                if(session.pendingAutoNext!==undefined)session.autoNext=session.pendingAutoNext;
+                delete session.pendingAutoNext;
                 session.prepareOnArrival=!!boss.training;
                 session.mode=boss.training?"training":"direct-fight";
                 session.skipIntroduction=skipIntroduction;
@@ -259,7 +262,7 @@ function chooseDifficulty(context, boss = session.boss) {
             const onSelect = difficulty => {
                 if(ended||selected!==null||!difficulties.includes(difficulty))return;
                 selected=widget.codexHits66?UE.EDifficultMode.Hard:difficulty;
-                session.autoNext=!!widget.codexAutoNext;
+                session.pendingAutoNext=!!widget.codexAutoNext;
                 session.pendingRunOptions={timer:widget.codexTimerMode||"off",hits66:!!widget.codexHits66};
                 try{
                     hold.beginLaunch(widget,session);
@@ -2539,14 +2542,17 @@ function create(value,boss){
 function enabled(state){return !!state&&(state.options.timer!=="off"||state.options.hits66);}
 function advance(state,delta,flags={}){
     if(!state||["failed","finished","abandoned"].includes(state.phase))return;
-    if(state.phase==="waiting"&&flags.ready&&!flags.paused&&(!flags.cinematic||flags.interactive)&&!flags.dead){state.phase="combat";state.reason=null;state.active=false;return;}
+    if(state.phase==="waiting"&&flags.ready&&!flags.loading&&!flags.paused&&(!flags.cinematic||flags.interactive)&&!flags.dead){state.phase="combat";state.reason=null;state.active=true;return;}
     const canFight=state.phase==="combat"||(state.phase==="finishing"&&flags.interactive);
+    const wasActive=state.active;
     state.active=!!(canFight&&flags.ready&&!flags.paused&&!flags.loading&&!flags.dead&&(!flags.cinematic||flags.interactive));
     state.reason=state.active?null:flags.loading?"loading":flags.paused?"pause":flags.cinematic&&!flags.interactive?"cinematic":state.phase==="finishing"?"victory":"waiting";
-    if(state.active&&Number.isFinite(delta)&&delta>0){state.totalMs+=delta;state.attemptMs+=delta;}
+    // Only charge intervals whose two sampled ends are playable. A resume must
+    // never bill an unknown gap spent inside a menu, movie or loading screen.
+    if(wasActive&&state.active&&Number.isFinite(delta)&&delta>0){state.totalMs+=delta;state.attemptMs+=delta;}
 }
 function enter(state,boss,kind="retry"){
-    if(!state||["failed","abandoned"].includes(state.phase))return false;
+    if(!state||["failed","finished","abandoned"].includes(state.phase))return false;
     if(kind==="retry"&&state.reason!=="defeat")state.lastAttempt={boss:state.currentBoss,ms:state.attemptMs,result:"retry"};
     state.attempt=kind==="retry"?state.attempt+1:1;
     state.currentBoss=boss;state.attemptMs=0;state.phase="waiting";state.active=false;state.reason="preparing";
@@ -2559,7 +2565,7 @@ function hit(state,interactive=false){
     state.phase="failed";state.active=false;state.reason="66hits";return true;
 }
 function death(state){
-    if(!state||["failed","finished","abandoned"].includes(state.phase))return;
+    if(!state||["failed","finished","abandoned"].includes(state.phase)||(state.phase==="waiting"&&state.reason==="defeat"))return;
     state.deaths++;state.active=false;state.reason="defeat";
     state.lastAttempt={boss:state.currentBoss,ms:state.attemptMs,result:"death"};
     state.phase="waiting";
@@ -2611,7 +2617,7 @@ function interactive(context,session){
 }
 function flags(context,session,player){
     const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player),now=UE.GameplayStatics.GetRealTimeSeconds(context)*1000;
-    if(scope.qteSampleAt===undefined||now-scope.qteSampleAt>=100){scope.qteSampleAt=now;scope.qteSample=interactive(context,session);}
+    if(scope.qteSampleAt===undefined||now<scope.qteSampleAt||now-scope.qteSampleAt>=100){scope.qteSampleAt=now;scope.qteSample=interactive(context,session);}
     const qte=scope.qteSample;
     const manager=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.PBZLevelSequenceManager.StaticClass());
     const sequence=!!manager?.IsInSequence()||!!asc?.HasMatchingGameplayTag(tag('CharacterState.InLevelSequence'))||cinema.pending(context)||!!(session.cinematicActive&&!['sequence','player-state'].includes(session.cinemaSource));
@@ -2623,22 +2629,24 @@ function flags(context,session,player){
 }
 function hostileSource(source,player,session){
     const queue=[source],seen=new Set(),known=[...(session.boss.classes||[]),...(session.boss.supportClasses||[])].map(p=>p.toLowerCase());
-    let friendly=false;
     for(let n=0;queue.length&&n<16;n++){
         const candidate=queue.shift();if(!valid(candidate)||seen.has(candidate))continue;seen.add(candidate);
-        if(candidate===player){friendly=true;continue;}
+        if(candidate===player)return false;
+        // The bullet interface identifies its current avatar, including after
+        // reflection. Its old faction or instigator may still name the enemy.
+        try{const avatar=candidate.GetOwnerAvatar?.();if(valid(avatar)&&avatar!==candidate){queue.unshift(avatar);continue;}}catch(_){}
         try{
             const mine=UE.FactionUtils.GetFaction(player),theirs=UE.FactionUtils.GetFaction(candidate);
             if(UE.BlueprintGameplayTagLibrary.IsGameplayTagValid(mine)&&UE.BlueprintGameplayTagLibrary.IsGameplayTagValid(theirs)){
                 const relation=UE.FactionUtils.GetFactionRelation(player,candidate);
                 if(relation===UE.ETeamAttitude.Hostile)return true;
-                if(relation===UE.ETeamAttitude.Friendly){friendly=true;continue;}
+                if(relation===UE.ETeamAttitude.Friendly)return false;
             }
         }catch(_){}
         try{if(known.includes(UE.KismetSystemLibrary.GetPathName(candidate.GetClass()).toLowerCase()))return true;}catch(_){}
-        for(const name of ['GetOwnerAvatar','GetInstigator','GetOwner'])try{if(typeof candidate[name]==='function')queue.push(candidate[name]());}catch(_){}
+        for(const name of ['GetInstigator','GetOwner'])try{if(typeof candidate[name]==='function')queue.push(candidate[name]());}catch(_){}
     }
-    return friendly?false:null;
+    return null;
 }
 function kill(player){
     const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);if(!asc)throw Error('Système de vie indisponible');
@@ -2705,23 +2713,30 @@ function attach(host,session){
     if(!session.active||!model.enabled(session.run))return;
     const root=UE.Widget.Find('Overlay_0',host.WidgetTree);if(!root?.AddChildToOverlay)return;
     stop();
-    const box=UE.NewObject(UE.VerticalBox.StaticClass(),host),size=UE.NewObject(UE.SizeBox.StaticClass(),host);size.SetWidthOverride(330);size.AddChild(box);
-    const slot=root.AddChildToOverlay(size),margin=new UE.Margin();margin.Right=90;margin.Top=65;
-    slot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Right);slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);slot.SetPadding(margin);
-    size.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
-    const fontObject=UE.Font.Load('/Game/PBZContent/UI/Fonts/STZHONGS_Font.STZHONGS_Font');
-    const add=fontSize=>{
-        const label=UE.NewObject(UE.TextBlock.StaticClass(),host),font=new UE.SlateFontInfo();font.FontObject=fontObject;font.TypefaceFontName='Default';font.Size=fontSize;
-        label.SetFont(font);label.SetJustification(UE.ETextJustify.Right);label.SetShadowOffset(new UE.Vector2D(1,1));label.SetShadowColorAndOpacity(new UE.LinearColor(0,0,0,0.9));
-        label.SetVisibility(UE.ESlateVisibility.HitTestInvisible);box.AddChildToVerticalBox(label);return label;
-    };
-    view={host,box:size,label:add(18),clock:add(32),hits:add(22),status:add(16),last:null};
-    update(session);
+    const box=UE.NewObject(UE.VerticalBox.StaticClass(),host),size=UE.NewObject(UE.SizeBox.StaticClass(),host);
+    try{
+        size.SetWidthOverride(330);size.AddChild(box);
+        const slot=root.AddChildToOverlay(size),margin=new UE.Margin();margin.Right=90;margin.Top=65;
+        slot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Right);slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);slot.SetPadding(margin);
+        size.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
+        const fontObject=UE.Font.Load('/Game/PBZContent/UI/Fonts/STZHONGS_Font.STZHONGS_Font');
+        const add=fontSize=>{
+            const label=UE.NewObject(UE.TextBlock.StaticClass(),host),font=new UE.SlateFontInfo();font.FontObject=fontObject;font.TypefaceFontName='Default';font.Size=fontSize;
+            label.SetFont(font);label.SetJustification(UE.ETextJustify.Right);label.SetShadowOffset(new UE.Vector2D(1,1));label.SetShadowColorAndOpacity(new UE.LinearColor(0,0,0,0.9));
+            label.SetVisibility(UE.ESlateVisibility.HitTestInvisible);box.AddChildToVerticalBox(label);return label;
+        };
+        view={host,box:size,label:add(18),clock:add(32),hits:add(22),status:add(16),last:null};
+        update(session);
+    }catch(error){
+        view=null;try{if(valid(size))size.RemoveFromParent();}catch(_){}
+        throw error;
+    }
 }
 function update(session,context){
     if(view&&!valid(view.box))view=null;
-    if(!view&&context&&session.active&&!session.boss.training&&model.enabled(session.run)&&Date.now()-lastSearch>1000){
-        lastSearch=Date.now();const cls=UE.Class.Find('/Game/PBZContent/UI/FrontEnd/W_FrontEndHUDLayout.W_FrontEndHUDLayout_C');
+    const now=Date.now();
+    if(!view&&context&&session.active&&!session.boss.training&&model.enabled(session.run)&&(now<lastSearch||now-lastSearch>1000)){
+        lastSearch=now;const cls=UE.Class.Find('/Game/PBZContent/UI/FrontEnd/W_FrontEndHUDLayout.W_FrontEndHUDLayout_C');
         if(cls){const out=puerts.$ref(UE.NewArray(UE.UserWidget));UE.WidgetBlueprintLibrary.GetAllWidgetsOfClass(context,out,cls,false);const all=puerts.$unref(out);for(let i=0;i<all.Num();i++)if(valid(all.Get(i))){attach(all.Get(i),session);break;}}
     }
     if(!view)return;
@@ -2761,7 +2776,7 @@ const __UE=__nativeRequire('ue');
 const __enabled=/(?:^|\s)-CodexBossLab(?:\s|$)/i.test(__UE.KismetSystemLibrary.GetCommandLine());
 if(__enabled){
     if(globalThis.__CodexBossesLoader)throw new Error('BOSSES requires a full game restart. Hot reload is not supported.');
-    const state=globalThis.__CodexBossesLoader={phase:'preparing',version:'0.7.0-preview.1',hooks:[]};
+    const state=globalThis.__CodexBossesLoader={phase:'preparing',version:'0.7.0-preview.2',hooks:[]};
     const plan=[
         ['UI/Widget/StartMenu','StartmenuMinXinInterface','patchStartMenu'],
         ['Gameplay/GameModeBuild','GameModeBuildMixinInterface','patchGameMode'],

@@ -9,14 +9,17 @@ function create(value,boss){
 function enabled(state){return !!state&&(state.options.timer!=="off"||state.options.hits66);}
 function advance(state,delta,flags={}){
     if(!state||["failed","finished","abandoned"].includes(state.phase))return;
-    if(state.phase==="waiting"&&flags.ready&&!flags.paused&&(!flags.cinematic||flags.interactive)&&!flags.dead){state.phase="combat";state.reason=null;state.active=false;return;}
+    if(state.phase==="waiting"&&flags.ready&&!flags.loading&&!flags.paused&&(!flags.cinematic||flags.interactive)&&!flags.dead){state.phase="combat";state.reason=null;state.active=true;return;}
     const canFight=state.phase==="combat"||(state.phase==="finishing"&&flags.interactive);
+    const wasActive=state.active;
     state.active=!!(canFight&&flags.ready&&!flags.paused&&!flags.loading&&!flags.dead&&(!flags.cinematic||flags.interactive));
     state.reason=state.active?null:flags.loading?"loading":flags.paused?"pause":flags.cinematic&&!flags.interactive?"cinematic":state.phase==="finishing"?"victory":"waiting";
-    if(state.active&&Number.isFinite(delta)&&delta>0){state.totalMs+=delta;state.attemptMs+=delta;}
+    // Only charge intervals whose two sampled ends are playable. A resume must
+    // never bill an unknown gap spent inside a menu, movie or loading screen.
+    if(wasActive&&state.active&&Number.isFinite(delta)&&delta>0){state.totalMs+=delta;state.attemptMs+=delta;}
 }
 function enter(state,boss,kind="retry"){
-    if(!state||["failed","abandoned"].includes(state.phase))return false;
+    if(!state||["failed","finished","abandoned"].includes(state.phase))return false;
     if(kind==="retry"&&state.reason!=="defeat")state.lastAttempt={boss:state.currentBoss,ms:state.attemptMs,result:"retry"};
     state.attempt=kind==="retry"?state.attempt+1:1;
     state.currentBoss=boss;state.attemptMs=0;state.phase="waiting";state.active=false;state.reason="preparing";
@@ -29,7 +32,7 @@ function hit(state,interactive=false){
     state.phase="failed";state.active=false;state.reason="66hits";return true;
 }
 function death(state){
-    if(!state||["failed","finished","abandoned"].includes(state.phase))return;
+    if(!state||["failed","finished","abandoned"].includes(state.phase)||(state.phase==="waiting"&&state.reason==="defeat"))return;
     state.deaths++;state.active=false;state.reason="defeat";
     state.lastAttempt={boss:state.currentBoss,ms:state.attemptMs,result:"death"};
     state.phase="waiting";

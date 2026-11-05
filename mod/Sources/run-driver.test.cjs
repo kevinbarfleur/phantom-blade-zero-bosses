@@ -15,7 +15,7 @@ function harness(){
  const exports={},session={active:true,boss:{id:'a',classes:['boss'],profile:{directEntry:{sequences:['intro']}}},worldLoadingComplete:true,arrivalAnchorPending:false,ux:{directReady:true,directCombatStarted:true,directIntroObserved:true},run:model.create({timer:'series',hits66:true},'a')};
  vm.runInNewContext(fs.readFileSync(__dirname+'/run-driver.js','utf8'),{exports,require:n=>({'ue':UE,'puerts':{$ref:value=>({value}),$unref:r=>r.value},'./run-model':model,'./run-hud':{stop(){},update(){}},'./cinema':{pending:()=>pending}}[n])});
  const context={};exports.install(context,session);
- return {api:exports,session,tasks,calls,player,boss,friend,actor,UE,tick(ms=100){now+=ms;exports.tick(context,session);},hit(source=boss,target=player){tasks.at(-1).EventReceived.emit({Instigator:source,Target:target});},set sequence(v){sequence=v;},set qte(v){qte=v;},set paused(v){paused=v;},set pending(v){pending=v;}};
+ return {api:exports,session,tasks,calls,player,boss,friend,actor,UE,tick(ms=100){now+=ms;exports.tick(context,session);},hit(source=boss,target=player){tasks.at(-1).EventReceived.emit({Instigator:source,Target:target});},set now(v){now=v;},set sequence(v){sequence=v;},set qte(v){qte=v;},set paused(v){paused=v;},set pending(v){pending=v;}};
 }
 test('native incoming-hit listener accepts enemies and owned projectiles, excludes friends, self and outgoing hits',()=>{
  const h=harness();h.tick();h.hit();const bullet=h.actor('bullet');bullet.GetInstigator=()=>h.boss;h.hit(bullet);h.hit(h.friend);h.hit(h.player);h.hit(h.boss,h.boss);assert.equal(h.session.run.hits,2);assert.equal(h.tasks.length,1);
@@ -31,7 +31,7 @@ test('a stopped listener cannot affect the next world or count duplicate notific
 test('world real time excludes pause, loading and movies, but counts native QTE time',()=>{
  const h=harness();h.tick();h.tick(1000);assert.equal(h.session.run.totalMs,1000);h.paused=true;h.tick(4000);h.paused=false;
  h.sequence=true;h.tick(6000);assert.equal(h.session.run.totalMs,1000);h.hit();assert.equal(h.session.run.hits,0);
- h.qte=true;h.tick(700);h.hit();assert.equal(h.session.run.totalMs,1700);assert.equal(h.session.run.hits,1);
+ h.qte=true;h.tick(100);h.tick(700);h.hit();assert.equal(h.session.run.totalMs,1700);assert.equal(h.session.run.hits,1);
  h.qte=false;h.sequence=false;h.session.worldLoadingComplete=false;h.tick(9000);assert.equal(h.session.run.totalMs,1700);
 });
 test('unresolved incoming sources flag the result instead of silently claiming a valid hit budget',()=>{
@@ -53,4 +53,12 @@ test('a completed series starts fresh and QTE state cannot leak into a run with 
  const h=harness();h.tick();const completed=h.session.run;completed.hits=20;completed.totalMs=90000;completed.phase='finished';h.session.runInteractiveActive=true;
  h.api.enter(h.session,h.session.boss,null);assert.notEqual(h.session.run,completed);assert.equal(completed.totalMs,90000);assert.equal(h.session.run.hits,0);assert.equal(h.session.run.totalMs,0);assert.equal(h.session.runInteractiveActive,false);
  h.session.run.options={timer:'off',hits66:false};h.session.runInteractiveActive=true;h.tick();assert.equal(h.session.runInteractiveActive,false);
+});
+test('a reflected projectile owned by the player is excluded even when its old instigator is an enemy',()=>{
+ const h=harness();h.tick();const reflected=h.actor('bullet','enemy');reflected.GetOwnerAvatar=()=>h.player;reflected.GetInstigator=()=>h.boss;h.hit(reflected);assert.equal(h.session.run.hits,0);assert.equal(h.session.run.invalid,undefined);
+ const allyOwned=h.actor('bullet');allyOwned.GetOwnerAvatar=()=>h.friend;allyOwned.GetInstigator=()=>h.boss;h.hit(allyOwned);assert.equal(h.session.run.hits,0);
+});
+test('a native world-clock reset immediately refreshes QTE detection without charging negative time',()=>{
+ const h=harness();h.tick(50000);h.tick(1000);h.sequence=true;h.qte=true;h.tick(100);h.tick(1000);assert.equal(h.session.run.totalMs,2100);
+ h.qte=false;h.now=0;h.tick(0);h.hit();assert.equal(h.session.run.hits,0);assert.equal(h.session.runInteractiveActive,false);assert.equal(h.session.run.totalMs,2100);
 });

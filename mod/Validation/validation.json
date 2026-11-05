@@ -1,10 +1,10 @@
 {
-  "version": "0.7.0-preview.1",
+  "version": "0.7.0-preview.2",
   "gameBuild": 26367565,
   "runtimeCompatible": null,
   "gameplayValidated": false,
   "codeTests": {
-    "passed": 129,
+    "passed": 139,
     "failed": 0
   },
   "deploymentTests": {
@@ -14,7 +14,7 @@
   },
   "liveTest": {
     "executed": false,
-    "reason": "Windows UAC was canceled or expired. No elevated test guardian started for this version."
+    "reason": "User is absent and requested code tests only. No live game test or UAC request was performed for this revision."
   },
   "features": {
     "timerModes": [
@@ -27,7 +27,7 @@
     "hitBudget": 66,
     "retryPreservesHitBudget": true,
     "sourceEvent": "GameplayEvent.Actor.Hit.Target",
-    "sourceAttribution": "Native faction relation, selected boss classes and ownership chain",
+    "sourceAttribution": "Current bullet owner avatar, native faction relation, selected boss classes and ownership chain",
     "unknownSource": "Result flagged as unverified; no guessed hit count",
     "qteDetection": "Native visible QTE widgets and sequence names containing QTE"
   },
