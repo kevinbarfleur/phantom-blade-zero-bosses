@@ -56,7 +56,7 @@ function hostileSource(source,player,session){
     return null;
 }
 function kill(player){
-    const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);if(!asc)throw Error('Système de vie indisponible');
+    const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);if(!asc)throw Error('Health system unavailable');
     UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health_Min',UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,0);
     asc.BP_ApplyGameplayEffectToSelf(UE.Class.Load('/Game/PBZContent/Blueprint/Ability/GameplayEffects/GE_Kill.GE_Kill_C'),1,asc.MakeEffectContext());
 }
@@ -66,14 +66,14 @@ function bind(context,session,player){
     scope.player=player;scope.task=null;
     if(!session.run.options.hits66)return;
     const owner=scope,task=UE.AbilityAsync_WaitGameplayEvent.WaitGameplayEventToActor(player,tag('GameplayEvent.Actor.Hit.Target'),false,true);
-    if(!task)throw Error('Événement de coup reçu indisponible');
+    if(!task)throw Error('Incoming hit event unavailable');
     owner.task=task;owner.onHit=payload=>{try{
         if(scope!==owner||!session.active||session.boss.training||!valid(player)||session.run.phase==='failed')return;
         if(valid(payload.Target)&&payload.Target!==player)return;
         const current=sample(context,session,player);if(current.paused||current.loading||(current.cinematic&&!current.interactive)||!(session.run.phase==='combat'||(session.run.phase==='finishing'&&current.interactive)))return;
         const source=hostileSource(payload.Instigator,player,session);
         if(source===false)return;
-        if(source===null){session.run.invalid=true;session.run.invalidReason='Source de coup non attribuée';session.run.unknownSources=(session.run.unknownSources||0)+1;return;}
+        if(source===null){session.run.invalid=true;session.run.invalidReason='Hit source could not be identified';session.run.unknownSources=(session.run.unknownSources||0)+1;return;}
         if(model.hit(session.run,session.runInteractiveActive)){
             session.autoNext=false;if(session.completionToken)session.completionToken.cancelled=true;
             kill(player);
@@ -107,4 +107,4 @@ exports.install=install;exports.stop=stop;exports.tick=tick;exports.enter=enter;
 exports.victory=(context,session)=>{beforeEvent(context,session);model.pendingVictory(session.run);};
 exports.finishVictory=(session,hasNext)=>model.finishVictory(session.run,hasNext);
 exports.death=(context,session)=>{beforeEvent(context,session);model.death(session.run);};
-exports.summary=session=>model.summary(session.run)+(session.run?.invalid?'\nDétection à vérifier':'');
+exports.summary=session=>model.summary(session.run)+(session.run?.invalid?'\nCheck hit detection':'');

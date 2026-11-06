@@ -1,33 +1,86 @@
 {
-  "passed": 7,
+  "passed": 20,
   "failed": 0,
-  "cases": [
+  "noGameMutation": true,
+  "tests": [
     {
-      "case": "traversal",
+      "case": "parse-and-control-flow-Acquire-Dependency.ps1",
       "passed": true
     },
     {
-      "case": "absolute",
+      "case": "parse-and-control-flow-Watch-Restoration.ps1",
       "passed": true
     },
     {
-      "case": "native-script",
+      "case": "parse-and-control-flow-Restore-Campaign.ps1",
       "passed": true
     },
     {
-      "case": "duplicate",
+      "case": "parse-and-control-flow-Start-Bosses.ps1",
       "passed": true
     },
     {
-      "case": "hash",
+      "case": "parse-and-control-flow-Session-Core.ps1",
       "passed": true
     },
     {
-      "case": "foreign-proxy",
+      "case": "cmd-entry-Start-Bosses",
       "passed": true
     },
     {
-      "case": "valid",
+      "case": "cmd-entry-Restore-Campaign",
+      "passed": true
+    },
+    {
+      "case": "english-watcher-and-scoped-elevation",
+      "passed": true
+    },
+    {
+      "case": "official-1.0.2-zip-hash-and-selected-files",
+      "passed": true
+    },
+    {
+      "case": "corrupt-cache-repaired-from-verified-archive",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-traversal",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-absolute",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-native-script",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-duplicate",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-hash",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-foreign-proxy",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-wrong-build",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-qa-only",
+      "passed": true
+    },
+    {
+      "case": "isolated-preflight-valid",
+      "passed": true
+    },
+    {
+      "case": "unrecognized-zip-rejected-with-English-instruction",
       "passed": true
     }
   ]

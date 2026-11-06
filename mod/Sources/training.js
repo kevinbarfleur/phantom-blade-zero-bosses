@@ -4,7 +4,7 @@ const inanis=require("./inanis");
 // Native DA_JhsyBellDataAsset: this is the existing Inanis sanctuary, with
 // its native streaming anchor, geometry and camera orientation. No bell is added.
 const location={X:-147150,Y:-12900.74,Z:5000830};
-const destination={id:"Codex_Training",label:"ENTRAÎNEMENT",training:true,members:[],classes:[],map:"DuanHunYa",balance:{weaponLevel:30},
+const destination={id:"Codex_Training",label:"TRAINING",training:true,members:[],classes:[],map:"DuanHunYa",balance:{weaponLevel:30},
     profile:{level:"PBZ_Duanhun_WP",bell:"Bell_JYG_001",broken:false,transform:{Location:location,Rotation:{Roll:0,Pitch:0,Yaw:0}},camera:{Roll:0,Pitch:0,Yaw:0},arena:location,
     clearActors:[],clearTags:[],nodeIDs:[],graphs:[],loadLayers:[],unloadLayers:[]}};
 function tick(context,session){

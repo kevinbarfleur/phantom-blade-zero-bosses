@@ -113,7 +113,7 @@
       "groups": [],
       "source": "regional-baseline"
     },
-    "variant": "JEUNESSE",
+    "variant": "YOUTH",
     "available": false,
     "availabilityReason": "Sequence-controlled encounter without a registered preparation bell. A complete standalone replay has not been validated."
   },
@@ -330,7 +330,7 @@
       "groups": [],
       "source": "regional-baseline"
     },
-    "variant": "POURSUITE",
+    "variant": "PURSUIT",
     "available": false,
     "availabilityReason": "Sequence-controlled encounter without a registered preparation bell. A complete standalone replay has not been validated."
   },
@@ -1001,7 +1001,7 @@
       ],
       "source": "native-mob-group-area"
     },
-    "variant": "SIX LAMES"
+    "variant": "SIX BLADES"
   },
   {
     "id": "BP_Monster_AHua_GuiTouDao",
@@ -3380,7 +3380,7 @@
     },
     "available": false,
     "deprecatedAliasOf": "BP_Monster_Yuu",
-    "unavailableReason": "Combat regroupé avec la Danseuse de jade : les deux gardiens se combattent ensemble dans leur rencontre native."
+    "unavailableReason": "Combined with Jade Dancer: both guardians are fought together in their native encounter."
   },
   {
     "id": "BP_Monster_GuiChai_Red",
@@ -7784,7 +7784,7 @@
       "id": "DieXueZhiLu",
       "key": "Chapter_13",
       "order": 8,
-      "label": "FORÊT ÉCARLATE"
+      "label": "SCARLET FOREST"
     },
     "locationKey": "Levelname_LZSJ_001",
     "balance": {
@@ -9143,12 +9143,12 @@
     },
     "chapter": {
       "id": "Statues",
-      "label": "ÉPREUVES DES STATUES",
+      "label": "STATUE TRIALS",
       "order": 20
     },
     "locationKey": "Levelname_NLES_001",
     "trial": 1,
-    "variant": "ÉPREUVE I",
+    "variant": "TRIAL I",
     "balance": {
       "weaponLevel": 10,
       "areas": [
@@ -9402,12 +9402,12 @@
     },
     "chapter": {
       "id": "Statues",
-      "label": "ÉPREUVES DES STATUES",
+      "label": "STATUE TRIALS",
       "order": 20
     },
     "locationKey": "Levelname_NLES_001",
     "trial": 2,
-    "variant": "ÉPREUVE II",
+    "variant": "TRIAL II",
     "balance": {
       "weaponLevel": 10,
       "areas": [
@@ -9662,12 +9662,12 @@
     },
     "chapter": {
       "id": "Statues",
-      "label": "ÉPREUVES DES STATUES",
+      "label": "STATUE TRIALS",
       "order": 20
     },
     "locationKey": "Levelname_NLES_001",
     "trial": 3,
-    "variant": "ÉPREUVE III",
+    "variant": "TRIAL III",
     "balance": {
       "weaponLevel": 19,
       "areas": [
@@ -9923,12 +9923,12 @@
     },
     "chapter": {
       "id": "Statues",
-      "label": "ÉPREUVES DES STATUES",
+      "label": "STATUE TRIALS",
       "order": 20
     },
     "locationKey": "Levelname_NLES_001",
     "trial": 4,
-    "variant": "ÉPREUVE IV",
+    "variant": "TRIAL IV",
     "balance": {
       "weaponLevel": 25,
       "areas": [
@@ -10185,12 +10185,12 @@
     },
     "chapter": {
       "id": "Statues",
-      "label": "ÉPREUVES DES STATUES",
+      "label": "STATUE TRIALS",
       "order": 20
     },
     "locationKey": "Levelname_NLES_001",
     "trial": 5,
-    "variant": "ÉPREUVE V",
+    "variant": "TRIAL V",
     "balance": {
       "weaponLevel": 26,
       "areas": [

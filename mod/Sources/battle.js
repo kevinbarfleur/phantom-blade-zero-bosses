@@ -87,7 +87,7 @@ function prepareEntranceFlow(context,session){
     // initial registration. A streamed/pool pawn may miss that start. Reuse
     // the component's native dynamic initialization instead of inventing AI.
     const flow=UE.FlowAsset.Load(path+'.'+path.split('/').pop());
-    if(!flow||typeof component.SetAndStartRootFlow!=='function')throw Error('Initialisation native du combat indisponible');
+    if(!flow||typeof component.SetAndStartRootFlow!=='function')throw Error('Native fight initialization unavailable');
     component.SetAndStartRootFlow(flow);session.entranceFlowPrepared=true;session.entryBoundaryPending=true;
     session.ux={...session.ux,nativeEntranceFlowInitialized:path};
 }
@@ -295,7 +295,7 @@ exports.prepareEncounter=(context,session)=>{
             // leaf layers change; never recursively activate the campaign tree.
             for(const [paths,state]of [[p.unloadLayers||[],0],[p.loadLayers||[],2]])for(const path of paths){
                 const asset=UE.DataLayerAsset.Load(path);
-                if(!asset)throw new Error("Couche de carte indisponible: "+path);
+                if(!asset)throw new Error("Map layer unavailable: "+path);
                 manager.SetDataLayerRuntimeState(asset,state,false);
             }
             session.layersPrepared=true;session.ux={...session.ux,nativeLayersPrepared:true};

@@ -1,1 +1,0 @@
-Sources du mod et preuves du catalogue. Le bundle executable est Payload/ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js. Node.js : node --test Sources/*.test.cjs. Les doublures natives des tests ne certifient pas le jeu reel. Les modules control-qa, control-actions et exercise-suite sont inactifs dans le paquet public manuel.

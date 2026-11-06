@@ -9,9 +9,9 @@ function harness(){
  const session={active:true,boss:{},run:model.create({timer:'series',hits66:true},'a')};return {api:exports,UE,session,labels,boxes,slots,borders,set now(v){now=v;},set failFont(v){failFont=v;}};
 }
 test('the HUD shows cumulative time and the hit budget, with a distinct paused and failed state',()=>{
- const h=harness();h.api.update(h.session,{});assert.equal(h.boxes.length,1);assert.equal(h.labels[0].text,'SÉRIE');assert.equal(h.labels[1].text,'00:00.00');assert.match(h.labels[2].text,/0 \/ 66/);
- h.session.run.totalMs=65432;h.session.run.reason='pause';h.api.update(h.session,{});assert.equal(h.labels[1].text,'01:05.43');assert.equal(h.labels[3].text,'EN PAUSE');
- h.session.run.hits=66;h.session.run.phase='failed';h.api.update(h.session,{});assert.match(h.labels[2].text,/66 \/ 66/);assert.equal(h.labels[3].text,'DÉFI TERMINÉ');h.api.stop();assert.equal(h.boxes[0].removed,true);
+ const h=harness();h.api.update(h.session,{});assert.equal(h.boxes.length,1);assert.equal(h.labels[0].text,'SERIES');assert.equal(h.labels[1].text,'00:00.00');assert.match(h.labels[2].text,/0 \/ 66/);
+ h.session.run.totalMs=65432;h.session.run.reason='pause';h.api.update(h.session,{});assert.equal(h.labels[1].text,'01:05.43');assert.equal(h.labels[3].text,'PAUSED');
+ h.session.run.hits=66;h.session.run.phase='failed';h.api.update(h.session,{});assert.match(h.labels[2].text,/66 \/ 66/);assert.equal(h.labels[3].text,'CHALLENGE OVER');h.api.stop();assert.equal(h.boxes[0].removed,true);
 });
 test('the overlay remains invisible in training and non-interactive movies, but visible during QTE',()=>{
  const h=harness();h.api.update(h.session,{});h.session.cinematicActive=true;h.api.update(h.session,{});assert.equal(h.boxes[0].visibility,2);
@@ -19,7 +19,7 @@ test('the overlay remains invisible in training and non-interactive movies, but 
  h.api.stop();
 });
 test('an unresolved hit source is visible in the HUD and a disabled timer creates no empty clock',()=>{
- const h=harness();h.session.run.options.timer='off';h.api.update(h.session,{});assert.equal(h.labels[1].visibility,2);h.session.run.invalid=true;h.api.update(h.session,{});assert.equal(h.labels[3].text,'DÉTECTION À VÉRIFIER');h.api.stop();
+ const h=harness();h.session.run.options.timer='off';h.api.update(h.session,{});assert.equal(h.labels[1].visibility,2);h.session.run.invalid=true;h.api.update(h.session,{});assert.equal(h.labels[3].text,'CHECK DETECTION');h.api.stop();
 });
 test('a native construction failure removes the partial overlay before a later retry',()=>{
  const h=harness();h.failFont=true;assert.throws(()=>h.api.update(h.session,{}),/font temporarily unavailable/);assert.equal(h.boxes.length,1);assert.equal(h.boxes[0].removed,true);
@@ -31,9 +31,9 @@ test('a backwards wall clock does not prevent the HUD from attaching to a replac
 
 test('a dark native backdrop preserves HUD width, anchor and fonts without accepting input',()=>{
  const h=harness();h.api.update(h.session,{});const size=h.boxes[0],border=h.borders[0];
- assert.equal(size.width,330);assert.equal(size.content,border);assert.equal(border.parent,size);assert.equal(border.visibility,1);assert.equal(size.visibility,1);
- assert.equal(border.brushColor.A,0.76);assert(border.brushColor.R<0.02);assert.equal(border.padding.Left,14);assert.equal(border.padding.Right,14);assert.equal(border.padding.Top,10);assert.equal(border.padding.Bottom,10);
- assert.equal(h.slots[0].margin.Right,90);assert.equal(h.slots[0].margin.Top,190);assert.deepEqual(h.labels.map(l=>l.font.Size),[18,32,22,16]);assert(h.labels.every(l=>l.visibility===1||l.visibility===2));
+ assert.equal(size.width,250);assert.equal(size.content,border);assert.equal(border.parent,size);assert.equal(border.visibility,1);assert.equal(size.visibility,1);
+ assert.equal(border.brushColor.A,0.40);assert(border.brushColor.R<0.02);assert.equal(border.padding.Left,10);assert.equal(border.padding.Right,10);assert.equal(border.padding.Top,6);assert.equal(border.padding.Bottom,6);
+ assert.equal(h.slots[0].margin.Right,65);assert.equal(h.slots[0].margin.Top,60);assert.deepEqual(h.labels.map(l=>l.font.Size),[14,26,18,14]);assert(h.labels.every(l=>l.visibility===1||l.visibility===2));
  h.session.cinematicActive=true;h.api.update(h.session,{});assert.equal(size.visibility,2);h.api.stop();assert.equal(size.removed,true);assert.equal(border.parent,size,'border stays owned by the removed outer subtree');
 });
 

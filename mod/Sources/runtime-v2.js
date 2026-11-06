@@ -37,7 +37,7 @@ function fail(context, message) {
     if(validation.ui)validation.ui(context,"operation-error",session,{message});
     const recovery=recoverFailedChallenge(context,message);
     if(recovery==='retry')return;
-    if(recovery==='exhausted')message="Le retour automatique à l'entraînement a échoué après trois tentatives. Le défi est terminé. Appuyez sur F8, puis choisissez ENTRAÎNEMENT pour réessayer.\n\n"+message;
+    if(recovery==='exhausted')message="Returning to Training failed after three attempts. The challenge is over. Press F8 and choose TRAINING to try again.\n\n"+message;
     try {
         if (!valid(context)) return;
         const action = UE.AsyncAction_ShowConfirmation.ShowConfirmationOk(context, text("BOSSES"), text(message));
@@ -47,7 +47,7 @@ function fail(context, message) {
 function requestFor(instance, kind) {
     const request = { instance, kind, applied: false, timer: null,retryTimer:null,attempts:0 }; pending = request;
     request.timer = setTimeout(() => {
-        if (pending === request) fail(instance, "Le jeu n'a pas terminé la sauvegarde. Aucun nouveau combat n'a été chargé. Réessaie avec F8.");
+        if (pending === request) fail(instance, "The game did not finish saving. No new fight was loaded. Press F8 to try again.");
     }, 20000);
     return request;
 }
@@ -61,7 +61,7 @@ function replaceWhenReady(saveLoad,param,json,request,callback){
         request.attempts++;
         let result;
         try{result=saveLoad.ReplaceSaveString(param,puerts.toDelegate(request.instance,callback),json);}
-        catch(error){fail(request.instance,"Écriture interrompue : "+String(error));return;}
+        catch(error){fail(request.instance,"Save interrupted: "+String(error));return;}
         session.lastWrite={kind:request.kind,attempts:request.attempts,result:result?.ResultType};
         // The native save master can reject a simultaneous advanced/slot write
         // without a completion delegate. Re-submit the same immutable checkpoint;
@@ -78,7 +78,7 @@ function closeMenus(instance,done){
         for(const tag of ["UI.Layer.Menu","UI.Layer.GameSystem"]){
             const layer=layout&&layout.Layers.Get(gameplayTag(tag)),widget=layer&&layer.GetActiveWidget();
             if(valid(widget)){
-                if(++count>24){fail(instance,"La fermeture du menu n'a pas abouti.");return;}
+                if(++count>24){fail(instance,"The menu could not close.");return;}
                 widget.DeactivateWidget();setTimeout(step,0);return;
             }
         }
@@ -89,7 +89,7 @@ function closeMenus(instance,done){
 function writeEncounter(context, difficulty, boss = session.boss, prepare = true, skipIntroduction = false) {
     try {
         const instance = UE.GameplayStatics.GetGameInstance(context), saveLoad = saveLoadFor(instance), slot = slotFor(difficulty);
-        if (!valid(instance) || !saveLoad) throw new Error("Interface de sauvegarde indisponible");
+        if (!valid(instance) || !saveLoad) throw new Error("Save interface unavailable");
         busy = true;
         const pristine = model.bossSnapshot(snapshot, boss,{direct:!boss.training});
         const root = model.encounterSave(pristine, session.gear, difficulty, session.initialized, difficulty === UE.EDifficultMode.NightMare, boss.balance);
@@ -97,7 +97,7 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
         param.SaveSlotName = slot; param.bShowSaveTip = false;
         replaceWhenReady(saveLoad,param,JSON.stringify(root),request,(slotName, _json, _index, success) => {
             if (slotName !== slot || !finishRequest(request)) return;
-            if (!success) return fail(instance, "Le point de départ du combat n'a pas pu être écrit.");
+            if (!success) return fail(instance, "The fight starting point could not be saved.");
             if(session.run?.phase==='failed'&&!boss.training&&!session.pendingRunOptions){busy=false;return;}
             try {
                 closeMenus(instance,()=>{
@@ -108,7 +108,7 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 entryProtection.stop('encounter-change');
                 const resultRef = puerts.$ref(new UE.LoadGameResultParam()); instance.LoadGame(slot, resultRef);
                 const result = puerts.$unref(resultRef);
-                if (!result || result.ResultType !== UE.ESaveLoadResultType.Success || String(result.LevelName) !== pristine.PBZGameSystem.CurrentLevelName) throw new Error("Le point de départ n'a pas été reconnu");
+                if (!result || result.ResultType !== UE.ESaveLoadResultType.Success || String(result.LevelName) !== pristine.PBZGameSystem.CurrentLevelName) throw new Error("The starting point was not recognized");
                 session.active = true; session.difficulty = difficulty; session.boss = boss; session.completed = false;session.completionToken=null;session.victory=null;
                 runs.enter(session,boss,session.pendingRunOptions);session.runOptions=session.run?.options||session.runOptions;session.pendingRunOptions=null;session.runFailureShown=false;session.runRuntimeError=null;
                 session.entryProtectionExpired=false;
@@ -153,7 +153,7 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
             } catch (error) { fail(instance, String(error)); }
         });
         return true;
-    } catch (error) { fail(context, "Chargement interrompu : " + String(error)); return false; }
+    } catch (error) { fail(context, "Loading interrupted: " + String(error)); return false; }
 }
 // Capture the current backpack and persist a pristine encounter checkpoint.
 function captureCheckpoint(context, then) {
@@ -172,14 +172,14 @@ function captureCheckpoint(context, then) {
         replaceWhenReady(saveLoad,param,JSON.stringify(root),request,(_slot, _json, _index, success) => {
             if(_slot!==param.SaveSlotName)return;
             if (!finishRequest(request)) return;
-            if (!success) return fail(instance, "Ton équipement n'a pas pu être mémorisé. Le combat n'a pas été réinitialisé.");
+            if (!success) return fail(instance, "Your equipment could not be saved. The fight was not reset.");
             try {
                 busy = false;
                 log("Loadout checkpoint captured");
                 const died=queuedDeath;queuedDeath=false;
                 if (died && session.run?.phase!=='failed') { writeEncounter(instance, session.difficulty,session.boss,false,true); }
                 else if (then) then(instance);
-            } catch (error) { fail(instance, "Équipement non enregistré : " + String(error)); }
+            } catch (error) { fail(instance, "Equipment not saved: " + String(error)); }
         });
         return true;
     } catch (error) { fail(context, String(error)); return false; }
@@ -227,11 +227,11 @@ function finishFailedChallenge(context,nativeDeath=false){
             // Claim this attempt before calling into the save subsystem: it
             // may report a synchronous error as well as an async failure.
             if(openTraining(live))return;
-            if(state.inFlight)fail(live,"Le retour à l'entraînement n'a pas pu commencer.");
+            if(state.inFlight)fail(live,"Returning to Training could not begin.");
             return;
         }
         if(++attempts<120)setTimeout(back,250);
-        else{state.queued=false;state.error=true;fail(live,"Le retour à l'entraînement n'a pas abouti. Utilisez ENTRAÎNEMENT pour quitter le défi terminé.");}
+        else{state.queued=false;state.error=true;fail(live,"Returning to Training failed. Choose TRAINING to leave the completed challenge.");}
     };
     setTimeout(back,250);
 }
@@ -252,8 +252,8 @@ function recoverFailedChallenge(context,message){
 function showFailedChallengeNotice(context){
     const result=session.runFailureReturn;
     if(!result||result.noticeShown||session.run!==result.run||!session.boss.training||!session.worldLoadingComplete||session.arrivalAnchorPending||busy||activeDialog)return;
-    const message='Défi terminé · 66 coups reçus.\nCombat atteint : '+result.name+'\nCombats remportés : '+result.run.splits.length+'\n\n'+runs.summary(session)+'\n\nDe retour chez Inanis. Préparez une nouvelle tentative.';
-    const action=UE.AsyncAction_ShowConfirmation.ShowConfirmationOk(context,text('66 HITS · DÉFI TERMINÉ'),text(message));
+    const message='Challenge over · 66 hits taken.\nFight reached: '+result.name+'\nFights won: '+result.run.splits.length+'\n\n'+runs.summary(session)+'\n\nBack at Inanis’ refuge. Prepare for another attempt.';
+    const action=UE.AsyncAction_ShowConfirmation.ShowConfirmationOk(context,text('66 HITS · CHALLENGE OVER'),text(message));
     action.Activate();result.noticeShown=true;session.lastRunResult={boss:result.boss,name:result.name,hits:result.run.hits,totalMs:result.run.totalMs,completed:result.run.splits.length,result:'66hits'};
     session.ux={...session.ux,runFailureReturned:true,runFailureNoticeShown:true};
     if(validation.ui)validation.ui(context,'challenge-ended-in-training',session,{result:session.lastRunResult});
@@ -353,8 +353,8 @@ function chooseDifficulty(context, boss = session.boss) {
                 session.pendingRunOptions={timer:widget.codexTimerMode||"off",hits66:!!widget.codexHits66};
                 try{
                     hold.beginLaunch(widget,session);
-                    if(!replay(instance,selected,boss))fail(instance,"Le chargement du combat n'a pas pu commencer. Réessaie depuis la sélection.");
-                }catch(error){fail(instance,"Transition interrompue : "+String(error));}
+                    if(!replay(instance,selected,boss))fail(instance,"The fight could not begin loading. Try again from Boss Select.");
+                }catch(error){fail(instance,"Transition interrupted: "+String(error));}
             };
             const onEnd = () => {
                 if (ended) return; ended = true; activeDialog = null;
@@ -365,10 +365,10 @@ function chooseDifficulty(context, boss = session.boss) {
             if(session.active&&valid(widget))pauseMenu(context,widget);
             if(validation.ui)validation.ui(context,"difficulty-opened",session,{paused:UE.GameplayStatics.IsGamePaused(context)});
             try { hold.configure(widget,session,boss); }
-            catch(error) { log("Hold UI: "+String(error));session.ux={error:String(error)};widget.DeactivateWidget();fail(instance,"La confirmation du combat n'a pas pu s'ouvrir. Réessaie depuis la sélection."); }
+            catch(error) { log("Hold UI: "+String(error));session.ux={error:String(error)};widget.DeactivateWidget();fail(instance,"The fight confirmation could not open. Try again from Boss Select."); }
         });
         action.Activate(); return true;
-    } catch (error) { activeDialog = null; difficultyFlow = null; fail(context, "Choix de difficulté indisponible : " + String(error)); return false; }
+    } catch (error) { activeDialog = null; difficultyFlow = null; fail(context, "Difficulty selection unavailable: " + String(error)); return false; }
 }
 function showMenu(context, screen = "bosses") {
     if (busy || activeDialog || !valid(context)) return false;
@@ -405,7 +405,7 @@ function showMenu(context, screen = "bosses") {
                         if(boss.action==="main")captureCheckpoint(context,()=>{session.active=false;runs.stop();require("../Library/TsHelper").default.returnStart(context);});
                     },0);return;
                 }
-                if(!boss.profile)return fail(owner,"Le point de départ de ce combat est encore en préparation.");
+                if(!boss.profile)return fail(owner,"The starting point for this fight is not ready yet.");
                 chooseDifficulty(owner,boss);
             };
         });
@@ -514,7 +514,7 @@ function beginKeys(context) {
                 training.tick(context,session);
                 entryProtection.tick(context,session);
                 if(arrivalTicks%15===0&&battle.activateDirectCombat&&!cinema.entryLoadingActive(context,session))battle.activateDirectCombat(context,session);
-                if(!session.runRuntimeError)try{runs.tick(context,session);}catch(error){session.runRuntimeError=String(error);session.autoNext=false;fail(context,"Chronomètre / 66 HITS indisponible : "+String(error));}
+                if(!session.runRuntimeError)try{runs.tick(context,session);}catch(error){session.runRuntimeError=String(error);session.autoNext=false;fail(context,"Timer / 66 HITS unavailable: "+String(error));}
                 if(session.run?.phase==='failed'){finishFailedChallenge(context);showFailedChallengeNotice(context);}
                 if(arrivalTicks%15===0&&!session.boss.training&&session.boss.profile.directEntry){
                     const tag=gameplayTag('CharacterState.InCombat'),asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);
@@ -527,7 +527,7 @@ function beginKeys(context) {
                 if(session.boss.training&&!session.arrivalAnchorPending&&!session.trainingTipShown){
                     session.trainingTipShown=true;
                     const helper=require("../Library/UIHelper").default;
-                    if(typeof helper.showTipsText==="function")helper.showTipsText(context,text("ENTRAÎNEMENT · NIV. 30\nInventaire · Équipement    Inanis · Combats"));
+                    if(typeof helper.showTipsText==="function")helper.showTipsText(context,text("TRAINING · LV. 30\nInventory · Equipment    Inanis · Fights"));
                 }
                 if(validation.enabled&&arrivalTicks%180===0)validation.ui(diagnosticContext,"input-heartbeat",session,{ticks:arrivalTicks,paused:UE.GameplayStatics.IsGamePaused(context),busy,activeDialog:!!activeDialog});
                 if(session.arrivalAnchorPending&&!busy){
@@ -556,9 +556,9 @@ function beginKeys(context) {
                 preparing = true;
                 try {
                     const counts = arsenal.initialize(context); session.initialized = true; session.arsenal = counts;
-                    session.report = counts.weapons + " armes · " + counts.edges + " lames · " + counts.accessories + " accessoires · " + counts.medicines + " remèdes";
+                    session.report = counts.weapons + " weapons · " + counts.edges + " phantom edges · " + counts.accessories + " accessories · " + counts.medicines + " medicines";
                     captureCheckpoint(context);
-                } catch (error) { fail(context, "Arsenal : " + String(error)); }
+                } catch (error) { fail(context, "Arsenal: " + String(error)); }
             }
             const controller = UE.GameplayStatics.GetPlayerController(context, 0);
             if (!valid(controller)) return;
@@ -638,7 +638,7 @@ function patchBell(Type){
         button.OnButtonBaseClicked.Add(()=>showMenu(this));
         for(const id of ["ItemUpgradeButton","ShopButton","AbilityCultivation","ManualSave"])if(this[id])this[id].SetVisibility(UE.ESlateVisibility.Collapsed);
         if(this.JhsyButton){
-            this.JhsyButton.SetVisibility(UE.ESlateVisibility.Visible);this.JhsyButton.SetButtonText(text(session.boss.training?"ÉQUIPEMENT":"ENTRAÎNEMENT"));
+            this.JhsyButton.SetVisibility(UE.ESlateVisibility.Visible);this.JhsyButton.SetButtonText(text(session.boss.training?"EQUIPMENT":"TRAINING"));
             this.JhsyButton.OnButtonBaseClicked.Clear();this.JhsyButton.OnButtonBaseClicked.Add(()=>{this.DeactivateWidget();setTimeout(()=>openTraining(this),0);});
         }
     });

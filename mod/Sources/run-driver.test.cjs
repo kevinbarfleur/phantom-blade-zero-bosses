@@ -35,7 +35,7 @@ test('world real time excludes pause, loading and movies, but counts native QTE 
  h.qte=false;h.sequence=false;h.session.worldLoadingComplete=false;h.tick(9000);assert.equal(h.session.run.totalMs,1700);
 });
 test('unresolved incoming sources flag the result instead of silently claiming a valid hit budget',()=>{
- const h=harness();h.tick();h.hit(h.actor('unknown'));assert.equal(h.session.run.hits,0);assert.equal(h.session.run.invalid,true);assert.equal(h.session.run.unknownSources,1);assert.match(h.api.summary(h.session),/vérifier/);
+ const h=harness();h.tick();h.hit(h.actor('unknown'));assert.equal(h.session.run.hits,0);assert.equal(h.session.run.invalid,true);assert.equal(h.session.run.unknownSources,1);assert.match(h.api.summary(h.session),/Check hit detection/);
 });
 test('scripted hits during a cinematic or a paused menu neither spend the budget nor invalidate it',()=>{
  const h=harness();h.tick();h.sequence=true;h.hit(h.actor('scripted'));assert.equal(h.session.run.hits,0);assert.equal(h.session.run.invalid,undefined);

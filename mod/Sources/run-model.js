@@ -55,8 +55,8 @@ function formatTime(value){
 function summary(state){
     if(!state)return "";
     const rows=[];
-    if(state.options.timer!=="off")rows.push((state.options.timer==="series"?"Série · ":"Combat · ")+formatTime(state.options.timer==="series"?state.totalMs:state.attemptMs));
-    if(state.options.timer==="series")rows.push("Combat · "+formatTime(state.attemptMs));
+    if(state.options.timer!=="off")rows.push((state.options.timer==="series"?"Series · ":"Fight · ")+formatTime(state.options.timer==="series"?state.totalMs:state.attemptMs));
+    if(state.options.timer==="series")rows.push("Fight · "+formatTime(state.attemptMs));
     if(state.options.hits66)rows.push("66 HITS · "+state.hits+" / 66");
     return rows.join("\n");
 }

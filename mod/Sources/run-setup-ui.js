@@ -26,10 +26,10 @@ function configure(widget,session,boss){
         draft.focus=id;widget.codexRunFocus=id;sync();
         for(const row of rows){const selected=row.id===id;if(selected)row.background.OnSelected();else row.background['Not Selected']();row.title.OverrideTextColor(selected?row.template.SelectedColor:row.template.DefaultColor);row.title.SetOutlineOverrideEnabled(selected);row.rotator.SetSelectedAppearance(selected);for(const overlay of row.arrows)overlay.SetVisibility(selected?UE.ESlateVisibility.SelfHitTestInvisible:UE.ESlateVisibility.Hidden);}
         button.ButtonResetHoldPercentage();stopFeedback();
-        const start=id==='start';button.Init(start,text(start?'MAINTENEZ POUR COMMENCER':'COMMENCER'),1);
+        const start=id==='start';button.Init(start,text(start?'HOLD TO START':'START'),1);
         button.SetTriggeringInputAction(start?require('../Library/UIHelper').default.MakePBZInputDataTableHandle('UpgradeHold'):new UE.DataTableRowHandle());
         if(help)help.SetText(text(setup.description(draft,id)));
-        if(hint)hint.SetText(text(start?'Maintenir · Commencer     Retour · Annuler':'Haut / Bas · Choisir     Gauche / Droite · Modifier     Retour · Annuler'));
+        if(hint)hint.SetText(text(start?'Hold · Start     Back · Cancel':'Up / Down · Select     Left / Right · Change     Back · Cancel'));
     };
     const cleanup=()=>{
         if(closed)return;closed=true;stopFeedback();
@@ -43,18 +43,18 @@ function configure(widget,session,boss){
     try{
         for(const id of ['Easy','Normal','Hard','Nightmare','Desc1','Desc2'])if(widget[id])widget[id].SetVisibility(UE.ESlateVisibility.Collapsed);
         for(const id of ['Easy','Normal','Hard','Nightmare'])if(widget[id]){widget[id].OnButtonBaseClicked.Clear();widget[id].SetIsFocusable(false);}
-        label('CONFIGURATION DE LA RUN',145,110,850);
+        label('RUN SETUP',145,110,850);
         const list=UE.NewObject(UE.VerticalBox.StaticClass(),widget);panel(list,120,230,860);
         const specs=[
-            {id:'format',label:'PARCOURS',values:['fight','series'],labels:['COMBAT UNIQUE','SÉRIE DE BOSS']},
-            {id:'difficulty',label:'DIFFICULTÉ',values:[1,2,3,4],labels:['VOYAGEUR','PIONNIER','EXPLORATEUR DES ENFERS','66 HITS']},
-            {id:'timer',label:'CHRONOMÈTRE',values:[false,true],labels:['DÉSACTIVÉ','ACTIVÉ']}
+            {id:'format',label:'FORMAT',values:['fight','series'],labels:['SINGLE FIGHT','BOSS SERIES']},
+            {id:'difficulty',label:'DIFFICULTY',values:[1,2,3,4],labels:['WAYFARER','PATHBREAKER','HELLWALKER','66 HITS']},
+            {id:'timer',label:'TIMER',values:[false,true],labels:['OFF','ON']}
         ];
         const replace=(original,fresh)=>{const parent=original.GetParent();original.RemoveFromParent();const slot=parent.AddChildToOverlay(fresh);slot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Fill);slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Fill);};
         for(const spec of specs){
             const template=UE.WidgetBlueprintLibrary.Create(widget,UE.Class.Load('/Game/PBZContent/UI/Settings/Editors/W_SettingsListEntry_Discrete.W_SettingsListEntry_Discrete_C'),controller);
             const find=name=>template[name]||UE.Widget.Find(name,template.WidgetTree),background=find('Background'),title=find('Text_SettingName'),original=find('Rotator_SettingValue');
-            if(!background||!title||!original)throw Error('Structure de la ligne de réglage inconnue');
+            if(!background||!title||!original)throw Error('Unsupported settings row layout');
             const rotator=UE.WidgetBlueprintLibrary.Create(widget,original.GetClass(),controller);replace(original,rotator);rotator.SetIsFocusable(true);
             const labels=UE.NewArray(UE.BuiltinText);for(const value of spec.labels)labels.Add(text(value));rotator.PopulateTextLabels(labels);rotator.SetSelectedItem(spec.values.indexOf(draft[spec.id]));
             title.SetPBZFormatText(text(spec.label));background.RemoveFromParent();const slot=list.AddChildToVerticalBox(background),padding=new UE.Margin();padding.Bottom=26;slot.SetPadding(padding);
@@ -62,7 +62,7 @@ function configure(widget,session,boss){
             bind(rotator.OnButtonBaseFocused,()=>focus(spec.id));bind(rotator.OnButtonBaseHovered,()=>{rotator.SetFocus();focus(spec.id);});
             bind(rotator.OnRotated,index=>{if(closed||submitted||updating||!Number.isInteger(index)||index<0||index>=spec.values.length)return;setup.set(draft,spec.id,spec.values[index]);focus(spec.id);});
             for(const [name,step]of [['Button_Decrease',-1],['Button_Increase',1]]){
-                const original=find(name);if(!original)throw Error('Flèche de réglage indisponible');
+                const original=find(name);if(!original)throw Error('Settings arrow unavailable');
                 const arrow=UE.WidgetBlueprintLibrary.Create(widget,original.GetClass(),controller);replace(original,arrow);arrow.SetIsFocusable(false);
                 bind(arrow.OnButtonBaseClicked,()=>{if(closed||submitted)return;rotator.SetFocus();focus(spec.id);if(step<0)rotator.ShiftTextLeft();else rotator.ShiftTextRight();});
             }
@@ -81,7 +81,7 @@ function configure(widget,session,boss){
         const focusables=[...rows.map(row=>row.rotator),button];
         for(let i=0;i<focusables.length;i++){focusables[i].SetNavigationRuleExplicit(UE.EUINavigation.Up,focusables[Math.max(0,i-1)]);focusables[i].SetNavigationRuleExplicit(UE.EUINavigation.Down,focusables[Math.min(focusables.length-1,i+1)]);}
         const name=require('./boss-label').resolve(boss,key=>UE.KismetTextLibrary.Conv_TextToString(require('../Library/UIHelper').default.GetTextByID(key)));
-        label(((name||'BOSSES')+(boss?.variant?' · '+boss.variant:'')).toLocaleUpperCase('fr-FR'),1080,710,650);
+        label(((name||'BOSSES')+(boss?.variant?' · '+boss.variant:'')).toLocaleUpperCase('en-US'),1080,710,650);
         help=label('',1080,790,650);hint=label('',145,910,1600);
         if(boss?.portrait){const image=UE.NewObject(UE.Image.StaticClass(),widget);image.SetVisibility(UE.ESlateVisibility.HitTestInvisible);const path=UE.KismetSystemLibrary.MakeSoftObjectPath(boss.halfPortrait||boss.portrait);image.SetBrushFromSoftTexture(UE.KismetSystemLibrary.Conv_SoftObjPathToSoftObjRef(path),false);panel(image,1100,90,560,560);}
         focus('format');rows[0].rotator.SetFocus();

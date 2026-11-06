@@ -8,19 +8,19 @@ const bossLabel=(boss,short=false)=>require('./boss-label').resolve(boss,key=>UE
 let lastSelection=null;
 function name(boss) {
     const value=bossLabel(boss);
-    return text((value+(boss.variant?" · "+boss.variant:"")).toLocaleUpperCase("fr-FR"));
+    return text((value+(boss.variant?" · "+boss.variant:"")).toLocaleUpperCase("en-US"));
 }
 function shortName(boss){
     const full=bossLabel(boss,true);
-    return text((full+(boss.variant?" · "+boss.variant:"")).toLocaleUpperCase("fr-FR"));
+    return text((full+(boss.variant?" · "+boss.variant:"")).toLocaleUpperCase("en-US"));
 }
 function find(widget, id) { return widget[id] || UE.Widget.Find(id, widget.WidgetTree); }
 function hide(widget, names) { for (const id of names) { const w=find(widget,id); if(w)w.SetVisibility(UE.ESlateVisibility.Collapsed); } }
 function preview(widget, boss) {
     if(boss?.action==="training"){
         const image=find(widget,"CurrentBellImage");if(image)image.SetVisibility(UE.ESlateVisibility.Collapsed);
-        if(widget.QuestName)widget.QuestName.SetPBZFormatText(text("ENTRAÎNEMENT"));
-        if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text("Le refuge d'Inanis\nPréparez et essayez votre équipement.\nArsenal complet · Niv. 30\nLe niveau s'ajuste ensuite au combat choisi."));
+        if(widget.QuestName)widget.QuestName.SetPBZFormatText(text("TRAINING"));
+        if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text("Inanis’ refuge\nPrepare and test your equipment.\nFull arsenal · Lv. 30\nEquipment levels adjust to the selected fight."));
         widget.codexPreview=null;return;
     }
     if(boss&&boss.action){
@@ -42,7 +42,7 @@ function preview(widget, boss) {
     const location=boss.locationKey?UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.locationKey)):"";
     const full=bossLabel(boss);
     const epithet=full.includes(",")?full.slice(full.indexOf(",")+1).trim():"";
-    if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text((epithet?epithet+"\n":"")+location+"\nArsenal ajusté · Niv. "+(boss.balance?.weaponLevel||30)+(widget.codexRunSummary&&['victory','failure'].includes(widget.codexScreen)?"\n\n"+widget.codexRunSummary:"\nArrivée directe au combat\nÉquipement : entraînement")));
+    if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text((epithet?epithet+"\n":"")+location+"\nAdjusted arsenal · Lv. "+(boss.balance?.weaponLevel||30)+(widget.codexRunSummary&&['victory','failure'].includes(widget.codexScreen)?"\n\n"+widget.codexRunSummary:"\nEnter the fight directly\nPrepare your equipment in Training")));
     const detail=widget.codexDetailPanel||widget.VerticalBox_94;
     if(detail) {detail.SetRenderOpacity(1);detail.SetVisibility(UE.ESlateVisibility.HitTestInvisible);}
 }
@@ -54,21 +54,21 @@ function initList(widget) {
     let chapter=null;
     const add=boss=>{const item=UE.NewObject(klass,widget);item.codexBossEntry=boss;item.codexSelectionList=widget.CommonListView_89;widget.codexBossItems.push(item);items.Add(item);};
     const entries=widget.codexScreen==='entry-error'?[
-        {id:'replay',label:'RÉESSAYER LE COMBAT',action:'replay'},
-        {id:'training',label:'ENTRAÎNEMENT',action:'training'},
-        {id:'select',label:'SÉLECTION DES BOSS',action:'select'}
+        {id:'replay',label:'RETRY FIGHT',action:'replay'},
+        {id:'training',label:'TRAINING',action:'training'},
+        {id:'select',label:'BOSS SELECT',action:'select'}
     ]:widget.codexScreen==="failure"?[
-        {id:"restart-run",label:"RECOMMENCER LE DÉFI",action:"restart-run"},
-        {id:"training",label:"ENTRAÎNEMENT",action:"training"},
-        {id:"select",label:"SÉLECTION DES BOSS",action:"select"},
-        {id:"main",label:"MENU PRINCIPAL",action:"main"}
+        {id:"restart-run",label:"RESTART CHALLENGE",action:"restart-run"},
+        {id:"training",label:"TRAINING",action:"training"},
+        {id:"select",label:"BOSS SELECT",action:"select"},
+        {id:"main",label:"TITLE SCREEN",action:"main"}
     ]:widget.codexScreen==="victory"?[
-        {id:"replay",label:"REJOUER",action:"replay"},
-        ...(bosses[bosses.findIndex(b=>b.id===widget.codexCurrentBoss.id)+1]?[{id:"next",label:"BOSS SUIVANT",action:"next"}]:[]),
-        {id:"select",label:"SÉLECTION DES BOSS",action:"select"},
-        {id:"training",label:"ENTRAÎNEMENT",action:"training"},
-        {id:"main",label:"MENU PRINCIPAL",action:"main"}
-    ]:[...(!widget.codexInTraining?[{id:"training",label:"ENTRAÎNEMENT",action:"training"}]:[]),...bosses];
+        {id:"replay",label:"REPLAY",action:"replay"},
+        ...(bosses[bosses.findIndex(b=>b.id===widget.codexCurrentBoss.id)+1]?[{id:"next",label:"NEXT BOSS",action:"next"}]:[]),
+        {id:"select",label:"BOSS SELECT",action:"select"},
+        {id:"training",label:"TRAINING",action:"training"},
+        {id:"main",label:"TITLE SCREEN",action:"main"}
+    ]:[...(!widget.codexInTraining?[{id:"training",label:"TRAINING",action:"training"}]:[]),...bosses];
     for(const boss of entries) {
         if(boss.chapter && chapter!==boss.chapter.id){chapter=boss.chapter.id;add({header:true,id:"chapter:"+chapter,label:boss.chapter.label,nameKey:boss.chapter.key,chapterLabel:!!boss.chapter.key});}
         add(boss);
@@ -96,7 +96,7 @@ function patchSelector(Type) {
         const remembered=lastSelection;
         const result=activated.apply(this,args);
         if(!this.codexBossSelector)return result;
-        this.LoadGameText.SetText(text(this.codexScreen==='entry-error'?'COMBAT NON INITIALISÉ':this.codexScreen==="failure"?"66 HITS · DÉFI TERMINÉ":this.codexScreen==="victory"?"VICTOIRE":"BOSSES"));
+        this.LoadGameText.SetText(text(this.codexScreen==='entry-error'?'FIGHT COULD NOT START':this.codexScreen==="failure"?"66 HITS · CHALLENGE OVER":this.codexScreen==="victory"?"VICTORY":"BOSSES"));
         this.CommonListView_89.SetScrollbarVisibility(UE.ESlateVisibility.Visible);
         const box=this.CommonListView_89.GetParent();if(box)box.SetWidthOverride(850);
         this.CommonListView_89.SetClipping(UE.EWidgetClipping.ClipToBounds);
@@ -151,7 +151,7 @@ function patchEntry(Type) {
         this.codexBossRow=true;
         this.SetIsSelectable(!boss.header);this.SetIsInteractionEnabled(!boss.header);this.SetIsFocusable(!boss.header);
         hide(this,["GameTimeText","CycleText","DaysText","DifficultyText","SaveSlotName","Date","Time","WidgetSwitcher_0","NightmareNumSwitcher","Image_501","BellTex","SizeBox_122","SizeBox_140"]);
-        this.BellName.SetText(boss.header&&boss.chapterLabel?text("CHAPITRE · "+UE.KismetTextLibrary.Conv_TextToString(name(boss))):boss.header||boss.action?name(boss):shortName(boss));
+        this.BellName.SetText(boss.header&&boss.chapterLabel?text("CHAPTER · "+UE.KismetTextLibrary.Conv_TextToString(name(boss))):boss.header||boss.action?name(boss):shortName(boss));
         this.BellName.SetAutoWrapText(true);
         this.BellName.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
         const root=find(this,"Overlay_31");

@@ -2,7 +2,7 @@
 const copy = value => JSON.parse(JSON.stringify(value));
 const GEAR_SECTIONS = ["Inventory", "AbilityNode_RenewalHun", "AbilityNode_RenewalHun_Climax", "PBZAppearanceComponent"];
 function bossSnapshot(pristine, boss, options = {}) {
-    if (!boss || !boss.profile) throw new Error("Point de départ du boss indisponible");
+    if (!boss || !boss.profile) throw new Error("Boss starting point unavailable");
     if (boss.id === "BP_Monster_ZuoShang_Ending"&&!boss.profile.transform) return copy(pristine);
     const root=copy(pristine),p=boss.profile;
     root.PBZGameSystem.CurrentLevelName=p.level;
@@ -64,13 +64,13 @@ function balanceInventory(inventory, level = 30) {
     return inventory;
 }
 function captureGear(root) {
-    if (!root || !root.Inventory || !root.Inventory.MainWeaponInfos) throw new Error("Inventaire absent du point de contrôle");
+    if (!root || !root.Inventory || !root.Inventory.MainWeaponInfos) throw new Error("Inventory missing from checkpoint");
     const gear = {};
     for (const name of GEAR_SECTIONS) if (root[name]) gear[name] = copy(root[name]);
     return gear;
 }
 function encounterSave(pristine, gear, difficulty, initialized, nightmare = false, balance = null) {
-    if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 3 || nightmare) throw new Error("Difficulté inconnue");
+    if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 3 || nightmare) throw new Error("Unknown difficulty");
     const root = copy(pristine);
     if (gear) for (const name of GEAR_SECTIONS) if (gear[name]) root[name] = copy(gear[name]);
     balanceInventory(root.Inventory, balance?.weaponLevel || 30);

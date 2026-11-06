@@ -3,12 +3,12 @@ const UE=require("ue"),puerts=require("puerts");
 function object(wrapper){
     const ok=puerts.$ref(false),str=puerts.$ref("");
     UE.JSONUtility.JsonToString(wrapper,ok,str);
-    if(!puerts.$unref(ok))throw Error("Lecture de l'équipement impossible");
+    if(!puerts.$unref(ok))throw Error("Equipment could not be read");
     return JSON.parse(puerts.$unref(str));
 }
 function capture(context,saveLoad,param){
     const pack=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.PBZBackPackSubsystem.StaticClass());
-    if(!pack||typeof pack.PreSaveGame!=="function")throw Error("L'inventaire n'est pas prêt");
+    if(!pack||typeof pack.PreSaveGame!=="function")throw Error("Inventory is not ready");
     // Serialize only the backpack. The native full-world PreSaveGame also visits
     // quest actors and cinematic state that do not belong in a replay checkpoint.
     pack.PreSaveGame(param);
@@ -17,7 +17,7 @@ function capture(context,saveLoad,param){
         const ref=puerts.$ref(new UE.JsonObjectWrapper());
         if(saveLoad.GetDirtySectionCopy(key,ref))result[key]=object(puerts.$unref(ref));
     }
-    if(!result.Inventory?.MainWeaponInfos)throw Error("Équipement absent de l'inventaire");
+    if(!result.Inventory?.MainWeaponInfos)throw Error("Equipment missing from inventory");
     // GetDirtySectionCopy can retain the slots from the last loaded section,
     // even after PreSaveGame serializes a new backpack. Read the equipped slots
     // from the same live subsystem used by the native equipment screen.

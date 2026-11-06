@@ -141,7 +141,7 @@ test('missing native death callback uses Dead-tag backstop, preserves gear and s
  assert.equal(h.calls.session.boss.training,true);assert.equal(h.calls.session.run,failed);assert.equal(h.calls.session.prepareOnArrival,false);
  mode.ReceiveEndPlay();const refuge=new Mode();refuge.valid=true;refuge.bindSaveTipExtension();h.calls.session.arrivalAnchorPending=false;
  tick();assert.equal(h.calls.dialogs.length,0,'no dialog before native loading completion');
- h.instance.OnEndLoadingScreen.emit();tick();tick();assert.equal(h.calls.dialogs.length,1);assert.match(h.calls.dialogs[0].args[1],/DÉFI TERMINÉ/);assert.match(h.calls.dialogs[0].args[2],/Boss atteint/);assert.match(h.calls.dialogs[0].args[2],/Combats remportés : 1/);
+ h.instance.OnEndLoadingScreen.emit();tick();tick();assert.equal(h.calls.dialogs.length,1);assert.match(h.calls.dialogs[0].args[1],/CHALLENGE OVER/);assert.match(h.calls.dialogs[0].args[2],/Boss atteint/);assert.match(h.calls.dialogs[0].args[2],/Fights won: 1/);
  assert.equal(h.calls.pushes.length,0,'no equipment menu covers the ended-run message');assert.equal(h.calls.session.lastRunResult.totalMs,12345);refuge.ReceiveEndPlay();
 });
 
@@ -183,7 +183,7 @@ test('failed automatic return stops after three attempts and exposes manual reco
  const h=harness();h.api.replay(h.instance);h.calls.writes[0].cb('ManualSave3',null,0,true);Object.assign(h.calls.session.run,{phase:'failed',hits:66});
  class Death{BP_OnActivated(){}Tick(){}Destruct(){}}h.api.patchDeathMenu(Death);const death=new Death();death.valid=true;death.BP_OnActivated();h.flush();
  for(let i=1;i<=3;i++){assert.equal(h.calls.writes.length,i+1);h.calls.writes[i].cb('ManualSave3',null,0,false);if(i<3){h.flush();h.flush();}}
- assert.equal(h.calls.session.runFailureReturn.error,true);assert.equal(h.calls.session.runFailureReturn.returnAttempts,3);assert.equal(h.calls.dialogs.length,1);assert.match(h.calls.dialogs[0].args[2],/trois tentatives.*F8/s);
+ assert.equal(h.calls.session.runFailureReturn.error,true);assert.equal(h.calls.session.runFailureReturn.returnAttempts,3);assert.equal(h.calls.dialogs.length,1);assert.match(h.calls.dialogs[0].args[2],/three attempts.*F8/s);
  death.BP_OnActivated();h.flush();assert.equal(h.calls.writes.length,4);assert.equal(h.calls.session.run.phase,'failed');
  assert.equal(h.api.openTraining(h.instance),true);h.calls.writes[4].cb('ManualSave3',null,0,true);assert.equal(h.calls.session.boss.training,true);assert.equal(h.calls.session.run.hits,66);
 });
