@@ -1,310 +1,158 @@
 {
-  "version": "0.6.2",
+  "version": "0.7.0-preview.6",
   "gameBuild": 26367565,
+  "finalized": true,
+  "verifiedAt": "2026-11-06T14:27:21.354Z",
+  "runtimeCompatible": true,
+  "gameplayValidated": false,
+  "publicBundleHash": "7dc87a4a81fd2dcae88a15c521de092a658f0d34e00ca3dd6947206b71b7a569",
+  "userSummary": "PBZModLoader 1.0.2 and the exact public payload passed a scoped launch check: title screen, training refuge and level-30 inventory. All 391 source tests and 20 launcher checks passed. Targeted live tests confirmed the compact timer and mouse return to training. Full victories, controller behavior and full-series stability remain unverified.",
+  "compatibility": {
+    "newInstalledBuildDetected": false,
+    "installedBuild": 26367565,
+    "dependencyVersion": "1.0.2",
+    "dependencyZipSha256": "c87f42d220c2034c8c4d4269a5966bf957908ff6b9e25b8dbec749d3b228fc78",
+    "dependencyFiles": 116,
+    "note": "The installed Steam build remains 26367565; no later installed build was demonstrated. No old executable hash was available to establish binary identity."
+  },
+  "publicManualSmoke": {
+    "status": "pass-scoped",
+    "bundleHash": "7dc87a4a81fd2dcae88a15c521de092a658f0d34e00ca3dd6947206b71b7a569",
+    "titleObserved": true,
+    "loaderReportedLoaded": 1,
+    "loaderReportedFailed": 0,
+    "mouseTitleToTrainingInventory": true,
+    "level30InventoryObserved": true,
+    "escapeClosedInventory": true,
+    "refugeObserved": true,
+    "fightLaunched": false,
+    "scope": "Exact manual payload, no private documentation tour. Native game language remained French. Brief automated E and F8 inputs produced no observed menu opening; physical gameplay and controller input are not certified."
+  },
+  "liveChanges": {
+    "privateBundleHash": "187433ecfcaf6e485aab7e6a8493f9b9726767c12401cbba9570940a472e1376",
+    "systemMouse": {
+      "singleSelectedRow": true,
+      "restartConfirmation": true,
+      "restartCancel": true,
+      "actualRestart": false,
+      "trainingConfirmation": true,
+      "trainingReturn": true,
+      "runInactiveAfterReturn": true,
+      "stoppedTimerMs": 4561.071302741766,
+      "hitsAtReturn": 5
+    },
+    "hud": "Compact upper-right timer and counted enemy hits observed in Jagged Steel encounter. No full victory tested."
+  },
   "codeTests": {
-    "passed": 106,
+    "passed": 391,
     "failed": 0
   },
   "deploymentTests": {
+    "passed": 20,
+    "failed": 0,
+    "noGameMutation": true
+  },
+  "packageContractTests": {
     "passed": 7,
     "failed": 0
   },
-  "runtimeCompatible": true,
-  "all60FullFightsValidated": false,
-  "controllerRumblePhysicallyVerified": false,
-  "introExit": {
-    "skipped": {
-      "encounter": "BP_Monster_AHua_GuiTouDao",
-      "nativeIntroReleased": true,
-      "presentationCleanupExecuted": true,
-      "additionalLoadingSuppressed": false,
-      "samplesAfterNativeRelease": 58,
-      "nativeCoverActiveAfterRelease": false,
-      "firstReleaseMs": 5145,
-      "firstAdditionalOverlayTransparentDelayMs": null,
-      "firstSecondHealthUnchanged": true,
-      "additionalOverlaySamples": [],
-      "scope": "Targeted QA launch; no continuous frame-by-frame video measurement."
-    },
-    "natural": {
-      "encounter": "BP_Monster_HuaQianXIao",
-      "nativeIntroReleased": true,
-      "presentationCleanupExecuted": true,
-      "additionalLoadingSuppressed": true,
-      "samplesAfterNativeRelease": 30,
-      "nativeCoverActiveAfterRelease": false,
-      "firstReleaseMs": 79270,
-      "firstAdditionalOverlayTransparentDelayMs": 92,
-      "firstSecondHealthUnchanged": true,
-      "additionalOverlaySamples": [
-        {
-          "ms": 79270,
-          "opacity": 1
-        },
-        {
-          "ms": 79362,
-          "opacity": 0
-        },
-        {
-          "ms": 79507,
-          "opacity": 0
-        },
-        {
-          "ms": 79639,
-          "opacity": 0
-        },
-        {
-          "ms": 79785,
-          "opacity": 0
-        },
-        {
-          "ms": 79901,
-          "opacity": 0
-        },
-        {
-          "ms": 80519,
-          "opacity": 0
-        },
-        {
-          "ms": 80652,
-          "opacity": 0
-        },
-        {
-          "ms": 80784,
-          "opacity": 0
-        },
-        {
-          "ms": 80914,
-          "opacity": 0
-        },
-        {
-          "ms": 81697,
-          "opacity": 0
-        },
-        {
-          "ms": 81827,
-          "opacity": 0
-        },
-        {
-          "ms": 81971,
-          "opacity": 0
-        },
-        {
-          "ms": 82116,
-          "opacity": 0
-        },
-        {
-          "ms": 82259,
-          "opacity": 0
-        },
-        {
-          "ms": 82404,
-          "opacity": 0
-        },
-        {
-          "ms": 82533,
-          "opacity": 0
-        },
-        {
-          "ms": 82661,
-          "opacity": 0
-        },
-        {
-          "ms": 82790,
-          "opacity": 0
-        },
-        {
-          "ms": 82933,
-          "opacity": 0
-        },
-        {
-          "ms": 84163,
-          "opacity": 0
-        },
-        {
-          "ms": 84284,
-          "opacity": 0
-        },
-        {
-          "ms": 84427,
-          "opacity": 0
-        },
-        {
-          "ms": 84570,
-          "opacity": 0
-        },
-        {
-          "ms": 84715,
-          "opacity": 0
-        },
-        {
-          "ms": 84857,
-          "opacity": 0
-        },
-        {
-          "ms": 85001,
-          "opacity": 0
-        },
-        {
-          "ms": 85146,
-          "opacity": 0
-        },
-        {
-          "ms": 85289,
-          "opacity": 0
-        },
-        {
-          "ms": 85434,
-          "opacity": 0
-        }
-      ],
-      "scope": "Targeted QA launch; no continuous frame-by-frame video measurement."
-    },
-    "initialArrivalFlashMayRemain": true,
-    "allBossIntroductionsValidated": false
-  },
-  "automaticNextBossPreset": {
-    "layoutAndMouseToggleObserved": true,
-    "launchCommitAndCancelCoveredByCodeTests": true,
-    "fullAutomaticRunPlayedOn062": false
-  },
-  "nativeSystemActions": {
-    "nativeExitCategory": true,
-    "mouseConfirmAndCancelVerified": true,
-    "restartReachedSameEncounter": true,
-    "returnReachedInanis": true,
-    "equipmentPreserved": true,
-    "physicalControllerNavigationVerified": false
+  "limits": [
+    "Experimental preview; no fully played victory is certified by this release check.",
+    "22 active encounters retain specific manual follow-ups; historical evidence has its original build scope.",
+    "Controller behavior, haptics, all introductions and every damage-source edge case remain unverified.",
+    "Full-series stability remains unverified. One private combined tour was deliberately stopped by the 2.5 GiB available-memory guard; smaller separate launches were used afterward.",
+    "Only Steam build 26367565, the documented installation path and one local campaign profile are supported.",
+    "Public smoke did not demonstrate Inanis interaction or F8 using brief automated key presses."
+  ],
+  "screenshots": {
+    "date": "2026-11-06",
+    "count": 7,
+    "method": "Actual game captures with native English language selected for a private documentation tour. Engine callbacks staged the menus. These are not screenshots of a fully played public run.",
+    "taskbarCrop": "01 through 06 remove only the bottom 48-pixel Windows taskbar from 2560x1440 captures; 08 retains the full frame.",
+    "provenance": [
+      {
+        "files": [
+          "01-title.jpg",
+          "04-boss-selection.jpg",
+          "05-run-setup.jpg"
+        ],
+        "bundleHash": "08ecf01618d07e23fe8e4912502616092a86d18074446e634b7fe4afe632fad0"
+      },
+      {
+        "files": [
+          "02-training.jpg",
+          "03-equipment.jpg"
+        ],
+        "bundleHash": "aa0c45e4634c83e4411b29b6918ae83d793910831cd0142bc07b93dc785baf84"
+      },
+      {
+        "files": [
+          "06-timer.jpg"
+        ],
+        "bundleHash": "a6be2a2ac5f0ae90969d1de9945652f7214f350e32ca90e5f50faf13b3fc5210"
+      },
+      {
+        "files": [
+          "08-system-menu.jpg"
+        ],
+        "bundleHash": "187433ecfcaf6e485aab7e6a8493f9b9726767c12401cbba9570940a472e1376"
+      }
+    ]
   },
   "restoration": {
+    "verifiedAt": "2026-11-06T14:26:28.5429587Z",
     "completed": true,
-    "saveHashesMatched": 30,
-    "loaderAndProxyRemoved": true,
-    "temporaryFirewallRules": 0,
-    "steamRunning": true,
-    "restartRequestPending": false
+    "originalFilesVerified": 30,
+    "originalHashesMatch": true,
+    "temporaryFilesRemoved": 117,
+    "temporaryFirewallRulesRemoved": 18,
+    "extraSavesRemaining": 0,
+    "originalGraphicsRestored": true
   },
-  "testLimitations": [
-    "QA-only health minimum and delayed inventory opening are disabled in the distributed manual build.",
-    "Cinematic traces inspect native state and layers; they do not certify every rendered frame or every boss.",
-    "The full public launcher was validated on 0.6.1; 0.6.2 gameplay used its persistent protected test guardian. Launcher core files are unchanged.",
-    "Physical controller navigation, rumble, final QTEs and all 60 complete fights remain unverified."
-  ],
-  "previousVersionEvidence": {
-    "version": "0.6.1",
-    "runtimeCompatible": true,
-    "gameBuild": 26367565,
-    "direct": [
-      {
-        "id": "BP_Monster_AHua_GuiTouDao",
-        "nativeFightReady": true,
-        "introObserved": true,
-        "playerDamaged": true,
-        "bossDamaged": true,
-        "arrivalEvents": [
-          {
-            "name": "streaming-cover-requested",
-            "time": 1793906059027
-          },
-          {
-            "name": "streaming-cover-finished",
-            "time": 1793906068138
-          },
-          {
-            "name": "native-entry-crossed",
-            "time": 1793906068285
-          },
-          {
-            "name": "native-intro-owns-arrival",
-            "time": 1793906070320
-          }
-        ],
-        "arenaBellCount": 1,
-        "hiddenBellChildCount": 1
-      },
-      {
-        "id": "BP_Monster_HuaQianXIao",
-        "nativeFightReady": true,
-        "introObserved": true,
-        "playerDamaged": true,
-        "bossDamaged": true,
-        "arrivalEvents": [
-          {
-            "name": "streaming-cover-requested",
-            "time": 1793906388214
-          },
-          {
-            "name": "streaming-cover-finished",
-            "time": 1793906394091
-          },
-          {
-            "name": "native-entry-crossed",
-            "time": 1793906394231
-          },
-          {
-            "name": "native-intro-owns-arrival",
-            "time": 1793906396244
-          }
-        ],
-        "arenaBellCount": 1,
-        "hiddenBellChildCount": 1
-      }
-    ],
-    "all60FullFightsValidated": false,
-    "controllerRumblePhysicallyVerified": false,
-    "trainingFlow": {
-      "choiceApplied": true,
-      "equipmentPreserved": true,
-      "beforeLevel": 30,
-      "afterLevel": 2,
-      "expectedLevel": 2,
-      "forgePreserved": true,
-      "retryEquipmentPreserved": true,
-      "deathRetries": 1
+  "artifacts": [
+    {
+      "folder": "Captures",
+      "file": "01-title.jpg",
+      "sha256": "92f9721b885e58f541fd10bd14181cd2d18e066ab6d76d5f6ed0dcd01945b755"
     },
-    "refuge": {
-      "nativeInteractionDispatched": true,
-      "selectorOpened": true,
-      "paused": true,
-      "inanisVisible": true,
-      "inanisInteractionReady": true,
-      "inanisSelections": 1,
-      "trainingExitBlocked": true,
-      "trainingHiddenActors": 2
+    {
+      "folder": "Captures",
+      "file": "02-training.jpg",
+      "sha256": "c7310f55e3a532b9ea604a7c91214c72ad63e88e04d3c504809bfb1f498ae616"
     },
-    "refugeLaunch": {
-      "boss": "BP_Monster_AHua_GuiTouDao",
-      "holdSeconds": 1.5,
-      "nativeHold": true,
-      "cancelCheck": "released-without-launch",
-      "nativeHoldFeedbackStarted": true,
-      "nativeProgressCompleted": true,
-      "launchScreenRetained": true,
-      "directIntroObserved": true,
-      "nativeEntryCrossed": true,
-      "worldUnpausedAfterLoad": true,
-      "oldWorldCameraCleanupFixed": true,
-      "difficultyPausedVerified": true
+    {
+      "folder": "Captures",
+      "file": "03-equipment.jpg",
+      "sha256": "9e1d1322c83ad5bfe61faf4fe407b8fa5c826a272b574025f358fab2ca5f2bf0"
     },
-    "testLimitations": [
-      "Direct damage probes use QA-only player health recovery; opponents retain native HP.",
-      "Equipment choice and death are automated in training-flow.",
-      "Physical controller rumble and all 60 full fights remain unverified."
-    ],
-    "publicLauncher": {
-      "nativeTitleObserved": true,
-      "refugeInventoryObserved": true,
-      "manualBuildDebugShortcuts": false,
-      "fullLaunchAndAutomaticRestorationValidated": true,
-      "restoration": {
-        "completed": true,
-        "saveHashesMatched": 30,
-        "loaderAndProxyRemoved": true,
-        "temporaryFirewallRules": 0,
-        "steamRunning": true,
-        "restartRequestPending": false
-      },
-      "steamWatcherUnelevatedParentVerified": true
+    {
+      "folder": "Captures",
+      "file": "04-boss-selection.jpg",
+      "sha256": "a8c6e42005260e622001647846ad11c73ff9d409de4501655238e7735d835b4d"
+    },
+    {
+      "folder": "Captures",
+      "file": "05-run-setup.jpg",
+      "sha256": "0223001eca7f783e72f207859bead281717c9f1d7ed1d0b6a4b2e70db953ab82"
+    },
+    {
+      "folder": "Captures",
+      "file": "06-timer.jpg",
+      "sha256": "49fb44b9cc2e34337a8733d60c8c0ce508433b8479d3ec8e4ab8fcf2fd85c95c"
+    },
+    {
+      "folder": "Captures",
+      "file": "08-system-menu.jpg",
+      "sha256": "c5e7fb8b92727a4910759218ac3472e5dce60945b55f853b79932e4742ae6462"
+    },
+    {
+      "file": "r8-packaged-tests.txt",
+      "sha256": "dd5d962cd85320dbef1494825929f5a00ea0b1ac40a3eebe84ce28b282ad0156",
+      "folder": "Validation"
     }
+  ],
+  "packagedSourceTests": {
+    "failed": 0,
+    "passed": 380
   }
 }

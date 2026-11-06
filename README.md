@@ -1,61 +1,55 @@
 # BOSSES — Phantom Blade Zero
 
-Mod communautaire pour rejouer **60 rencontres regroupées par chapitre**, avec portraits et trois difficultés. **0.6.2 expérimentale — Steam build 26367565.** Le menu révèle les boss : attention aux spoilers.
+Choose from **59 encounters grouped by chapter**. Prepare your equipment at Inanis’s refuge, then play one fight or a series. **Experimental preview 0.7.0-preview.6 — Steam build 26367565.** The boss list contains spoilers.
 
-Cette version remplace le chargement de la 0.5, devenu incompatible après la mise à jour du jeu. Elle utilise **PBZModLoader 1.0.0 de LLKKFF**, sans remplacer les scripts originaux du jeu.
+PBZModLoader 1.0.2 and the exact public payload passed a scoped launch check: title screen, training refuge and level-30 inventory. All 391 source tests and 20 launcher checks passed. Targeted live tests confirmed the compact timer and mouse return to training. Full victories, controller behavior and full-series stability remain unverified.
 
-![Sélection des combats](mod/Captures/01-selector.jpg)
+See the [feature guide](FEATURES.md) for controls, equipment, timing and 66 HITS, and the [English test summary](mod/Validation/QA-English.md) for what has actually been checked. Earlier tests remain tied to their original builds; this update does not certify all 59 encounters again.
 
-## Installation
+![BOSSES title screen](mod/Captures/01-title.jpg)
 
-Windows, pare-feu Windows actif, droits administrateur et **une seule sauvegarde principale locale**. Installation Steam par défaut uniquement :
+## Install
+
+Requires Windows, Windows Firewall enabled, administrator access and one local campaign profile. The supported Steam installation is:
 
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\PBZ
 ```
 
-1. Après une mise à jour du jeu, le lancer **une fois depuis Steam en ligne, sans mod**, jusqu'au menu principal, puis le fermer. Cela laisse le jeu terminer sa préparation avant la session protégée.
-2. [Télécharger BOSSES 0.6.2](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases/download/v0.6.2/PBZ-Bosses-0.6.2.zip) et **tout extraire** dans un dossier permanent et inscriptible. Une copie indépendante de ses sauvegardes reste recommandée.
-3. Télécharger **PBZModLoader 1.0.0**, fichier principal, sur la [page officielle de LLKKFF](https://www.nexusmods.com/phantombladezero/mods/113?tab=files). Laisser son ZIP dans Téléchargements, ou le placer à côté de `Lancer-Bosses.cmd`. **Ne pas l'installer manuellement.** Le lanceur reconnaît et vérifie cette archive précise.
-4. Ouvrir `Lancer-Bosses.cmd` normalement, puis valider la demande Windows du gardien. Il protège les sauvegardes, bloque temporairement le réseau et installe les fichiers nécessaires pour cette session.
+1. After a game update, launch the unmodified game once through **Steam online**, reach the title screen and close it.
+2. Download the [BOSSES preview.6 ZIP](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/releases/download/v0.7.0-preview.6/PBZ-Bosses-0.7.0-preview.6.zip) and extract everything into a permanent, writable folder.
+3. Download the original **[PBZModLoader 1.0.2 ZIP by LLKKFF](https://www.nexusmods.com/phantombladezero/mods/113?tab=files&file_id=2180)** separately. Leave the ZIP unchanged in your Downloads folder; the launcher checks its hash. The loader is not included in BOSSES. Do not install it manually: the BOSSES launcher deploys the verified files temporarily. Node.js and npm are not required to play.
+4. Run **`Start-Bosses.cmd` normally** and accept the Windows administrator prompt. The guardian backs up your campaign, temporarily blocks network access and installs the session.
 
-Le dossier [`mod/`](mod/) fournit le même paquet si vous clonez le dépôt. Le chargeur tiers est téléchargé séparément conformément aux conditions de son auteur.
+Keep an independent campaign backup. An existing loader or proxy DLL prevents installation. To upgrade, first restore your campaign using the old version’s restoration launcher, then extract the new version into a separate folder.
 
-**Ancienne version :** restaurer d'abord sa session avec son propre `Restaurer-Campagne.cmd`. Extraire ensuite la nouvelle version dans un autre dossier. Une installation contenant déjà un chargeur ou un proxy DLL est refusée ; ce paquet ne gère pas la cohabitation avec d'autres mods.
+## Play
 
-## Jouer
+Select **BOSSES** at the title screen. Prepare your equipment in the refuge’s native inventory, then speak to **Inanis** or press **F8** to choose a fight. Set the run format, difficulty and timer, then hold the indicated button on **Start** for 1.5 seconds.
 
-1. **BOSSES** → refuge d'Inanis. Préparer et tester l'équipement avec l'inventaire natif ; l'arsenal y est niveau 30 avec la forge.
-2. Parler à **Inanis**, ou appuyer sur **F8**, pour ouvrir la liste des combats.
-3. Choisir un boss, puis Voyageur, Pionnier ou Explorateur des enfers. Sous les difficultés, régler **ENCHAÎNEMENT AUTOMATIQUE** avant le premier combat. **Maintenir le bouton indiqué 1,5 seconde** pour partir directement à l'introduction ou au combat. Aucun tutoriel à choisir. Annuler cet écran ne modifie pas le réglage précédent.
+Native boss names and game menus follow the game’s language. Select English in the game for English native menus.
 
-Les niveaux des armes s'adaptent au combat, avec un plafond de 30 et sans bonus NG+. L'arsenal contient **24 armes, 24 lames spectrales, 51 accessoires et 15 remèdes obtenables en campagne**, indépendamment de vos découvertes personnelles. Les récompenses d'équipement sont bloquées pour éviter les doublons. L'équilibrage reste provisoire.
+**Up/Down** selects a setting; **Left/Right** changes it. With the mouse, use the setting arrows. A single fight returns to your choice of actions after victory; a series advances through the list automatically. The native system menu also offers **Restart fight** and **Return to training**.
 
-Une mort recharge le combat avec le même équipement et les remèdes remplis. Pendant le combat, ouvrir l'inventaire natif → **SYSTÈME** → catégorie **Quitter le jeu** : **Recommencer le combat** ou **Retourner à l'entraînement**, avec confirmation et conservation de l'équipement. Recommencer passe l'introduction lorsqu'elle est skippable. F8 rouvre aussi les options du mod.
+**66 HITS** shares a 66-hit allowance across the run. The 66th enemy hit ends the challenge and returns you to Inanis. Healing and retries do not restore the allowance. The timer is optional in either run format.
 
-Après victoire, choisir de rejouer, de passer au suivant ou de revenir à la sélection. Si l'enchaînement est activé, le combat suivant part automatiquement avec la même difficulté. Le portail de sortie du refuge et les dialogues de campagne y sont désactivés ; Inanis reste visible et ouvre les combats.
+This preview adds a compact upper-right timer and fixes mouse selection in the system menu. A targeted live check confirmed the restart confirmation/cancel flow and returning to training by mouse; the actual restart was not exercised in that check.
 
-![Difficulté et enchaînement](mod/Captures/06-difficulty.jpg)
+## Restore and uninstall
 
-## Terminer et restaurer
+**Close the game and wait for restoration before continuing your campaign.** The guardian checks the original files, removes the temporary session files and restores network access. Training equipment is not added to your campaign.
 
-**Fermer le jeu et attendre la restauration avant de reprendre la campagne.** Le gardien ferme Steam, restaure et vérifie les sauvegardes originales, retire les fichiers temporaires, rétablit le réseau puis un surveillant relance Steam avec les droits normaux. L'équipement du laboratoire ne rejoint pas la campagne.
+After a crash or unexpected restart, close the game and run **`Restore-Campaign.cmd` from the session’s folder**. Keep `.state` and `.dependencies` until restoration is complete. To uninstall, restore first, then delete the extracted folder.
 
-Après un crash ou un arrêt brutal : fermer le jeu, puis lancer **`Restaurer-Campagne.cmd` depuis le dossier utilisé pour la session**. Ne pas déplacer ou supprimer ce dossier, `.state` ou `.dependencies` avant restauration. Pour désinstaller, restaurer d'abord, puis supprimer le dossier.
+## Game updates
 
-Le réseau des exécutables du jeu, du chargeur et de Steam est bloqué pendant la session. Les chemins de progression des succès identifiés sont neutralisés. Cela ne constitue pas une garantie générale d'absence de ban. Si le jeu réclame une connexion, restaurer, terminer un lancement normal en ligne, fermer le jeu et réessayer ; ne pas contourner ses contrôles.
+A game update does not automatically require rewriting BOSSES. Changes to native scripts, assets or the loader can still break it. The launcher checks the exact Steam build and refuses an unverified build before changing game files. Wait for a compatible release rather than editing the build number in the manifest. This preview supports build **26367565** with PBZModLoader **1.0.2**.
 
-## Limites et dépannage
+## Current limits
 
-- **Validation 0.6.2 :** voir [le rapport](mod/Validation/validation.json), qui distingue les nouveaux essais des vérifications de la 0.6.1. Les 60 combats complets ne sont pas certifiés.
-- **Transitions :** la 0.6.2 retire la présentation résiduelle de l'introduction dès que le jeu rend les commandes. Un bref flash ou fondu avant le début de la cinématique peut subsister. Les introductions et transitions de phases de tous les boss restent à vérifier.
-- **Mu Xiaokui et combat final :** QTE, dernières phases et sortie de victoire restent à confirmer en jouant normalement.
-- **Appui long :** barre et événements de charge natifs utilisés ; vibration physique de la manette encore à confirmer selon le matériel et les réglages.
-- Les nouvelles actions Système ont été essayées à la souris. La navigation avec une manette physique reste à confirmer.
-- **Cinq séquences exclues :** deux rencontres de prologue/tutoriel de Zuo Shang, le chariot, la première apparition de Yucong et Hansui. Leur rejeu autonome n'est pas validé.
-- Autres PC, autres mods, plusieurs profils et bibliothèques Steam personnalisées non pris en charge. Interface vérifiée en français, en 16:9. Pas de rechargement à chaud : fermer complètement le jeu pour changer le mod.
-- **Build différent :** attendre une adaptation du mod. Ne pas modifier le numéro attendu pour forcer le lancement.
-- **Restauration refusée :** garder `.state`, fermer jeu et Steam, puis relancer la restauration. Le réseau reste bloqué tant que la restauration n'est pas vérifiée. Consulter le dernier `status.json` ou `error.txt` de la session.
-- Le redémarrage Windows avec erreur **0x133** signalé pendant les essais n'est pas expliqué ni corrigé par cette version.
+- Experimental balance. Full fights, final phases and QTEs still need manual testing: **22 active encounters have specific follow-up checks**. Xue and Trial II have unconfirmed endings in diagnostic tests; that does not establish a normal-play softlock.
+- Brief visual or audio artifacts may remain during transitions. Physical controller behavior, vibration and long-run stability are not fully verified. See the test summary for the scope of earlier engine-driven tests.
+- Only the build, installation path and profile setup listed above are supported. Other mods and aspect ratios other than 16:9 are untested.
+- Network blocking and the identified achievement safeguards do not guarantee freedom from sanctions. If Steam requires online authentication, restore first and perform a normal unmodified online launch before trying again.
 
-Pour signaler un bug, ouvrir une [issue](https://github.com/kevinbarfleur/phantom-blade-zero-bosses/issues) avec build, boss, difficulté et étapes. Ne pas joindre de sauvegarde, `.state` ou journal non relu : ils peuvent contenir des données personnelles.
+Community-made and unaffiliated with the developers. Obtain the game and PBZModLoader separately from their authors.

@@ -53,7 +53,7 @@ function tick(context,session){
         if(valid(session.inanisInteraction))return;
         const transform=spawner.GetTransform(),player=UE.GameplayStatics.GetPlayerCharacter(context,0);
         const actor=UE.GameplayStatics.BeginDeferredActorSpawnFromClass(context,getClass(),transform,UE.ESpawnActorCollisionHandlingMethod.AlwaysSpawn,player);
-        if(!valid(actor))throw Error("L'interaction d'Inanis n'a pas pu être créée");
+        if(!valid(actor))throw Error("The Inanis interaction could not be created");
         actor.InteractText=new UE.FlowLocText("","",cpp.FText.FromString("BOSSES"));actor.SimpleInteract=true;
         actor.DisplayPointDistance=650;actor.StrafeDistance=0;
         UE.GameplayStatics.FinishSpawningActor(actor,transform);

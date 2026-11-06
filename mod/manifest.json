@@ -1,17 +1,19 @@
 {
-  "version": "0.6.2",
-  "revision": "loader-r2-26367565",
+  "version": "0.7.0-preview.6",
+  "revision": "run-r8-preview",
   "gameAppId": 4115450,
   "gameBuild": 26367565,
   "deployment": "temporary-pbzmodloader",
   "qa": {
     "mode": "manual",
+    "instrumentationMode": "manual",
+    "developmentGuardian": false,
     "debugShortcuts": false
   },
   "files": [
     {
       "path": "platform/steam/version.dll",
-      "sha256": "643fde8f9a3c800203c2caa879ba0fed58c772c4fc5b599a7032f87f69c98044",
+      "sha256": "e6fe38aa0011167a5dbced3fa4b8f0eb4b806aad27228544b7420eea31c56ccf",
       "source": "dependency"
     },
     {
@@ -21,7 +23,7 @@
     },
     {
       "path": "ProjectPBZ/Content/JavaScript/PBZModLoader/manager.js",
-      "sha256": "48bcd396aa0a44c958df2c8908ed98f2af5f62429961b6abe9106218dd4f40ad",
+      "sha256": "f3316612075ccd1e799ad09c690008f2833dc411b67ebc565dc5d7d04f323b48",
       "source": "dependency"
     },
     {
@@ -581,7 +583,7 @@
     },
     {
       "path": "ProjectPBZ/PBZModLoader/mods.ini",
-      "sha256": "c6b2d356aabbe5b90a5231f73988ba0b43aa25477f8f96f5e810c720c91bb581",
+      "sha256": "907e1c90c67665edbc4b72781266b2c5764ba481e02fe1a719be6e23382e120d",
       "source": "dependency"
     },
     {
@@ -591,7 +593,7 @@
     },
     {
       "path": "ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js",
-      "sha256": "d68c7045776aea5622534901a19b14083777eb0b0e069e2a62e80b283f2f0e94",
+      "sha256": "7dc87a4a81fd2dcae88a15c521de092a658f0d34e00ca3dd6947206b71b7a569",
       "source": "mod"
     }
   ],
@@ -599,10 +601,11 @@
     "runtimeCompatible": true,
     "gameplayValidated": false,
     "report": "Validation/validation.json",
-    "note": "Targeted encounters validated; all 60 full fights are not certified on this build."
+    "register": "Validation/QA-English.md",
+    "note": "New-build checks and historical evidence have separate scope. Engine action tests do not certify physical controls or full fights."
   },
   "hotkey": "F8",
   "catalog": {
-    "encounters": 60
+    "encounters": 59
   }
 }

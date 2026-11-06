@@ -26,7 +26,7 @@ function initialize(context) {
     const counts = { weapons: 0, edges: 0, accessories: 0, medicines: 0, missed: 0, catalog: [], acquisition:obtainable };
     try {
         // Lab uses the base game's balance: Lv30, forging, no NG+ reincarnations.
-        if (cycle !== 0) throw new Error("Le laboratoire attend un monde au cycle zéro");
+        if (cycle !== 0) throw new Error("Bosses requires a world at cycle zero");
         pack.GetAllWeaponsByDataTable();
         for (const command of ["GM_GetAllWeaponLockTags", "GM_GetAllAccessories", "GetAllMedicines"]) UE.KismetSystemLibrary.ExecuteConsoleCommand(context, command);
         const table = UE.DataTable.Load("/Game/PBZContent/DataTable/UI/DT_MedicineTable.DT_MedicineTable");
@@ -69,7 +69,7 @@ function initialize(context) {
         }
         pack.RestoreQuickItems();
     } finally { system.SetCycleCount(cycle); }
-    if (!counts.weapons || !counts.edges || !counts.accessories || !counts.medicines || counts.missed) throw new Error("Préparation incomplète : " + JSON.stringify(counts));
+    if (!counts.weapons || !counts.edges || !counts.accessories || !counts.medicines || counts.missed) throw new Error("Preparation incomplete: " + JSON.stringify(counts));
     return counts;
 }
 exports.initialize = initialize;

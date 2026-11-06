@@ -1,0 +1,279 @@
+[
+  {
+    "id": "BP_Monster_Maddoctor_Elite",
+    "domain": "BP_MobDomain_C_UAID_EC9161CFEDC068B202_1506506802",
+    "source": "native SpawnInfo.MobDomain membership",
+    "spawners": [
+      {
+        "name": "BP_AISpawner_C_UAID_60CF8480990935CD02_1680730380",
+        "class": "/PBZCombatAsset/ActorData/Mobs/037_GuiChai/Blueprints/BP_Monster_GuiChai_Black_TwinBlade.BP_Monster_GuiChai_Black_TwinBlade_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_1992411394",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_2010358395",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_2092331396",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_2095786397",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1506608803",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_ShuangCi.BP_Monster_EMei_ShuangCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1588351804",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_ShuangCi.BP_Monster_EMei_ShuangCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1604296805",
+        "class": "/PBZCombatAsset/ActorData/Mobs/058_MadDoctor/BP_Monster_Maddoctor_Elite.BP_Monster_Maddoctor_Elite_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1653755807",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_Crossbow.BP_Monster_EMei_Crossbow_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1668370808",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      }
+    ]
+  },
+  {
+    "id": "BP_Monster_JadeMaskMan",
+    "domain": "BP_MobDomain_C_UAID_74563CC57EE2514C02_1635135171",
+    "source": "native MobDomainConfig.DefaultGroup -> MobGroup_0.Members; AIScript_ActivateSubSpawner DefaultGroup; MobGroupScript_ClearGroup on ddsd.击杀.玉面",
+    "spawners": [
+      {
+        "name": "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635136172",
+        "class": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_GoldMaskMan.BP_Monster_GoldMaskMan_C",
+        "spawnerID": "JadeIntro_Gold"
+      },
+      {
+        "name": "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635136173",
+        "class": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_IronMaskMan.BP_Monster_IronMaskMan_C",
+        "spawnerID": "JadeIntro_Iron"
+      },
+      {
+        "name": "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635138174",
+        "class": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_JadeMaskMan.BP_Monster_JadeMaskMan_C",
+        "spawnerID": "JadeIntro_Jade"
+      }
+    ],
+    "primarySpawnerID": "JadeIntro_Jade",
+    "terminalTag": "ddsd.击杀.玉面"
+  },
+  {
+    "id": "BP_Monster_HuaShan_Blue",
+    "domain": "BP_MobDomain_C_UAID_0A6230820DE85F4502_1979995676",
+    "source": "Authored MobGroup_0 phase 1 (7 members) and MobGroup_1 phase 2 (5 members), native JianZhen phase scripts",
+    "spawners": [
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979997677",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_Blue.BP_Monster_HuaShan_Blue_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980000681",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_White.BP_Monster_HuaShan_White_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998679",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_White.BP_Monster_HuaShan_White_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980001682",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_White.BP_Monster_HuaShan_White_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002684",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_White.BP_Monster_HuaShan_White_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979999680",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_White.BP_Monster_HuaShan_White_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002683",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_White.BP_Monster_HuaShan_White_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998678",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_JianOu.BP_Monster_HuaShan_JianOu_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980005686",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_CaoOu.BP_Monster_HuaShan_CaoOu_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006688",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_CaoOu.BP_Monster_HuaShan_CaoOu_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006687",
+        "class": "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_CaoOu.BP_Monster_HuaShan_CaoOu_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_E89C25A7516AEC7302_1405639150",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_Sword_JianZhen.BP_Monster_EMei_Sword_JianZhen_C"
+      }
+    ],
+    "phaseGroups": [
+      {
+        "name": "MobGroup_0",
+        "members": [
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979997677",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980000681",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998679",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980001682",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002684",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979999680",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002683"
+        ],
+        "script": "MobGroupScript_BossCombat_JianZhen_Phase1_C"
+      },
+      {
+        "name": "MobGroup_1",
+        "members": [
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998678",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980005686",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006688",
+          "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006687",
+          "BP_AISpawner_C_UAID_E89C25A7516AEC7302_1405639150"
+        ],
+        "script": "MobGroupScript_BossCombat_JianZhen_Phase2_C"
+      }
+    ],
+    "completion": "Native phase 1 requires Blue dead, no pending members and at most three surviving members. Native phase 2 handles JianOu death and emits its authored event tag. Reset preserves both phases; no generic primary-death completion."
+  },
+  {
+    "id": "BP_Monster_MuXiaoKui",
+    "domain": "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471",
+    "source": "Authored MobGroup_2 / P3 in PBZ_Zhengdaodaying_WP and BPF_MuXiaoKuiDeath phase transition",
+    "spawners": [
+      {
+        "name": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+        "class": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_Yuu.BP_Monster_Yuu_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143",
+        "class": "/PBZCombatAsset/ActorData/Mobs/Luanshi/BP_Monster_TieGui.BP_Monster_TieGui_C"
+      }
+    ],
+    "nativeTransition": {
+      "sequence": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq046-1/Seqs/Seq046-1.Seq046-1",
+      "playNode": "5E7E9213-45255AE7-4EEC9180-ECB3D83C",
+      "spawnNode": "ABDA4662-41DC0A42-4B910880-5D940E4B",
+      "spawnIDs": [
+        "Yuu_Seq046-1",
+        "TieGu_Seq046-1"
+      ],
+      "authoredSpawnerIDs": [
+        "Yuu_Seq046-1",
+        "TieGui_Seq046-1"
+      ]
+    },
+    "completion": "P3 group-clear emits ljc.沐小葵.玉妖铁鬼死亡; native death graph owns later QTE and final ljc.沐小葵.战斗结束. Reset adds both supports; does not spawn or activate them early. Native flow/spawner spelling difference is recorded, not rewritten."
+  },
+  {
+    "id": "BP_Monster_Yuu",
+    "source": "Native MuXiaoKui phase-three pair; live introduction and playable two-guardian entry observed",
+    "domain": "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471",
+    "spawners": [
+      {
+        "name": "BP_AISpawner_C_UAID_E89C25A75434004502_1084590648",
+        "class": "/PBZCombatAsset/ActorData/Mobs/062_MuXiaoKui/BP_Monster_MuXiaoKui.BP_Monster_MuXiaoKui_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_E89C25A75434197502_1369350133",
+        "class": "/PBZCombatAsset/ActorData/Mobs/064_MuXiaoKui_P2/BP_Monster_MuXiaoKui_P2.BP_Monster_MuXiaoKui_P2_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+        "class": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_Yuu.BP_Monster_Yuu_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143",
+        "class": "/PBZCombatAsset/ActorData/Mobs/Luanshi/BP_Monster_TieGui.BP_Monster_TieGui_C"
+      }
+    ],
+    "entry": {
+      "ownerRootFlow": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiDeath",
+      "predecessor": {
+        "type": "FlowNode_HasWithSourceTag",
+        "node": "C23C79A8-40DF9002-64651C89-37F6B84A",
+        "outputs": [
+          {
+            "Key": "Match",
+            "Value": {
+              "NodeGuid": "62205523-4BCA3029-93E1CB81-4D62250F",
+              "PinName": "In"
+            }
+          }
+        ]
+      },
+      "setExecutionType": {
+        "type": "SetExcuteType_C",
+        "node": "62205523-4BCA3029-93E1CB81-4D62250F",
+        "outputs": [
+          {
+            "Key": "Out",
+            "Value": {
+              "NodeGuid": "5E7E9213-45255AE7-4EEC9180-ECB3D83C",
+              "PinName": "播放"
+            }
+          }
+        ]
+      },
+      "sequence": {
+        "type": "PlayLevelSequence_C",
+        "node": "5E7E9213-45255AE7-4EEC9180-ECB3D83C",
+        "asset": {
+          "AssetPathName": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq046-1/Seqs/Seq046-1.Seq046-1",
+          "SubPathString": ""
+        },
+        "outputs": [
+          {
+            "Key": "刚播放",
+            "Value": {
+              "NodeGuid": "A2ED02EC-489D59E0-B7D44384-3FD22A20",
+              "PinName": "In"
+            }
+          },
+          {
+            "Key": "播放完毕",
+            "Value": {
+              "NodeGuid": "ABDA4662-41DC0A42-4B910880-5D940E4B",
+              "PinName": "In"
+            }
+          }
+        ]
+      },
+      "nativeSpawnerIDs": [
+        "Yuu_Seq046-1",
+        "TieGu_Seq046-1"
+      ],
+      "registeredSpawnerIDs": [
+        "Yuu_Seq046-1",
+        "TieGui_Seq046-1"
+      ],
+      "preservedInitialFlowActor": "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
+      "preservedInitialOnceNode": "45E7FC774A947B74A54E83A880915116",
+      "prerequisiteTag": "ljc.沐小葵.满足额外剧情条件"
+    },
+    "completion": "Both guardians are primary encounter actors. Native final ljc.沐小葵.战斗结束 owns completion after pair death/QTE; no primary-death fallback.",
+    "status": "entry-validated-final-qte-manual-follow-up",
+    "validation": {
+      "artifact": "yuu-native-phase3-prototype.json",
+      "scope": "Native Seq046-1 and two live animated guardians observed; readable gameplay framing confirmed visually. Final two-guardian victory/QTE remains manual follow-up.",
+      "deprecatedAlias": "BP_Monster_TieGui",
+      "selectableEncounters": 59
+    }
+  }
+]
