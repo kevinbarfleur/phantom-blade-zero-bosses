@@ -1,5 +1,9 @@
 "use strict";
 const UE=require("ue"),puerts=require("puerts");
+// The authored seven-member RedTroop group owns its coordinated support AI.
+// Repeatedly stopping and individually restarting its soldiers freezes it.
+const nativeSupportAI=boss=>boss.id==='BP_Monster_HuaShan_RedTroop_BigBro'&&boss.profile.nativeSupportAI===true;
+const heldClasses=boss=>[...boss.classes,...nativeSupportAI(boss)?[]:boss.supportClasses||[]];
 let scope=null;
 const patched={recorder:false,loot:false,pickup:false,settlement:false};
 const same=(a,b)=>String(a).toLowerCase()===String(b).toLowerCase();
@@ -37,11 +41,20 @@ function prepareEntranceFlow(context,session){
             session.entranceFlowPrepared=true;
             const entry=p.directEntry;
             if(!same(UE.KismetSystemLibrary.GetPathName(component.RootFlow),path+'.'+path.split('/').pop()))return;
-            if(!session.entranceSignalSent&&entry?.kind==='native-entry-volume'&&entry.sequences?.length&&session.ux?.nativeArrivalLoaded&&session.worldLoadingComplete){
+            // Streaming can replace an active flow after its entry was sent,
+            // before its sequence starts. Claim each native instance once,
+            // without retaining its wrapper or replaying a previous instance.
+            const signalKey=[p.level||'',path,instance.GetName()].join(':');
+            const signalled=session.entranceSignalInstances||[];
+            if(!signalled.includes(signalKey)&&entry?.kind==='native-entry-volume'&&entry.sequences?.length&&session.ux?.nativeArrivalLoaded&&session.worldLoadingComplete){
+                // Repeated native recreation must still end at the ordinary
+                // entry watchdog, rather than resetting gates indefinitely.
+                if(signalled.length>=4){session.ux={...session.ux,entranceInstanceDispatchLimit:true};return;}
                 const parts=entry.node.split('-');if(parts.length!==4||parts.some(p=>! /^[0-9a-f]{8}$/i.test(p)))return;
                 const guid=new UE.Guid();['A','B','C','D'].forEach((key,i)=>guid[key]=parseInt(parts[i],16));
                 const node=instance.GetNode(guid);if(!node||!UE.KismetSystemLibrary.IsValid(node))return;
-                const once=node.GetConnectionNodeByOutputName('Out');
+                const signalPin=policy.signalPin(p);
+                const once=node.GetConnectionNodeByOutputName(signalPin);
                 if(once&&/ExecuteOnce_C/.test(once.GetName())&&typeof once.GetNodeSaveString==='function'){
                     // Loading can consume the native one-shot before its
                     // sequence host is ready. Reset only that entrance gate,
@@ -59,8 +72,9 @@ function prepareEntranceFlow(context,session){
                 // live graph instead of waiting for a physical overlap. Its
                 // ExecuteOnce/sequence/combat chain owns everything after it.
                 session.entranceSignalSent=true;
-                node.TriggerOutput('Out',false);
-                session.ux={...session.ux,nativeEntranceTriggered:entry.node};
+                session.entranceSignalInstances=[...signalled,signalKey];
+                node.TriggerOutput(signalPin,false);
+                session.ux={...session.ux,nativeEntranceTriggered:entry.node,nativeEntranceSignalPin:signalPin,nativeEntranceSignalInstances:[...session.entranceSignalInstances]};
                 delete session.ux.entranceFlowError;
             }
             return;
@@ -196,7 +210,7 @@ exports.activateDirectCombat=(context,session)=>{
     if(session.arrivalAnchorPending||session.cinematicActive||!session.directArrival?.released)return;
     if(!boss.profile.directEntry?.sequences?.length&&Date.now()-(session.directArrival.releasedAt||0)<400)return;
     if(boss.profile.directEntry?.sequences?.length&&!session.ux?.directIntroObserved)return;
-    if(Object.keys(scope.arrivalHeld||{}).length)for(const path of [...boss.classes,...boss.supportClasses||[]]){
+    if(Object.keys(scope.arrivalHeld||{}).length)for(const path of heldClasses(boss)){
         const klass=UE.Class.Find(path);if(!klass)continue;
         const out=puerts.$ref(UE.NewArray(UE.Actor));UE.GameplayStatics.GetAllActorsOfClass(context,klass,out);const actors=puerts.$unref(out);
         for(let i=0;i<actors.Num();i++){
@@ -249,7 +263,8 @@ exports.holdDirectCombat=(context,session)=>{
     // Stop the native movement/decision component as SpawnMonsterEx does for
     // a dormant pawn. A combat-disable tag alone still permits an idle patrol
     // to walk into the landing point while the streaming cover is active.
-    for(const path of [...session.boss.classes,...session.boss.supportClasses||[]]){
+    if(nativeSupportAI(session.boss))session.ux={...session.ux,nativeSupportAI:true};
+    for(const path of heldClasses(session.boss)){
         const cls=UE.Class.Find(path);if(!cls)continue;
         const out=puerts.$ref(UE.NewArray(UE.Actor));UE.GameplayStatics.GetAllActorsOfClass(context,cls,out);const actors=puerts.$unref(out);
         for(let i=0;i<actors.Num();i++){

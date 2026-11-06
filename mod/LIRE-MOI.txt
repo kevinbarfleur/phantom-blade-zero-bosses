@@ -1,2 +1,2 @@
-BOSSES 0.7.0-preview.4 - PREVERSION
-Lire LIRE-MOI.md avant installation. Fermer le jeu puis attendre la restauration avant la campagne. En cas de crash, Restaurer-Campagne.cmd depuis ce dossier. Conserver .state et .dependencies jusqu a restauration.
+BOSSES 0.7.0-preview.5 - PREVERSION
+Lire LIRE-MOI.md avant installation. Fermer le jeu puis attendre la restauration avant la campagne. Apres un crash : Restaurer-Campagne.cmd depuis ce dossier. Conserver .state et .dependencies jusqu a restauration.

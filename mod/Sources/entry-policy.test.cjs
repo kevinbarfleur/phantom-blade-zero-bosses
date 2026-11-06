@@ -17,3 +17,12 @@ test('entries requiring the native execution context retain their authored overl
   const p=catalog.find(b=>b.id===id).profile;assert.equal(p.directEntry.dispatch,'native-overlap');assert.equal(policy.manual(p),false);assert(p.directEntry.crossing);assert(p.clearActors.includes(policy.owner(p).name));
  }
 });
+
+test('the native third-phase pair may signal Match only on its proven predecessor gate',()=>{
+ const p=require('./boss-catalog.json').find(b=>b.id==='BP_Monster_Yuu').profile;
+ assert.equal(policy.manual(p),true);assert.equal(policy.signalPin(p),'Match');
+ assert.equal(p.directEntry.node,'C23C79A8-40DF9002-64651C89-37F6B84A');
+ assert.equal(policy.signalPin({directEntry:{}}),'Out');
+ for(const changed of [{signalPin:'Unexpected'},{graph:'/Game/Other'},{node:'A23C79A8-40DF9002-64651C89-37F6B84A'}])
+  assert.equal(policy.manual({...p,directEntry:{...p.directEntry,...changed}}),false);
+});

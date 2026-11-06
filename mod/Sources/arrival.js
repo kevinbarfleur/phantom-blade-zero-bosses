@@ -4,6 +4,19 @@ const cinema=require("./cinema");
 const entryPolicy=require('./entry-policy');
 const facing=require('./entry-facing');
 function valid(object){try{return !!object&&UE.KismetSystemLibrary.IsValid(object);}catch(_){return false;}}
+function detachCover(state){
+    if(!state)return;
+    // AsyncAction delegates must not keep state.action alive through their
+    // own closure. This JS/native retention cycle survives ordinary UE GC.
+    for(const [owner,event,handler]of [[state.action,'BeforePush',state.beforePush],[state.action,'AfterPush',state.afterPush],[state.widget,'BP_OnWidgetDeactivated',state.coverDeactivated]]){
+        try{if(handler&&valid(owner))owner[event].Remove(handler);}catch(_){}
+    }
+    state.action=null;state.beforePush=null;state.afterPush=null;state.coverDeactivated=null;state.widget=null;
+}
+function detachAction(state){
+    for(const [event,handler]of [['BeforePush',state.beforePush],['AfterPush',state.afterPush]])try{if(handler&&valid(state.action))state.action[event].Remove(handler);}catch(_){}
+    state.action=null;state.beforePush=null;state.afterPush=null;
+}
 function event(session,name){
     session.ux={...session.ux,arrivalEvents:[...(session.ux?.arrivalEvents||[]),{name,time:Date.now()}].slice(-16)};
 }
@@ -17,7 +30,12 @@ function yieldToIntroduction(context,session,state){
         if(valid(state.widget))state.widget.DeactivateWidget();
     }
     session.cinematicActive=active;
-    if(active){session.ux={...session.ux,directIntroObserved:true,directReady:true};release(session);}
+    if(active){
+        if(cinema.introductionReady(context,session)){
+            session.ux={...session.ux,directIntroObserved:true,directReady:true,introRevealReady:true};
+            event(session,'native-intro-presentation-ready');release(session);
+        }
+    }
     // Native preparation can take longer than ten seconds. A still-activated
     // sequence retains ownership; elapsed time must never restart placement.
     else if(!pending&&++state.introWait>=3){session.ux={...session.ux,introPreparationCancelled:true,directReady:true};release(session);}
@@ -35,9 +53,16 @@ function abort(session){
     const state=session.directArrival;
     if(state){state.superseded=true;if(valid(state.widget))state.widget.DeactivateWidget();}
     release(session);
+    detachCover(state);
+}
+function dispose(session){
+    const state=session.directArrival;if(!state)return;
+    state.superseded=true;release(session);detachCover(state);
+    state.controller=null;state.loadingFollowup=null;state.additional=null;
+    session.directArrival=null;
 }
 function begin(context,session){
-    release(session);
+    dispose(session);
     const entry=session.boss.profile.directEntry;
     if(!entry||session.boss.training){session.directArrival=null;return;}
     const controller=UE.GameplayStatics.GetPlayerController(context,0);
@@ -59,13 +84,14 @@ function cover(context,session,state,player){
     const klass=UE.KismetSystemLibrary.Conv_SoftClassPathToSoftClassRef(path),tag=new UE.GameplayTag();tag.TagName="UI.Layer.Menu";
     const action=UE.AsyncAction_PushContentToLayerForPlayer.PushContentToLayerForPlayer(state.controller,klass,tag,true);
     state.action=action;
-    action.BeforePush.Add(widget=>{
+    state.beforePush=widget=>{
         if(session.directArrival!==state||state.released)return;
         state.widget=widget;
         if(yieldToIntroduction(context,session,state))return;
         const load=state.entry.crossing||state.target;
         widget['Target Location']=new UE.Vector(load.X,load.Y,load.Z);
-        widget.BP_OnWidgetDeactivated.Add(()=>{
+        state.coverDeactivated=()=>{
+            detachCover(state);
             if(session.directArrival!==state||state.released||state.superseded||state.coverFinished)return;
             state.coverFinished=true;
             session.ux={...session.ux,nativeArrivalLoaded:true};
@@ -74,9 +100,11 @@ function cover(context,session,state,player){
             if(state.entry.crossing&&!session.cinematicActive){state.streamingReady=true;state.crossingTicks=0;return;}
             session.ux.directReady=true;
             release(session);
-        });
-    });
-    action.AfterPush.Add(widget=>{
+        };
+        widget.BP_OnWidgetDeactivated.Add(state.coverDeactivated);
+    };
+    state.afterPush=widget=>{
+        detachAction(state);
         if(session.directArrival!==state||state.released||!valid(player)){
             if(valid(widget))widget.DeactivateWidget();return;
         }
@@ -90,7 +118,8 @@ function cover(context,session,state,player){
         const rotation=new UE.Rotator(0,state.yaw,0);
         move(player,state.entry.crossing||state.target);
         state.controller.SetControlRotation(rotation);
-    });
+    };
+    action.BeforePush.Add(state.beforePush);action.AfterPush.Add(state.afterPush);
     action.Activate();
 }
 function tick(context,session){
@@ -136,6 +165,15 @@ function tick(context,session){
         // ready. Stay outside the trigger; the cinematic owns final placement.
         if(entryPolicy.manual(session.boss.profile))return true;
         if(!state.entry.sequences?.length){
+            if(state.facingCommitAttempted){
+                if(!state.facingCommitSucceeded)return true;
+                // PBZ teleport commits the root pose on the next animation
+                // update. Keep the owned cover for two ticks without turning
+                // or teleporting again, then hand control back exactly once.
+                if(++state.facingCommitSettleTicks<2)return true;
+                state.facingAuditTicks=0;session.ux.directReady=true;release(session);event(session,'opponent-facing-ready');
+                return true;
+            }
             if(!state.facingLock){
                 // The native landing screen may reset controller input locks.
                 // Reacquire only a missing lock, then release our one count.
@@ -150,7 +188,17 @@ function tick(context,session){
             // fade still cover the final frames. Use the live opponent.
             if(!facing.apply(context,session,player,state.controller))return true;
             state.facingTicks=(state.facingTicks||0)+1;
-            if(state.facingTicks>=3){state.facingAuditTicks=0;session.ux.directReady=true;release(session);event(session,'opponent-facing-ready');}
+            if(state.facingTicks>=3){
+                state.facingCommitAttempted=true;
+                try{
+                    if(!facing.commit(context,session,player,state.controller))throw Error('Native facing commit failed');
+                }catch(error){
+                    session.ux={...session.ux,nativeEntryPoseCommitError:String(error)};
+                    event(session,'opponent-facing-commit-failed');
+                    return true;
+                }
+                state.facingCommitSucceeded=true;state.facingCommitSettleTicks=0;
+            }
             return true;
         }
         state.crossingTicks++;
@@ -198,4 +246,4 @@ function tick(context,session){
     if(state.ticks>=60&&session.worldLoadingComplete&&!state.coverRequested)cover(context,session,state,player);
     return true;
 }
-exports.begin=begin;exports.tick=tick;exports.release=release;exports.abort=abort;
+exports.begin=begin;exports.tick=tick;exports.release=release;exports.abort=abort;exports.dispose=dispose;

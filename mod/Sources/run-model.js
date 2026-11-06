@@ -29,7 +29,8 @@ function hit(state,interactive=false){
     if(!state?.options.hits66||!(state.phase==="combat"||(state.phase==="finishing"&&interactive)))return false;
     state.hits=Math.min(66,state.hits+1);
     if(state.hits<66)return false;
-    state.phase="failed";state.active=false;state.reason="66hits";return true;
+    state.phase="failed";state.active=false;state.reason="66hits";state.deaths++;
+    state.lastAttempt={boss:state.currentBoss,ms:state.attemptMs,result:"66hits"};return true;
 }
 function death(state){
     if(!state||["failed","finished","abandoned"].includes(state.phase)||(state.phase==="waiting"&&state.reason==="defeat"))return;

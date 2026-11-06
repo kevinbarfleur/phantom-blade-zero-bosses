@@ -16,7 +16,7 @@
     "sequences": [
       "/Game/PBZContent/Sequencer/GenerateSequencer/Seq014/Seqs/Seq014.Seq014"
     ],
-    "distanceToBoss": 2467.0,
+    "distanceToBoss": 2467,
     "volumeOwner": "fixed-volume",
     "crossing": {
       "X": -48667.95650352982,
@@ -53,7 +53,7 @@
     "crossing": {
       "X": -67365.38246921597,
       "Y": 208741.0808050456,
-      "Z": -19330.0
+      "Z": -19330
     }
   },
   {
@@ -80,7 +80,7 @@
     "sequences": [
       "/Game/PBZContent/Sequencer/GenerateSequencer/Seq027/Seqs/Seq027.Seq027"
     ],
-    "distanceToBoss": 1179.0,
+    "distanceToBoss": 1179,
     "volumeOwner": "fixed-volume",
     "crossing": {
       "X": -130517.06014770932,
@@ -178,18 +178,15 @@
   {
     "id": "BP_Monster_Yuu",
     "kind": "native-entry-volume",
-    "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiChuChang",
-    "node": "56C06DEC-4750087A-58E72795-6247BAE8",
+    "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiDeath",
+    "node": "C23C79A8-40DF9002-64651C89-37F6B84A",
+    "signalPin": "Match",
     "sequences": [
-      "/Game/PBZContent/Sequencer/GenerateSequencer/Seq045/Seqs/Seq045.Seq045"
+      "/Game/PBZContent/Sequencer/GenerateSequencer/Seq046-1/Seqs/Seq046-1.Seq046-1"
     ],
-    "distanceToBoss": 1843.6,
-    "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
-    "crossing": {
-      "X": -66520.56502227618,
-      "Y": 80845.84384977452,
-      "Z": 1014.9624
-    }
+    "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434854402_1102470946",
+    "distanceToBoss": 870.5,
+    "source": "Authored phase-three HasWithSourceTag.Match -> SetExcuteType -> Seq046-1; prototype live validation pending"
   },
   {
     "id": "BP_Monster_TieGui",
@@ -412,17 +409,17 @@
   {
     "id": "BP_Monster_JadeMaskMan",
     "kind": "native-entry-volume",
-    "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiChuchang",
-    "node": "175ECF80-483973D5-0C6BE884-14347BAB",
+    "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_YuMianChuChang",
+    "node": "2B9F52E9-4161CBD6-515BB480-71AD79B2",
     "sequences": [
-      "/HuaShira/Animation/Seqs/MBoss_Intro/MBoss_IntroAll.MBoss_IntroAll"
+      "/HuaShira/Animation/Seqs/JadeIntro/Jade_Intro.Jade_Intro"
     ],
-    "distanceToBoss": 1679.3,
-    "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75120CB8002_1238706382",
+    "distanceToBoss": 3240.7,
+    "volumeOwner": "BP_FlowActor_C_UAID_74563CC57EE2693A02_1903534261",
     "crossing": {
-      "X": -60707.40309541318,
-      "Y": -99364.77080062313,
-      "Z": 29640.0
+      "X": -60731.773,
+      "Y": -94039.45,
+      "Z": 29524.12
     }
   },
   {
@@ -438,7 +435,7 @@
     "crossing": {
       "X": -60728.89690458682,
       "Y": -98785.16919937688,
-      "Z": 29640.0
+      "Z": 29640
     }
   },
   {
@@ -494,7 +491,7 @@
     "sequences": [
       "/Game/PBZContent/Sequencer/GenerateSequencer/Seq126/Seqs/Seq126.Seq126"
     ],
-    "distanceToBoss": 1822.0,
+    "distanceToBoss": 1822,
     "volumeOwner": "BP_FlowActor_C_UAID_60CF848A6689E0CC02_2139638566",
     "crossing": {
       "X": -151863.7000428728,
@@ -583,7 +580,7 @@
     "crossing": {
       "X": -193003.5996039053,
       "Y": -115297.52000000012,
-      "Z": 4500009.0
+      "Z": 4500009
     }
   },
   {

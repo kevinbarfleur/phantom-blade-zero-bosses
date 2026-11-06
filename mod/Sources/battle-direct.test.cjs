@@ -1,12 +1,12 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 function setup(){
- let clock=10000;
+ let clock=10000,pending=false;
  const calls=[],wakes=[],disabled=[],flowCalls=[],actor={GetName:()=>"PrimaryBoss",GetClass:()=>"/Boss_C",K2_GetActorLocation:()=>({X:100,Y:0,Z:0})};
  const UE={Class:{Find:()=>1,Load:()=>1},Actor:{},NewArray:()=>({Num:()=>1,Get:()=>actor}),AbilityUtils:{SetLooseGameplayTagCount:(actor,tag,count)=>disabled.push({actor,tag:tag.TagName,count})},GameplayTag:class{},GameplayStatics:{GetAllActorsOfClass(){},GetPlayerCharacter:()=>({K2_GetActorLocation:()=>({X:0,Y:0,Z:0})})},KismetSystemLibrary:{GetPathName:x=>x},AbilitySystemBlueprintLibrary:{GetAbilitySystemComponent:()=>({HasMatchingGameplayTag:()=>false})}};
  const puerts={$ref:v=>({value:v}),$unref:r=>r.value,blueprint:{tojs:()=>({AwakeAI:(...args)=>wakes.push(args),StartAI:(...args)=>calls.push(args),SetActorBecomeMonster:(...args)=>flowCalls.push(['monster',...args]),SetActorAttackable:(...args)=>flowCalls.push(['attackable',...args])})}};
- const exports={};vm.runInNewContext(fs.readFileSync(__dirname+'/battle.js','utf8'),{exports,Date:{now:()=>clock},require:n=>n==='./entrance-gates'?require('./entrance-gates'):n==='./entry-policy'?require('./entry-policy'):n==='ue'?UE:puerts});
+ const exports={};vm.runInNewContext(fs.readFileSync(__dirname+'/battle.js','utf8'),{exports,Date:{now:()=>clock},require:n=>n==='./entry-policy'?require('./entry-policy'):n==='./cinema'?{pending:()=>pending}:n==='ue'?UE:puerts});
  const session={active:true,directArrival:{released:true},boss:{classes:['/Boss_C'],profile:{directEntry:{sequences:[]}}},ux:{}};
- exports.install(session,()=>{});return {api:exports,session,calls,wakes,disabled,flowCalls,UE,actor,set now(value){clock=value;}};
+ exports.install(session,()=>{});return {api:exports,session,calls,wakes,disabled,flowCalls,UE,actor,setPending:value=>pending=value,set now(value){clock=value;}};
 }
 
 test('native AI movement stays suspended under the ordinary arrival cover and resumes once',()=>{
@@ -86,6 +86,20 @@ function entrance(){
 test('cinematic entry resolves the exact node on the live authored pawn graph and emits only once',()=>{
  const h=entrance();h.api.prepareEncounter({},h.session);h.api.prepareEncounter({},h.session);assert.deepEqual(h.outputs,[['Out',false]]);assert.equal(h.session.ux.nativeEntranceTriggered,h.entry.node);
 });
+
+test('phase-three pair dispatches Match through its native execution gate once, without pre-spawning either guardian',()=>{
+ const h=entrance(),profile=JSON.parse(JSON.stringify(require('./boss-catalog.json').find(b=>b.id==='BP_Monster_Yuu').profile));
+ const steps=[];h.session.boss.profile=profile;h.session.layersPrepared=true;
+ h.component.RootFlow=profile.directEntry.graph+'.BPF_MuXiaoKuiDeath';
+ h.session.entranceOwner={GetComponentByClass:()=>h.component};
+ h.flow.GetNode=guid=>{assert.equal(guid.A,0xC23C79A8);assert.equal(guid.D,0x37F6B84A);return h.node;};
+ const setter={GetName:()=> 'SetExcuteType_C_0',execute(){steps.push('SetExcuteType');steps.push('native-sequence');}};
+ h.node.GetConnectionNodeByOutputName=pin=>{assert.equal(pin,'Match');return setter;};
+ h.node.TriggerOutput=(pin,finish)=>{assert.equal(pin,'Match');assert.equal(finish,false);setter.execute();};
+ h.api.prepareEncounter({},h.session);h.api.prepareEncounter({},h.session);
+ assert.deepEqual(steps,['SetExcuteType','native-sequence']);assert.equal(h.session.ux.nativeEntranceSignalPin,'Match');
+ assert.equal(h.wakes.length,0);assert.equal(h.calls.length,0,'native controller alone owns guardian spawning and AI');
+});
 test('cinematic entry waits for streaming and never interrupts a running or already observed introduction',()=>{
  for(const block of [h=>h.session.worldLoadingComplete=false,h=>h.session.ux.nativeArrivalLoaded=false,h=>h.session.cinematicActive=true,h=>h.session.ux.directIntroObserved=true,h=>h.entry.sequences=[],h=>h.component.RootFlow='/Other.Graph']){
   const h=entrance();block(h);h.api.prepareEncounter({},h.session);assert.equal(h.outputs.length,0);
@@ -110,4 +124,45 @@ test('an NPC-owned introduction resolves its authored spawner component rather t
  const actor={GetName:()=>owner.name,GetComponentByClass:()=>h.component};h.UE.NewArray=()=>({Num:()=>1,Get:()=>actor});
  h.UE.GameplayStatics.GetAllActorsOfClass=(_,cls)=>assert.equal(cls,owner.class);h.UE.Class.Load=p=>p;
  h.api.prepareEncounter({},h.session);assert.equal(h.outputs.length,1);assert.equal(h.session.entranceOwner,actor);
+});
+
+test('authored BigBro native support ownership preserves primary hold and does not affect other groups',()=>{
+ for(const [flag,id,skip] of [[true,'BP_Monster_HuaShan_RedTroop_BigBro',true],[false,'BP_Monster_HuaShan_RedTroop_BigBro',false],[true,'other-group',false]]){
+  const h=setup(),stopped=[],resumed=[];
+  h.UE.KismetSystemLibrary.IsValid=()=>true;h.UE.Class.Find=p=>p;
+  const support={GetName:()=> 'Soldier',GetClass:()=>'/Soldier_C',K2_GetActorLocation:()=>({X:150,Y:0,Z:0})};
+  for(const actor of [h.actor,support])actor.GetController=()=>({GetBlueprintSGameAIComponent:()=>({StopAI:()=>stopped.push(actor.GetName()),StartAI:()=>resumed.push(actor.GetName())}),StopMovement(){}});
+  h.UE.GameplayStatics.GetAllActorsOfClass=(c,p,out)=>{const actor=p==='/Soldier_C'?support:h.actor;out.value={Num:()=>1,Get:()=>actor};};
+  h.session.boss.id=id;h.session.boss.profile.nativeSupportAI=flag;h.session.boss.supportClasses=['/Soldier_C'];h.session.directArrival={released:false,coverRequested:true};
+  h.api.holdDirectCombat({},h.session);h.session.directArrival.released=true;h.api.activateDirectCombat({},h.session);
+  assert.deepEqual(stopped,skip?['PrimaryBoss']:['PrimaryBoss','Soldier']);assert.deepEqual(resumed,stopped);assert.equal(h.calls.length,1);
+ }
+});
+
+
+test('a replaced native entrance receives its own signal once, including return to an old instance',()=>{
+ const h=entrance(),tick=()=>h.api.prepareEncounter({},h.session);tick();tick();
+ const replacement={...h.flow,GetName:()=> 'ReplacementEntrance'};h.component.GetRootFlowInstance=()=>replacement;tick();tick();
+ h.component.GetRootFlowInstance=()=>h.flow;tick();
+ assert.equal(h.outputs.length,2);assert.equal(h.session.entranceSignalInstances.length,2);
+ assert.ok(h.session.entranceSignalInstances.every(x=>typeof x==='string'&&x.includes('/Game/BPF_Entrance:')));
+ assert.equal(h.session.ux.nativeEntranceSignalInstances.length,2);
+});
+test('flow replacement cannot replay an observed, active or pending native intro or reset its gate',()=>{
+ for(const block of [h=>h.session.ux.directIntroObserved=true,h=>h.session.cinematicActive=true,h=>h.setPending(true)]){
+  const h=entrance();let resets=0;h.node.SetAllOutPutsExecuteDoneFalse=()=>resets++;
+  h.api.prepareEncounter({},h.session);h.component.GetRootFlowInstance=()=>({...h.flow,GetName:()=> 'ReplacementEntrance'});block(h);
+  h.api.prepareEncounter({},h.session);assert.equal(h.outputs.length,1);assert.equal(resets,1);
+ }
+});
+test('replacement before streaming release dispatches only the current instance and wrong graphs stay untouched',()=>{
+ const h=entrance(),tick=()=>h.api.prepareEncounter({},h.session);h.session.worldLoadingComplete=false;tick();
+ h.component.GetRootFlowInstance=()=>({...h.flow,GetName:()=> 'ReplacementEntrance'});tick();assert.equal(h.outputs.length,0);
+ h.session.worldLoadingComplete=true;tick();tick();assert.equal(h.outputs.length,1);
+ h.component.GetRootFlowInstance=()=>({...h.flow,GetName:()=> 'OtherEntrance'});h.component.RootFlow='/Other.Graph';tick();assert.equal(h.outputs.length,1);
+});
+test('continuous native recreation is bounded and synchronous dispatch reentry cannot duplicate a signal',()=>{
+ const h=entrance();let calls=0;h.node.TriggerOutput=()=>{calls++;h.api.prepareEncounter({},h.session);};
+ for(let i=0;i<7;i++){h.component.GetRootFlowInstance=()=>({...h.flow,GetName:()=> 'Entrance_'+i});h.api.prepareEncounter({},h.session);}
+ assert.equal(calls,4);assert.equal(h.session.entranceSignalInstances.length,4);assert.equal(h.session.ux.entranceInstanceDispatchLimit,true);
 });

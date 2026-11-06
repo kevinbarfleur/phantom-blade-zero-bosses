@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "gameBuild": 26367565,
+  "status": "pass-scoped",
+  "bundleHash": "6e118f7cf3f82c922dda7fc07c0b1f058fbd435cce62ccb57088b2c4614a8f28",
+  "observedAt": "2026-11-06T06:32:09.204Z",
+  "encounter": {
+    "id": "BP_Monster_LuanShi",
+    "name": "Main de pierre, Fièvre de fer"
+  },
+  "summary": "66 coups ennemis déclenchent le chemin natif de mort, arrêtent la série et ramènent automatiquement chez Inanis. Le récapitulatif a été observé puis fermé ; le chronomètre reste figé.",
+  "method": {
+    "enemyHits": "Événements natifs de coups ennemis reçus, sans incrément artificiel du compteur.",
+    "privateSurvivalGuard": "Restauration de vie du scénario privé avant le 66e coup seulement, afin d’atteindre la limite ; ce garde-fou n’est pas actif dans le mode public.",
+    "nativeDeathEvidence": "Activation du menu de mort natif BP_OnActivated, relayée à runs.death ; compteur deaths=1 dans la télémétrie.",
+    "physicalInteraction": "Espace envoyé par outil de contrôle : disparition du récapitulatif confirmée visuellement. Cela ne certifie pas tous les contrôles physiques.",
+    "graphics": "Avant confirmation du préréglage Faible dans le menu natif : plafond 30 FPS et certains paramètres sg.*=1 persistants. Le préréglage Faible et le ray tracing désactivé ne sont pas confirmés pour ce test ; les modifications directes gq.* et RT avaient été réécrites au démarrage."
+  },
+  "observations": {
+    "hits": 66,
+    "nativeDeathCount": 1,
+    "healthAtDeath": null,
+    "runPhase": "failed",
+    "runActive": false,
+    "destination": "Codex_Training",
+    "returnNoticeShown": true,
+    "recapDismissed": true,
+    "inventoryOpened": false,
+    "inventoryStatus": "non-confirmé",
+    "timerMs": 87271.64610102773,
+    "timerStableObservedMs": 18232,
+    "no67thHitOrNewFightInObservedWindow": true,
+    "reportedRuntimeError": null,
+    "hudContrast": "Fond sombre observé en jeu ; chronomètre et compteur lisibles sur scène claire."
+  },
+  "resources": {
+    "minimumObservedSystemFreeGiB": 2.872,
+    "systemFreeGiBAfterReturn": 4.952350616455078,
+    "longRunStabilityCertified": false
+  },
+  "captures": [
+    {
+      "file": "../Captures/12-final66-hud-contrast.jpg",
+      "shows": "HUD contrasté pendant le combat"
+    },
+    {
+      "file": "../Captures/13-final66-limit.jpg",
+      "shows": "Récapitulatif 66/66 chez Inanis, temps 01:27.27"
+    },
+    {
+      "file": "../Captures/14-final66-refuge.jpg",
+      "shows": "Refuge après fermeture du récapitulatif ; aucun inventaire affiché"
+    }
+  ],
+  "retainedPrivateEvidence": [
+    {
+      "file": "final66-luanshi-status-20261106-062648-8df89e.json",
+      "sha256": "a62b927ed52d7876a8c85ae015e0c68ffe1d238d90f0042507dd1880891ba3f2"
+    },
+    {
+      "file": "final66-luanshi-stable-20261106-062648-8df89e.json",
+      "sha256": "e0b50a80c00806190a587a7790dc2ef330170fabb3b42b9f2c1403bed22a9849"
+    },
+    {
+      "file": "final66-luanshi-dismissed-20261106-062648-8df89e.json",
+      "sha256": "8d3d81bcbf35b1840f8a3bd2a02183530130d89c80a4057ed8d542c80d485812"
+    }
+  ],
+  "limits": [
+    "Essai ciblé sur cette rencontre et cette compilation ; ne certifie pas tous les boss, les fins de combat ni une série complète.",
+    "Les PV exacts au décès ne figurent pas dans ce dernier relevé ; l’ancienne preuve Bi Yuan Health=0 est conservée séparément.",
+    "L’ouverture de l’inventaire via Échap n’a pas été observée ; aucun succès n’est attribué à cet essai.",
+    "Mesures et captures à 30 FPS avec certains paramètres sg.* réduits ; ne pas attribuer rétrospectivement le préréglage Faible/ray tracing désactivé confirmé plus tard. Stabilité et rendu aux réglages habituels non certifiés.",
+    "Des instantanés espacés ne certifient pas toutes les images intermédiaires ni une absence absolue de défaut."
+  ]
+}

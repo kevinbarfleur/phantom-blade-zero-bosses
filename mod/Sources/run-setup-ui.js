@@ -80,7 +80,7 @@ function configure(widget,session,boss){
         });
         const focusables=[...rows.map(row=>row.rotator),button];
         for(let i=0;i<focusables.length;i++){focusables[i].SetNavigationRuleExplicit(UE.EUINavigation.Up,focusables[Math.max(0,i-1)]);focusables[i].SetNavigationRuleExplicit(UE.EUINavigation.Down,focusables[Math.min(focusables.length-1,i+1)]);}
-        const name=boss?.label||UE.KismetTextLibrary.Conv_TextToString(require('../Library/UIHelper').default.GetTextByID(boss?.nameKey));
+        const name=require('./boss-label').resolve(boss,key=>UE.KismetTextLibrary.Conv_TextToString(require('../Library/UIHelper').default.GetTextByID(key)));
         label(((name||'BOSSES')+(boss?.variant?' · '+boss.variant:'')).toLocaleUpperCase('fr-FR'),1080,710,650);
         help=label('',1080,790,650);hint=label('',145,910,1600);
         if(boss?.portrait){const image=UE.NewObject(UE.Image.StaticClass(),widget);image.SetVisibility(UE.ESlateVisibility.HitTestInvisible);const path=UE.KismetSystemLibrary.MakeSoftObjectPath(boss.halfPortrait||boss.portrait);image.SetBrushFromSoftTexture(UE.KismetSystemLibrary.Conv_SoftObjPathToSoftObjRef(path),false);panel(image,1100,90,560,560);}

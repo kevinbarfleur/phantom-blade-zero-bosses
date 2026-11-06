@@ -1,0 +1,2426 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-06T10:51:48.806Z",
+  "scope": "Read-only numerical audit of explicitly completed encounter batches; no registry promotion.",
+  "labels": [
+    "facing-final-01-03",
+    "facing-final-04-06",
+    "facing-small-07-08",
+    "facing-small-09-10",
+    "facing-small-11-12",
+    "facing-small-13-14",
+    "facing-small-15-16",
+    "facing-small-17-18",
+    "facing-small-19-20",
+    "facing-small-21-22",
+    "facing-small-23-24",
+    "facing-small-25-26",
+    "facing-small-27-28",
+    "facing-small-29-30",
+    "facing-small-31-32",
+    "facing-small-33-34",
+    "facing-small-35-35"
+  ],
+  "sources": [
+    {
+      "file": "r7-evidence/facing-final-01-03.json",
+      "sha256": "85bc2058d5896f2c0b011ffdc31b60c4322bba3bc8098b8fe221ed5e9acc1a3c"
+    },
+    {
+      "file": "r7-evidence/facing-final-01-03-provenance.json",
+      "sha256": "23470259a7a3379c33aa1841c990a6268c79736e433fd06dfd24408136a34387"
+    },
+    {
+      "file": "r7-evidence/facing-final-01-03-BP_Monster_MobMan_Elite_Sword-controls.json",
+      "sha256": "3fb21e10d62fe11dbbc6bca38ffcc3c8b2ffea1dd252cad4e95615c06ef0829c"
+    },
+    {
+      "file": "r7-evidence/facing-final-01-03-BP_Monster_JingYe-controls.json",
+      "sha256": "63ab94192653d3ecfb4947e0949926904c527788341fb15ad1705dcf3c3fd4e7"
+    },
+    {
+      "file": "r7-evidence/facing-final-01-03-BP_Monster_Zhuobi-controls.json",
+      "sha256": "27f9369ae615c6cec1b831c2f3991b0fa1e7c0236e60a0c15c065d5aca13481c"
+    },
+    {
+      "file": "r7-evidence/facing-final-04-06.json",
+      "sha256": "806c962e8ceba04ab716211e9f1c10615cca2a44723d842b4c2dadc6404507a5"
+    },
+    {
+      "file": "r7-evidence/facing-final-04-06-provenance.json",
+      "sha256": "244826d9194bbf3ee368196cb7edc0b0f529f76349b7650949d929112f3e1643"
+    },
+    {
+      "file": "r7-evidence/facing-final-04-06-BP_Monster_CanQu_BiHai-controls.json",
+      "sha256": "1e1b8d2a8b88da6a2c295caad6316b8ef3849ae16a3d7dbe05613ab5947d456e"
+    },
+    {
+      "file": "r7-evidence/facing-final-04-06-BP_Monster_BiYuan-controls.json",
+      "sha256": "04e4c52cdec7afcb77766cef8ee275d5d155502595e3fe39a6beeaffbef54ca5"
+    },
+    {
+      "file": "r7-evidence/facing-final-04-06-BP_Monster_FemaleVessel_YuZan-controls.json",
+      "sha256": "57b87160ddb63dad0fbf109400dbd804c39d06aad8fe878cbc83c7230abf5ac5"
+    },
+    {
+      "file": "r7-evidence/facing-small-07-08.json",
+      "sha256": "6b4c434f1c53bd48d6e96bb6929e8e6cfde2c53b0deebaae06e7f7de101d7c56"
+    },
+    {
+      "file": "r7-evidence/facing-small-07-08-provenance.json",
+      "sha256": "2499c11584799be1232b5a15f760d24066aa532b3daa0423c4463ec7757ea5a5"
+    },
+    {
+      "file": "r7-evidence/facing-small-07-08-BP_Monster_QiShu_Huo-controls.json",
+      "sha256": "8fbd9bca799ea478095db64c2c4fef919038594312cb65e53d86259fe4dc3b52"
+    },
+    {
+      "file": "r7-evidence/facing-small-07-08-BP_Monster_Danghui-controls.json",
+      "sha256": "b3bccf5df263118b80b90b0f550a3b8ce87e1348bef46a9f6125cabfff481dcb"
+    },
+    {
+      "file": "r7-evidence/facing-small-09-10.json",
+      "sha256": "0a9608e1dec0aaf220b6da488d7759059f63b473b8e6c0f978a04f2226ebbdf1"
+    },
+    {
+      "file": "r7-evidence/facing-small-09-10-provenance.json",
+      "sha256": "0306abb8c17be5f68359434e92ee5bfb35ce0fd02c81ccfe43510149f376ba52"
+    },
+    {
+      "file": "r7-evidence/facing-small-09-10-BP_Monster_GuiChai_Yellow_MoDao-controls.json",
+      "sha256": "5e912b73ad7cf5642948572685af03a4362a63f7f09a0a7d79f0d2483b532fc8"
+    },
+    {
+      "file": "r7-evidence/facing-small-09-10-BP_Monster_GuiChai_Yellow_ShuangGou-controls.json",
+      "sha256": "c8d429a5cb50d73309c3e13e19b92a77158d3f5f2686a7a30ead80e265f403ac"
+    },
+    {
+      "file": "r7-evidence/facing-small-11-12.json",
+      "sha256": "3b8e96a87a0b43808ec9dba1e9f48c3bd9e22190ea4190d6074ecf450dabf9bb"
+    },
+    {
+      "file": "r7-evidence/facing-small-11-12-provenance.json",
+      "sha256": "c715ea7297ab37539c170b9285c02f62ef02ab4c9799eccfc25056167e72d81f"
+    },
+    {
+      "file": "r7-evidence/facing-small-11-12-BP_Monster_HuoDaoDuiZhang-controls.json",
+      "sha256": "09df4453a64c98e63bb40ca21a89b3084c16cc7f5e53f0f5b93a4cc1ea3eeb3e"
+    },
+    {
+      "file": "r7-evidence/facing-small-11-12-BP_Monster_WuXuan-controls.json",
+      "sha256": "abe41dc5c8afc2d068e4f88be59d8531ad59e463db27925ccd775203d6fbd25c"
+    },
+    {
+      "file": "r7-evidence/facing-small-13-14.json",
+      "sha256": "e2ad90ac21d688bb2af35cd4dd68147f32207f83496517e8d78e4a718a1e67c6"
+    },
+    {
+      "file": "r7-evidence/facing-small-13-14-provenance.json",
+      "sha256": "d24bd3e9d913a585910397dc6fa49abfd550e743690c0803118e96c1620b1e2a"
+    },
+    {
+      "file": "r7-evidence/facing-small-13-14-BP_Monster_Maddoctor_Elite-controls.json",
+      "sha256": "f20bb5898bdc055fd44fde425ecfd076c75636bfeb00d089a10abe65bb65cd49"
+    },
+    {
+      "file": "r7-evidence/facing-small-13-14-BP_Monster_YouLong_SecondBrother-controls.json",
+      "sha256": "9dc691b70dbfa70d68bc6fe15200b46ceef5f2d37841177ce009e6c92366ae6b"
+    },
+    {
+      "file": "r7-evidence/facing-small-15-16.json",
+      "sha256": "51f49a7179a526d74a394582756ae19518e3f952d8ef3f28965716c434af82af"
+    },
+    {
+      "file": "r7-evidence/facing-small-15-16-provenance.json",
+      "sha256": "02e784f080243daaf51b0ea723f21d960de2cf7d56614bd791f0b25d60e56268"
+    },
+    {
+      "file": "r7-evidence/facing-small-15-16-BP_Monster_QiShu_Lei-controls.json",
+      "sha256": "c774b44d96a95fd98eac8d8f9212cb1bbc7a8f0a5beeb562576f74d747b0ed3f"
+    },
+    {
+      "file": "r7-evidence/facing-small-15-16-BP_Monster_LionDancer-controls.json",
+      "sha256": "9c1da3742a878658b5b878fbabfb7addc68e2959270ab76911831546802705b1"
+    },
+    {
+      "file": "r7-evidence/facing-small-17-18.json",
+      "sha256": "b39e1d614ac8aa4a79575d88509625430458fd1eab7a52dffe28c22ed72f0584"
+    },
+    {
+      "file": "r7-evidence/facing-small-17-18-provenance.json",
+      "sha256": "25faa8e5ed1454e8dc6831d50a8c988ac1e3d161ddb61918a90790b109d94851"
+    },
+    {
+      "file": "r7-evidence/facing-small-17-18-BP_Monster_WanJun_JinGua-controls.json",
+      "sha256": "c6dd417b5c444ccc847edf59a516493fbe3d176b9a24cf0df7180f77ca44f934"
+    },
+    {
+      "file": "r7-evidence/facing-small-17-18-BP_Monster_EMei_Sword_Top-controls.json",
+      "sha256": "1c17675083666c152cb973a2b18356999e548a577d9e96d5685c6a559f8f4c76"
+    },
+    {
+      "file": "r7-evidence/facing-small-19-20.json",
+      "sha256": "ef845187d8cc21bba5909a7e6ab66663ee2854e546d8c4550047c9f5920f2e14"
+    },
+    {
+      "file": "r7-evidence/facing-small-19-20-provenance.json",
+      "sha256": "b18171e11ca39fbf76a6b849e82d73945c9a0d1c5ad49645320aedbc42654a36"
+    },
+    {
+      "file": "r7-evidence/facing-small-19-20-BP_Monster_MobMan_Elite-controls.json",
+      "sha256": "a533f08bf19b55a18e5b0d7b701e14c1805c7a28da30683a3679e0d751c2a0fe"
+    },
+    {
+      "file": "r7-evidence/facing-small-19-20-BP_Monster_YanYan_Club-controls.json",
+      "sha256": "ff9d6f9d9bb29dc2317885af5ea0334e79a3cda81c87e3c9d08f8ce7a7b43b5b"
+    },
+    {
+      "file": "r7-evidence/facing-small-21-22.json",
+      "sha256": "5f1398206226b1ad294a50c83894cdc11e1fa851df563f69967de7c019f6386b"
+    },
+    {
+      "file": "r7-evidence/facing-small-21-22-provenance.json",
+      "sha256": "15bef52de69f696fc93e5cb6d204b70c4d233aa1cdd496c763807ee817dbc6f7"
+    },
+    {
+      "file": "r7-evidence/facing-small-21-22-BP_Monster_GuiChai_Cyan_ShuangYue-controls.json",
+      "sha256": "6881b4e41b58da2ab1ae5a23ca2b4fe2f4b1698a68e6b23382b2fe19b72ffc7f"
+    },
+    {
+      "file": "r7-evidence/facing-small-21-22-BP_Monster_QiShu_Du-controls.json",
+      "sha256": "0f405094959d948bb244cd87b7245e7e3b54c776369e2e4ddf33c7e69c77f8a9"
+    },
+    {
+      "file": "r7-evidence/facing-small-23-24.json",
+      "sha256": "ea3701d67ad189a0b3c4a61d08e2a4ee0e92a415177dcf387efe41af068c0785"
+    },
+    {
+      "file": "r7-evidence/facing-small-23-24-provenance.json",
+      "sha256": "bf1f070beccd2cfd5aa2855f22c45a5963753a34b92bfff57a18a389abb7f4e6"
+    },
+    {
+      "file": "r7-evidence/facing-small-23-24-BP_Monster_HuaShan_RedTroop_BigBro-controls.json",
+      "sha256": "51edb3fdad64789835a0286919990bc2658e001105b7d881e528cbadda8f41f4"
+    },
+    {
+      "file": "r7-evidence/facing-small-23-24-BP_Monster_YouLong_Harpoon-controls.json",
+      "sha256": "d0d327b9dd08d9c774e105cd4a365f38d11cc398660a5ede071feba3e212b68c"
+    },
+    {
+      "file": "r7-evidence/facing-small-25-26.json",
+      "sha256": "1c390a41632341287ea8c5a467b4fa2aa798c81508260a5c9ba30d0c661b82c4"
+    },
+    {
+      "file": "r7-evidence/facing-small-25-26-provenance.json",
+      "sha256": "d7dbb0caab423385a14024de44a50c626fe753c0e2a63f308b3f3531d64095ce"
+    },
+    {
+      "file": "r7-evidence/facing-small-25-26-BP_Monster_YanQianSui-controls.json",
+      "sha256": "59ca1aa6c09de9fd5695b6d94cf40080200f7d060e1527e8f27156df05252d78"
+    },
+    {
+      "file": "r7-evidence/facing-small-25-26-BP_Monster_YuCong_P1-controls.json",
+      "sha256": "1ec772f4425b17062155a31bb18ef6ea3b901a61b476ed72830e30c799000d25"
+    },
+    {
+      "file": "r7-evidence/facing-small-27-28.json",
+      "sha256": "c649bb10762ceceadb0bcbcdc7f3c63517fee87fec921a5b51941b01e08c7b68"
+    },
+    {
+      "file": "r7-evidence/facing-small-27-28-provenance.json",
+      "sha256": "002130c3479f86c2df9b08be13af5fc2e6d9996ea8fe7f6ca67c97e20c280eb4"
+    },
+    {
+      "file": "r7-evidence/facing-small-27-28-BP_Monster_YingMei_RedShadowBoneBlade-controls.json",
+      "sha256": "5e73ff7c28ae9d8004492534ee3259bec9f2fc17e6d49821ad5e72c9d516cc0a"
+    },
+    {
+      "file": "r7-evidence/facing-small-27-28-BP_Monster_FemaleVessel_YuDing-controls.json",
+      "sha256": "1329fcf2bd7932a2a5acda5044cc501e2d845df2a8ff3b658bbc0d25d26ea233"
+    },
+    {
+      "file": "r7-evidence/facing-small-29-30.json",
+      "sha256": "995d8938662a1c8468e32cf8aaba237967c373a2e23fda3c223cd62389743043"
+    },
+    {
+      "file": "r7-evidence/facing-small-29-30-provenance.json",
+      "sha256": "e81bf668abb9ae38d11e8c7f340103505733a17cae049ed4f2ed03c33289e9d4"
+    },
+    {
+      "file": "r7-evidence/facing-small-29-30-BP_Monster_LengTu-controls.json",
+      "sha256": "e67a70ac87218c736fd22e9cbd7359893d1672c9cd5b9cd07b6c3f025b32ea37"
+    },
+    {
+      "file": "r7-evidence/facing-small-29-30-BP_Monster_MengHua-controls.json",
+      "sha256": "964784d761e27ebb17d446b7f2a5da8e4b1c399358614be980fe9f2ea7933ae6"
+    },
+    {
+      "file": "r7-evidence/facing-small-31-32.json",
+      "sha256": "5e5ad87aacf149b35b2697aedbafa66351fcc709b1b6c8e72e3ab0f37340e639"
+    },
+    {
+      "file": "r7-evidence/facing-small-31-32-provenance.json",
+      "sha256": "58894fea8f6d3dc1e750ed7f6133c7bd9c3da59462f27a66bf26dd79c3b4acb5"
+    },
+    {
+      "file": "r7-evidence/facing-small-31-32-MoTian_Trial_1-controls.json",
+      "sha256": "9b088c198fa0e710b568e681ec545d5f3f36fca543c3ccd51e3803bbb259c5d4"
+    },
+    {
+      "file": "r7-evidence/facing-small-31-32-MoTian_Trial_2-controls.json",
+      "sha256": "ab56e8a6c54955a07a535dcb41f52a0a749429d6cdbb7e3140766a891e92bcfb"
+    },
+    {
+      "file": "r7-evidence/facing-small-33-34.json",
+      "sha256": "c71eeb58da312986747c5bca0c75070b20b2d6580782920af8146ed00d5ef833"
+    },
+    {
+      "file": "r7-evidence/facing-small-33-34-provenance.json",
+      "sha256": "04e43c2088967cb51ec4c981ea36baa516d949fb966dedce691266d1b3d22791"
+    },
+    {
+      "file": "r7-evidence/facing-small-33-34-MoTian_Trial_3-controls.json",
+      "sha256": "391ffbf637bbffb15500fac2ddfd397ac5ad71371dfa04c005d401a8482dfcf4"
+    },
+    {
+      "file": "r7-evidence/facing-small-33-34-MoTian_Trial_4-controls.json",
+      "sha256": "0559ea930f0db16b72cc661b410327fc72a364f241772a53c4c15df18fdebdb2"
+    },
+    {
+      "file": "r7-evidence/facing-small-35-35.json",
+      "sha256": "9366827d9b3fb920b90cd445bc2a5f80117c4bec46efdebeaa8f7e9c95e129d9"
+    },
+    {
+      "file": "r7-evidence/facing-small-35-35-provenance.json",
+      "sha256": "0e916100fcd78cef6fea99cfd76a680c75a3c4e0213a9eaab43a6bb88c99ee4b"
+    },
+    {
+      "file": "r7-evidence/facing-small-35-35-MoTian_Trial_5-controls.json",
+      "sha256": "e74b9186b8db4f5f82299090c6770d5585d584eecfd1ea50d8daa57705a25a40"
+    }
+  ],
+  "coverage": {
+    "encounters": 35,
+    "nativePoseCommitted": 33,
+    "nativeIntroductionOwners": 2,
+    "attributableCommitsInitiallyAligned": 33,
+    "nativeIntroInitialRootOffsets": [
+      "BP_Monster_MengHua"
+    ],
+    "declaredButNotAttributable": 2,
+    "matchedSnapshots": 35,
+    "initialRootNumericallyAligned": 34,
+    "rootAlignmentToleranceDegrees": 1,
+    "maximumActorTargetGapDegrees": 0.000007557413368886046,
+    "maximumCameraTargetGapDegrees": 5.536481501840967,
+    "targetAnglesUnknown": 2,
+    "probeErrors": 0,
+    "damageWhileEntryBlocked": 0,
+    "blockedHealthUnknown": 25,
+    "physicalOrVisualCertification": false
+  },
+  "encounters": [
+    {
+      "id": "BP_Monster_MobMan_Elite_Sword",
+      "bundleHash": "f98f34f13845a96c5390731f25ba7a34ae7c9d2bb47c4dcd57725c6028420b5f",
+      "at": "2026-11-06T10:16:38.438Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_MobMan_Elite_Sword_C_2147475522",
+      "initialYaw": {
+        "actor": 19.739740371704116,
+        "mesh": -70.2602596282959,
+        "animatedRoot": -70.2602596282959,
+        "camera": 20.06190220462436,
+        "target": 19.73973954548015
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 8.262239816758665e-7,
+      "cameraTargetGapDegrees": 0.3221626591441691,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 135,
+        "blockedSamples": 1,
+        "sampleCount": 17,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2346.300048828125,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-final-01-03",
+      "controlsEvidence": "r7-evidence/facing-final-01-03-BP_Monster_MobMan_Elite_Sword-controls.json",
+      "controlsSHA256": "3fb21e10d62fe11dbbc6bca38ffcc3c8b2ffea1dd252cad4e95615c06ef0829c"
+    },
+    {
+      "id": "BP_Monster_JingYe",
+      "bundleHash": "f98f34f13845a96c5390731f25ba7a34ae7c9d2bb47c4dcd57725c6028420b5f",
+      "at": "2026-11-06T10:17:08.664Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_JingYe_C_2147464040",
+      "initialYaw": {
+        "actor": -21.669414520263672,
+        "mesh": -111.66941452026369,
+        "animatedRoot": -111.66941452026369,
+        "camera": -24.792096671617372,
+        "target": -21.669414764401537
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 2.4413782284682384e-7,
+      "cameraTargetGapDegrees": 3.1226819072157923,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 850,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 5319,
+        "blockedSamples": 19,
+        "sampleCount": 19,
+        "initialHealth": 850,
+        "minimumHealth": 850,
+        "minimumWhileBlocked": 850,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": true,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-final-01-03",
+      "controlsEvidence": "r7-evidence/facing-final-01-03-BP_Monster_JingYe-controls.json",
+      "controlsSHA256": "63ab94192653d3ecfb4947e0949926904c527788341fb15ad1705dcf3c3fd4e7"
+    },
+    {
+      "id": "BP_Monster_Zhuobi",
+      "bundleHash": "f98f34f13845a96c5390731f25ba7a34ae7c9d2bb47c4dcd57725c6028420b5f",
+      "at": "2026-11-06T10:17:41.805Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_Zhuobi_C_2147449511",
+      "initialYaw": {
+        "actor": -5.3630385398864755,
+        "mesh": -95.36303853988652,
+        "animatedRoot": -95.36303853988652,
+        "camera": -5.433530660820057,
+        "target": -5.363038540800566
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 9.140421752817929e-10,
+      "cameraTargetGapDegrees": 0.07049212001948035,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2277.3720703125,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-final-01-03",
+      "controlsEvidence": "r7-evidence/facing-final-01-03-BP_Monster_Zhuobi-controls.json",
+      "controlsSHA256": "27f9369ae615c6cec1b831c2f3991b0fa1e7c0236e60a0c15c065d5aca13481c"
+    },
+    {
+      "id": "BP_Monster_CanQu_BiHai",
+      "bundleHash": "757e08f2621b82b18c5da6c92316cf9f7d9c99fc320eb2f700050e6d6d758012",
+      "at": "2026-11-06T10:18:57.085Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_CanQu_BiHai_C_2147469284",
+      "initialYaw": {
+        "actor": 143.46954345703125,
+        "mesh": 53.46954345703128,
+        "animatedRoot": 53.46954345703128,
+        "camera": 143.4696197509766,
+        "target": 143.4695368948049
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000006562226417372585,
+      "cameraTargetGapDegrees": 0.00008285617172987259,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 17,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-final-04-06",
+      "controlsEvidence": "r7-evidence/facing-final-04-06-BP_Monster_CanQu_BiHai-controls.json",
+      "controlsSHA256": "1e1b8d2a8b88da6a2c295caad6316b8ef3849ae16a3d7dbe05613ab5947d456e"
+    },
+    {
+      "id": "BP_Monster_BiYuan",
+      "bundleHash": "757e08f2621b82b18c5da6c92316cf9f7d9c99fc320eb2f700050e6d6d758012",
+      "at": "2026-11-06T10:19:29.690Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_BiYuan_C_2147452858",
+      "initialYaw": {
+        "actor": -59.405384063720696,
+        "mesh": -149.4053840637207,
+        "animatedRoot": -149.4053840637207,
+        "camera": -59.40538406372071,
+        "target": -59.4053832298416
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 8.338790848938515e-7,
+      "cameraTargetGapDegrees": 8.338790848938515e-7,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-final-04-06",
+      "controlsEvidence": "r7-evidence/facing-final-04-06-BP_Monster_BiYuan-controls.json",
+      "controlsSHA256": "04e4c52cdec7afcb77766cef8ee275d5d155502595e3fe39a6beeaffbef54ca5"
+    },
+    {
+      "id": "BP_Monster_FemaleVessel_YuZan",
+      "bundleHash": "757e08f2621b82b18c5da6c92316cf9f7d9c99fc320eb2f700050e6d6d758012",
+      "at": "2026-11-06T10:19:52.490Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_FemaleVessel_YuZan_C_2147443464",
+      "initialYaw": {
+        "actor": 58.2021369934082,
+        "mesh": -31.797863006591776,
+        "animatedRoot": -31.797863006591776,
+        "camera": 58.075392693753464,
+        "target": 58.20213638008838
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 6.133197985036531e-7,
+      "cameraTargetGapDegrees": 0.1267436863349758,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 15,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-final-04-06",
+      "controlsEvidence": "r7-evidence/facing-final-04-06-BP_Monster_FemaleVessel_YuZan-controls.json",
+      "controlsSHA256": "57b87160ddb63dad0fbf109400dbd804c39d06aad8fe878cbc83c7230abf5ac5"
+    },
+    {
+      "id": "BP_Monster_QiShu_Huo",
+      "bundleHash": "265b21322ea491eed28b13ca53886e9be554ff4ba0bb4f49f7d34192de097e08",
+      "at": "2026-11-06T10:23:21.730Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_QiShu_Huo_C_2147469766",
+      "initialYaw": {
+        "actor": 91.24147796630862,
+        "mesh": 1.2414779663086193,
+        "animatedRoot": 1.2414779663086193,
+        "camera": 91.31167681098624,
+        "target": 91.24147597529823
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000001991010435631324,
+      "cameraTargetGapDegrees": 0.07020083568795599,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-07-08",
+      "controlsEvidence": "r7-evidence/facing-small-07-08-BP_Monster_QiShu_Huo-controls.json",
+      "controlsSHA256": "8fbd9bca799ea478095db64c2c4fef919038594312cb65e53d86259fe4dc3b52"
+    },
+    {
+      "id": "BP_Monster_Danghui",
+      "bundleHash": "265b21322ea491eed28b13ca53886e9be554ff4ba0bb4f49f7d34192de097e08",
+      "at": "2026-11-06T10:23:41.929Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_Danghui_C_2147455343",
+      "initialYaw": {
+        "actor": -139.27905273437497,
+        "mesh": 130.72094726562506,
+        "animatedRoot": 130.72094726562506,
+        "camera": -139.1996340333139,
+        "target": -139.27905109602307
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000016383519323426299,
+      "cameraTargetGapDegrees": 0.07941706270912618,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-07-08",
+      "controlsEvidence": "r7-evidence/facing-small-07-08-BP_Monster_Danghui-controls.json",
+      "controlsSHA256": "b3bccf5df263118b80b90b0f550a3b8ce87e1348bef46a9f6125cabfff481dcb"
+    },
+    {
+      "id": "BP_Monster_GuiChai_Yellow_MoDao",
+      "bundleHash": "caeb1615bad2bfc9aad2fb6a184abfec612b44fa0aa0e124746607a73b0181db",
+      "at": "2026-11-06T10:25:06.567Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_GuiChai_Yellow_MoDao_C_2147467177",
+      "initialYaw": {
+        "actor": -116.13925170898439,
+        "mesh": 153.86074829101565,
+        "animatedRoot": 153.86074829101565,
+        "camera": -116.13836669921876,
+        "target": -116.13925143987069
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 2.6911368422588566e-7,
+      "cameraTargetGapDegrees": 0.0008847406519407741,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-09-10",
+      "controlsEvidence": "r7-evidence/facing-small-09-10-BP_Monster_GuiChai_Yellow_MoDao-controls.json",
+      "controlsSHA256": "5e912b73ad7cf5642948572685af03a4362a63f7f09a0a7d79f0d2483b532fc8"
+    },
+    {
+      "id": "BP_Monster_GuiChai_Yellow_ShuangGou",
+      "bundleHash": "caeb1615bad2bfc9aad2fb6a184abfec612b44fa0aa0e124746607a73b0181db",
+      "at": "2026-11-06T10:25:29.491Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_GuiChai_Yellow_ShuangGou_C_2147454409",
+      "initialYaw": {
+        "actor": 152.00579833984375,
+        "mesh": 62.00579833984379,
+        "animatedRoot": 62.00579833984379,
+        "camera": 152.13851749337908,
+        "target": 152.00580589725712
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000007557413368886046,
+      "cameraTargetGapDegrees": 0.13271159612190786,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 142,
+        "blockedSamples": 1,
+        "sampleCount": 15,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-09-10",
+      "controlsEvidence": "r7-evidence/facing-small-09-10-BP_Monster_GuiChai_Yellow_ShuangGou-controls.json",
+      "controlsSHA256": "c8d429a5cb50d73309c3e13e19b92a77158d3f5f2686a7a30ead80e265f403ac"
+    },
+    {
+      "id": "BP_Monster_HuoDaoDuiZhang",
+      "bundleHash": "902ce27ead4250247ff9e752dca76634337cba4b7d064028c8607b1b45b8b607",
+      "at": "2026-11-06T10:26:44.121Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_HuoDaoDuiZhang_C_2147468199",
+      "initialYaw": {
+        "actor": -82.12153625488281,
+        "mesh": -172.1215362548828,
+        "animatedRoot": -172.1215362548828,
+        "camera": -82.1913047632285,
+        "target": -82.1215327971631
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000003457719685684424,
+      "cameraTargetGapDegrees": 0.06977196606544567,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-11-12",
+      "controlsEvidence": "r7-evidence/facing-small-11-12-BP_Monster_HuoDaoDuiZhang-controls.json",
+      "controlsSHA256": "09df4453a64c98e63bb40ca21a89b3084c16cc7f5e53f0f5b93a4cc1ea3eeb3e"
+    },
+    {
+      "id": "BP_Monster_WuXuan",
+      "bundleHash": "902ce27ead4250247ff9e752dca76634337cba4b7d064028c8607b1b45b8b607",
+      "at": "2026-11-06T10:27:06.939Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_WuXuan_C_2147459165",
+      "initialYaw": {
+        "actor": 123.75614166259764,
+        "mesh": 33.75614166259767,
+        "animatedRoot": 33.75614166259767,
+        "camera": 123.96835071793197,
+        "target": 123.75613973407165
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000001928525989569607,
+      "cameraTargetGapDegrees": 0.2122109838603592,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 122,
+        "blockedSamples": 1,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-11-12",
+      "controlsEvidence": "r7-evidence/facing-small-11-12-BP_Monster_WuXuan-controls.json",
+      "controlsSHA256": "abe41dc5c8afc2d068e4f88be59d8531ad59e463db27925ccd775203d6fbd25c"
+    },
+    {
+      "id": "BP_Monster_Maddoctor_Elite",
+      "bundleHash": "2f5d9c463d2fcb2c0ddc3cb152179088f88a9a7887bbf20252bc47d1991e84a3",
+      "at": "2026-11-06T10:28:19.552Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_Maddoctor_Elite_C_2147472041",
+      "initialYaw": {
+        "actor": -164.6691436767578,
+        "mesh": 105.33085632324219,
+        "animatedRoot": 105.33085632324219,
+        "camera": -164.66906738281253,
+        "target": -164.66914939470522
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000005717947374250798,
+      "cameraTargetGapDegrees": 0.0000820118926867508,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 15,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-13-14",
+      "controlsEvidence": "r7-evidence/facing-small-13-14-BP_Monster_Maddoctor_Elite-controls.json",
+      "controlsSHA256": "f20bb5898bdc055fd44fde425ecfd076c75636bfeb00d089a10abe65bb65cd49"
+    },
+    {
+      "id": "BP_Monster_YouLong_SecondBrother",
+      "bundleHash": "2f5d9c463d2fcb2c0ddc3cb152179088f88a9a7887bbf20252bc47d1991e84a3",
+      "at": "2026-11-06T10:28:42.724Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_YouLong_SecondBrother_C_2147459995",
+      "initialYaw": {
+        "actor": 109.59613037109378,
+        "mesh": 19.59613037109379,
+        "animatedRoot": 19.59613037109379,
+        "camera": 109.5961303710285,
+        "target": 109.59612902501068
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000001346083081443794,
+      "cameraTargetGapDegrees": 0.0000013460178251989419,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 15,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-13-14",
+      "controlsEvidence": "r7-evidence/facing-small-13-14-BP_Monster_YouLong_SecondBrother-controls.json",
+      "controlsSHA256": "9dc691b70dbfa70d68bc6fe15200b46ceef5f2d37841177ce009e6c92366ae6b"
+    },
+    {
+      "id": "BP_Monster_QiShu_Lei",
+      "bundleHash": "e4d3e29e6282d3b6e093ccddaf540a0b5075640d6602930b98bbb53a9462933a",
+      "at": "2026-11-06T10:29:45.088Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_QiShu_Lei_C_2147472755",
+      "initialYaw": {
+        "actor": 13.216094017028816,
+        "mesh": -76.78390598297118,
+        "animatedRoot": -76.78390598297118,
+        "camera": 13.17154550617504,
+        "target": 13.216093895449744
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 1.2157909168308834e-7,
+      "cameraTargetGapDegrees": 0.04454838927472338,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2240.300048828125,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-15-16",
+      "controlsEvidence": "r7-evidence/facing-small-15-16-BP_Monster_QiShu_Lei-controls.json",
+      "controlsSHA256": "c774b44d96a95fd98eac8d8f9212cb1bbc7a8f0a5beeb562576f74d747b0ed3f"
+    },
+    {
+      "id": "BP_Monster_LionDancer",
+      "bundleHash": "e4d3e29e6282d3b6e093ccddaf540a0b5075640d6602930b98bbb53a9462933a",
+      "at": "2026-11-06T10:30:19.135Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_LionDancer_C_2147461129",
+      "initialYaw": {
+        "actor": -123.19361877441413,
+        "mesh": 146.80638122558588,
+        "animatedRoot": 146.80638122558588,
+        "camera": -123.2053830839309,
+        "target": -123.19361618588528
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.00000258852890056005,
+      "cameraTargetGapDegrees": 0.011766898045607377,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 17,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": true,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-15-16",
+      "controlsEvidence": "r7-evidence/facing-small-15-16-BP_Monster_LionDancer-controls.json",
+      "controlsSHA256": "9c1da3742a878658b5b878fbabfb7addc68e2959270ab76911831546802705b1"
+    },
+    {
+      "id": "BP_Monster_WanJun_JinGua",
+      "bundleHash": "e498a666280cf2980f430f06de3a84f6332970fa964c41bcc0025d124f9b054d",
+      "at": "2026-11-06T10:31:44.887Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_WanJun_JinGua_C_2147468161",
+      "initialYaw": {
+        "actor": 75.24083709716797,
+        "mesh": -14.75916290283204,
+        "animatedRoot": -14.75916290283204,
+        "camera": 75.24083709762499,
+        "target": 75.24083557607447
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000015210935089271516,
+      "cameraTargetGapDegrees": 0.0000015215505300147925,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-17-18",
+      "controlsEvidence": "r7-evidence/facing-small-17-18-BP_Monster_WanJun_JinGua-controls.json",
+      "controlsSHA256": "c6dd417b5c444ccc847edf59a516493fbe3d176b9a24cf0df7180f77ca44f934"
+    },
+    {
+      "id": "BP_Monster_EMei_Sword_Top",
+      "bundleHash": "e498a666280cf2980f430f06de3a84f6332970fa964c41bcc0025d124f9b054d",
+      "at": "2026-11-06T10:32:11.113Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_EMei_Sword_Top_C_2147451412",
+      "initialYaw": {
+        "actor": 135.58535766601562,
+        "mesh": 45.58535766601564,
+        "animatedRoot": 45.58535766601564,
+        "camera": 135.58535766601562,
+        "target": 135.58535400073634
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000036652793369285064,
+      "cameraTargetGapDegrees": 0.0000036652793369285064,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 18,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-17-18",
+      "controlsEvidence": "r7-evidence/facing-small-17-18-BP_Monster_EMei_Sword_Top-controls.json",
+      "controlsSHA256": "1c17675083666c152cb973a2b18356999e548a577d9e96d5685c6a559f8f4c76"
+    },
+    {
+      "id": "BP_Monster_MobMan_Elite",
+      "bundleHash": "15eccf85cf511da171997e66d556d6ddc0e41b6f8fc7c33db42278d78a3ac7bf",
+      "at": "2026-11-06T10:33:13.676Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_MobMan_Elite_C_2147474931",
+      "initialYaw": {
+        "actor": -41.25935745239259,
+        "mesh": -131.25935745239258,
+        "animatedRoot": -131.25935745239258,
+        "camera": -41.25935745239259,
+        "target": -41.25935907168502
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000016192924476854387,
+      "cameraTargetGapDegrees": 0.0000016192924476854387,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 17,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-19-20",
+      "controlsEvidence": "r7-evidence/facing-small-19-20-BP_Monster_MobMan_Elite-controls.json",
+      "controlsSHA256": "a533f08bf19b55a18e5b0d7b701e14c1805c7a28da30683a3679e0d751c2a0fe"
+    },
+    {
+      "id": "BP_Monster_YanYan_Club",
+      "bundleHash": "15eccf85cf511da171997e66d556d6ddc0e41b6f8fc7c33db42278d78a3ac7bf",
+      "at": "2026-11-06T10:33:41.123Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_YanYan_Club_C_2147461525",
+      "initialYaw": {
+        "actor": -19.60656356811524,
+        "mesh": -109.60656356811523,
+        "animatedRoot": -109.60656356811523,
+        "camera": -19.590702046662845,
+        "target": -19.606564354242455
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 7.861272024456412e-7,
+      "cameraTargetGapDegrees": 0.015862307579595836,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 127,
+        "blockedSamples": 1,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-19-20",
+      "controlsEvidence": "r7-evidence/facing-small-19-20-BP_Monster_YanYan_Club-controls.json",
+      "controlsSHA256": "ff9d6f9d9bb29dc2317885af5ea0334e79a3cda81c87e3c9d08f8ce7a7b43b5b"
+    },
+    {
+      "id": "BP_Monster_GuiChai_Cyan_ShuangYue",
+      "bundleHash": "ba2c8b7dd53d60bda15e5290a5f30a276df7252946710308c44c1430995a16c0",
+      "at": "2026-11-06T10:34:56.077Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_GuiChai_Cyan_ShuangYue_C_2147472661",
+      "initialYaw": {
+        "actor": -102.91151428222659,
+        "mesh": 167.08848571777347,
+        "animatedRoot": 167.08848571777347,
+        "camera": -102.94094390469712,
+        "target": -102.91151287345593
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000014087706858845195,
+      "cameraTargetGapDegrees": 0.029431031241188066,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 18,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2155.39990234375,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-21-22",
+      "controlsEvidence": "r7-evidence/facing-small-21-22-BP_Monster_GuiChai_Cyan_ShuangYue-controls.json",
+      "controlsSHA256": "6881b4e41b58da2ab1ae5a23ca2b4fe2f4b1698a68e6b23382b2fe19b72ffc7f"
+    },
+    {
+      "id": "BP_Monster_QiShu_Du",
+      "bundleHash": "ba2c8b7dd53d60bda15e5290a5f30a276df7252946710308c44c1430995a16c0",
+      "at": "2026-11-06T10:35:16.651Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_QiShu_Du_C_2147457582",
+      "initialYaw": {
+        "actor": -35.417720794677734,
+        "mesh": -125.41772079467775,
+        "animatedRoot": -125.41772079467775,
+        "camera": -35.384377430219295,
+        "target": -35.417721656193805
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 8.61516127770301e-7,
+      "cameraTargetGapDegrees": 0.033344225974474284,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 18,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2376.6337890625,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-21-22",
+      "controlsEvidence": "r7-evidence/facing-small-21-22-BP_Monster_QiShu_Du-controls.json",
+      "controlsSHA256": "0f405094959d948bb244cd87b7245e7e3b54c776369e2e4ddf33c7e69c77f8a9"
+    },
+    {
+      "id": "BP_Monster_HuaShan_RedTroop_BigBro",
+      "bundleHash": "e860cdedc921cf27b8161538d31231d8677027e5a65b9072687f90ff03176f8f",
+      "at": "2026-11-06T10:36:21.174Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_HuaShan_RedTroop_BigBro_C_2147467537",
+      "initialYaw": {
+        "actor": 43.970516204834,
+        "mesh": -46.029483795165994,
+        "animatedRoot": -46.029483795165994,
+        "camera": 38.43403342265766,
+        "target": 43.97051492449862
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000001280335368392116,
+      "cameraTargetGapDegrees": 5.536481501840967,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 15,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-23-24",
+      "controlsEvidence": "r7-evidence/facing-small-23-24-BP_Monster_HuaShan_RedTroop_BigBro-controls.json",
+      "controlsSHA256": "51edb3fdad64789835a0286919990bc2658e001105b7d881e528cbadda8f41f4"
+    },
+    {
+      "id": "BP_Monster_YouLong_Harpoon",
+      "bundleHash": "e860cdedc921cf27b8161538d31231d8677027e5a65b9072687f90ff03176f8f",
+      "at": "2026-11-06T10:36:51.134Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_YouLong_Harpoon_C_2147444928",
+      "initialYaw": {
+        "actor": -88.43513488769531,
+        "mesh": -178.43513488769528,
+        "animatedRoot": -178.43513488769528,
+        "camera": -88.61739352176257,
+        "target": -88.43513415635896
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 7.313363994398969e-7,
+      "cameraTargetGapDegrees": 0.18225936540363818,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 120,
+        "blockedSamples": 1,
+        "sampleCount": 18,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-23-24",
+      "controlsEvidence": "r7-evidence/facing-small-23-24-BP_Monster_YouLong_Harpoon-controls.json",
+      "controlsSHA256": "d0d327b9dd08d9c774e105cd4a365f38d11cc398660a5ede071feba3e212b68c"
+    },
+    {
+      "id": "BP_Monster_YanQianSui",
+      "bundleHash": "0078b8090c3332b845d96db232d94a64565ff7c669776913d9b5046eda068409",
+      "at": "2026-11-06T10:37:58.855Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_YanQianSui_C_2147468518",
+      "initialYaw": {
+        "actor": 162.66189575195312,
+        "mesh": 72.66189575195312,
+        "animatedRoot": 72.66189575195312,
+        "camera": 161.99249853075716,
+        "target": 162.6618927292798
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000003022673354280414,
+      "cameraTargetGapDegrees": 0.6693941985226957,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 15,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2184.300048828125,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-25-26",
+      "controlsEvidence": "r7-evidence/facing-small-25-26-BP_Monster_YanQianSui-controls.json",
+      "controlsSHA256": "59ca1aa6c09de9fd5695b6d94cf40080200f7d060e1527e8f27156df05252d78"
+    },
+    {
+      "id": "BP_Monster_YuCong_P1",
+      "bundleHash": "0078b8090c3332b845d96db232d94a64565ff7c669776913d9b5046eda068409",
+      "at": "2026-11-06T10:38:24.347Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_YuCong_P1_C_2147457594",
+      "initialYaw": {
+        "actor": -25.073648452758793,
+        "mesh": -115.07364845275879,
+        "animatedRoot": -115.07364845275879,
+        "camera": -25.073648452758814,
+        "target": -25.07364930059758
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 8.478388053845265e-7,
+      "cameraTargetGapDegrees": 8.478388053845265e-7,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": true,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-25-26",
+      "controlsEvidence": "r7-evidence/facing-small-25-26-BP_Monster_YuCong_P1-controls.json",
+      "controlsSHA256": "1ec772f4425b17062155a31bb18ef6ea3b901a61b476ed72830e30c799000d25"
+    },
+    {
+      "id": "BP_Monster_YingMei_RedShadowBoneBlade",
+      "bundleHash": "2af2cd868bcfe64614fc6a1001b13dae27b663c5d5f5549d27bc764ff28ec6ea",
+      "at": "2026-11-06T10:39:37.222Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_YingMei_RedShadowBoneBlade_C_2147473380",
+      "initialYaw": {
+        "actor": 128.7933197021484,
+        "mesh": 38.79331970214843,
+        "animatedRoot": 38.79331970214843,
+        "camera": 128.7928771972656,
+        "target": 128.7933130711124
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.00000663103605802462,
+      "cameraTargetGapDegrees": 0.0004358738467544754,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 16,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2265.10009765625,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-27-28",
+      "controlsEvidence": "r7-evidence/facing-small-27-28-BP_Monster_YingMei_RedShadowBoneBlade-controls.json",
+      "controlsSHA256": "5e73ff7c28ae9d8004492534ee3259bec9f2fc17e6d49821ad5e72c9d516cc0a"
+    },
+    {
+      "id": "BP_Monster_FemaleVessel_YuDing",
+      "bundleHash": "2af2cd868bcfe64614fc6a1001b13dae27b663c5d5f5549d27bc764ff28ec6ea",
+      "at": "2026-11-06T10:40:49.550Z",
+      "entryReady": true,
+      "nativePoseCommitted": false,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "native-introduction",
+      "commitAttribution": "declared-but-not-attributable",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "native-intro-owns-arrival",
+        "native-intro-presentation-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": null,
+      "initialYaw": {
+        "actor": -116.90968322753906,
+        "mesh": 153.09031677246094,
+        "animatedRoot": 153.09031677246094,
+        "camera": -123.81262883702644,
+        "target": null
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": null,
+      "cameraTargetGapDegrees": null,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 602,
+        "blockedSamples": 5,
+        "sampleCount": 17,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2195.419921875,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-27-28",
+      "controlsEvidence": "r7-evidence/facing-small-27-28-BP_Monster_FemaleVessel_YuDing-controls.json",
+      "controlsSHA256": "1329fcf2bd7932a2a5acda5044cc501e2d845df2a8ff3b658bbc0d25d26ea233"
+    },
+    {
+      "id": "BP_Monster_LengTu",
+      "bundleHash": "9ddda42f5c8925d0c807df4f71d4ff4e26c2916af6c088d903804b04ea93609e",
+      "at": "2026-11-06T10:41:47.517Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_LengTu_C_2147474343",
+      "initialYaw": {
+        "actor": 165.68885803222656,
+        "mesh": 75.68885803222658,
+        "animatedRoot": 75.68885803222658,
+        "camera": 165.7094814996909,
+        "target": 165.6888580505906
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 1.836406227084808e-8,
+      "cameraTargetGapDegrees": 0.020623449100298785,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": true,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-29-30",
+      "controlsEvidence": "r7-evidence/facing-small-29-30-BP_Monster_LengTu-controls.json",
+      "controlsSHA256": "e67a70ac87218c736fd22e9cbd7359893d1672c9cd5b9cd07b6c3f025b32ea37"
+    },
+    {
+      "id": "BP_Monster_MengHua",
+      "bundleHash": "9ddda42f5c8925d0c807df4f71d4ff4e26c2916af6c088d903804b04ea93609e",
+      "at": "2026-11-06T10:43:25.842Z",
+      "entryReady": true,
+      "nativePoseCommitted": false,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "native-introduction",
+      "commitAttribution": "declared-but-not-attributable",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "native-intro-owns-arrival",
+        "native-intro-presentation-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": null,
+      "initialYaw": {
+        "actor": -74.37066650390624,
+        "mesh": -164.37066650390625,
+        "animatedRoot": -180,
+        "camera": -88.22109721173116,
+        "target": null
+      },
+      "rootMeshGapDegrees": 15.62933349609375,
+      "actorTargetGapDegrees": null,
+      "cameraTargetGapDegrees": null,
+      "initialRootAlignmentNumericallyObserved": false,
+      "firstRootAlignmentMs": 1943,
+      "firstRootAlignmentContext": {
+        "montage": "Hun_TangBlade_Hit_Knockback_F_Montage",
+        "health": 2230.47998046875,
+        "healthLowerThanInitial": true,
+        "rawMoveInput": {
+          "X": 1,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 735,
+        "blockedSamples": 7,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2230.47998046875,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": true,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-29-30",
+      "controlsEvidence": "r7-evidence/facing-small-29-30-BP_Monster_MengHua-controls.json",
+      "controlsSHA256": "964784d761e27ebb17d446b7f2a5da8e4b1c399358614be980fe9f2ea7933ae6"
+    },
+    {
+      "id": "MoTian_Trial_1",
+      "bundleHash": "cca3a9b87c267bc659f930af19d9e3a095832a13c6ee3ab8d56ace9294d7e210",
+      "at": "2026-11-06T10:44:36.264Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_MoTian_LongZhu_01_C_2147472403",
+      "initialYaw": {
+        "actor": 90.14879608154298,
+        "mesh": 0.14879608154298288,
+        "animatedRoot": 0.14879608154298288,
+        "camera": 90.3291265144966,
+        "target": 90.14879829463702
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.000002213094035141694,
+      "cameraTargetGapDegrees": 0.18032821985957526,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2275.89990234375,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-31-32",
+      "controlsEvidence": "r7-evidence/facing-small-31-32-MoTian_Trial_1-controls.json",
+      "controlsSHA256": "9b088c198fa0e710b568e681ec545d5f3f36fca543c3ccd51e3803bbb259c5d4"
+    },
+    {
+      "id": "MoTian_Trial_2",
+      "bundleHash": "cca3a9b87c267bc659f930af19d9e3a095832a13c6ee3ab8d56ace9294d7e210",
+      "at": "2026-11-06T10:46:27.331Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_MoTian_LongZhu_03_C_2147461685",
+      "initialYaw": {
+        "actor": 90.04574584960942,
+        "mesh": 0.045745849609389745,
+        "animatedRoot": 0.045745849609389745,
+        "camera": 90.11414357155341,
+        "target": 90.04574906038465
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000032107752758747665,
+      "cameraTargetGapDegrees": 0.06839451116877626,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2275.89990234375,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": "Native terminal transition not completed in 90s",
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-31-32",
+      "controlsEvidence": "r7-evidence/facing-small-31-32-MoTian_Trial_2-controls.json",
+      "controlsSHA256": "ab56e8a6c54955a07a535dcb41f52a0a749429d6cdbb7e3140766a891e92bcfb"
+    },
+    {
+      "id": "MoTian_Trial_3",
+      "bundleHash": "71e2e0486d242fca3ffb1e17713fbf4472065afbc949872072a6ecf9d6fdead9",
+      "at": "2026-11-06T10:47:36.800Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_MoTian_LongZhu_02_C_2147472481",
+      "initialYaw": {
+        "actor": 90.05384063720707,
+        "mesh": 0.05384063720706115,
+        "animatedRoot": 0.05384063720706115,
+        "camera": 90.28456304974412,
+        "target": 90.05383790129937
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000027359077421351685,
+      "cameraTargetGapDegrees": 0.2307251484447761,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 132,
+        "blockedSamples": 1,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2317.02001953125,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-33-34",
+      "controlsEvidence": "r7-evidence/facing-small-33-34-MoTian_Trial_3-controls.json",
+      "controlsSHA256": "391ffbf637bbffb15500fac2ddfd397ac5ad71371dfa04c005d401a8482dfcf4"
+    },
+    {
+      "id": "MoTian_Trial_4",
+      "bundleHash": "71e2e0486d242fca3ffb1e17713fbf4472065afbc949872072a6ecf9d6fdead9",
+      "at": "2026-11-06T10:47:57.182Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_MoTian_LongZhu_04_C_2147461798",
+      "initialYaw": {
+        "actor": 90.0399322509766,
+        "mesh": 0.03993225097658069,
+        "animatedRoot": 0.03993225097658069,
+        "camera": 90.27082832704559,
+        "target": 90.03992915323036
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000030977462301962078,
+      "cameraTargetGapDegrees": 0.23089917381525993,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 100,
+        "blockedSamples": 1,
+        "sampleCount": 20,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2259.64990234375,
+        "minimumWhileBlocked": 2405.5,
+        "healthLostWhileBlocked": 0
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": false,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-33-34",
+      "controlsEvidence": "r7-evidence/facing-small-33-34-MoTian_Trial_4-controls.json",
+      "controlsSHA256": "0559ea930f0db16b72cc661b410327fc72a364f241772a53c4c15df18fdebdb2"
+    },
+    {
+      "id": "MoTian_Trial_5",
+      "bundleHash": "188ea29c228c9bffb9c2b1d0fa6878be484291d2fd5d4b2fe9ffcec3311e9fa4",
+      "at": "2026-11-06T10:48:55.142Z",
+      "entryReady": true,
+      "nativePoseCommitted": true,
+      "rawNativePoseCommitted": true,
+      "arrivalOwner": "opponent-facing-arrival",
+      "commitAttribution": "declared-and-entry-facing-ready",
+      "arrivalEventNames": [
+        "streaming-cover-requested",
+        "streaming-cover-finished",
+        "opponent-facing-ready"
+      ],
+      "nativePoseCommitScope": "Boolean flag is attributed only with this encounter’s opponent-facing-ready event and no native-intro owner. Native call count is not measured.",
+      "sourceMatchesEncounterAndRun": true,
+      "firstSampleAfterReadyMs": 0,
+      "initialSamplePresent": true,
+      "targetActor": "BP_Monster_MoTian_C_2147472528",
+      "initialYaw": {
+        "actor": 90.16104888916016,
+        "mesh": 0.1610488891601491,
+        "animatedRoot": 0.1610488891601491,
+        "camera": 90.39058846920777,
+        "target": 90.16105007486385
+      },
+      "rootMeshGapDegrees": 0,
+      "actorTargetGapDegrees": 0.0000011857036952278577,
+      "cameraTargetGapDegrees": 0.22953839434387646,
+      "initialRootAlignmentNumericallyObserved": true,
+      "firstRootAlignmentMs": 0,
+      "firstRootAlignmentContext": {
+        "montage": null,
+        "health": 2405.5,
+        "healthLowerThanInitial": false,
+        "rawMoveInput": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "initialRouting": {
+        "releaseDelayMs": 0,
+        "blockedSamples": 0,
+        "sampleCount": 19,
+        "initialHealth": 2405.5,
+        "minimumHealth": 2405.5,
+        "minimumWhileBlocked": null,
+        "healthLostWhileBlocked": null
+      },
+      "nativeProbeErrors": [],
+      "scenarioError": null,
+      "manualTerminalRequired": true,
+      "physicalControlsVerified": false,
+      "visualInitialFrameVerified": false,
+      "fullFightValidated": false,
+      "label": "facing-small-35-35",
+      "controlsEvidence": "r7-evidence/facing-small-35-35-MoTian_Trial_5-controls.json",
+      "controlsSHA256": "e74b9186b8db4f5f82299090c6770d5585d584eecfd1ea50d8daa57705a25a40"
+    }
+  ]
+}

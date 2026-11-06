@@ -2,4 +2,4 @@
 .gitignore text eol=lf
 .gitattributes text eol=lf
 # Preserve the exact release bytes and SHA-256 hashes on every platform.
-mod/** -text
+mod/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

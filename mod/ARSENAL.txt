@@ -1,4 +1,4 @@
-BOSSES 0.7.0-preview.4 — ARSENAL ADMIS
+BOSSES 0.7.0-preview.5 — ARSENAL ADMIS
 Catalogue établi sur le build Steam 26266538 ; arsenal chargé et contrôlé sur 26367565. Catalogue d'obtention de la campagne, indépendant des objets possédés.
 
 Le niveau s'ajuste au combat choisi et reste plafonné à 30. La forge est conservée.

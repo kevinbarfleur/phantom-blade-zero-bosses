@@ -25,7 +25,11 @@ function flags(context,session,player){
     const sequence=!!manager?.IsInSequence()||!!asc?.HasMatchingGameplayTag(tag('CharacterState.InLevelSequence'))||cinema.pending(context)||!!(session.cinematicActive&&!['sequence','player-state'].includes(session.cinemaSource));
     const introduced=!session.boss.profile.directEntry?.sequences?.length||!!session.ux?.directIntroObserved;
     const visible=!session.directArrival?.releasedAt||Date.now()-session.directArrival.releasedAt>=300;
-    const arrived=!!session.worldLoadingComplete&&!session.arrivalAnchorPending&&(!session.boss.profile.directEntry||(!!session.directArrival?.released&&!!session.ux?.directReady&&visible));
+    // The native post-intro cover can still own input after our arrival has
+    // yielded. Query the same exact entry-loading owners as combat gating;
+    // a visible QTE must never turn an actual loading interval into play time.
+    const entryLoading=cinema.entryLoadingActive(context,session);
+    const arrived=!entryLoading&&!!session.worldLoadingComplete&&!session.arrivalAnchorPending&&(!session.boss.profile.directEntry||(!!session.directArrival?.released&&!!session.ux?.directReady&&visible));
     const combat=['combat','finishing'].includes(session.run.phase)||!!session.ux?.directCombatStarted||Object.keys(session.engaged||{}).length>0||!!asc?.HasMatchingGameplayTag(tag('CharacterState.InCombat'))||(qte&&session.ux?.directReady);
     session.runInteractiveActive=qte;
     return {ready:arrived&&combat&&introduced&&(!sequence||qte),interactive:qte,cinematic:sequence,paused:UE.GameplayStatics.IsGamePaused(context),loading:!arrived,dead:!!asc?.HasMatchingGameplayTag(tag('CharacterState.Dead'))};
@@ -96,7 +100,7 @@ function beforeEvent(context,session){if(scope?.session===session&&valid(scope.p
 function enter(session,boss,pendingOptions){
     session.runInteractiveActive=false;
     if(boss.training){model.abandon(session.run);return;}
-    if(pendingOptions||!session.run||['failed','finished','abandoned'].includes(session.run.phase))session.run=model.create(pendingOptions||session.run?.options,boss.id);
+    if(pendingOptions||!session.run||['failed','finished','abandoned'].includes(session.run.phase)){session.run=model.create(pendingOptions||session.run?.options,boss.id);delete session.runFailureReturn;}
     else model.enter(session.run,boss.id,session.run.currentBoss===boss.id?'retry':'next');
 }
 exports.install=install;exports.stop=stop;exports.tick=tick;exports.enter=enter;exports.hostileSource=hostileSource;exports.interactive=interactive;

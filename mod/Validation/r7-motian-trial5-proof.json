@@ -1,0 +1,60 @@
+{
+  "id": "MoTian_Trial_5",
+  "classification": "manual-native-execution-removes-health-lock",
+  "scope": "Final trial alone; first four trials have separate terminal evidence.",
+  "live": {
+    "evidence": "r7-evidence/native-low3-60-60.json",
+    "killAttempts": [
+      {
+        "actor": "BP_Monster_MoTian_C_2147472488",
+        "at": 1793950508358,
+        "scanAt": 1793950508358,
+        "before": {
+          "present": true,
+          "actor": "BP_Monster_MoTian_C_2147472488",
+          "health": 219647.9375,
+          "minimumHealth": 306.8999938964844,
+          "deadTag": false
+        },
+        "effectCallStarted": true,
+        "effectCallReturned": true,
+        "post": {
+          "present": true,
+          "actor": "BP_Monster_MoTian_C_2147472488",
+          "health": 306.8999938964844,
+          "minimumHealth": 306.8999938964844,
+          "deadTag": false
+        }
+      }
+    ],
+    "lastTerminal": {
+      "afterMs": 89246,
+      "actors": [
+        {
+          "present": true,
+          "actor": "BP_Monster_MoTian_C_2147472488",
+          "health": 306.8999938964844,
+          "minimumHealth": 306.8999938964844,
+          "deadTag": false
+        }
+      ]
+    },
+    "error": "Native terminal transition not completed in 90s"
+  },
+  "native": [
+    {
+      "asset": "GE_MoYuan_LockHealth",
+      "proof": "Infinite override Health_Min=.01*Shachi_Max (source, nonsnapshot); not1%Health_Max."
+    },
+    {
+      "asset": "GA_Hun_BEd_MoYuan.ExecuteUbergraph",
+      "proof": "Executed ability native K2_ActivateAbility invokes parent at419 then waits ComboPoint_1; removes GE_MoYuan_LockHealth at59; combo callback additionally removes P2 effect at164."
+    },
+    {
+      "asset": "GA_Hun_BEx_MoYuan.ExecuteUbergraph",
+      "proof": "Player execution counterpart native OnEndAbility dispatches flow tags at10."
+    }
+  ],
+  "privateAssets": "work/bosslab-loader/r7-motian-assets",
+  "limitation": "Actual finisher/player victory not tested. Preserve native lock and full execution path."
+}

@@ -3,7 +3,7 @@
 const UE=require("ue"),puerts=require("puerts");
 const config=require("./qa-config"),bosses=require("./boss-catalog").filter(b=>b.available!==false);
 const enabled=config.mode!=="manual";
-const automated=["survey","arrival","combat","retry","direct","system-flow"].includes(config.mode);
+const automated=["survey","arrival","combat","retry","direct","system-flow","exercise"].includes(config.mode);
 let systemFlowPawn=null,systemFlowTicks=0;
 let entryProbeTicks=0;
 const entrySuite={index:0,results:[],boss:null};
@@ -20,7 +20,7 @@ function entrySuiteTick(context,session,api){
     const alive=probe(context,session.boss).some(a=>!a.hidden&&!a.dead&&a.controller);
     const playable=!!session.directArrival?.released&&!!session.ux.directReady&&!UE.GameplayStatics.IsGamePaused(context);
     const facingReady=!!session.boss.profile.directEntry?.sequences?.length||session.ux.entryFacingObserved?.opponentVisible===true||session.ux.nativeEntryFacingObserved?.opponentVisible===true;
-    const ready=playable&&facingReady&&introduced&&alive&&entrySuite.damaged&&!session.cinematicActive&&(asc?.HasMatchingGameplayTag(tag)||Object.keys(session.engaged||{}).length>0);
+    const ready=playable&&facingReady&&introduced&&alive&&entrySuite.damaged&&!session.cinematicActive&&session.ux.controls?.routable===true&&(asc?.HasMatchingGameplayTag(tag)||Object.keys(session.engaged||{}).length>0);
     if(ready&&!entrySuite.confirmed)entrySuite.confirmed=Date.now();
     if(!ready)entrySuite.confirmed=0;
     if(!(ready&&Date.now()-entrySuite.confirmed>=6000)&&!session.ux.entryFailure&&entrySuite.activeMs<180000&&now-entrySuite.started<600000)return;
@@ -118,7 +118,7 @@ function ui(context,phase,session,extra={}){
 }
 function menu(context,session,api){
     if(["ux","flow","review"].includes(config.mode)&&!survey.started){survey.started=true;setTimeout(()=>api.showMenu(context),2500);return;}
-    if(!enabled||!["survey","arrival","combat","retry","direct","system-flow"].includes(config.mode)||survey.started)return;
+    if(!enabled||!["survey","arrival","combat","retry","direct","system-flow","exercise"].includes(config.mode)||survey.started)return;
     survey.started=true;
     survey.ids=config.ids.length?config.ids:bosses.map(b=>b.id);
     setTimeout(()=>api.replay(context,2,bosses.find(b=>b.id===survey.ids[0]),true,config.skipIntroduction===true),3500);
@@ -390,6 +390,9 @@ function combatTick(context,session,capture,api){
 }
 function tick(context,controller,session,capture,api){
     if(!enabled || !session.active)return;
+    try{require('./control-qa').tick(context,session);}catch(error){if(!session.controlQAError){session.controlQAError=String(error);ui(context,'controls-probe-error',session,{error:String(error)});}}
+    // Physical-key observation only: no private shortcuts, actions or survival overrides.
+    if(config.mode==='keyboard-probe')return;
     if(config.mode==="training"&&session.boss.training&&session.ux?.preparationClosed&&session.inanisInteraction&&!session.inanisQaRequested){
         session.inanisQaTicks=(session.inanisQaTicks||0)+1;
         if(session.inanisQaTicks===90){
@@ -403,7 +406,7 @@ function tick(context,controller,session,capture,api){
         }
     }
     if(config.mode==="training-flow"){trainingFlowTick(context,session,capture,api);return;}
-    if(["combat","arrival","direct","system-flow","review","ux"].includes(config.mode)||config.testHits66){
+    if(["combat","arrival","direct","system-flow","review","ux","exercise"].includes(config.mode)||config.testHits66){
         const player=UE.GameplayStatics.GetPlayerCharacter(context,0),name=player&&player.GetName();
         if(name&&combat.protectedPlayer!==name){
             UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute("Health_Min",UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,1);
@@ -413,7 +416,7 @@ function tick(context,controller,session,capture,api){
             }
             combat.protectedPlayer=name;
         }
-        if(config.testHits66&&session.run?.phase!=='failed'&&!session.cinematicActive){
+        if(config.testHits66&&session.run?.phase!=='failed'&&!session.cinematicActive&&!require('./cinema').entryLoadingActive(context,session)){
             const maximum=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health_Max',UE.BasicAttributeSet.StaticClass())),health=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health',UE.BasicAttributeSet.StaticClass()));
             if(health<maximum*0.5)UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health',UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,maximum);
         }
@@ -438,6 +441,11 @@ function tick(context,controller,session,capture,api){
         const pawn=UE.GameplayStatics.GetPlayerCharacter(context,0)?.GetName();
         if(session.cinematicActive||!session.ux.directIntroObserved){systemFlowTicks=0;return;}
         if(pawn!==systemFlowPawn&&++systemFlowTicks>=240){systemFlowPawn=pawn;api.prepareEquipment(context);ui(context,'system-flow-inventory',session);}
+        return;
+    }
+    if(config.mode==='exercise'){
+        require('./control-actions').tick(context,session);
+        require('./exercise-suite').tick(context,session,api);
         return;
     }
     if(config.mode==="direct"){directTick(context,session,capture,api);return;}
@@ -560,6 +568,7 @@ function trainingFlowMark(context,result){
     if(puerts.$unref(ok)){sl.SaveAdvancedObjectDataAndSync("CodexBossLabTrainingFlowQA",puerts.$unref(value));sl.SaveAdvancedSaveGameNow();}
 }
 exports.tick=tick;
+exports.stop=()=>{if(config.mode==='exercise'){require('./control-actions').stop();if(config.xiaoXueAttackFinish===true)require('./xue-attack-finish').stop();}};
 exports.enabled=enabled;
 exports.automated=automated;
 exports.mode=config.mode;

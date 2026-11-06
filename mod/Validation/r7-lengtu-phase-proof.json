@@ -1,0 +1,55 @@
+{
+  "id": "BP_Monster_LengTu",
+  "classification": "manual-native-summon-phases-and-final-transition",
+  "scope": "Entry action exercise and private forced terminal only; summoned phases and final transition remain manual.",
+  "live": {
+    "evidence": "r7-evidence/native-low3-51-53.json",
+    "killAttempts": [
+      {
+        "actor": "BP_Monster_LengTu_C_2147455892",
+        "before": {
+          "present": true,
+          "actor": "BP_Monster_LengTu_C_2147455892",
+          "health": 81360.9765625,
+          "minimumHealth": 4164.75,
+          "deadTag": false
+        },
+        "post": {
+          "present": true,
+          "actor": "BP_Monster_LengTu_C_2147455892",
+          "health": 4164.75,
+          "minimumHealth": 4164.75,
+          "deadTag": false
+        }
+      }
+    ],
+    "lastTerminal": {
+      "afterMs": 89454,
+      "actors": [
+        {
+          "present": true,
+          "actor": "BP_Monster_LengTu_C_2147455892",
+          "health": 83295,
+          "minimumHealth": 4164.75,
+          "deadTag": false
+        }
+      ]
+    },
+    "error": "Native terminal transition not completed in 90s"
+  },
+  "native": [
+    {
+      "asset": "work/bosslab-loader/r7-lengtu-assets/ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/077_LengTu/GameplayEffect/GE_LengTu_LockHealth.uasset.json",
+      "proof": "Infinite override Health_Min=0.05*Health_Max (source capture nonsnapshot), adds CanNotBeExecuted."
+    },
+    {
+      "asset": "work/bosslab-loader/r7-lengtu-assets/ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/077_LengTu/Ability/GA_LengTu_FinalPhase.uasset.json",
+      "proof": "K2_OnEndAbility removes GE_LengTu_LockHealth offset68; removes phaseP5 offset184, assigns LeiDang offset278, assigns Phase.Final offset376. Native final transition required before terminal health can reach zero."
+    },
+    {
+      "asset": "work/bosslab-loader/r7-lengtu-assets/ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/077_LengTu/Ability/Passive/GA_LengTu_SummonPassive_General.uasset.json",
+      "proof": "Owns native spawned summons map and assigns slots1..7 through blackboard, distinct NPC phase flow."
+    }
+  ],
+  "limitation": "No lock removal or synthesized victory used. Native exact full phase progression still requires player validation."
+}

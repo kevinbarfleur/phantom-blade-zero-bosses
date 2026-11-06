@@ -80,7 +80,22 @@ function observe(session,player,controller){
     }catch(error){result.projectionError=String(error);}
     return result;
 }
+function commit(context,session,player,controller){
+    if(session.cinematicActive||session.boss.profile.directEntry?.sequences?.length)return false;
+    const yaw=session.ux?.entryFacing?.yaw;
+    if(!Number.isFinite(yaw)||typeof UE.PBZBlueprintFunctionLibrary?.PBZActorTeleportTo!=='function')return false;
+    const position=player.K2_GetActorLocation(),view=controller.GetControlRotation();
+    // Use the same placement path as native respawn/teleport, instead of only
+    // changing actor rotation. Commit once at the already collision-fitted
+    // position while arrival owns fade/input; never repeat during combat.
+    const result=UE.PBZBlueprintFunctionLibrary.PBZActorTeleportTo(player,position,new UE.Rotator(0,yaw,0),false,true);
+    if(result!==true)return false;
+    controller.SetControlRotation(view);
+    session.ux={...session.ux,nativeEntryPoseCommitted:true};
+    return true;
+}
 exports.angle=angle;exports.apply=apply;exports.observe=observe;
+exports.commit=commit;
 exports.audit=(context,session,player,controller)=>{
     const opponent=target(context,session,player);if(!opponent)return null;
     return {actor:opponent.name,target:opponent.position,distance:opponent.distance,...observe({ux:{entryFacing:{target:opponent.position}}},player,controller)};

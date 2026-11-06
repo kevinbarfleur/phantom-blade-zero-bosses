@@ -62,3 +62,15 @@ test('a verified elevated enemy stays in its native approach while the camera lo
  h.controller.PlayerCameraManager={GetCameraLocation:()=>({X:-350,Y:0,Z:100})};h.player.K2_TeleportTo=()=>{throw Error('never teleport onto the perch');};
  assert.equal(h.face(),true);assert.equal(h.turns[0].Pitch,0);assert(h.views[0].Pitch>25&&h.views[0].Pitch<35);
 });
+test('native pose commit keeps the fitted position and camera, without selecting or teleporting to another destination',()=>{
+ const h=harness(),calls=[],view={Pitch:12,Yaw:20,Roll:0};h.session.ux={entryFacing:{yaw:20}};h.controller.GetControlRotation=()=>view;
+ h.UE.PBZBlueprintFunctionLibrary={PBZActorTeleportTo:(...args)=>{calls.push(args);return true;}};
+ assert.equal(h.api.commit({},h.session,h.player,h.controller),true);assert.equal(calls.length,1);assert.equal(calls[0][0],h.player);assert.deepEqual(calls[0][1],{X:0,Y:0,Z:0});assert.equal(calls[0][2].Yaw,20);assert.deepEqual(calls[0].slice(3),[false,true]);assert.equal(h.views.at(-1),view);assert.equal(h.session.ux.nativeEntryPoseCommitted,true);
+});
+test('native introductions never use the preparatory pose commit and rejected native teleports remain failures',()=>{
+ const h=harness();h.session.ux={entryFacing:{yaw:20}};h.controller.GetControlRotation=()=>({Pitch:0,Yaw:20,Roll:0});let calls=0;
+ h.UE.PBZBlueprintFunctionLibrary={PBZActorTeleportTo:()=>{calls++;return false;}};h.session.cinematicActive=true;
+ assert.equal(h.api.commit({},h.session,h.player,h.controller),false);assert.equal(calls,0);
+ h.session.cinematicActive=false;h.session.boss.profile.directEntry={sequences:['/Intro']};assert.equal(h.api.commit({},h.session,h.player,h.controller),false);assert.equal(calls,0);
+ h.session.boss.profile.directEntry.sequences=[];assert.equal(h.api.commit({},h.session,h.player,h.controller),false);assert.equal(calls,1);assert.equal(h.session.ux.nativeEntryPoseCommitted,undefined);
+});

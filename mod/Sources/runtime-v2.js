@@ -11,6 +11,7 @@ const inanis=require("./inanis");
 const arena=require("./arena");
 const runs=require("./run-driver");
 const entryWatchdog=require('./entry-watchdog');
+const entryProtection=require('./entry-protection');
 let pending = null, busy = false, activeDialog = null;
 let difficultyFlow = null;
 let menuPause = null;
@@ -21,6 +22,7 @@ session.boss = selector.bosses.find(b=>b.id==="BP_Monster_ZuoShang_Ending");
 if(snapshot.CodexBossLabPreparedArsenal){session.initialized=true;session.arsenal=snapshot.CodexBossLabPreparedArsenal;}
 const difficulties = [UE.EDifficultMode.Easy, UE.EDifficultMode.Normal, UE.EDifficultMode.Hard];
 const text = value => cpp.FText.FromString(value);
+const ignoreOldSelection=()=>false;
 const log = message => console.log("[CodexBossLab] " + message);
 function valid(object) { try { return !!object && UE.KismetSystemLibrary.IsValid(object); } catch (_) { return false; } }
 function saveLoadFor(context) { return UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context, UE.PBZSaveLoadSubsystem.StaticClass()); }
@@ -33,6 +35,9 @@ function fail(context, message) {
     if (pending && pending.retryTimer) clearTimeout(pending.retryTimer);
     pending = null; busy = false; log("ERROR " + message);
     if(validation.ui)validation.ui(context,"operation-error",session,{message});
+    const recovery=recoverFailedChallenge(context,message);
+    if(recovery==='retry')return;
+    if(recovery==='exhausted')message="Le retour automatique à l'entraînement a échoué après trois tentatives. Le défi est terminé. Appuyez sur F8, puis choisissez ENTRAÎNEMENT pour réessayer.\n\n"+message;
     try {
         if (!valid(context)) return;
         const action = UE.AsyncAction_ShowConfirmation.ShowConfirmationOk(context, text("BOSSES"), text(message));
@@ -93,36 +98,55 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
         replaceWhenReady(saveLoad,param,JSON.stringify(root),request,(slotName, _json, _index, success) => {
             if (slotName !== slot || !finishRequest(request)) return;
             if (!success) return fail(instance, "Le point de départ du combat n'a pas pu être écrit.");
+            if(session.run?.phase==='failed'&&!boss.training&&!session.pendingRunOptions){busy=false;return;}
             try {
                 closeMenus(instance,()=>{
                 try {
+                // Native menu deactivation yields. A final QTE hit may exhaust
+                // the run after the save callback's earlier terminal check.
+                if(session.run?.phase==='failed'&&!boss.training&&!session.pendingRunOptions){busy=false;return;}
+                entryProtection.stop('encounter-change');
                 const resultRef = puerts.$ref(new UE.LoadGameResultParam()); instance.LoadGame(slot, resultRef);
                 const result = puerts.$unref(resultRef);
                 if (!result || result.ResultType !== UE.ESaveLoadResultType.Success || String(result.LevelName) !== pristine.PBZGameSystem.CurrentLevelName) throw new Error("Le point de départ n'a pas été reconnu");
                 session.active = true; session.difficulty = difficulty; session.boss = boss; session.completed = false;session.completionToken=null;session.victory=null;
                 runs.enter(session,boss,session.pendingRunOptions);session.runOptions=session.run?.options||session.runOptions;session.pendingRunOptions=null;session.runFailureShown=false;session.runRuntimeError=null;
+                session.entryProtectionExpired=false;
+                if(boss.training&&session.runFailureReturn&&session.runFailureReturn.run===session.run){session.runFailureReturn.inFlight=false;session.runFailureReturn.returned=true;}
                 if(session.pendingAutoNext!==undefined)session.autoNext=session.pendingAutoNext;
                 delete session.pendingAutoNext;
-                session.prepareOnArrival=!!boss.training;
+                session.prepareOnArrival=!!boss.training&&!session.runFailureReturn;
                 session.mode=boss.training?"training":"direct-fight";
                 session.skipIntroduction=skipIntroduction;
                 session.introPresentation=null;
                 delete session.ux?.introPresentationReleased;
                 delete session.ux?.introAdditionalLoadingHidden;
+                delete session.ux?.introAdditionalLoadingReleased;
+                delete session.ux?.introAdditionalLoadingTimer;
+                delete session.ux?.controls;
+                delete session.ux?.controlExercise;
+                delete session.ux?.introRevealReady;
+                delete session.ux?.arrivalAdditionalLoadingReleased;
+                delete session.ux?.arrivalAdditionalLoadingTimer;
                 session.cinematicActive=false;session.cinemaSource=null;
                 session.trainingInteractionsDisabled=false;
                 session.trainingTicks=0;
                 session.trainingTipShown=false;session.inanisInteraction=null;session.inanisSpawnRequested=0;
                 session.arrivalAnchorPending=true;
                 session.preparationShown=false;
-                session.trialReady=false;session.nativeSpawnerReady=false;session.entranceFlowPrepared=false;session.entranceSignalSent=false;session.entranceQuestSignals=null;session.entranceOwner=null;session.entryBoundaryPending=false;session.entryWatch=null;session.trialPrepareAttempts=0;session.layersPrepared=false;session.layersRestoredAfterArrival=false;
+                session.trialReady=false;session.nativeSpawnerReady=false;session.entranceFlowPrepared=false;session.entranceSignalSent=false;session.entranceSignalInstances=[];session.entranceQuestSignals=null;session.entranceOwner=null;session.entryBoundaryPending=false;session.entryWatch=null;session.trialPrepareAttempts=0;session.layersPrepared=false;session.layersRestoredAfterArrival=false;
                 session.ux={...session.ux,nativeTrialPrepared:false,nativeLayersPrepared:false,preparationPaused:false,preparationClosed:false,resultShown:false,prepareRequested:!!boss.training,automatedQA:validation.automated};
+                for(const key of Object.keys(session.ux))if(key.startsWith('entryProtection')||key==='entryAIHeld'||key==='entryAIResumed')delete session.ux[key];
                 delete session.ux.trialPreparationError;delete session.ux.layerPreparationError;delete session.ux.nativeEncounterPrepared;delete session.ux.nativeSpawnerFound;
                 for(const key of ["introExitBlackSuppressed","introExitBlackDuration","introExitSequence","systemLabActionsReady","systemLabActionsVisible","directReady","directPlacement","directIntroObserved","directKind","nativeArrivalLoaded","nativeEntryCrossed","arrivalEvents","introPreparationTimedOut","introPreparationCancelled","arenaBellsSuppressed","directCombatStarted","inanisVisible","inanisInteractionReady","inanisSelections","trainingExitBlocked","trainingHiddenActors","trainingDisabledActors","trainingHiddenEffects","trainingBoundaryReturns"])delete session.ux[key];
-                for(const key of ['nativeEntranceFlowExisting','nativeEntranceFlowInitialized','nativeEntranceTriggered','entranceGateKey','entranceFlowError','layersRestoredAfterArrival','entryFailure','entryFacing','entryFacingObserved','nativeEntryFacingObserved','nativeEntryFacingInitial','nativeEntryFacingAfterMs','observedIntroduction','entryClearance','arrivalAISuppressed','arrivalAIHeld'])delete session.ux[key];
+                for(const key of ['nativeEntranceSignalInstances','entranceInstanceDispatchLimit','nativeEntranceSignalPin','nativeEntranceFlowExisting','nativeEntranceFlowInitialized','nativeEntranceTriggered','entranceGateKey','entranceFlowError','layersRestoredAfterArrival','entryFailure','entryFacing','entryFacingObserved','nativeEntryPoseCommitted','nativeEntryPoseCommitError','nativeEntryFacingObserved','nativeEntryFacingInitial','nativeEntryFacingAfterMs','observedIntroduction','entryClearance','arrivalAISuppressed','arrivalAIHeld'])delete session.ux[key];
                 battle.install(session,victory);
                 instance.SetLoadingScreen("PBZ_WP"); busy = false;
                 log("Loading " + boss.id + "; difficulty=" + difficulty);
+                // LoadGame above validates the saved destination. Only now,
+                // at the committed travel boundary, retire old-world JS
+                // ownership before OpenLevel runs its native garbage pass.
+                stopKeys();releaseWorldReferences();
                 UE.GameplayStatics.OpenLevel(instance, String(result.LevelName), true, String(result.GameModeOptions || ""));
                 }catch(error){fail(instance,String(error));}
                 });
@@ -152,7 +176,8 @@ function captureCheckpoint(context, then) {
             try {
                 busy = false;
                 log("Loadout checkpoint captured");
-                if (queuedDeath) { queuedDeath = false; writeEncounter(instance, session.difficulty,session.boss,false,true); }
+                const died=queuedDeath;queuedDeath=false;
+                if (died && session.run?.phase!=='failed') { writeEncounter(instance, session.difficulty,session.boss,false,true); }
                 else if (then) then(instance);
             } catch (error) { fail(instance, "Équipement non enregistré : " + String(error)); }
         });
@@ -161,6 +186,9 @@ function captureCheckpoint(context, then) {
 }
 function replay(context, difficulty = session.difficulty, boss = session.boss, prepare = true, skipIntroduction = false) {
     if (busy || !difficulties.includes(difficulty)) return false;
+    // A failed challenge is terminal. Only a deliberate new configuration may
+    // start another one; stale retry/next callbacks cannot reset its budget.
+    if(session.run?.phase==='failed'&&!boss.training&&!session.pendingRunOptions)return false;
     if (session.active && valid(worldContext)&&valid(UE.GameplayStatics.GetPlayerCharacter(worldContext,0))) return captureCheckpoint(worldContext, instance => writeEncounter(instance, difficulty, boss,prepare,skipIntroduction));
     return writeEncounter(context, difficulty, boss,prepare,skipIntroduction);
 }
@@ -169,6 +197,66 @@ function openTraining(context){
     const live=valid(worldContext)&&valid(UE.GameplayStatics.GetPlayerCharacter(worldContext,0))?worldContext:null;
     if(session.active&&session.boss.training&&live){prepareEquipment(live);return true;}
     return replay(context,session.difficulty,training.destination,false);
+}
+function finishFailedChallenge(context,nativeDeath=false){
+    if(!session.active||session.boss.training||session.run?.phase!=='failed')return;
+    session.autoNext=false;queuedDeath=false;
+    if(session.completionToken)session.completionToken.cancelled=true;
+    let state=session.runFailureReturn;
+    if(!state||state.run!==session.run){
+        const boss=session.boss,helper=require('../Library/UIHelper').default;
+        let name=boss.label||boss.id;
+        try{name=require('./boss-label').resolve(boss,key=>UE.KismetTextLibrary.Conv_TextToString(helper.GetTextByID(key)));}catch(_){}
+        state=session.runFailureReturn={run:session.run,generation:worldGeneration,boss:boss.id,name:name+(boss.variant?' · '+boss.variant:''),firstSeen:Date.now(),queued:false,requested:false,noticeShown:false,returnAttempts:0};
+    }
+    if(state.requested||state.queued||state.error)return;
+    // Prefer the actual native death screen. The Dead tag is only a backstop
+    // if that screen's activation callback never arrives; never travel alive.
+    if(!nativeDeath){
+        const player=UE.GameplayStatics.GetPlayerCharacter(context,0),asc=valid(player)&&UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);
+        if(!asc?.HasMatchingGameplayTag(gameplayTag('CharacterState.Dead'))){state.deadSince=null;return;}
+        if(state.deadSince==null)state.deadSince=Date.now();
+        if(Date.now()-state.deadSince<3000)return;
+    }
+    state.queued=true;let attempts=0;
+    const back=()=>{
+        if(session.run!==state.run||!session.active||session.boss.training||worldGeneration!==state.generation)return;
+        const live=valid(worldContext)?worldContext:context;
+        if(!busy&&valid(live)){
+            state.queued=false;state.requested=true;state.inFlight=true;state.returnAttempts++;
+            // Claim this attempt before calling into the save subsystem: it
+            // may report a synchronous error as well as an async failure.
+            if(openTraining(live))return;
+            if(state.inFlight)fail(live,"Le retour à l'entraînement n'a pas pu commencer.");
+            return;
+        }
+        if(++attempts<120)setTimeout(back,250);
+        else{state.queued=false;state.error=true;fail(live,"Le retour à l'entraînement n'a pas abouti. Utilisez ENTRAÎNEMENT pour quitter le défi terminé.");}
+    };
+    setTimeout(back,250);
+}
+function recoverFailedChallenge(context,message){
+    const state=session.runFailureReturn;
+    if(!state?.inFlight||state.run!==session.run||!session.active||session.boss.training||session.run?.phase!=='failed')return null;
+    state.inFlight=false;state.requested=false;state.queued=false;state.lastError=message;
+    if(state.returnAttempts>=3){state.error=true;return 'exhausted';}
+    // Retry only this terminal run, after its failed save request has been
+    // cancelled. A later new run/world invalidates the scheduled recovery.
+    state.queued=true;
+    setTimeout(()=>{
+        if(session.run!==state.run||!session.active||session.boss.training||worldGeneration!==state.generation)return;
+        state.queued=false;finishFailedChallenge(valid(worldContext)?worldContext:context,true);
+    },750);
+    return 'retry';
+}
+function showFailedChallengeNotice(context){
+    const result=session.runFailureReturn;
+    if(!result||result.noticeShown||session.run!==result.run||!session.boss.training||!session.worldLoadingComplete||session.arrivalAnchorPending||busy||activeDialog)return;
+    const message='Défi terminé · 66 coups reçus.\nCombat atteint : '+result.name+'\nCombats remportés : '+result.run.splits.length+'\n\n'+runs.summary(session)+'\n\nDe retour chez Inanis. Préparez une nouvelle tentative.';
+    const action=UE.AsyncAction_ShowConfirmation.ShowConfirmationOk(context,text('66 HITS · DÉFI TERMINÉ'),text(message));
+    action.Activate();result.noticeShown=true;session.lastRunResult={boss:result.boss,name:result.name,hits:result.run.hits,totalMs:result.run.totalMs,completed:result.run.splits.length,result:'66hits'};
+    session.ux={...session.ux,runFailureReturned:true,runFailureNoticeShown:true};
+    if(validation.ui)validation.ui(context,'challenge-ended-in-training',session,{result:session.lastRunResult});
 }
 function pauseMenu(context,widget){
     // CommonUI deactivates the selector when it pushes difficulty, then
@@ -366,6 +454,8 @@ function scheduleCompletion(context,token,delay){
     setTimeout(finish,delay);
 }
 function stopKeys() {
+    if(validation.stop)validation.stop();
+    entryProtection.stop();
     runs.stop();
     arrival.release(session);
     clearMenuPause();
@@ -377,8 +467,21 @@ function stopKeys() {
     worldGeneration++; if (keyTimer !== null) clearInterval(keyTimer);
     keyTimer = null; worldContext = null; keyHeld = false;
 }
+function releaseWorldReferences(){
+    if(entryProtection.forgetWorldReferences)entryProtection.forgetWorldReferences('committed-world-exit');
+    if(arrival.dispose)arrival.dispose(session);
+    if(battle.stop)battle.stop();
+    // The loading handoff already owns presentation. Forget old wrappers;
+    // do not fade, deactivate or otherwise finish native loading here.
+    const widget=session.selectorWidget;
+    try{if(valid(widget))widget.codexSelectBoss=ignoreOldSelection;}catch(_){}
+    session.selectorWidget=null;session.introPresentation=null;
+    session.launchUI=null;session.inanisInteraction=null;session.entranceOwner=null;
+    activeDialog=null;difficultyFlow=null;
+}
 function beginKeys(context) {
     stopKeys(); worldContext = context;
+    session.entryProtectionExpired=false;
     if(session.active)runs.install(context,session);
     if(hold.endLaunch)hold.endLaunch(session);
     const diagnosticContext=UE.GameplayStatics.GetGameInstance(context);
@@ -407,9 +510,12 @@ function beginKeys(context) {
                 if(arrivalTicks%10===0){session.cinematicActive=cinema.tick(context,session);if(session.cinematicActive&&!session.boss.training)session.ux.directIntroObserved=true;}
                 if(arrivalTicks%5===0)battle.holdDirectCombat(context,session);
                 arrival.tick(context,session);
+                if(cinema.releaseArrivalLoading)cinema.releaseArrivalLoading(context,session);
                 training.tick(context,session);
-                if(arrivalTicks%15===0&&battle.activateDirectCombat)battle.activateDirectCombat(context,session);
+                entryProtection.tick(context,session);
+                if(arrivalTicks%15===0&&battle.activateDirectCombat&&!cinema.entryLoadingActive(context,session))battle.activateDirectCombat(context,session);
                 if(!session.runRuntimeError)try{runs.tick(context,session);}catch(error){session.runRuntimeError=String(error);session.autoNext=false;fail(context,"Chronomètre / 66 HITS indisponible : "+String(error));}
+                if(session.run?.phase==='failed'){finishFailedChallenge(context);showFailedChallengeNotice(context);}
                 if(arrivalTicks%15===0&&!session.boss.training&&session.boss.profile.directEntry){
                     const tag=gameplayTag('CharacterState.InCombat'),asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);
                     if(entryWatchdog.tick(session,Date.now(),{loaded:session.worldLoadingComplete&&(session.directArrival?.released||session.directArrival?.streamingReady),cinematic:session.cinematicActive||cinema.pending(context),paused:UE.GameplayStatics.IsGamePaused(context),menu:busy||!!activeDialog||session.selectorWidget?.IsActivated?.(),combat:session.directArrival?.released&&(Object.keys(session.engaged||{}).length>0||asc?.HasMatchingGameplayTag(tag)||session.runInteractiveActive)})){
@@ -499,7 +605,7 @@ function patchGameMode(Type) {
     if(typeof achievements==="function")p.startAchievementProgression=function(...args){if(!session.active)return achievements.apply(this,args);};
     wrap(p, "bindSaveTipExtension", function () { beginKeys(this); });
     const end = p.ReceiveEndPlay;
-    p.ReceiveEndPlay = function (...args) { if(worldContext===this){stopKeys(); activeDialog = null;if(battle.stop)battle.stop();}return end.apply(this, args); };
+    p.ReceiveEndPlay = function (...args) { if(worldContext===this){stopKeys();releaseWorldReferences();}return end.apply(this, args); };
 }
 function patchDeathMenu(Type) {
     const p = Type.prototype, activate = p.BP_OnActivated, tick = p.Tick, destruct = p.Destruct;
@@ -508,10 +614,7 @@ function patchDeathMenu(Type) {
         this.codexLabDeath = true; this.isAlreadyReSpawn = true;
         runs.death(this,session);
         if(session.run?.phase==='failed'){
-            if(!session.runFailureShown){
-                session.runFailureShown=true;const generation=worldGeneration;let attempts=0;
-                const show=()=>{if(generation!==worldGeneration||!session.active||session.run?.phase!=='failed')return;if(!showMenu(valid(worldContext)?worldContext:this,"failure")&&++attempts<120)setTimeout(show,250);};setTimeout(show,250);
-            }
+            finishFailedChallenge(valid(worldContext)?worldContext:this,true);
             return;
         }
         session.deathRetries=(session.deathRetries||0)+1;

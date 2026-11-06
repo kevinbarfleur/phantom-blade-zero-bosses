@@ -1,6 +1,6 @@
 {
-  "version": "0.7.0-preview.4",
-  "revision": "run-r6-preview",
+  "version": "0.7.0-preview.5",
+  "revision": "run-r7-preview",
   "gameAppId": 4115450,
   "gameBuild": 26367565,
   "deployment": "temporary-pbzmodloader",
@@ -593,7 +593,7 @@
     },
     {
       "path": "ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js",
-      "sha256": "97956d37f0da84a21ef20323cf1817866a4acc469e56b513a12203e410691977",
+      "sha256": "d4ec01cecc41e69494f65d3146284c72b374056932fb6b6c89194d8b6fcaa4f2",
       "source": "mod"
     }
   ],
@@ -601,10 +601,11 @@
     "runtimeCompatible": true,
     "gameplayValidated": false,
     "report": "Validation/validation.json",
-    "note": "Representative entrances and run configuration tested in game; all complete encounters remain uncertified."
+    "register": "Validation/QA-r7.md",
+    "note": "See per-encounter evidence and limits. Engine action simulation is separate from physical keyboard/controller testing. Full encounters remain uncertified."
   },
   "hotkey": "F8",
   "catalog": {
-    "encounters": 60
+    "encounters": 59
   }
 }

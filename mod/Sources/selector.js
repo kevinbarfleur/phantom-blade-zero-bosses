@@ -4,14 +4,15 @@ const bosses = require("./boss-catalog").filter(b=>b.available!==false);
 const helper = () => require("../Library/UIHelper").default;
 const text = value => cpp.FText.FromString(value);
 const info = item => item && item.codexBossEntry;
+const bossLabel=(boss,short=false)=>require('./boss-label').resolve(boss,key=>UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(key)),short);
 let lastSelection=null;
 function name(boss) {
-    const value=boss.label || UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.nameKey));
+    const value=bossLabel(boss);
     return text((value+(boss.variant?" · "+boss.variant:"")).toLocaleUpperCase("fr-FR"));
 }
 function shortName(boss){
-    const full=boss.label||UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.nameKey));
-    return text((full.split(",")[0]+(boss.variant?" · "+boss.variant:"")).toLocaleUpperCase("fr-FR"));
+    const full=bossLabel(boss,true);
+    return text((full+(boss.variant?" · "+boss.variant:"")).toLocaleUpperCase("fr-FR"));
 }
 function find(widget, id) { return widget[id] || UE.Widget.Find(id, widget.WidgetTree); }
 function hide(widget, names) { for (const id of names) { const w=find(widget,id); if(w)w.SetVisibility(UE.ESlateVisibility.Collapsed); } }
@@ -39,7 +40,7 @@ function preview(widget, boss) {
     }
     if(widget.QuestName)widget.QuestName.SetPBZFormatText(shortName(boss));
     const location=boss.locationKey?UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.locationKey)):"";
-    const full=boss.label||UE.KismetTextLibrary.Conv_TextToString(helper().GetTextByID(boss.nameKey));
+    const full=bossLabel(boss);
     const epithet=full.includes(",")?full.slice(full.indexOf(",")+1).trim():"";
     if(widget.QuestDesc)widget.QuestDesc.SetPBZFormatText(text((epithet?epithet+"\n":"")+location+"\nArsenal ajusté · Niv. "+(boss.balance?.weaponLevel||30)+(widget.codexRunSummary&&['victory','failure'].includes(widget.codexScreen)?"\n\n"+widget.codexRunSummary:"\nArrivée directe au combat\nÉquipement : entraînement")));
     const detail=widget.codexDetailPanel||widget.VerticalBox_94;

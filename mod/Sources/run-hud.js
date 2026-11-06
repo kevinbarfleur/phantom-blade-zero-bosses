@@ -3,14 +3,32 @@ const UE=require('ue'),cpp=require('cpp'),puerts=require('puerts'),model=require
 let view=null,lastSearch=0;
 function valid(w){try{return !!w&&UE.KismetSystemLibrary.IsValid(w);}catch(_){return false;}}
 function stop(){if(view)try{if(valid(view.box))view.box.RemoveFromParent();}catch(_){}view=null;}
+function backdrop(host,box){
+    let border=null;
+    try{
+        if(typeof UE.Border?.StaticClass!=='function')return box;
+        border=UE.NewObject(UE.Border.StaticClass(),host);
+        if(!valid(border)||['SetBrushColor','SetPadding','SetVisibility','AddChild'].some(name=>typeof border[name]!=='function'))throw Error('Native HUD border unavailable');
+        const padding=new UE.Margin();padding.Left=14;padding.Right=14;padding.Top=10;padding.Bottom=10;
+        border.SetBrushColor(new UE.LinearColor(0.012,0.014,0.018,0.76));border.SetPadding(padding);
+        // Entire subtree remains non-interactive: never capture pointer/focus.
+        border.SetVisibility(UE.ESlateVisibility.HitTestInvisible);border.AddChild(box);return border;
+    }catch(_){
+        // Preserve the established text-only HUD on unsupported native wrappers.
+        try{box.RemoveFromParent();}catch(_){}
+        try{if(valid(border))border.RemoveFromParent();}catch(_){}
+        return box;
+    }
+}
 function attach(host,session){
     if(!session.active||!model.enabled(session.run))return;
     const root=UE.Widget.Find('Overlay_0',host.WidgetTree);if(!root?.AddChildToOverlay)return;
     stop();
     const box=UE.NewObject(UE.VerticalBox.StaticClass(),host),size=UE.NewObject(UE.SizeBox.StaticClass(),host);
     try{
-        size.SetWidthOverride(330);size.AddChild(box);
-        const slot=root.AddChildToOverlay(size),margin=new UE.Margin();margin.Right=90;margin.Top=65;
+        size.SetWidthOverride(330);size.AddChild(backdrop(host,box));
+        // Keep the native boss health bars and long encounter names unobstructed.
+        const slot=root.AddChildToOverlay(size),margin=new UE.Margin();margin.Right=90;margin.Top=190;
         slot.SetHorizontalAlignment(UE.EHorizontalAlignment.HAlign_Right);slot.SetVerticalAlignment(UE.EVerticalAlignment.VAlign_Top);slot.SetPadding(margin);
         size.SetVisibility(UE.ESlateVisibility.HitTestInvisible);
         const fontObject=UE.Font.Load('/Game/PBZContent/UI/Fonts/STZHONGS_Font.STZHONGS_Font');

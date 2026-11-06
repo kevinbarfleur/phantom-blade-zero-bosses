@@ -1,0 +1,1578 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-06T11:07:25.826Z",
+  "scope": "Synthèse de preuves ciblées, pas certification complète ni rapport final.",
+  "sources": [
+    {
+      "file": "r7-jade-entry-correction-proposal.json",
+      "sha256": "c1c5a50faa17dc57eea389946d76678ff1b86c75b32666870a6b363ee0b0d73d"
+    },
+    {
+      "file": "r7-jade-native-group-proof.json",
+      "sha256": "047cb122728e0afe073e56f83019f3ca977a691a8e8b10888b18f75f4f6ad156"
+    },
+    {
+      "file": "r7-redtroop-group-proof.json",
+      "sha256": "5023ee931fe47909bb4c770d59f71f6c6a6be358d295b9c7add30d41956746b7"
+    },
+    {
+      "file": "r7-feng-control-proof.json",
+      "sha256": "4ef2877bb16bb700f3b8f1037ec2b409f10e4098e4aab2b0023afabf7a69af4b"
+    },
+    {
+      "file": "r7-evidence/jade-native-group-skip.json",
+      "sha256": "94a127bd7d8b8effbd4d6fe056827234c8731ca1da8315ce21217abf5647378f"
+    },
+    {
+      "file": "r7-evidence/jade-native-group-skip-provenance.json",
+      "sha256": "1311a99c3fa9e7a393dd388d332a9207b21d74288a470ee156ebf724c685de3f"
+    },
+    {
+      "file": "r7-evidence/bigbro-restored-members.json",
+      "sha256": "c8ce779ebc6b7ec141119b8667028cb7f3fb63606017c654f90bd526ec24bb02"
+    },
+    {
+      "file": "r7-evidence/bigbro-no-input-observation.json",
+      "sha256": "2b2973fbf780e6245441da202b41a1ea7ac623f56c923a2145c9d542b7574d5c"
+    },
+    {
+      "file": "r7-evidence/bigbro-native-support-ai-ab-provenance.json",
+      "sha256": "7688ba6f3d2244c9d9f1d83d665e0a55297e568bc6a304bc8a05f20ed11ebafd"
+    },
+    {
+      "file": "r7-evidence/bigbro-native-group-terminal.json",
+      "sha256": "35cfdefb85606fe6cb5b8dfa64bec22a3ba0fe73ffa202d1aec33a2a32aa3629"
+    },
+    {
+      "file": "r7-evidence/bigbro-native-group-terminal-provenance.json",
+      "sha256": "0c29eadcfba8cf3087a416933d77e933fb5ac957803e4e42ec7d0c948b0e9646"
+    },
+    {
+      "file": "r7-huashan-group-proof.json",
+      "sha256": "c8ee0416b96383ab17a0bb388ef7bd0047a5f8e50453a204a530c108681e784a"
+    },
+    {
+      "file": "r7-evidence/feng-native-frost-tags-controls.json",
+      "sha256": "740b86e3ce89029c9eaa0958e131677a5f83571279884f241ae03d4c4e248dd6"
+    },
+    {
+      "file": "r7-evidence/feng-native-frost-tags-provenance.json",
+      "sha256": "f8e5d13c7e067692dcddd1e079e8d690a8d51d444f1cd0b8c12552a3c49517e5"
+    },
+    {
+      "file": "r7-evidence/bigbro-native-next-transition.json",
+      "sha256": "832a5a119cf3692bc394d9085817e8918cabfd12c390ebec67edb915ea5dfabc"
+    },
+    {
+      "file": "r7-evidence/bigbro-native-next-transition-provenance.json",
+      "sha256": "8d573b5c8b1a19d6d49335e28d82bb3f7082b2467bb8fd27e728ea4dadbe7271"
+    },
+    {
+      "file": "r7-xiaoxue-player-context-observer-proof.json",
+      "sha256": "6bfed4ece8e661bd721d247c451dab2b185bbaa7c51cc71623fd64b7ac3758fb"
+    },
+    {
+      "file": "r7-xiaoxue-terminal-review.json",
+      "sha256": "be4e34f71995c541d8d412f85a7b2bc7f0cd42048ebc37a4c036f01f2a84d805"
+    },
+    {
+      "file": "r7-evidence/xiaoxue-player-context.json",
+      "sha256": "c2fca35282bffcbebfc52768c59547399bbc5e61a2270d86b23007eaedb48870"
+    },
+    {
+      "file": "r7-evidence/xiaoxue-player-context-provenance.json",
+      "sha256": "ae38bc157c72f7da75dafbc0e5bb5806d93c1c444f81f9bdaa56619ad8ec12bd"
+    },
+    {
+      "file": "r7-evidence/xiaoxue-census-baseline.json",
+      "sha256": "e42ca920e4b094a537bad6f97972cd64a421a8a2b6722b4bdb1519a1bcf32b33"
+    },
+    {
+      "file": "r7-evidence/xiaoxue-native-attack-finish.json",
+      "sha256": "012d9c99a171b73d0db742dc90f14280f640999b3f23dbf704c0f51dbe5846f7"
+    },
+    {
+      "file": "r7-evidence/xiaoxue-native-attack-finish-provenance.json",
+      "sha256": "c80fe764563496e7fb964d8908da96b06130dc3faf9c29335cd879c290468721"
+    },
+    {
+      "file": "r7-evidence/xiaoxue-completion-prerequisite-reset.json",
+      "sha256": "b069df7d9084555d1a9189a1ea79f4e0abc271071a051467e3bf6f7f8fcf6192"
+    },
+    {
+      "file": "r7-evidence/xiaoxue-completion-prerequisite-reset-provenance.json",
+      "sha256": "075519498a3813e7977e3417049b97273fab4690ef25142886f6f3429c994dcc"
+    },
+    {
+      "file": "r7-evidence/huashan-native-formation.json",
+      "sha256": "88fcc1080317eb83b0cc6d102b36c314a0fd8e0ec5127dcd04d481b36ee26bcf"
+    },
+    {
+      "file": "r7-evidence/huashan-native-formation-provenance.json",
+      "sha256": "a7cc743a4ab3cdc30fc8401ecefc484800553b14f53f934f97249439a0ba8ea1"
+    },
+    {
+      "file": "r7-muxiaokui-phase3-proof.json",
+      "sha256": "6e49dff05fa97a87e3218ff4a31c29f05da98ec75e16825ae4a4bb9eb6ff1eba"
+    },
+    {
+      "file": "r7-evidence/yuu-native-phase3-prototype.json",
+      "sha256": "e97b0aa442bfa9db3756e904bb47433a0e61c983c9fde6b1e95cefe9b3a071d9"
+    },
+    {
+      "file": "r7-evidence/yuu-native-phase3-prototype-provenance.json",
+      "sha256": "3c10f8ca06c6e28c3bae113dab9173e5e87222a4253baa56161fac22044053ec"
+    },
+    {
+      "file": "r7-refuge-title-regression.json",
+      "sha256": "93cd2f7d7ee710b2d1d61a1b161ae5c5555847fdfab777f534fdb6ee01df46da"
+    },
+    {
+      "file": "r7-refuge-physical-keyboard.json",
+      "sha256": "4c5d09a028fe8306c93c9e98447c17ce2f7f4e963f995d581cbb0265c79205bf"
+    },
+    {
+      "file": "r7-refuge-physical-keyboard-fixed.json",
+      "sha256": "39789877083763cec37a549e463c7d382ac78994a735e70701f715d21deefce0"
+    },
+    {
+      "file": "r7-evidence/refuge-physical-keyboard-fixed-provenance.json",
+      "sha256": "414436ba164c2bcb1f91a2d75a66306a9182d3e888aa0052057e2d5ad8d965c8"
+    },
+    {
+      "file": "Sources/boss-catalog.json",
+      "sha256": "2feba8ee41ba6d355156be8c5306f64fa0cca5e449cc687b07a544ca932d3f0d"
+    },
+    {
+      "file": "r7-validation-register.json",
+      "sha256": "f2c202dc455acd739b25f6322f06b66db87b2302c237053357d0874d0c5df9fa"
+    },
+    {
+      "file": "r7-evidence/yuu-native-phase3-visual-incident.json",
+      "sha256": "ad96e33f4f9c9c00765da7fc1734c6c46ae518d508b6128e421881e5f1ab3d6f"
+    },
+    {
+      "file": "r7-evidence/huaq-native-nav-probe.json",
+      "sha256": "4e754a564c734b65fae1b8d74cd95a63c8096f2ec05f2e2cbecea3eff8efe989"
+    },
+    {
+      "file": "r7-evidence/huaq-native-nav-probe-provenance.json",
+      "sha256": "ae3f4334e60b31fda54b72bafa7f1faae15c24c47df8d3a53dc7600fe066448d"
+    },
+    {
+      "file": "r7-evidence/final-natural-04-06.json",
+      "sha256": "1a471bad466a835fb29a1c741c957e3b20643e627f403dc0cbc1188949c0289d"
+    },
+    {
+      "file": "r7-huaq-navigation-proof.json",
+      "sha256": "eeee3a232c46d7419828f3e6315ba249584f276ad87f272522a9c94a2fecd173"
+    },
+    {
+      "file": "r7-evidence/huaq-replacement-after-signal-failure-controls.json",
+      "sha256": "d9c1fab300534e2e4230e35f7b545589a6ba8f6c91f0abaa0b3ce5e972a9fec4"
+    },
+    {
+      "file": "r7-evidence/huaq-instance-fix-skip.json",
+      "sha256": "47f74e131f62c9ba902ac716a54aeb72481ad075f971a9c48ba43b69127ede1c"
+    },
+    {
+      "file": "r7-evidence/huaq-instance-fix-skip-provenance.json",
+      "sha256": "d6d6b34a6b7a675a0f7e53ec8d9887ce03f7950d9cb077b9c5db9a20639da24c"
+    },
+    {
+      "file": "r7-evidence/huaq-instance-fix-natural.json",
+      "sha256": "e4f1538e7339a2f91e1338447d5cdaa3bfac61431f74121fef589d76979d5768"
+    },
+    {
+      "file": "r7-evidence/huaq-instance-fix-natural-provenance.json",
+      "sha256": "2431866d1a1111d8df4454e52a7f3a48efe1f3c20984fdf1498892de95a5961e"
+    },
+    {
+      "file": "r7-evidence/huaq-instance-fix-actual-skip.json",
+      "sha256": "c19886f182a8588aa0656c3754f13d8a2f17b15e84a462f472102f17af0fd626"
+    },
+    {
+      "file": "r7-evidence/huaq-instance-fix-actual-skip-provenance.json",
+      "sha256": "a8988ee5a6bf2d88f039a36a76b3d56a234f33bda30584539203d47932612cb8"
+    },
+    {
+      "file": "r7-authored-summon-target-proof.json",
+      "sha256": "55559dabf4ce40a1cf391cfc23057b0eeab8c1ee82d8e0d45bb3b5153c04a40a"
+    },
+    {
+      "file": "r7-authored-summon-retakes-proof.json",
+      "sha256": "2d8fa528f9186d31efda3f3770243f3140843af1e84980b9eb9790f1d1e5642f"
+    },
+    {
+      "file": "r7-motian-trial2-terminal-review.json",
+      "sha256": "566718002ccf3dd16a5e830bb7f2a6f16144afdf77e3f69c9d30b2a2c18329d0"
+    },
+    {
+      "file": "r7-preparation-stage-error.json",
+      "sha256": "1a0b98b6a7ba59437eb9f2567adf63af1c5924a0541bd2055c787482a4d8ab25"
+    },
+    {
+      "file": "r7-intermediate-restoration-stage-error.json",
+      "sha256": "23f4de1417e43ebd3cda01bd1e212a24d98512db117c588e202d3d348f7f1d54"
+    },
+    {
+      "file": "read-r7.ps1",
+      "sha256": "ceb9cdd6fa5252bb41cd92f7ff2612dcb6c06e0a1a728446096bafb301c02f60"
+    },
+    {
+      "file": "Save-R7IncompleteObservation.ps1",
+      "sha256": "ebb24657c8f860c5f93280d0f58600955a90dc070bcc9943a90e5d3cc879b616"
+    }
+  ],
+  "jade": {
+    "id": "BP_Monster_JadeMaskMan",
+    "correction": {
+      "previousWrongGraph": "BPF_HuangXingZiChuchang / MBoss_IntroAll",
+      "nativeGraph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_YuMianChuChang",
+      "nativeSequence": [
+        "/HuaShira/Animation/Seqs/JadeIntro/Jade_Intro.Jade_Intro"
+      ],
+      "appliedAt": "2026-11-06T07:20:51.716Z"
+    },
+    "nativeGroup": {
+      "members": [
+        {
+          "id": "JadeIntro_Gold",
+          "classPath": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_GoldMaskMan.BP_Monster_GoldMaskMan_C"
+        },
+        {
+          "id": "JadeIntro_Iron",
+          "classPath": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_IronMaskMan.BP_Monster_IronMaskMan_C"
+        },
+        {
+          "id": "JadeIntro_Jade",
+          "classPath": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_JadeMaskMan.BP_Monster_JadeMaskMan_C"
+        }
+      ],
+      "primary": "JadeIntro_Jade",
+      "supports": [
+        "JadeIntro_Gold",
+        "JadeIntro_Iron"
+      ]
+    },
+    "completedRetake": {
+      "bundleHash": "9e1606af05a1f8e050fe746020c8d6880c467f9111e051d5df3d2ccd106d4d54",
+      "at": "2026-11-06T08:01:03.340Z",
+      "entryReady": true,
+      "lock": {
+        "observed": true,
+        "classPath": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_IronMaskMan.BP_Monster_IronMaskMan_C",
+        "expectedOpponent": false,
+        "expectedEncounterSupport": true
+      },
+      "requestedSkip": true,
+      "scopedSkipCount": null
+    },
+    "limits": [
+      "Le soutien IronMask verrouillé appartient au groupe natif ; il ne valide pas le ciblage du boss principal.",
+      "Le nom du scénario skip est une demande ; sans compteur propre à l’introduction, aucun passage effectif n’est certifié.",
+      "Commandes physiques, finition et fluidité intégrale non certifiées."
+    ]
+  },
+  "bigBro": {
+    "id": "BP_Monster_HuaShan_RedTroop_BigBro",
+    "nativeCondition": "La passive retire le verrou de PV après six notifications de mort des soldats natifs.",
+    "population": {
+      "authoredMembers": 7,
+      "resetOnlyObserved": "7/7 live authored member pawns, primary and six visible Soldiers, all share native active MobGroup. No forced spawn used."
+    },
+    "historicalIncidents": [
+      {
+        "kind": "unresponsive-game",
+        "evidence": "r7-evidence/bigbro-restored-members.json",
+        "completedScenario": false,
+        "completedResults": 0,
+        "note": "Entrée interrompue après restauration des membres ; aucun résultat terminé ni victoire ne doit en être importé."
+      },
+      {
+        "kind": "unresponsive-game",
+        "evidence": "r7-evidence/bigbro-no-input-observation.json",
+        "completedScenario": false,
+        "note": "Deuxième observation en mode flow, sans injection de commandes ; incident rapporté par le pilote de test, distinct d’une preuve de combat terminé."
+      }
+    ],
+    "nativeSupportAI": {
+      "policy": "Le profil de cette rencontre laisse les soldats sous contrôle IA natif ; maintien de la protection du joueur au chargement et du traitement du boss principal.",
+      "privateFeatureFlag": false,
+      "ab": {
+        "bundleHash": "53328e405bbc6939a7c04364a78243a3607c40a5731bcd3c8be19a46355c7c03",
+        "startedUtc": "2026-11-06T08:05:10.0992289Z",
+        "finishedUtc": "2026-11-06T08:08:17.0217194Z",
+        "combatInputInjection": false,
+        "observation": "Three-minute observation with no engine action injection; root observed native attacks, player death and automatic retry; all seven present without previous repeat freeze.",
+        "entry": {
+          "releaseDelayMs": 0,
+          "blockedMs": 0,
+          "firstTwoSecondsHPInitial": 2405.5,
+          "firstTwoSecondsHPMinimum": 2405.5,
+          "coverProtectionReleased": true,
+          "cleanupPending": false
+        }
+      }
+    },
+    "terminalStatus": "native-automatic-next-confirmed-after-forced-support-and-primary-effects",
+    "limits": [
+      "La fin native est confirmée après mise à mort QA forcée des six soldats puis du boss : ce n’est pas une victoire obtenue en jouant.",
+      "Animation d’attaque observée, mais baisse de PV de la cible non observée pendant les actions injectées.",
+      "Les incidents antérieurs restent historiques ; ce succès ciblé ne certifie pas la stabilité de toutes les longues séries ni les périphériques physiques.",
+      "Le lot de deux confirme désormais l’enchaînement de production vers Archer borgne, son introduction et son entrée jouable. Les morts restent provoquées par effets QA ; ce n’est pas une victoire jouée."
+    ],
+    "terminalRetake": {
+      "bundleHash": "ebd0eba086f231b3384f42641a3a231c38909d0a628be3df5ce2b0cf99177109",
+      "at": "2026-11-06T08:13:51.419Z",
+      "method": "forced-native-GE_Kill-authored-supports-first",
+      "playedVictory": false,
+      "supportEffects": 6,
+      "nativeFloorBefore": 0.009999999776482582,
+      "nativeFloorAfter": 0,
+      "primaryHealthAfter": 0,
+      "primaryDeadTag": true,
+      "completed": true,
+      "resultShown": true,
+      "selectedEncounterCount": 1,
+      "automaticNextObserved": false,
+      "automaticNextStatus": "not-tested-single-encounter",
+      "engineActions": {
+        "movementResponded": true,
+        "attackMontageObserved": true,
+        "enemyHealthDecreaseObserved": false,
+        "pauseOpened": true,
+        "pauseResumed": true
+      },
+      "physicalControlsVerified": false
+    },
+    "nextRetake": {
+      "bundleHash": "fd55509be9457e63779426c3eb1dace4c97be107e6c995785fc4a049d36380ae",
+      "at": "2026-11-06T09:18:09.119Z",
+      "method": "forced-native-GE_Kill-authored-supports-first",
+      "selectedEncounterCount": 2,
+      "automaticNextObserved": true,
+      "from": "BP_Monster_HuaShan_RedTroop_BigBro",
+      "to": "BP_Monster_DuYanBoss",
+      "nextEntryReady": true,
+      "nextIntroductionObserved": true,
+      "nextObservedIntroduction": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq082/Seqs/Seq082.Seq082",
+      "nextScenarioError": null,
+      "supportEffects": 6,
+      "nativeFloorReleased": true,
+      "playedVictory": false,
+      "physicalControlsVerified": false,
+      "fullFightValidated": false
+    }
+  },
+  "feng": {
+    "id": "BP_Monster_FengXueDaoKe",
+    "classification": "exact-native-frost-and-frozen-tags-confirmed",
+    "artifact": "r7-evidence/feng-control-probe-2026-11-06T07-53-35-509Z.json",
+    "timelineMs": {
+      "readyNoHitreact": 0,
+      "noHitreactStill": 207,
+      "hitreactAndStand": 346,
+      "rawInputNonzeroConstrainedZero": 1035,
+      "deflectBreakMontage": 6196,
+      "heavyHitMontage": 6298,
+      "hitreactCleared": 7279
+    },
+    "native": {
+      "asset": "/PBZCombatAsset/Prototypes/GameplayEffects/Inflictions/GE_Frost.GE_Frost_C",
+      "durationSeconds": 7,
+      "grantedTags": [
+        "CharacterState.StatusInfliction.Frost.Effect",
+        "CharacterState.Stand.Steady"
+      ],
+      "hitState": "CharacterState.Hitreact.State.Frozen",
+      "removeOnEnd": false,
+      "scope": "Native asset defines the frost effect; the dedicated live retake now observes both exact Frost.Effect and Hitreact.State.Frozen tags. The sampled interval is not a measurement of the entire effect duration."
+    },
+    "limits": [
+      "Les deux tags exacts Frost.Effect et Hitreact.State.Frozen sont maintenant confirmés simultanément en jeu ; la qualification antérieure reposait seulement sur une inférence.",
+      "Les 30 échantillons ultérieurs sans ces tags ne prouvent pas à eux seuls une reprise du déplacement ou du clavier. Le scénario ne valide ni marche ni dégâts d’attaque, ni victoire jouée.",
+      "Ne pas supprimer le gel natif pour obtenir un succès artificiel du scénario."
+    ],
+    "exactTagRetake": {
+      "bundleHash": "89ef18b9618a099a39d4ab711693d9efabf8d6d9aa77d579909bdf20be182cda",
+      "status": "exact-native-frost-tags-confirmed",
+      "tags": [
+        "CharacterState.StatusInfliction.Frost.Effect",
+        "CharacterState.Hitreact.State.Frozen"
+      ],
+      "totalSamples": 87,
+      "simultaneousTrueSamples": 54,
+      "firstBothTrueAt": 1793956499541,
+      "lastBothTrueAt": 1793956505304,
+      "bothFalseAfterSamples": 30,
+      "rawMovementBlockedSamples": 5,
+      "fullEffectDurationMeasured": false,
+      "movementRecoveryValidated": false,
+      "physicalRecoveryValidated": false,
+      "playedVictoryValidated": false
+    },
+    "historicalInference": {
+      "classification": "native-frost-pattern-strong-inference-exact-tag-retake-needed",
+      "artifact": "r7-evidence/feng-control-probe-2026-11-06T07-53-35-509Z.json",
+      "timelineMs": {
+        "readyNoHitreact": 0,
+        "noHitreactStill": 207,
+        "hitreactAndStand": 346,
+        "rawInputNonzeroConstrainedZero": 1035,
+        "deflectBreakMontage": 6196,
+        "heavyHitMontage": 6298,
+        "hitreactCleared": 7279
+      }
+    }
+  },
+  "xue": {
+    "id": "BP_Monster_XiaoXue",
+    "retake": {
+      "bundleHash": "4792b54d11c28b5a26e892fb413a038a947ec56bffaa63b5c1eb97935ebaffe2",
+      "at": "2026-11-06T09:12:41.521Z",
+      "entryReady": true,
+      "status": "forced-terminal-not-confirmed",
+      "effectContextMethod": "player-asc-context-applied-to-target",
+      "nativeLifecycle": {
+        "shouldSpawnBefore": true,
+        "shouldSpawnImmediatelyAfter": false,
+        "sameRegisteredPawnAndObserver": true,
+        "deadHealth": 0,
+        "deadTag": true,
+        "replacementPawnObserved": true,
+        "replacementObserverChanged": true,
+        "shouldSpawnOnReplacement": true
+      },
+      "playedVictoryValidated": false,
+      "playedVictoryBugEstablished": false,
+      "multiphaseEstablished": false
+    },
+    "baselineArtifact": "r7-evidence/xiaoxue-census-baseline.json",
+    "nativeSummons": {
+      "DestroySummonsOnDead": false,
+      "DestroySummonsOnEndAbility": false,
+      "source": "GA_SummonPassive_XiaoXue overrides MonsterBase DestroySummonsOnDead to false and DestroySummonsOnEndAbility=false. Surviving summons are authored behavior. SelectActor applies GE_XiaoXue_DamageRelay (CharacterState.SharedHealthPool.DamageRelay); OnSummonsDead selects another surviving summoned actor."
+    },
+    "replacementTiming": {
+      "afterDeathSecondsApprox": 4,
+      "source": "Read-only live observation reviewed by the test coordinator and native observer review; bounded saved transition tail is not a full timeline."
+    },
+    "limits": [
+      "Le dernier essai utilise une réduction positive à 100 PV puis 4 impulsion(s) d’attaque Enhanced Input : 0 PV et le tag Dead sont observés. Aucun GE_Kill n’est appliqué. Réapparition observée : oui ; fin native confirmée : non. Ce scénario aménagé ne certifie pas une victoire complète jouée et ne détermine pas la cause.",
+      "Le contexte joueur appliqué à la mort forcée ne résout pas le timeout de fin, comme lors du scénario témoin.",
+      "Le changement ShouldSpawn true→false sur le même pion surveillé établit le traitement natif du décès ; un nouveau pion et un nouvel observateur apparaissent ensuite avec ShouldSpawn=true. L’origine de ce réarmement demeure inconnue.",
+      "La persistance des invocations est prévue par DestroySummonsOnDead=false ; elle ne prouve pas un défaut de nettoyage.",
+      "Victoire jouée et fin native restent non vérifiées : aucune victoire synthétique, aucune classification multiphase inventée et aucune conclusion de bug dans une victoire normale."
+    ],
+    "latestAttackRetake": {
+      "bundleHash": "0ea222c8b3054c6a394a575533270707494c5327aa0e5e9aa567d51782f95ad9",
+      "at": "2026-11-06T10:00:12.666Z",
+      "status": "native-attack-terminal-not-confirmed",
+      "method": "engine-input-native-attack-after-positive-health-reduction",
+      "GEKillApplied": false,
+      "initialHealth": 14287.453125,
+      "reducedHealth": 100,
+      "aliveAfterReduction": true,
+      "attackPulses": 4,
+      "deathState": {
+        "health": 0,
+        "deadTag": true,
+        "hitreactDeadTag": false
+      },
+      "replacementPawnObserved": true,
+      "replacementHealth": 16482.150390625,
+      "nativeCompletionConfirmed": false,
+      "automaticNextObserved": false,
+      "playedFullFight": false,
+      "physicalKeyboardVerified": false,
+      "playedVictoryBugEstablished": false,
+      "cause": "undetermined"
+    },
+    "completionPrerequisiteCorrection": {
+      "nativeGate": {
+        "graph": "BPF_XiaoXueChuChang",
+        "node": "51E9A66B-479594A5-7B3C4AA9-B0FE99D2",
+        "blockTags": [
+          "ljc.小雪.完成",
+          "ljc.小雪.出场"
+        ],
+        "matchNext": "0295E903-424DB804-34D15FAE-99B97A6A"
+      },
+      "previousTemplateCompletedTag": true,
+      "correction": "Reset only ljc.小雪.完成 in selected encounter profile. Preserve all three collection tags and unrelated quests.",
+      "deathFlowReset": "Owner BP_FlowActor_C_UAID_E89C25A75434724A02_2052069363 and all authored nodeIDs already reset. No additional death-flow mutation.",
+      "status": "source-applied-native-terminal-still-unconfirmed",
+      "causeOfRespawnEstablished": false,
+      "retake": {
+        "bundleHash": "0ea222c8b3054c6a394a575533270707494c5327aa0e5e9aa567d51782f95ad9",
+        "at": "2026-11-06T10:00:12.666Z",
+        "status": "native-attack-terminal-not-confirmed",
+        "method": "engine-input-native-attack-after-positive-health-reduction",
+        "GEKillApplied": false,
+        "initialHealth": 14287.453125,
+        "reducedHealth": 100,
+        "aliveAfterReduction": true,
+        "attackPulses": 4,
+        "deathState": {
+          "health": 0,
+          "deadTag": true,
+          "hitreactDeadTag": false
+        },
+        "replacementPawnObserved": true,
+        "replacementHealth": 16482.150390625,
+        "nativeCompletionConfirmed": false,
+        "automaticNextObserved": false,
+        "playedFullFight": false,
+        "physicalKeyboardVerified": false,
+        "playedVictoryBugEstablished": false,
+        "cause": "undetermined"
+      }
+    },
+    "previousAttackRetake": {
+      "bundleHash": "d175d4e0a771d27863903c7bc5ba24bb8d71913d2619eb68229172929fd0feb4",
+      "at": "2026-11-06T09:38:16.875Z",
+      "status": "native-attack-terminal-not-confirmed",
+      "method": "engine-input-native-attack-after-positive-health-reduction",
+      "GEKillApplied": false,
+      "initialHealth": 16482.150390625,
+      "reducedHealth": 100,
+      "aliveAfterReduction": true,
+      "attackPulses": 1,
+      "deathState": {
+        "health": 0,
+        "deadTag": true,
+        "hitreactDeadTag": false
+      },
+      "replacementPawnObserved": true,
+      "replacementHealth": 16482.150390625,
+      "nativeCompletionConfirmed": false,
+      "automaticNextObserved": false,
+      "playedFullFight": false,
+      "physicalKeyboardVerified": false,
+      "playedVictoryBugEstablished": false,
+      "cause": "undetermined"
+    }
+  },
+  "huaShan": {
+    "id": "BP_Monster_HuaShan_Blue",
+    "status": "native-phase-one-entry-and-engine-actions-observed",
+    "proof": "r7-huashan-group-proof.json",
+    "authoredGroups": [
+      {
+        "name": "MobGroup_0",
+        "memberCount": 7,
+        "script": "MobGroupScript_BossCombat_JianZhen_Phase1_C"
+      },
+      {
+        "name": "MobGroup_1",
+        "memberCount": 5,
+        "script": "MobGroupScript_BossCombat_JianZhen_Phase2_C"
+      }
+    ],
+    "authoredSpawners": 12,
+    "primaryPhaseActors": 2,
+    "additionalSupports": 10,
+    "change": "Le catalogue réinitialise les douze spawners natifs, au lieu des deux seuls acteurs principaux ; les classes de soutien sont reconnues séparément.",
+    "nativeCompletion": "Native phase 1 requires Blue dead, no pending members and at most three surviving members. Native phase 2 handles JianOu death and emits its authored event tag. Reset preserves both phases; no generic primary-death completion.",
+    "limits": [
+      "Sept pions de la première phase sont observés ; aucun des cinq pions de la seconde phase dans cet instantané. Le drapeau natif groupActive vaut true pour les deux groupes : il ne démontre pas une seconde phase jouée.",
+      "Déplacement, ciblage, attaque avec baisse de PV et pause/reprise ont répondu aux actions moteur injectées. Le joueur était au plancher de survie QA de 1 PV pendant ces actions.",
+      "La transition de formation, la seconde phase, la victoire et les commandes physiques restent à tester manuellement."
+    ],
+    "retake": {
+      "bundleHash": "4b589a9779b9bb9ed9a1ba86d5948f0b06d6112a2c2618b49e8080beacdf3c56",
+      "at": "2026-11-06T09:01:08.820Z",
+      "entryReady": true,
+      "observedIntroduction": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq076/Seqs/Seq076.Seq076",
+      "introductionObserved": true,
+      "completedScenario": true,
+      "playedVictory": false,
+      "fullFightValidated": false,
+      "physicalControlsVerified": false,
+      "engineActions": {
+        "movementResponded": true,
+        "expectedPrimaryLocked": true,
+        "attackMontageObserved": true,
+        "enemyHealthDecreaseObserved": true,
+        "initialEnemyHP": 90350,
+        "lowestEnemyHP": 89790.125,
+        "pauseOpened": true,
+        "pauseResumed": true
+      },
+      "groups": [
+        {
+          "key": "DefaultGroup",
+          "phase": 1,
+          "authoredMembers": 7,
+          "livePawns": 7,
+          "groupActive": true
+        },
+        {
+          "key": "JianOu",
+          "phase": 2,
+          "authoredMembers": 5,
+          "livePawns": 0,
+          "groupActive": true
+        }
+      ],
+      "phaseTwoPlayed": false,
+      "nativeVictoryValidated": false
+    }
+  },
+  "yuuPhase3": {
+    "status": "prototype-native-duo-entry-and-engine-actions-observed",
+    "id": "BP_Monster_Yuu",
+    "nativeProof": {
+      "id": "BP_Monster_MuXiaoKui",
+      "domain": "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471",
+      "source": "Authored MobGroup_2 / P3 in PBZ_Zhengdaodaying_WP and BPF_MuXiaoKuiDeath phase transition",
+      "spawners": [
+        {
+          "name": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+          "class": "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_Yuu.BP_Monster_Yuu_C"
+        },
+        {
+          "name": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143",
+          "class": "/PBZCombatAsset/ActorData/Mobs/Luanshi/BP_Monster_TieGui.BP_Monster_TieGui_C"
+        }
+      ],
+      "nativeTransition": {
+        "sequence": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq046-1/Seqs/Seq046-1.Seq046-1",
+        "playNode": "5E7E9213-45255AE7-4EEC9180-ECB3D83C",
+        "spawnNode": "ABDA4662-41DC0A42-4B910880-5D940E4B",
+        "spawnIDs": [
+          "Yuu_Seq046-1",
+          "TieGu_Seq046-1"
+        ],
+        "authoredSpawnerIDs": [
+          "Yuu_Seq046-1",
+          "TieGui_Seq046-1"
+        ]
+      },
+      "completion": "P3 group-clear emits ljc.沐小葵.玉妖铁鬼死亡; native death graph owns later QTE and final ljc.沐小葵.战斗结束. Reset adds both supports; does not spawn or activate them early. Native flow/spawner spelling difference is recorded, not rewritten.",
+      "validation": "Static group/flow proof plus synthetic snapshot regression. Full native phase/QTE test remains manual."
+    },
+    "retake": {
+      "bundleHash": "9acb9c56b09d93dfb1ab2f82565ebebc8c8180961f1152f2daf38599fcd59be3",
+      "at": "2026-11-06T08:59:12.390Z",
+      "entryReady": true,
+      "observedIntroduction": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq046-1/Seqs/Seq046-1.Seq046-1",
+      "introductionObserved": true,
+      "completedScenario": true,
+      "playedVictory": false,
+      "fullFightValidated": false,
+      "physicalControlsVerified": false,
+      "engineActions": {
+        "movementResponded": true,
+        "expectedPrimaryLocked": true,
+        "attackMontageObserved": true,
+        "enemyHealthDecreaseObserved": true,
+        "initialEnemyHP": 41680,
+        "lowestEnemyHP": 40773.0078125,
+        "pauseOpened": true,
+        "pauseResumed": true
+      },
+      "aliases": [
+        {
+          "alias": "Yuu_Seq046-1",
+          "pawnPresent": true,
+          "groupActive": true,
+          "hidden": false,
+          "health": 40773.0078125
+        },
+        {
+          "alias": "TieGu_Seq046-1",
+          "pawnPresent": false,
+          "groupActive": null,
+          "hidden": null,
+          "health": null
+        },
+        {
+          "alias": "TieGui_Seq046-1",
+          "pawnPresent": true,
+          "groupActive": true,
+          "hidden": false,
+          "health": 40773.0078125
+        }
+      ],
+      "catalogMergeValidated": false,
+      "finalNativeQTEValidated": false
+    },
+    "limits": [
+      "Le prototype démarre le duo natif avec Seq046-1. Yuu et TieGui sont présents, visibles et membres du groupe actif ; l’alias TieGu écrit dans le graphe ne résout aucun spawner.",
+      "Les actions moteur ne certifient pas les périphériques physiques, la victoire ni le QTE final. Le scénario terminé est un essai d’entrée/actions, pas un combat terminé.",
+      "Le catalogue regroupe désormais le duo ; la fusion est une décision de présentation distincte de la validation du QTE final ou du combat complet."
+    ],
+    "catalogDecision": {
+      "separateTieGuiEntryDisabled": true,
+      "canonicalId": "BP_Monster_Yuu"
+    },
+    "visualObservationIncident": {
+      "status": "incomplete-observation-reader-error",
+      "completedScenario": false,
+      "bundleHash": "4d624009c798b374f5a815ba0173bf19e2f90ada3040459c4bba59eb8c5b95cd",
+      "snapshot": {
+        "file": "yuu-native-phase3-visual-incomplete-snapshot.json",
+        "sha256": "3ffd1fd03bb01f81745279a157701bb0b649d0c73e94791c1091cd7a164a506a",
+        "originalSource": "BP_Monster_Yuu-controls.json",
+        "time": 1793955859550,
+        "lastEvent": {
+          "phase": "loading-ended",
+          "time": 1793955856196,
+          "encounter": "BP_Monster_Yuu"
+        },
+        "lastControlsTime": 1793955858634
+      },
+      "reportedFailure": {
+        "command": "run-r7-observe.ps1 -Label yuu-native-phase3-visual -Minutes 3",
+        "exitCode": 1,
+        "message": "read-r7 ENOENT: save absent",
+        "reportedAroundUtc": "2026-11-06T09:04:30Z",
+        "source": "root orchestration report; exact error onset timestamp not captured",
+        "observedOutputOrder": [
+          "read-r7 reader ENOENT",
+          "finally stop-game acceptance befb926f567d412586bc07fbf624d9f9",
+          "PowerShell Lecture QA exception surfaced"
+        ],
+        "outputOrderSource": "Root reviewed original exec86617 stdout; no external root restart at that point."
+      },
+      "guardian": {
+        "stopGameAccepted": true,
+        "stopResponseFile": "befb926f567d412586bc07fbf624d9f9.json",
+        "responseSha256": "1a4e327086d2a2659301af22ed22bc4f31eede9a57fbe49128d9da140034fa3c",
+        "responseModifiedUtc": "2026-11-06T09:04:22.866911+00:00",
+        "idleObservedUtc": "2026-11-06T09:05:32Z",
+        "requestIssuer": "run-r7-observe.ps1 finally cleanup, identified by root tool output exec86617"
+      },
+      "lastMemoryObservation": {
+        "utc": "2026-11-06T09:04:19.5674461Z",
+        "freeGiB": 4.780254364013672,
+        "gameWorkingGiB": 9.31399154663086,
+        "gamePrivateGiB": 12.904640197753906,
+        "index": null,
+        "boss": null
+      },
+      "windowsCrashEvidence": {
+        "applicationEventIds": [
+          1000,
+          1001
+        ],
+        "queryWindowApproxUtc": [
+          "2026-11-06T08:56:00Z",
+          "2026-11-06T09:06:10Z"
+        ],
+        "result": "NoMatchingEventsFound",
+        "werArchiveAndQueueSinceUtc": "2026-11-06T08:55:00Z",
+        "recentReports": 0,
+        "limitation": "Absence of a matching event/report does not exclude a crash or native exit."
+      },
+      "assessment": {
+        "cause": "undetermined",
+        "readerClosureRace": "possible, not established",
+        "nativeCrash": "not established, not excluded",
+        "memoryGuardStop": "not observed in this window",
+        "limits": [
+          "Last valid snapshot survives, but no final artifact or ordinary success provenance was produced.",
+          "ENOENT precedes this finally cleanup stop. Whether the native game had already begun closing before the reader error remains unknown.",
+          "No completed scenario, played victory or stability certification is inferred."
+        ],
+        "readerFailureBeforeThisStop": true
+      },
+      "scope": "Observation interrompue, cause indéterminée. Ni victoire jouée, ni scénario terminé, ni garantie de stabilité."
+    }
+  },
+  "refugeEntryRegression": {
+    "scope": "First title-to-training entry regression; not combat certification",
+    "observedError": "TypeError: Cannot set properties of undefined (setting 'inFlight')",
+    "cause": "The comparison of two absent run values could succeed (undefined === undefined), then dereference absent runFailureReturn.",
+    "correction": "Require runFailureReturn to exist before updating inFlight/returned.",
+    "codeTests": {
+      "file": "Sources/v2.test.cjs",
+      "passed": 44,
+      "failed": 0,
+      "at": "2026-11-06T09:04:01.083317+00:00",
+      "test": "first title-to-training launch works before any run or failure-return state exists"
+    },
+    "sourceHashes": {
+      "Sources/runtime-v2.js": "3187a70a752dee237ce8a73efb3e2c4db858873eb0e926cea78dfd1e0e85b172",
+      "Sources/v2.test.cjs": "8c2dd2766c0ef4bc971eec53248ee7dbaa9880c9ba917e1953b1e8e6287c9494"
+    },
+    "initialObservation": "r7-refuge-physical-keyboard.json",
+    "fixedRetake": "r7-refuge-physical-keyboard-fixed.json",
+    "limits": [
+      "Refuge entry and inventory display observed after correction; reopening inventory, movement and complete physical combat controls remain unverified."
+    ]
+  },
+  "refugePhysical": {
+    "bundleHash": "3a1ef6b9b38db175c2cfd85d805bd2f0ac01e43d74110da789594b3655ff2f69",
+    "at": "2026-11-06T08:57:50.770Z",
+    "status": "partial-refuge-only",
+    "method": "desktop-keyboard-mouse-events-with-native-observation",
+    "engineActionInjection": false,
+    "observations": [
+      {
+        "scope": "attack",
+        "result": "confirmed",
+        "evidence": "Left mouse click in calm refuge followed by weapon posture and player displacement about286 units; parent independently sampled Hun_ShanZi_A_Montage at08:55:40."
+      },
+      {
+        "scope": "movement",
+        "result": "inconclusive",
+        "evidence": "Down pulse followed by unchanged position; later displacement follows attack and is not credited as movement input."
+      },
+      {
+        "scope": "inventory-close",
+        "result": "confirmed",
+        "evidence": "Escape from native equipment menu returned to visible refuge."
+      },
+      {
+        "scope": "inventory-open",
+        "result": "not-observed",
+        "evidence": "I edge received ms91531 but no menu visible in follow-up. Escape twice from gameplay, second after explicit activate_window, also no menu."
+      }
+    ],
+    "physicalCombatControlsValidated": false,
+    "allRefugeControlsValidated": false
+  },
+  "catalog": {
+    "activeEncounters": 59,
+    "historicalIdentities": 60,
+    "activeManualFollowups": 22,
+    "historicalManualQualifications": 23,
+    "deprecatedAlias": {
+      "id": "BP_Monster_TieGui",
+      "canonicalId": "BP_Monster_Yuu",
+      "available": false
+    },
+    "note": "Les anciennes preuves ne sont pas transférées au duo canonique. Les 60 identités historiques ne sont pas 60 rencontres proposées ni 60 validations sur la dernière compilation."
+  },
+  "huaQianxiao": {
+    "status": "instance-replacement-cause-confirmed-fix-retakes-scoped",
+    "previousEntryFailure": {
+      "artifact": "r7-evidence/final-natural-04-06.json",
+      "at": "2026-11-06T08:25:55.380Z",
+      "entryReady": false,
+      "error": "Entry/action timeout"
+    },
+    "latestRetake": {
+      "bundleHash": "dd8c48304198c13af67a4cd6d800df6dd8cd6e457ced449172164aa4ef6f2db9",
+      "at": "2026-11-06T09:09:26.652Z",
+      "entryReady": true,
+      "observedIntroduction": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq027/Seqs/Seq027.Seq027",
+      "introductionObserved": true,
+      "completedScenario": true,
+      "playedVictory": false,
+      "fullFightValidated": false,
+      "physicalControlsVerified": false,
+      "engineActions": {
+        "movementResponded": true,
+        "expectedPrimaryLocked": true,
+        "attackMontageObserved": true,
+        "enemyHealthDecreaseObserved": false,
+        "initialEnemyHP": 27288,
+        "lowestEnemyHP": 27288,
+        "pauseOpened": true,
+        "pauseResumed": true
+      }
+    },
+    "chain": {
+      "from": "BP_Monster_Scavenger",
+      "automaticNextObserved": true,
+      "introductionMode": "natural"
+    },
+    "routing": {
+      "releaseDelayMs": 3847,
+      "entryBlockedSamples": 19,
+      "initialHealth": 2405.5,
+      "blockedMinimumHealth": 2405.5
+    },
+    "limits": [
+      "Le mécanisme de l’échec est confirmé sur la capture avant correction. Trois reprises corrigées ont terminé : deux enchaînements 5→6 avec introduction naturelle et une entrée isolée avec un passage natif comptabilisé.",
+      "Le nom skip du premier lot s’applique à la première rencontre seulement : Hua Qianxiao est rejoint par automaticNext et conserve une introduction naturelle dans les deux lots, avec zéro passage observé.",
+      "Le passage de l’entrée isolée est confirmé par le compteur limité à son introduction (1), pas par un appui physique sur Rond.",
+      "Une seule instance signalée est journalisée dans chaque reprise : la branche de réémission après remplacement est couverte par les tests unitaires, mais pas encore observée en direct après correction.",
+      "Les reprises conservent environ 3,915 secondes de délai de routage protégé sans perte de PV dans les échantillons bloqués. Aucune fluidité parfaite, victoire jouée ou validation physique globale n’est annoncée."
+    ],
+    "mechanism": {
+      "bundleHash": "908240ebb99a573375275892f6e73588360def3dc3e986d7d6ff30374594225c",
+      "firstSignal": {
+        "at": 1793956868259,
+        "instance": "BPF_JianChiChuChang_2147460792",
+        "HasPlay": true
+      },
+      "replacement": {
+        "at": 1793956870271,
+        "instance": "BPF_JianChiChuChang_2147458780",
+        "oldSessionSignalStillTrue": true,
+        "HasPlay": false
+      },
+      "explanation": "Le graphe signalé a été remplacé ; le drapeau global de session empêchait le nouveau graphe de recevoir le signal d’entrée.",
+      "fix": "Signal names qualified by level and graph; each exact instance once, including no replay when old instance is revisited. Maximum four instances. Guards observed/running/pending introduction precede gate mutation. No wrappers retained. State and diagnostics reset at next encounter commit.",
+      "unitCoverage": "68 scoped battle/direct runtime/policy pass; new cases replacement after signal, before streaming, intro guards, wrong graph, bounded recreation, synchronous reentry and encounter reset."
+    },
+    "correctedRetakes": [
+      {
+        "bundleHash": "fce5866393c24f3e2324df16b86567b1ea34bf9da72a5f170c5030188648ca24",
+        "at": "2026-11-06T09:27:37.104Z",
+        "entryReady": true,
+        "observedIntroduction": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq027/Seqs/Seq027.Seq027",
+        "introductionObserved": true,
+        "completedScenario": true,
+        "playedVictory": false,
+        "fullFightValidated": false,
+        "physicalControlsVerified": false,
+        "engineActions": {
+          "movementResponded": true,
+          "expectedPrimaryLocked": true,
+          "attackMontageObserved": true,
+          "enemyHealthDecreaseObserved": false,
+          "initialEnemyHP": 27288,
+          "lowestEnemyHP": 27288,
+          "pauseOpened": true,
+          "pauseResumed": true
+        },
+        "introductionRequestedForInitialEncounter": "skip-requested",
+        "actualHuaIntroductionPolicy": "natural-after-production-automatic-next",
+        "scopedIntroductionSkips": 0,
+        "actualSkipObserved": false,
+        "signalInstanceCount": 1,
+        "replacementRedispatchObserved": false,
+        "routing": {
+          "releaseDelayMs": 3915,
+          "entryBlockedSamples": 18,
+          "initialHealth": 2405.5,
+          "blockedMinimumHealth": 2405.5
+        }
+      },
+      {
+        "bundleHash": "49015242b36748399f55593f6273b360983531a276373dbb279472a5a5e5747a",
+        "at": "2026-11-06T09:31:39.228Z",
+        "entryReady": true,
+        "observedIntroduction": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq027/Seqs/Seq027.Seq027",
+        "introductionObserved": true,
+        "completedScenario": true,
+        "playedVictory": false,
+        "fullFightValidated": false,
+        "physicalControlsVerified": false,
+        "engineActions": {
+          "movementResponded": true,
+          "expectedPrimaryLocked": true,
+          "attackMontageObserved": true,
+          "enemyHealthDecreaseObserved": false,
+          "initialEnemyHP": 27288,
+          "lowestEnemyHP": 27288,
+          "pauseOpened": true,
+          "pauseResumed": true
+        },
+        "introductionRequestedForInitialEncounter": "natural",
+        "actualHuaIntroductionPolicy": "natural-after-production-automatic-next",
+        "scopedIntroductionSkips": 0,
+        "actualSkipObserved": false,
+        "signalInstanceCount": 1,
+        "replacementRedispatchObserved": false,
+        "routing": {
+          "releaseDelayMs": 3915,
+          "entryBlockedSamples": 19,
+          "initialHealth": 2405.5,
+          "blockedMinimumHealth": 2405.5
+        }
+      },
+      {
+        "bundleHash": "4f909c72abbef13304208bc171626e4ddf78c054f8e5b187aafcd30571692cf9",
+        "at": "2026-11-06T09:40:30.624Z",
+        "entryReady": true,
+        "observedIntroduction": "/Game/PBZContent/Sequencer/GenerateSequencer/Seq027/Seqs/Seq027.Seq027",
+        "introductionObserved": true,
+        "completedScenario": true,
+        "playedVictory": false,
+        "fullFightValidated": false,
+        "physicalControlsVerified": false,
+        "engineActions": {
+          "movementResponded": true,
+          "expectedPrimaryLocked": true,
+          "attackMontageObserved": true,
+          "enemyHealthDecreaseObserved": false,
+          "initialEnemyHP": 27288,
+          "lowestEnemyHP": 27288,
+          "pauseOpened": true,
+          "pauseResumed": true
+        },
+        "introductionRequestedForInitialEncounter": "skip-requested",
+        "actualHuaIntroductionPolicy": "direct-request",
+        "scopedIntroductionSkips": 1,
+        "actualSkipObserved": true,
+        "signalInstanceCount": 1,
+        "replacementRedispatchObserved": false,
+        "routing": {
+          "releaseDelayMs": 5646,
+          "entryBlockedSamples": 16,
+          "initialHealth": 2405.5,
+          "blockedMinimumHealth": 2405.5
+        }
+      }
+    ]
+  },
+  "authoredSummonTargets": {
+    "scope": "Read-only authored summon-role classification for existing QA observations. No runtime class, AI, spawning or victory changes.",
+    "proofSHA256": "55559dabf4ce40a1cf391cfc23057b0eeab8c1ee82d8e0d45bb3b5153c04a40a",
+    "entries": [
+      {
+        "id": "BP_Monster_CanQu_BiHai",
+        "observedClass": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.BP_Monster_HuoTongRen_Fist_ForBiHai_C",
+        "observedActor": "BP_Monster_HuoTongRen_Fist_ForBiHai_C_2147453744",
+        "bundleHash": "b5a36a53adb065777877beca7949a5806014c3cb1a2d4234d42e6eb9dc6d8333",
+        "rawLock": {
+          "expectedOpponent": false,
+          "expectedEncounterSupport": false
+        },
+        "primaryHealth": {
+          "initial": 37520,
+          "lowest": 37520
+        },
+        "nativeChain": {
+          "caller": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/CanQu_BiHai/Ability/Abilities/GA_CanQu_BiHai_CallShield_Start.uasset.json",
+          "callerSHA256": "9cd807060506ba63ed964d9e7d918a3bca9166fb52fd19ad84002e1464148ff5",
+          "gameplayEventActions": [
+            {
+              "name": "GAA_GameplayEvent_C_0",
+              "type": "GAA_GameplayEvent_C",
+              "tag": "GameplayEvent.SelfSummon.BiHai.Call01"
+            }
+          ],
+          "listener": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/CanQu_BiHai/Ability/Passive/GA_CanQu_BiHai_SummonPassive_01.uasset.json",
+          "listenerSHA256": "32f5b94ab92deb5b1351fb38d68a0c6bc74e750e450e88672f2c062537812f5d",
+          "summonEventTag": "GameplayEvent.SelfSummon.BiHai.Call01",
+          "summonEntries": [
+            {
+              "index": 0,
+              "class": {
+                "ObjectName": "BlueprintGeneratedClass'BP_Monster_HuoTongRen_Fist_ForBiHai_C'",
+                "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.2"
+              },
+              "maxCount": 1,
+              "weight": 100
+            },
+            {
+              "index": 1,
+              "class": {
+                "ObjectName": "BlueprintGeneratedClass'BP_Monster_HuoTongRen_Fist_ForBiHai_C'",
+                "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.2"
+              },
+              "maxCount": 1,
+              "weight": 100
+            },
+            {
+              "index": 2,
+              "class": {
+                "ObjectName": "BlueprintGeneratedClass'BP_Monster_HuoTongRen_Fist_ForBiHai_C'",
+                "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.2"
+              },
+              "maxCount": 1,
+              "weight": 100
+            }
+          ],
+          "parentClass": "BlueprintGeneratedClass'GA_SummonPassive_MonsterBase_C'"
+        },
+        "interpretation": "Classe d’invocation native confirmée ; verrouillage du boss principal non confirmé.",
+        "dynamicOwnerVerified": false,
+        "primaryTargetValidated": false,
+        "primaryDamageValidated": false,
+        "limits": "The exact observed class is an authored native summon. Dynamic owner identity was not captured, so no retrospective ownership-instance assertion."
+      },
+      {
+        "id": "BP_Monster_Danghui",
+        "observedClass": "/PBZCombatAsset/ActorData/Mobs/024_Vessel_Giant/BP_Monster_Vessel_Giant_ForDangHui.BP_Monster_Vessel_Giant_ForDangHui_C",
+        "observedActor": "BP_Monster_Vessel_Giant_ForDangHui_C_2147440271",
+        "bundleHash": "d1985f2f6067d99e96ab70fb8ec6bebc7495ebd631a7152dcc1fab1e2222e9d3",
+        "rawLock": {
+          "expectedOpponent": false,
+          "expectedEncounterSupport": false
+        },
+        "primaryHealth": {
+          "initial": 62520,
+          "lowest": 62520
+        },
+        "nativeChain": {
+          "caller": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/DangHui/Ability/Abilities/SummonDoll/GA_DangHui_Skill_01.uasset.json",
+          "callerSHA256": "8844cd0ca732064b642ae548ebb6c53fc454029eb7d8a01333a79c02768b778a",
+          "gameplayEventActions": [
+            {
+              "name": "GAA_GameplayEvent_C_1",
+              "type": "GAA_GameplayEvent_C",
+              "tag": "GameplayEvent.SelfSummon.DangHui.Summon01"
+            }
+          ],
+          "listener": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/DangHui/Ability/Passive/GA_DangHui_SummonPassive_01.uasset.json",
+          "listenerSHA256": "92b4c1b6b45b6ef640448a37245603007d2b06856da617df87b1b747334955cc",
+          "summonEventTag": "GameplayEvent.SelfSummon.DangHui.Summon01",
+          "summonEntries": [
+            {
+              "index": 0,
+              "class": {
+                "ObjectName": "BlueprintGeneratedClass'BP_Monster_Vessel_Giant_ForDangHui_C'",
+                "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/024_Vessel_Giant/BP_Monster_Vessel_Giant_ForDangHui.1"
+              },
+              "maxCount": 1,
+              "weight": 999
+            }
+          ],
+          "parentClass": "BlueprintGeneratedClass'GA_SummonPassive_MonsterBase_C'"
+        },
+        "interpretation": "Classe d’invocation native confirmée ; verrouillage du boss principal non confirmé.",
+        "dynamicOwnerVerified": false,
+        "primaryTargetValidated": false,
+        "primaryDamageValidated": false,
+        "limits": "The exact observed class is an authored native summon. Dynamic owner identity was not captured, so no retrospective ownership-instance assertion."
+      }
+    ],
+    "retakeProof": {
+      "scope": "Explicit completed-retake qualification against unchanged native summon chain. No physical-input, primary-target, dynamic-owner or full-fight certification.",
+      "sourceProof": {
+        "file": "r7-authored-summon-target-proof.json",
+        "sha256": "55559dabf4ce40a1cf391cfc23057b0eeab8c1ee82d8e0d45bb3b5153c04a40a"
+      },
+      "sources": [
+        {
+          "file": "r7-authored-summon-target-proof.json",
+          "sha256": "55559dabf4ce40a1cf391cfc23057b0eeab8c1ee82d8e0d45bb3b5153c04a40a"
+        },
+        {
+          "file": "r7-evidence/facing-final-04-06.json",
+          "sha256": "806c962e8ceba04ab716211e9f1c10615cca2a44723d842b4c2dadc6404507a5"
+        },
+        {
+          "file": "r7-evidence/facing-final-04-06-provenance.json",
+          "sha256": "244826d9194bbf3ee368196cb7edc0b0f529f76349b7650949d929112f3e1643"
+        },
+        {
+          "file": "r7-evidence/facing-final-04-06-BP_Monster_CanQu_BiHai-controls.json",
+          "sha256": "1e1b8d2a8b88da6a2c295caad6316b8ef3849ae16a3d7dbe05613ab5947d456e"
+        },
+        {
+          "file": "r7-evidence/facing-small-07-08.json",
+          "sha256": "6b4c434f1c53bd48d6e96bb6929e8e6cfde2c53b0deebaae06e7f7de101d7c56"
+        },
+        {
+          "file": "r7-evidence/facing-small-07-08-provenance.json",
+          "sha256": "2499c11584799be1232b5a15f760d24066aa532b3daa0423c4463ec7757ea5a5"
+        },
+        {
+          "file": "r7-evidence/facing-small-07-08-BP_Monster_Danghui-controls.json",
+          "sha256": "b3bccf5df263118b80b90b0f550a3b8ce87e1348bef46a9f6125cabfff481dcb"
+        }
+      ],
+      "observations": [
+        {
+          "id": "BP_Monster_CanQu_BiHai",
+          "label": "facing-final-04-06",
+          "role": "exact-native-summon-class",
+          "bundleHash": "757e08f2621b82b18c5da6c92316cf9f7d9c99fc320eb2f700050e6d6d758012",
+          "actor": "BP_Monster_HuoTongRen_Fist_ForBiHai_C_2147467913",
+          "classPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.BP_Monster_HuoTongRen_Fist_ForBiHai_C",
+          "primaryHealthDecreased": false
+        },
+        {
+          "id": "BP_Monster_Danghui",
+          "label": "facing-small-07-08",
+          "role": "exact-native-summon-class",
+          "bundleHash": "265b21322ea491eed28b13ca53886e9be554ff4ba0bb4f49f7d34192de097e08",
+          "actor": "BP_Monster_Vessel_Giant_ForDangHui_C_2147453825",
+          "classPath": "/PBZCombatAsset/ActorData/Mobs/024_Vessel_Giant/BP_Monster_Vessel_Giant_ForDangHui.BP_Monster_Vessel_Giant_ForDangHui_C",
+          "primaryHealthDecreased": true
+        }
+      ],
+      "encounters": [
+        {
+          "id": "BP_Monster_CanQu_BiHai",
+          "observedClass": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.BP_Monster_HuoTongRen_Fist_ForBiHai_C",
+          "observedActor": "BP_Monster_HuoTongRen_Fist_ForBiHai_C_2147467913",
+          "evidence": {
+            "artifact": "facing-final-04-06.json",
+            "bundleHash": "757e08f2621b82b18c5da6c92316cf9f7d9c99fc320eb2f700050e6d6d758012",
+            "artifactSHA256": "806c962e8ceba04ab716211e9f1c10615cca2a44723d842b4c2dadc6404507a5",
+            "controlsArtifact": "facing-final-04-06-BP_Monster_CanQu_BiHai-controls.json",
+            "controlsSHA256": "1e1b8d2a8b88da6a2c295caad6316b8ef3849ae16a3d7dbe05613ab5947d456e",
+            "lock": {
+              "observed": true,
+              "attempts": [
+                {
+                  "scheduledMs": 600,
+                  "ms": 602,
+                  "at": 1793960316186,
+                  "injectionAttempted": true,
+                  "hasLockBefore": false,
+                  "reason": "pulse-requested"
+                },
+                {
+                  "scheduledMs": 2200,
+                  "ms": 2228,
+                  "at": 1793960317812,
+                  "injectionAttempted": true,
+                  "hasLockBefore": false,
+                  "reason": "pulse-requested"
+                },
+                {
+                  "scheduledMs": 4000,
+                  "ms": 4038,
+                  "at": 1793960319622,
+                  "injectionAttempted": false,
+                  "hasLockBefore": true,
+                  "reason": "existing-target-preserved"
+                }
+              ],
+              "injectionObserved": true,
+              "actor": "BP_Monster_HuoTongRen_Fist_ForBiHai_C_2147467913",
+              "classPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.BP_Monster_HuoTongRen_Fist_ForBiHai_C",
+              "expectedOpponent": false,
+              "expectedEncounterSupport": false
+            },
+            "attack": {
+              "montageObserved": true,
+              "montages": [
+                "Hun_ShanZi_A_Montage",
+                "Hun_ShanZi_AA_Montage",
+                "Hun_ShanZi_AAA_Montage",
+                "Hun_ShanZi_AAAA_Montage",
+                "Hun_ShanZi_AAAAA_Montage"
+              ],
+              "healthDecreasedObserved": false,
+              "enemy": "BP_Monster_CanQu_BiHai_C_2147469284",
+              "classPath": "/PBZCombatAsset/ActorData/Mobs/CanQu_BiHai/BP_Monster_CanQu_BiHai.BP_Monster_CanQu_BiHai_C",
+              "expectedOpponent": true,
+              "expectedEncounterSupport": false,
+              "initialEnemyHP": 37520,
+              "lowestEnemyHP": 37520,
+              "latestEnemyHP": 37520,
+              "injectionObserved": true,
+              "montage": "Hun_ShanZi_AAAAA_Montage"
+            }
+          },
+          "nativeChain": {
+            "caller": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/CanQu_BiHai/Ability/Abilities/GA_CanQu_BiHai_CallShield_Start.uasset.json",
+            "callerSHA256": "9cd807060506ba63ed964d9e7d918a3bca9166fb52fd19ad84002e1464148ff5",
+            "gameplayEventActions": [
+              {
+                "name": "GAA_GameplayEvent_C_0",
+                "type": "GAA_GameplayEvent_C",
+                "tag": "GameplayEvent.SelfSummon.BiHai.Call01"
+              }
+            ],
+            "listener": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/CanQu_BiHai/Ability/Passive/GA_CanQu_BiHai_SummonPassive_01.uasset.json",
+            "listenerSHA256": "32f5b94ab92deb5b1351fb38d68a0c6bc74e750e450e88672f2c062537812f5d",
+            "summonEventTag": "GameplayEvent.SelfSummon.BiHai.Call01",
+            "summonEntries": [
+              {
+                "index": 0,
+                "class": {
+                  "ObjectName": "BlueprintGeneratedClass'BP_Monster_HuoTongRen_Fist_ForBiHai_C'",
+                  "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.2"
+                },
+                "maxCount": 1,
+                "weight": 100
+              },
+              {
+                "index": 1,
+                "class": {
+                  "ObjectName": "BlueprintGeneratedClass'BP_Monster_HuoTongRen_Fist_ForBiHai_C'",
+                  "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.2"
+                },
+                "maxCount": 1,
+                "weight": 100
+              },
+              {
+                "index": 2,
+                "class": {
+                  "ObjectName": "BlueprintGeneratedClass'BP_Monster_HuoTongRen_Fist_ForBiHai_C'",
+                  "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/HuoTongRen/ForBiHaiSummons/BP_Monster_HuoTongRen_Fist_ForBiHai.2"
+                },
+                "maxCount": 1,
+                "weight": 100
+              }
+            ],
+            "parentClass": "BlueprintGeneratedClass'GA_SummonPassive_MonsterBase_C'"
+          },
+          "proposedReportRole": "authored-encounter-support",
+          "proposedCoverage": "partial-primary",
+          "publicWording": "Nouvelle observation de la même classe d’invocation native ; propriétaire dynamique non relevé. Le ciblage du boss principal reste non confirmé.",
+          "preserveRaw": "Keep raw false target/support flags. Interpret only this exact encounter, class, actor and payload hash; never infer primary lock or damage solely from this support classification; retain independent attack observations.",
+          "limit": "The exact observed class is an authored native summon. Dynamic owner identity was not captured, so no retrospective ownership-instance assertion.",
+          "nativeSourceProof": {
+            "file": "r7-authored-summon-target-proof.json",
+            "sha256": "55559dabf4ce40a1cf391cfc23057b0eeab8c1ee82d8e0d45bb3b5153c04a40a"
+          }
+        },
+        {
+          "id": "BP_Monster_Danghui",
+          "observedClass": "/PBZCombatAsset/ActorData/Mobs/024_Vessel_Giant/BP_Monster_Vessel_Giant_ForDangHui.BP_Monster_Vessel_Giant_ForDangHui_C",
+          "observedActor": "BP_Monster_Vessel_Giant_ForDangHui_C_2147453825",
+          "evidence": {
+            "artifact": "facing-small-07-08.json",
+            "bundleHash": "265b21322ea491eed28b13ca53886e9be554ff4ba0bb4f49f7d34192de097e08",
+            "artifactSHA256": "6b4c434f1c53bd48d6e96bb6929e8e6cfde2c53b0deebaae06e7f7de101d7c56",
+            "controlsArtifact": "facing-small-07-08-BP_Monster_Danghui-controls.json",
+            "controlsSHA256": "b3bccf5df263118b80b90b0f550a3b8ce87e1348bef46a9f6125cabfff481dcb",
+            "lock": {
+              "observed": true,
+              "attempts": [
+                {
+                  "scheduledMs": 600,
+                  "ms": 612,
+                  "at": 1793960610636,
+                  "injectionAttempted": true,
+                  "hasLockBefore": false,
+                  "reason": "pulse-requested"
+                },
+                {
+                  "scheduledMs": 2200,
+                  "ms": 3420,
+                  "at": 1793960613444,
+                  "injectionAttempted": false,
+                  "hasLockBefore": null,
+                  "reason": "window-missed"
+                },
+                {
+                  "scheduledMs": 4000,
+                  "ms": 4031,
+                  "at": 1793960614055,
+                  "injectionAttempted": false,
+                  "hasLockBefore": true,
+                  "reason": "existing-target-preserved"
+                }
+              ],
+              "injectionObserved": true,
+              "actor": "BP_Monster_Vessel_Giant_ForDangHui_C_2147453825",
+              "classPath": "/PBZCombatAsset/ActorData/Mobs/024_Vessel_Giant/BP_Monster_Vessel_Giant_ForDangHui.BP_Monster_Vessel_Giant_ForDangHui_C",
+              "expectedOpponent": false,
+              "expectedEncounterSupport": false
+            },
+            "attack": {
+              "montageObserved": true,
+              "montages": [
+                "Hun_ShanZi_A_Montage",
+                "Hun_ShanZi_AA_Montage",
+                "Hun_YuShuangHuan_SimpleExE_FrontBack_02_Montage",
+                "Hun_DoubleBlade_Hit_Middle_F_M_Montage",
+                "Hun_DoubleBlade_Hit_Knockback_B_Montage",
+                "Hun_DoubleBlade_Hit_Middle_B_M_Montage",
+                "Hun_DoubleBlade_Hit_Light_F_M_Montage"
+              ],
+              "healthDecreasedObserved": true,
+              "enemy": "BP_Monster_Danghui_C_2147455343",
+              "classPath": "/PBZCombatAsset/ActorData/Mobs/DangHui/BP_Monster_Danghui.BP_Monster_Danghui_C",
+              "expectedOpponent": true,
+              "expectedEncounterSupport": false,
+              "initialEnemyHP": 62520,
+              "lowestEnemyHP": 60644.3984375,
+              "latestEnemyHP": 60644.3984375,
+              "injectionObserved": true,
+              "montage": "Hun_ShanZi_AA_Montage"
+            }
+          },
+          "nativeChain": {
+            "caller": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/DangHui/Ability/Abilities/SummonDoll/GA_DangHui_Skill_01.uasset.json",
+            "callerSHA256": "8844cd0ca732064b642ae548ebb6c53fc454029eb7d8a01333a79c02768b778a",
+            "gameplayEventActions": [
+              {
+                "name": "GAA_GameplayEvent_C_1",
+                "type": "GAA_GameplayEvent_C",
+                "tag": "GameplayEvent.SelfSummon.DangHui.Summon01"
+              }
+            ],
+            "listener": "ProjectPBZ/Plugins/Secret/PBZCombatAsset/Content/ActorData/Mobs/DangHui/Ability/Passive/GA_DangHui_SummonPassive_01.uasset.json",
+            "listenerSHA256": "92b4c1b6b45b6ef640448a37245603007d2b06856da617df87b1b747334955cc",
+            "summonEventTag": "GameplayEvent.SelfSummon.DangHui.Summon01",
+            "summonEntries": [
+              {
+                "index": 0,
+                "class": {
+                  "ObjectName": "BlueprintGeneratedClass'BP_Monster_Vessel_Giant_ForDangHui_C'",
+                  "ObjectPath": "/PBZCombatAsset/ActorData/Mobs/024_Vessel_Giant/BP_Monster_Vessel_Giant_ForDangHui.1"
+                },
+                "maxCount": 1,
+                "weight": 999
+              }
+            ],
+            "parentClass": "BlueprintGeneratedClass'GA_SummonPassive_MonsterBase_C'"
+          },
+          "proposedReportRole": "authored-encounter-support",
+          "proposedCoverage": "partial-primary",
+          "publicWording": "Nouvelle observation de la même classe d’invocation native ; propriétaire dynamique non relevé. Le ciblage du boss principal reste non confirmé.",
+          "preserveRaw": "Keep raw false target/support flags. Interpret only this exact encounter, class, actor and payload hash; never infer primary lock or damage solely from this support classification; retain independent attack observations.",
+          "limit": "The exact observed class is an authored native summon. Dynamic owner identity was not captured, so no retrospective ownership-instance assertion.",
+          "nativeSourceProof": {
+            "file": "r7-authored-summon-target-proof.json",
+            "sha256": "55559dabf4ce40a1cf391cfc23057b0eeab8c1ee82d8e0d45bb3b5153c04a40a"
+          }
+        }
+      ]
+    },
+    "retakeLimit": "Le verrouillage d’une invocation et les dégâts sur le primaire sont évalués séparément : Danghui présente désormais une baisse de PV primaire relevée, contrairement à l’ancien essai. Cela ne certifie ni ciblage primaire, ni victoire jouée."
+  },
+  "trialTwoTerminalReview": {
+    "id": "MoTian_Trial_2",
+    "reviewedUtc": "2026-11-06T10:48:09.824Z",
+    "scope": "Read-only interpretation of two bounded private forced-terminal scenarios. No source/gameplay changes.",
+    "latest": {
+      "artifact": "r7-evidence/facing-small-31-32.json",
+      "artifactHash": "5e5ad87aacf149b35b2697aedbafa66351fcc709b1b6c8e72e3ab0f37340e639",
+      "bundleHash": "cca3a9b87c267bc659f930af19d9e3a095832a13c6ee3ab8d56ace9294d7e210",
+      "mode": "exercise",
+      "introMode": "natural",
+      "started": 1793961876270,
+      "finished": 1793961987331,
+      "completed": false,
+      "automaticNext": false,
+      "error": "Native terminal transition not completed in 90s",
+      "killAttempts": [
+        {
+          "actor": "BP_Monster_MoTian_LongZhu_03_C_2147461685",
+          "at": 1793961897310,
+          "scanAt": 1793961897309,
+          "before": {
+            "present": true,
+            "actor": "BP_Monster_MoTian_LongZhu_03_C_2147461685",
+            "health": 48134.49609375,
+            "minimumHealth": 1,
+            "deadTag": false,
+            "hitreactDeadTag": false
+          },
+          "effectContextMethod": "target-asc-self-context",
+          "effectCallStarted": true,
+          "effectCallReturned": true,
+          "post": {
+            "present": true,
+            "actor": "BP_Monster_MoTian_LongZhu_03_C_2147461685",
+            "health": 1,
+            "minimumHealth": 1,
+            "deadTag": false,
+            "hitreactDeadTag": false
+          }
+        }
+      ],
+      "terminalLast": [
+        {
+          "afterMs": 90022,
+          "actors": [
+            {
+              "present": true,
+              "actor": "BP_Monster_MoTian_LongZhu_03_C_2147461685",
+              "health": 1,
+              "minimumHealth": 0,
+              "deadTag": false,
+              "hitreactDeadTag": false
+            }
+          ]
+        }
+      ]
+    },
+    "historical": {
+      "artifact": "r7-evidence/native-low3-57-59.json",
+      "artifactHash": "1c27ab60533d5e306ed26dbbd2118d031596b96f2662a7cc535e5cefc049c8cb",
+      "bundleHash": "f5094df80f2b4dab68b31dd6aa63ea95e0948f8d25349d785eb8967001477101",
+      "mode": "exercise",
+      "introMode": "skip-requested",
+      "started": 1793950384536,
+      "finished": 1793950411004,
+      "completed": true,
+      "automaticNext": true,
+      "error": null,
+      "killAttempts": [
+        {
+          "actor": "BP_Monster_MoTian_LongZhu_03_C_2147472461",
+          "at": 1793950400613,
+          "scanAt": 1793950400613,
+          "before": {
+            "present": true,
+            "actor": "BP_Monster_MoTian_LongZhu_03_C_2147472461",
+            "health": 48560,
+            "minimumHealth": 0,
+            "deadTag": false
+          },
+          "effectCallStarted": true,
+          "effectCallReturned": true,
+          "post": {
+            "present": true,
+            "actor": "BP_Monster_MoTian_LongZhu_03_C_2147472461",
+            "health": 0,
+            "minimumHealth": 0,
+            "deadTag": true
+          }
+        }
+      ],
+      "terminalLast": [
+        {
+          "afterMs": 4063,
+          "actors": [
+            {
+              "present": true,
+              "actor": "BP_Monster_MoTian_LongZhu_03_C_2147472461",
+              "health": 0,
+              "minimumHealth": 0,
+              "deadTag": true
+            }
+          ]
+        }
+      ]
+    },
+    "qaAudit": {
+      "builder": "work/bosslab-loader/build.mjs",
+      "healthLocks": [],
+      "healthLockEffectRemovalInValidation": "Only config.mode===combat; current selected sweep uses exercise.",
+      "exerciseFloorMutation": {
+        "file": "work/bosslab-next/exercise-suite.js",
+        "sha256": "f7d19c9672aae9680877a51fa7d9efec03355bfb47cf76c023cc8f5e834091ac",
+        "line": 173,
+        "operation": "Override Health_Min to 0 before single GE_Kill, except exact BigBro. Present in current source and built next-lot bundle. This is distinct from healthLocks effect-removal list."
+      },
+      "attributionLimit": "The effective floor remained 1 immediately after the forced terminal effect, despite the QA override attempt. The later effective floor 0 cannot be attributed solely to native phase progression from these observations."
+    },
+    "conclusion": {
+      "status": "terminal-inconclusive-manual-follow-up",
+      "proved": "Recent forced terminal attempt left living boss at HP1; later floor0 did not itself cause another damage event. The one-attempt harness did not retry. Historical scenario reached HP0 and native completion with floor0 already present.",
+      "notProved": [
+        "A mandatory second phase or finisher for trial II",
+        "A natural-play completion softlock",
+        "A regression in production victory detection",
+        "Successful completion on the latest bundle"
+      ],
+      "manualTask": "Complete trial II by normal attacks, including any requested native transition/execution, and check victory plus next encounter. Entry/action observations remain independent.",
+      "proposedFrench": "Épreuve II : fin à confirmer manuellement. Le dernier test automatisé est resté à 1 PV après une élimination simulée ; un essai antérieur avait terminé correctement. Aucune phase supplémentaire obligatoire n’est établie."
+    }
+  },
+  "forcedTerminalMethodLimit": "Les scénarios GE_Kill QA pouvaient tenter d’abaisser Health_Min à zéro avant l’effet (exception BigBro). Ils ne certifient pas une victoire jouée ; une variation du plancher ne doit pas être attribuée exclusivement à une transition native.",
+  "preparationIncidents": [
+    {
+      "status": "preparation-failed-restoration-verified",
+      "atApproxUtc": "2026-11-06T09:32:00Z",
+      "error": "Cannot create a file when that file already exists",
+      "phase": "guardian staging for private XiaoXue diagnostic",
+      "gameLaunched": false,
+      "classification": "preparation incident, not game crash",
+      "cause": "undetermined; no root cause inferred from message alone",
+      "reportedBy": "root orchestration observation",
+      "recoveryEvidence": "r7-intermediate-restoration-stage-error.json",
+      "recoveryScope": "Intermediate campaign recovery before a fresh test session; not final end-of-work restoration.",
+      "restoration": {
+        "verifiedAt": "2026-11-06T09:33:31.9505266Z",
+        "completed": true,
+        "originalFilesVerified": 30,
+        "originalHashesMatch": true,
+        "temporaryFilesRemoved": 117,
+        "temporaryFirewallRulesRemoved": 18,
+        "extraSavesRemaining": 0
+      },
+      "guardianAfterRecovery": {
+        "phase": "available",
+        "completed": true,
+        "steamRestartRequested": true
+      },
+      "continuation": "Coordinator restarted Steam and prepared a fresh guardian session; guarded administrator source was not patched."
+    }
+  ],
+  "privateHarness": {
+    "reader": "Cinq tentatives de lecture au maximum, attente de 150 ms entre tentatives tant que le processus du jeu existe ; aucune ancienne lecture réutilisée comme succès.",
+    "failurePreservation": "En cas d’échec, conserver avant arrêt le dernier snapshot au hash attendu et avec télémétrie native postérieure au lancement ; conserver ses dates exactes et marquer la provenance incomplète, puis relancer l’erreur originale.",
+    "limits": "Ce durcissement de collecte ne démontre pas la cause de l’incident Yuu et ne corrige pas à lui seul un éventuel défaut du jeu."
+  }
+}

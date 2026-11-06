@@ -2802,7 +2802,9 @@
       "primarySpawnerID": "MuXiaoKui_Seq045",
       "spawners": [
         "BP_AISpawner_C_UAID_E89C25A75434004502_1084590648",
-        "BP_AISpawner_C_UAID_E89C25A75434197502_1369350133"
+        "BP_AISpawner_C_UAID_E89C25A75434197502_1369350133",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143"
       ],
       "domains": [
         "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471"
@@ -2813,7 +2815,9 @@
         "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
         "BP_FlowActor_C_UAID_E89C25A75434854402_1102470946",
         "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471",
-        "BP_NPCSpawner_C_UAID_BCFCE7B89673D4CF02_1971479597"
+        "BP_NPCSpawner_C_UAID_BCFCE7B89673D4CF02_1971479597",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143"
       ],
       "clearTags": [
         "achievment.来日可如约.完成",
@@ -2986,14 +2990,16 @@
     "map": "LuJiaCun",
     "order": 21,
     "members": [
-      "BP_Monster_Yuu"
+      "BP_Monster_Yuu",
+      "BP_Monster_TieGui"
     ],
     "classes": [
-      "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_Yuu.BP_Monster_Yuu_C"
+      "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_Yuu.BP_Monster_Yuu_C",
+      "/PBZCombatAsset/ActorData/Mobs/Luanshi/BP_Monster_TieGui.BP_Monster_TieGui_C"
     ],
     "portrait": "/Game/PBZContent/UI/InGame/Literature/Gallery/T_BP_Monster_Yuu.T_BP_Monster_Yuu",
     "halfPortrait": "/Game/PBZContent/UI/InGame/Literature/Gallery/T_BP_Monster_Yuu_H.T_BP_Monster_Yuu_H",
-    "unlockTag": "None",
+    "unlockTag": "ljc.沐小葵.战斗结束",
     "profile": {
       "level": "PBZ_Zhengdaodaying_WP",
       "bell": "BrokenBell_LJC_02",
@@ -3013,98 +3019,94 @@
       },
       "camera": {
         "Pitch": 0,
-        "Yaw": 244.43272,
+        "Yaw": 248,
         "Roll": 0
       },
       "primarySpawnerID": "Yuu_Seq046-1",
       "spawners": [
-        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142"
+        "BP_AISpawner_C_UAID_E89C25A75434004502_1084590648",
+        "BP_AISpawner_C_UAID_E89C25A75434197502_1369350133",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143"
       ],
       "domains": [
         "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471"
       ],
       "clearActors": [
-        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
-        "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
+        "BP_AISpawner_C_UAID_E89C25A75434004502_1084590648",
+        "BP_AISpawner_C_UAID_E89C25A75434197502_1369350133",
         "BP_FlowActor_C_UAID_E89C25A75434854402_1102470946",
-        "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471"
+        "BP_MobDomain_C_UAID_E89C25A75434FF4402_2145940471",
+        "BP_NPCSpawner_C_UAID_BCFCE7B89673D4CF02_1971479597",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
+        "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1168010143"
       ],
       "clearTags": [
         "achievment.来日可如约.完成",
+        "hp.击杀.沐小葵",
+        "hp.击杀.沐小葵二阶段",
         "ljc.44号人偶锁.可开启",
         "ljc.沐小葵.战斗结束",
         "ljc.沐小葵.显示乱莺",
         "ljc.沐小葵.显示湖边道具",
         "ljc.沐小葵.显示船上小葵",
         "ljc.沐小葵.最终形态击杀",
-        "ljc.沐小葵.沐小葵出场镜头开始",
         "ljc.沐小葵.玉妖铁鬼死亡",
         "ljc.沐小葵.电梯垮塌可被激活",
+        "ljc.沐小葵.血量降低到25",
         "ljc.沐小葵.隐藏少主船只"
       ],
       "nodeIDs": [
-        "07A0C1454106090236D6F2850FCAE1BB",
-        "0A831F6E4B10CCCFAC477EAAE75E3091",
+        "EC0A79CA4F0CA1744D59FDACD3A60FD7",
+        "93A9B92847E3E90A78113E896599035D",
         "0EBC0A22436742D16D09079BDA8F0AB0",
-        "110AFEED40CAAB0BE4C426A1BE1BC45C",
-        "188B71D645601584701353B2B2E5A9EB",
-        "1FEBF7324EC29F7FFD3C3A83D5DDAC4B",
         "23B7F3CD435E7118966FEDA9B25C44D5",
+        "A973C9A84180EA2AB181848A7A7E65F4",
+        "110AFEED40CAAB0BE4C426A1BE1BC45C",
         "2E691A854CBB01878BE45188792A6525",
-        "3135FE0C4C694A9A0C9D1CB641C384E3",
-        "33D751A24D6C242D71AB4C9CFDE4E652",
-        "349DA9DD420FFF71E0647D82961656AC",
-        "373FF6EF420EE840AC9F45B602D7ABFE",
-        "38DC32754E46F03A18ABA58AE5180F24",
+        "1FEBF7324EC29F7FFD3C3A83D5DDAC4B",
+        "C23C79A840DF900264651C8937F6B84A",
         "3947E95F4CE79C1E0C7B109D098695D3",
-        "3F62706B4C354DB2D4A44A85829095F2",
+        "7D45BE9840779A75F26AA3B23B50CA0D",
+        "9B8D9E7F4F3A10B43FAB918624FEFC5F",
+        "3135FE0C4C694A9A0C9D1CB641C384E3",
+        "E3292A374B2B06542E4F10A5A0BB5D40",
+        "C87C77074092634B83103293D52BCFDB",
         "4147F50F48E61D8514057290A4F570F2",
-        "45B9CADD422CD6519F0D7CBF39396475",
-        "45E7FC774A947B74A54E83A880915116",
-        "5009BF924B0FDB66A9282BA59BAB6940",
-        "56C06DEC4750087A58E727956247BAE8",
-        "5A54BEAF47DD516CAAFC55A9BEBF89D3",
-        "5AD69D3E4AF2C8F1ACBA399FAC3D03D1",
+        "77549E10463CC67611D84DAA2276601E",
+        "AF9F8E9745E8F6AB3C022E99E0F55D88",
+        "B7EC2AB64A2BF7A1A7AA2DBCB551F60F",
         "5E7E921345255AE74EEC9180ECB3D83C",
+        "C203FFA44B34BD46AD83C78A2467B3C8",
+        "AD046F0B4B2B178B35887DAD8DE6FED7",
+        "E169BDEE45115E54FF8E3D9EE51D5DBC",
+        "CDAE70D1425133E6E1B5E78533CC97A9",
+        "38DC32754E46F03A18ABA58AE5180F24",
+        "5A54BEAF47DD516CAAFC55A9BEBF89D3",
+        "0A831F6E4B10CCCFAC477EAAE75E3091",
+        "373FF6EF420EE840AC9F45B602D7ABFE",
+        "97EAE3E543AA638028BFCCA4FA862993",
         "622055234BCA302993E1CB814D62250F",
         "6DB86C264B1D7159836E2A8D34B3DFE3",
-        "706E9BE94C986999534948890BF1C23D",
-        "77549E10463CC67611D84DAA2276601E",
-        "7B83978346D2982DF0BC47A5FB6AAA17",
-        "7D45BE9840779A75F26AA3B23B50CA0D",
-        "869AF9CA4513238BC10327ADD072529F",
-        "8845CDB24EDE3C98071E39A76D46D5EC",
-        "8D2EAC274DF73E7AF4172D8EA86DD8AE",
-        "93A9B92847E3E90A78113E896599035D",
-        "97EAE3E543AA638028BFCCA4FA862993",
-        "9A7E508148A3D2AE8EDF2E88DE997234",
-        "9B8D9E7F4F3A10B43FAB918624FEFC5F",
-        "A2ED02EC489D59E0B7D443843FD22A20",
-        "A2F863A14A946E8314AA90A0CF9511F4",
-        "A973C9A84180EA2AB181848A7A7E65F4",
-        "AAA8969943C44C7E4B59EC8F8812A7E5",
-        "ABDA466241DC0A424B9108805D940E4B",
-        "AD046F0B4B2B178B35887DAD8DE6FED7",
-        "AF9F8E9745E8F6AB3C022E99E0F55D88",
-        "B3773840480C8FA70E553F8D1635E4B6",
-        "B7EC2AB64A2BF7A1A7AA2DBCB551F60F",
-        "B9D670294355E073ABEAFC983FEC3822",
-        "C203FFA44B34BD46AD83C78A2467B3C8",
-        "C23C79A840DF900264651C8937F6B84A",
-        "C60E1AC847758B1623E64291BEF5F5FE",
-        "C87C77074092634B83103293D52BCFDB",
-        "CDAE70D1425133E6E1B5E78533CC97A9",
-        "E0A119394AB40FA4C7FC1D8AE1E6FBB0",
-        "E169BDEE45115E54FF8E3D9EE51D5DBC",
-        "E3292A374B2B06542E4F10A5A0BB5D40",
-        "E61C3F9046DED1A29D3D0E9C0BACB30A",
-        "E921259048B6D9F166AA22BD4868F975",
-        "EC0A79CA4F0CA1744D59FDACD3A60FD7",
         "F17C3EAE45A3DE95632140B6EF499717",
-        "F79FD82D476DC0DD0BBF87A9A941D5BF"
+        "A2ED02EC489D59E0B7D443843FD22A20",
+        "B9D670294355E073ABEAFC983FEC3822",
+        "7B83978346D2982DF0BC47A5FB6AAA17",
+        "E61C3F9046DED1A29D3D0E9C0BACB30A",
+        "33D751A24D6C242D71AB4C9CFDE4E652",
+        "E0A119394AB40FA4C7FC1D8AE1E6FBB0",
+        "A2F863A14A946E8314AA90A0CF9511F4",
+        "8D2EAC274DF73E7AF4172D8EA86DD8AE",
+        "3F62706B4C354DB2D4A44A85829095F2",
+        "706E9BE94C986999534948890BF1C23D",
+        "C60E1AC847758B1623E64291BEF5F5FE",
+        "188B71D645601584701353B2B2E5A9EB",
+        "45B9CADD422CD6519F0D7CBF39396475",
+        "ABDA466241DC0A424B9108805D940E4B",
+        "AAA8969943C44C7E4B59EC8F8812A7E5",
+        "B3773840480C8FA70E553F8D1635E4B6"
       ],
       "graphs": [
-        "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiChuChang",
         "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiDeath"
       ],
       "distance": 5329,
@@ -3120,33 +3122,33 @@
       "unloadLayers": [],
       "primarySpawnerActor": "BP_AISpawner_C_UAID_74563C6BC2BD12B902_1163530142",
       "directEntry": {
+        "kind": "native-entry-volume",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiDeath",
+        "node": "C23C79A8-40DF9002-64651C89-37F6B84A",
+        "signalPin": "Match",
+        "sequences": [
+          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq046-1/Seqs/Seq046-1.Seq046-1"
+        ],
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434854402_1102470946",
+        "waypoints": [],
         "transform": {
           "Location": {
-            "X": -66944.67,
-            "Y": 79680.625,
-            "Z": 1014.9624
+            "X": -67520,
+            "Y": 78840,
+            "Z": 830
           },
           "Rotation": {
-            "Roll": 0,
             "Pitch": 0,
-            "Yaw": -111.25303502863937
+            "Yaw": 248,
+            "Roll": 0
           }
         },
-        "waypoints": [],
-        "kind": "native-entry-volume",
-        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/HuPan/BPF_MuXiaoKuiChuChang",
-        "node": "56C06DEC-4750087A-58E72795-6247BAE8",
-        "sequences": [
-          "/Game/PBZContent/Sequencer/GenerateSequencer/Seq045/Seqs/Seq045.Seq045"
-        ],
-        "distanceToBoss": 1843.6,
-        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434854402_1102432945",
-        "crossing": {
-          "X": -66520.56502227618,
-          "Y": 80845.84384977452,
-          "Z": 1014.9624
-        }
-      }
+        "distanceToBoss": 870.5
+      },
+      "nativeController": true,
+      "addTags": [
+        "ljc.沐小葵.满足额外剧情条件"
+      ]
     },
     "chapter": {
       "id": "ShiXinCun",
@@ -3174,7 +3176,12 @@
         }
       ],
       "source": "native-mob-group-area"
-    }
+    },
+    "supportClasses": [],
+    "nameKeys": [
+      "BossName_040",
+      "BossName_020_3"
+    ]
   },
   {
     "id": "BP_Monster_TieGui",
@@ -3370,7 +3377,10 @@
         }
       ],
       "source": "native-mob-group-area"
-    }
+    },
+    "available": false,
+    "deprecatedAliasOf": "BP_Monster_Yuu",
+    "unavailableReason": "Combat regroupé avec la Danseuse de jade : les deux gardiens se combattent ensemble dans leur rencontre native."
   },
   {
     "id": "BP_Monster_GuiChai_Red",
@@ -4895,7 +4905,8 @@
       ],
       "clearTags": [
         "ljc.击杀.小雪",
-        "ljc.小雪.出场"
+        "ljc.小雪.出场",
+        "ljc.小雪.完成"
       ],
       "nodeIDs": [
         "0295E903424DB80434D15FAE99B97A6A",
@@ -5320,7 +5331,17 @@
       "primarySpawnerID": "Jianou_Seq076",
       "spawners": [
         "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979997677",
-        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998678"
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998678",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980000681",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998679",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980001682",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002684",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979999680",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002683",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980005686",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006688",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006687",
+        "BP_AISpawner_C_UAID_E89C25A7516AEC7302_1405639150"
       ],
       "domains": [
         "BP_MobDomain_C_UAID_0A6230820DE85F4502_1979995676"
@@ -5330,7 +5351,17 @@
         "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998678",
         "BP_FlowActor_C_UAID_74563CC57EE2FD3B02_1145877551",
         "BP_FlowActor_C_UAID_74563CC57EE2FD3B02_1145930585",
-        "BP_MobDomain_C_UAID_0A6230820DE85F4502_1979995676"
+        "BP_MobDomain_C_UAID_0A6230820DE85F4502_1979995676",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980000681",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979998679",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980001682",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002684",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1979999680",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980002683",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980005686",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006688",
+        "BP_AISpawner_C_UAID_0A6230820DE85F4502_1980006687",
+        "BP_AISpawner_C_UAID_E89C25A7516AEC7302_1405639150"
       ],
       "clearTags": [
         "CharacterState.AbilityState.Troop.Player.InCombat",
@@ -5484,7 +5515,8 @@
     },
     "supportClasses": [
       "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_White.BP_Monster_HuaShan_White_C",
-      "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_CaoOu.BP_Monster_HuaShan_CaoOu_C"
+      "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_CaoOu.BP_Monster_HuaShan_CaoOu_C",
+      "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_Sword_JianZhen.BP_Monster_EMei_Sword_JianZhen_C"
     ]
   },
   {
@@ -6246,7 +6278,9 @@
       },
       "primarySpawnerID": "JadeIntro_Jade",
       "spawners": [
-        "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635138174"
+        "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635138174",
+        "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635136172",
+        "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635136173"
       ],
       "domains": [
         "BP_MobDomain_C_UAID_74563CC57EE2514C02_1635135171"
@@ -6257,7 +6291,9 @@
         "BP_FlowActor_C_UAID_74563CC57EE2693A02_1903534261",
         "BP_FlowActor_C_UAID_74563CC57EE2693A02_1903817355",
         "BP_FlowActor_C_UAID_E89C25A75120CB8002_1238706382",
-        "BP_MobDomain_C_UAID_74563CC57EE2514C02_1635135171"
+        "BP_MobDomain_C_UAID_74563CC57EE2514C02_1635135171",
+        "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635136172",
+        "BP_AISpawner_C_BP_Monster_GoldMaskMan_C_UAID_74563CC57EE2514C02_1635136173"
       ],
       "clearTags": [
         "ddsd.击杀.玉面",
@@ -6330,29 +6366,29 @@
       "directEntry": {
         "transform": {
           "Location": {
-            "X": -60718.15,
-            "Y": -99074.97,
-            "Z": 29640
+            "X": -60731.773,
+            "Y": -94289.45,
+            "Z": 29524.12
           },
           "Rotation": {
             "Roll": 0,
             "Pitch": 0,
-            "Yaw": 89.99484273338349
+            "Yaw": -89.75415015097155
           }
         },
         "waypoints": [],
         "kind": "native-entry-volume",
-        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_HuangXingZiChuchang",
-        "node": "175ECF80-483973D5-0C6BE884-14347BAB",
+        "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DDSD/BPF_YuMianChuChang",
+        "node": "2B9F52E9-4161CBD6-515BB480-71AD79B2",
         "sequences": [
-          "/HuaShira/Animation/Seqs/MBoss_Intro/MBoss_IntroAll.MBoss_IntroAll"
+          "/HuaShira/Animation/Seqs/JadeIntro/Jade_Intro.Jade_Intro"
         ],
-        "distanceToBoss": 1679.3,
-        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75120CB8002_1238706382",
+        "distanceToBoss": 3240.7,
+        "volumeOwner": "BP_FlowActor_C_UAID_74563CC57EE2693A02_1903534261",
         "crossing": {
-          "X": -60707.40309541318,
-          "Y": -99364.77080062313,
-          "Z": 29640
+          "X": -60731.773,
+          "Y": -94039.45,
+          "Z": 29524.12
         }
       }
     },
@@ -6374,7 +6410,11 @@
         }
       ],
       "source": "native-mob-group-area"
-    }
+    },
+    "supportClasses": [
+      "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_GoldMaskMan.BP_Monster_GoldMaskMan_C",
+      "/Game/RenewalContent/Actors/Mobs/Normal/BP_Monster_IronMaskMan.BP_Monster_IronMaskMan_C"
+    ]
   },
   {
     "id": "BP_Monster_MBoss",
@@ -6857,14 +6897,26 @@
       },
       "primarySpawnerID": "XiongZhang",
       "spawners": [
-        "BP_AISpawner_C_UAID_E89C25A750C7A0CB02_2042446446"
+        "BP_AISpawner_C_UAID_E89C25A750C72DE302_1591131170",
+        "BP_AISpawner_C_UAID_E89C25A750C72DE302_1517928169",
+        "BP_AISpawner_C_UAID_E89C25A750C72CE302_1744151987",
+        "BP_AISpawner_C_UAID_E89C25A750C7F6E102_2002111428",
+        "BP_AISpawner_C_UAID_E89C25A750C7A0CB02_2042446446",
+        "BP_AISpawner_C_UAID_E89C25A750C729E302_2019269458",
+        "BP_AISpawner_C_UAID_E89C25A750C72AE302_1256505636"
       ],
       "domains": [
         "PBZ_MobDomain_C_UAID_E89C25A750C736E302_1126457833"
       ],
       "clearActors": [
         "BP_AISpawner_C_UAID_E89C25A750C7A0CB02_2042446446",
-        "PBZ_MobDomain_C_UAID_E89C25A750C736E302_1126457833"
+        "PBZ_MobDomain_C_UAID_E89C25A750C736E302_1126457833",
+        "BP_AISpawner_C_UAID_E89C25A750C72DE302_1591131170",
+        "BP_AISpawner_C_UAID_E89C25A750C72DE302_1517928169",
+        "BP_AISpawner_C_UAID_E89C25A750C72CE302_1744151987",
+        "BP_AISpawner_C_UAID_E89C25A750C7F6E102_2002111428",
+        "BP_AISpawner_C_UAID_E89C25A750C729E302_2019269458",
+        "BP_AISpawner_C_UAID_E89C25A750C72AE302_1256505636"
       ],
       "clearTags": [
         "pz.击杀.再会兄长怪物"
@@ -6897,7 +6949,8 @@
         "waypoints": [],
         "kind": "native-arena-approach",
         "sequences": []
-      }
+      },
+      "nativeSupportAI": true
     },
     "chapter": {
       "id": "MeiGuHu",
@@ -6910,7 +6963,10 @@
       "areas": [],
       "groups": [],
       "source": "regional-baseline"
-    }
+    },
+    "supportClasses": [
+      "/PBZCombatAsset/ActorData/Mobs/035_HuaShan/BP_Monster_HuaShan_RedTroop_Soldier.BP_Monster_HuaShan_RedTroop_Soldier_C"
+    ]
   },
   {
     "id": "BP_Monster_DuYanBoss",

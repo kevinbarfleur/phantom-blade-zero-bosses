@@ -30,5 +30,11 @@ test('the first sword encounter resets its native spawner component flow and pos
  const out=model.bossSnapshot(seed,boss,{direct:true});
  assert.deepEqual(out.EventPipeline.GlobalTags,['Unrelated']);assert.deepEqual(out.EventPipeline.ExecuteNodeGuid,{});
  assert.deepEqual(out.PBZGameSystem.ReviveCameraRotation,p.directEntry.transform.Rotation,'native landing must not restore the old bell camera heading');
+ assert.deepEqual(out.PBZGameSystem.PlayerTransform.Location,p.transform.Location,'retain the safe bell streaming location');
+ assert.deepEqual(out.PBZGameSystem.PlayerTransform.Rotation,p.transform.Rotation,'native checkpoint spawning remains unchanged');
+ assert.deepEqual(out.PBZGameSystem.ReviveTransform,out.PBZGameSystem.PlayerTransform);
+ assert(Math.abs(p.transform.Rotation.Yaw-p.directEntry.transform.Rotation.Yaw)>100,'regression fixture has a large bell/arena heading difference');
+ assert.equal(p.transform.Rotation.Yaw,159.5662544979367,'catalogue bell transform remains immutable');
+ assert.deepEqual(model.bossSnapshot(seed,boss).PBZGameSystem.PlayerTransform,p.transform,'ordinary checkpoint launch preserves native bell heading');
  assert.equal(p.directEntry.kind,'native-arena-approach');assert.equal(p.directEntry.waypoints.length,0);
 });

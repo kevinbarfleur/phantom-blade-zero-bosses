@@ -13,7 +13,7 @@ const __UE=__nativeRequire('ue');
 const __enabled=/(?:^|\s)-CodexBossLab(?:\s|$)/i.test(__UE.KismetSystemLibrary.GetCommandLine());
 if(__enabled){
     if(globalThis.__CodexBossesLoader)throw new Error('BOSSES requires a full game restart. Hot reload is not supported.');
-    const state=globalThis.__CodexBossesLoader={phase:'preparing',version:'0.7.0-preview.4',hooks:[]};
+    const state=globalThis.__CodexBossesLoader={phase:'preparing',version:'0.7.0-preview.5',hooks:[]};
     const plan=[
         ['UI/Widget/StartMenu','StartmenuMinXinInterface','patchStartMenu'],
         ['Gameplay/GameModeBuild','GameModeBuildMixinInterface','patchGameMode'],
