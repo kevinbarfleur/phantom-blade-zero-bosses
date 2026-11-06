@@ -10,6 +10,7 @@ const training=require("./training"),arrival=require("./arrival");
 const inanis=require("./inanis");
 const arena=require("./arena");
 const runs=require("./run-driver");
+const entryWatchdog=require('./entry-watchdog');
 let pending = null, busy = false, activeDialog = null;
 let difficultyFlow = null;
 let menuPause = null;
@@ -114,10 +115,11 @@ function writeEncounter(context, difficulty, boss = session.boss, prepare = true
                 session.trainingTipShown=false;session.inanisInteraction=null;session.inanisSpawnRequested=0;
                 session.arrivalAnchorPending=true;
                 session.preparationShown=false;
-                session.trialReady=false;session.nativeSpawnerReady=false;session.trialPrepareAttempts=0;session.layersPrepared=false;session.layersRestoredAfterArrival=false;
+                session.trialReady=false;session.nativeSpawnerReady=false;session.entranceFlowPrepared=false;session.entranceSignalSent=false;session.entranceQuestSignals=null;session.entranceOwner=null;session.entryBoundaryPending=false;session.entryWatch=null;session.trialPrepareAttempts=0;session.layersPrepared=false;session.layersRestoredAfterArrival=false;
                 session.ux={...session.ux,nativeTrialPrepared:false,nativeLayersPrepared:false,preparationPaused:false,preparationClosed:false,resultShown:false,prepareRequested:!!boss.training,automatedQA:validation.automated};
                 delete session.ux.trialPreparationError;delete session.ux.layerPreparationError;delete session.ux.nativeEncounterPrepared;delete session.ux.nativeSpawnerFound;
                 for(const key of ["introExitBlackSuppressed","introExitBlackDuration","introExitSequence","systemLabActionsReady","systemLabActionsVisible","directReady","directPlacement","directIntroObserved","directKind","nativeArrivalLoaded","nativeEntryCrossed","arrivalEvents","introPreparationTimedOut","introPreparationCancelled","arenaBellsSuppressed","directCombatStarted","inanisVisible","inanisInteractionReady","inanisSelections","trainingExitBlocked","trainingHiddenActors","trainingDisabledActors","trainingHiddenEffects","trainingBoundaryReturns"])delete session.ux[key];
+                for(const key of ['nativeEntranceFlowExisting','nativeEntranceFlowInitialized','nativeEntranceTriggered','entranceGateKey','entranceFlowError','layersRestoredAfterArrival','entryFailure','entryFacing','entryFacingObserved','nativeEntryFacingObserved','nativeEntryFacingInitial','nativeEntryFacingAfterMs','observedIntroduction','entryClearance','arrivalAISuppressed','arrivalAIHeld'])delete session.ux[key];
                 battle.install(session,victory);
                 instance.SetLoadingScreen("PBZ_WP"); busy = false;
                 log("Loading " + boss.id + "; difficulty=" + difficulty);
@@ -324,11 +326,11 @@ function showMenu(context, screen = "bosses") {
             session.selectorWidget=widget;
             if(session.active&&valid(widget))pauseMenu(context,widget);
             if(screen!=="victory"&&validation.ui)validation.ui(context,"boss-menu",session,{paused:UE.GameplayStatics.IsGamePaused(context)});
-            if(["victory","failure"].includes(screen)&&valid(widget)){
+            if(["victory","failure","entry-error"].includes(screen)&&valid(widget)){
                 session.ux={...session.ux,resultShown:true};
                 if(validation.ui)validation.ui(context,"victory-menu",session);
                 const generation=worldGeneration;
-                const back=()=>{widget.BP_OnWidgetDeactivated.Remove(back);if(widget.codexActionChosen)return;setTimeout(()=>{if(generation===worldGeneration&&session.active&&!busy&&valid(context))showMenu(context);},0);};
+                const back=()=>{widget.BP_OnWidgetDeactivated.Remove(back);if(widget.codexActionChosen)return;setTimeout(()=>{if(generation===worldGeneration&&session.active&&!busy&&valid(context))showMenu(context,session.run?.phase==='failed'?'failure':'bosses');},0);};
                 widget.BP_OnWidgetDeactivated.Add(back);
             }
             if(validation.focusSelector)validation.focusSelector(widget);
@@ -403,10 +405,19 @@ function beginKeys(context) {
                 if(arrivalTicks%10===0&&battle.prepareEncounter)battle.prepareEncounter(context,session);
                 if(arrivalTicks%15===0&&battle.poll)battle.poll(context,session);
                 if(arrivalTicks%10===0){session.cinematicActive=cinema.tick(context,session);if(session.cinematicActive&&!session.boss.training)session.ux.directIntroObserved=true;}
+                if(arrivalTicks%5===0)battle.holdDirectCombat(context,session);
                 arrival.tick(context,session);
                 training.tick(context,session);
                 if(arrivalTicks%15===0&&battle.activateDirectCombat)battle.activateDirectCombat(context,session);
                 if(!session.runRuntimeError)try{runs.tick(context,session);}catch(error){session.runRuntimeError=String(error);session.autoNext=false;fail(context,"Chronomètre / 66 HITS indisponible : "+String(error));}
+                if(arrivalTicks%15===0&&!session.boss.training&&session.boss.profile.directEntry){
+                    const tag=gameplayTag('CharacterState.InCombat'),asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player);
+                    if(entryWatchdog.tick(session,Date.now(),{loaded:session.worldLoadingComplete&&(session.directArrival?.released||session.directArrival?.streamingReady),cinematic:session.cinematicActive||cinema.pending(context),paused:UE.GameplayStatics.IsGamePaused(context),menu:busy||!!activeDialog||session.selectorWidget?.IsActivated?.(),combat:session.directArrival?.released&&(Object.keys(session.engaged||{}).length>0||asc?.HasMatchingGameplayTag(tag)||session.runInteractiveActive)})){
+                        session.autoNext=false;arrival.release(session);session.ux.entryFailure=true;
+                        if(validation.ui)validation.ui(context,'entry-timeout',session);
+                        showMenu(context,'entry-error');
+                    }
+                }
                 if(session.boss.training&&!session.arrivalAnchorPending&&!session.trainingTipShown){
                     session.trainingTipShown=true;
                     const helper=require("../Library/UIHelper").default;
@@ -447,7 +458,19 @@ function beginKeys(context) {
             if (!valid(controller)) return;
             const down = controller.IsInputKeyDown(key); if (down && !keyHeld) showMenu(context); keyHeld = down;
             if(!busy)validation.tick(context,controller,session,captureCheckpoint,{replay,showMenu,victory,travel:writeEncounter,openTraining,prepareEquipment});
-        } catch (error) { log("Input: " + String(error));if(validation.ui)validation.ui(diagnosticContext,"runtime-error",session,{error:String(error),stack:error?.stack});stopKeys(); }
+        } catch (error) {
+            log("Input: " + String(error));
+            if(validation.ui)validation.ui(diagnosticContext,"runtime-error",session,{error:String(error),stack:error?.stack});
+            session.autoNext=false;
+            if(arrival.abort)arrival.abort(session);
+            stopKeys();
+            // A native wrapper invalidated by streaming must not leave the
+            // player behind a cover with no functioning selection shortcut.
+            if(session.active&&valid(context)){
+                session.ux={...session.ux,entryFailure:true};
+                try{showMenu(context,'entry-error');}catch(recovery){log('Recovery menu: '+String(recovery));}
+            }
+        }
     }, 33);
     // Some native victories return from an instanced arena to the campaign map.
     // Carry the result across that world change, using the new live context.

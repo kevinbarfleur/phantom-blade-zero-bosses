@@ -51,8 +51,12 @@ function initList(widget) {
     const items=UE.NewArray(UE.Object);
     widget.codexBossItems=[];
     let chapter=null;
-    const add=boss=>{const item=UE.NewObject(klass,widget);item.codexBossEntry=boss;widget.codexBossItems.push(item);items.Add(item);};
-    const entries=widget.codexScreen==="failure"?[
+    const add=boss=>{const item=UE.NewObject(klass,widget);item.codexBossEntry=boss;item.codexSelectionList=widget.CommonListView_89;widget.codexBossItems.push(item);items.Add(item);};
+    const entries=widget.codexScreen==='entry-error'?[
+        {id:'replay',label:'RÉESSAYER LE COMBAT',action:'replay'},
+        {id:'training',label:'ENTRAÎNEMENT',action:'training'},
+        {id:'select',label:'SÉLECTION DES BOSS',action:'select'}
+    ]:widget.codexScreen==="failure"?[
         {id:"restart-run",label:"RECOMMENCER LE DÉFI",action:"restart-run"},
         {id:"training",label:"ENTRAÎNEMENT",action:"training"},
         {id:"select",label:"SÉLECTION DES BOSS",action:"select"},
@@ -62,8 +66,7 @@ function initList(widget) {
         ...(bosses[bosses.findIndex(b=>b.id===widget.codexCurrentBoss.id)+1]?[{id:"next",label:"BOSS SUIVANT",action:"next"}]:[]),
         {id:"select",label:"SÉLECTION DES BOSS",action:"select"},
         {id:"training",label:"ENTRAÎNEMENT",action:"training"},
-        {id:"main",label:"MENU PRINCIPAL",action:"main"},
-        {id:"auto",label:"ENCHAÎNEMENT AUTOMATIQUE · "+(widget.codexAutoNext?"OUI":"NON"),action:"auto"}
+        {id:"main",label:"MENU PRINCIPAL",action:"main"}
     ]:[...(!widget.codexInTraining?[{id:"training",label:"ENTRAÎNEMENT",action:"training"}]:[]),...bosses];
     for(const boss of entries) {
         if(boss.chapter && chapter!==boss.chapter.id){chapter=boss.chapter.id;add({header:true,id:"chapter:"+chapter,label:boss.chapter.label,nameKey:boss.chapter.key,chapterLabel:!!boss.chapter.key});}
@@ -73,6 +76,8 @@ function initList(widget) {
     list.BP_OnItemClicked.Clear();list.BP_OnItemSelectionChanged.Clear();list.BP_OnItemIsHoveredChanged.Clear();
     list.BP_OnItemClicked.Add(item=>{const boss=info(item);if(boss&&!boss.header)widget.codexSelectBoss(boss,widget);});
     list.BP_OnItemSelectionChanged.Add((item,selected)=>{
+        const displayed=list.GetDisplayedEntryWidgets();
+        for(let i=0;i<displayed.Num();i++)displayed.Get(i).DoSelectedAppearance(false);
         if(!selected)return;const boss=info(item),index=list.GetIndexForItem(item);
         if(boss && boss.header){const direction=index<(widget.codexLastIndex||0)?-1:1;let next=index+direction;while(next>=0&&next<widget.codexBossItems.length&&info(widget.codexBossItems[next]).header)next+=direction;if(next<0||next>=widget.codexBossItems.length)next=widget.codexLastIndex||1;if(next!==index)list.SetSelectedIndex(next);return;}
         widget.codexLastIndex=index;widget.playSlotHoverSound();preview(widget,boss);
@@ -90,7 +95,7 @@ function patchSelector(Type) {
         const remembered=lastSelection;
         const result=activated.apply(this,args);
         if(!this.codexBossSelector)return result;
-        this.LoadGameText.SetText(text(this.codexScreen==="failure"?"66 HITS · DÉFI TERMINÉ":this.codexScreen==="victory"?"VICTOIRE":"BOSSES"));
+        this.LoadGameText.SetText(text(this.codexScreen==='entry-error'?'COMBAT NON INITIALISÉ':this.codexScreen==="failure"?"66 HITS · DÉFI TERMINÉ":this.codexScreen==="victory"?"VICTOIRE":"BOSSES"));
         this.CommonListView_89.SetScrollbarVisibility(UE.ESlateVisibility.Visible);
         const box=this.CommonListView_89.GetParent();if(box)box.SetWidthOverride(850);
         this.CommonListView_89.SetClipping(UE.EWidgetClipping.ClipToBounds);
@@ -112,7 +117,7 @@ function patchSelector(Type) {
         if(this.QuestName)this.QuestName.SetAutoWrapText(true);
         hide(this,["GuidBox"]);
         const selected=this.codexBossItems.findIndex(item=>info(item).id===remembered);
-        this.CommonListView_89.SetSelectedIndex(['victory','failure'].includes(this.codexScreen)?0:selected>=0?selected:1);
+        this.CommonListView_89.SetSelectedIndex(['victory','failure','entry-error'].includes(this.codexScreen)?0:selected>=0?selected:1);
         this.codexPreview=null;preview(this,info(this.CommonListView_89.BP_GetSelectedItem())||bosses[0]);
         if(this.codexScreen!=="victory"&&selected>=0)this.CommonListView_89.BP_ScrollItemIntoView(this.codexBossItems[selected]);
         // Native activation and the fade can clear the old save-slot details.
@@ -125,11 +130,25 @@ function patchSelector(Type) {
     p.Tick=function(...args){if(this.codexBossSelector)return;return tick.apply(this,args);};
 }
 function patchEntry(Type) {
-    const p=Type.prototype, set=p.OnListItemObjectSet;
+    const p=Type.prototype, set=p.OnListItemObjectSet,appearance=p.DoSelectedAppearance;
+    p.DoSelectedAppearance=function(selected,...args){
+        const item=this.codexSelectionItem;
+        if(item)selected=!info(item)?.header&&item.codexSelectionList?.BP_GetSelectedItem()===item;
+        // The original method is implemented in Blueprint on this build;
+        // the exported JavaScript mixin has no callable super method for it.
+        // Apply its native colors and ink background explicitly, including on
+        // pooled rows and focus/hover callbacks that arrive after selection.
+        if(typeof appearance==='function')appearance.call(this,selected,...args);
+        const header=!!info(item)?.header,highlight=find(this,'Image_44');
+        if(highlight)highlight.SetRenderOpacity(selected&&!header?1:0);
+        const color=new UE.SlateColor();color.SpecifiedColor=selected&&!header?new UE.LinearColor(0,0,0,1):new UE.LinearColor(1,1,1,header?0.9:0.64);
+        for(const id of ['BellName','GameTimeText','DifficultyText','CycleText','DaysText'])if(this[id]){this[id].OverrideTextColor(color);this[id].SetOutlineOverrideEnabled(!!selected&&!header);}
+    };
     p.OnListItemObjectSet=function(item){
-        const boss=info(item);if(!boss)return set.call(this,item);
+        const boss=info(item);this.codexSelectionItem=boss?item:null;
+        if(!boss){this.codexBossRow=false;this.SetIsSelectable(true);this.SetIsInteractionEnabled(true);this.SetIsFocusable(true);return set.call(this,item);}
         this.codexBossRow=true;
-        this.SetIsSelectable(!boss.header);this.SetIsInteractionEnabled(!boss.header);
+        this.SetIsSelectable(!boss.header);this.SetIsInteractionEnabled(!boss.header);this.SetIsFocusable(!boss.header);
         hide(this,["GameTimeText","CycleText","DaysText","DifficultyText","SaveSlotName","Date","Time","WidgetSwitcher_0","NightmareNumSwitcher","Image_501","BellTex","SizeBox_122","SizeBox_140"]);
         this.BellName.SetText(boss.header&&boss.chapterLabel?text("CHAPITRE · "+UE.KismetTextLibrary.Conv_TextToString(name(boss))):boss.header||boss.action?name(boss):shortName(boss));
         this.BellName.SetAutoWrapText(true);

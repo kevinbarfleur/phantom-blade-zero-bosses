@@ -8,11 +8,11 @@ function bossSnapshot(pristine, boss, options = {}) {
     root.PBZGameSystem.CurrentLevelName=p.level;
     root.PBZGameSystem.LastSaveActorID=p.bell;
     const start=options.direct&&p.directEntry
-        ? (p.directEntry.crossing?{...p.directEntry.transform,Location:p.directEntry.crossing}:p.directEntry.transform)
+        ? (!p.directEntry.sequences?.length?p.transform:p.directEntry.crossing?{...p.directEntry.transform,Location:p.directEntry.crossing}:p.directEntry.transform)
         :p.transform;
     root.PBZGameSystem.PlayerTransform=copy(start);
     root.PBZGameSystem.ReviveTransform=copy(start);
-    root.PBZGameSystem.ReviveCameraRotation=copy(p.camera);
+    root.PBZGameSystem.ReviveCameraRotation=copy(options.direct&&p.directEntry&&!p.directEntry.sequences?.length?p.directEntry.transform.Rotation:p.camera);
     root.PBZGameSystem.IsInTutorial=false;
     root.BellSaveID=p.bell;
     root.BellManager.SaveBellID=p.bell;root.BellManager.TeleportSaveBellID=p.bell;

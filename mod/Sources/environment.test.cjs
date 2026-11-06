@@ -28,3 +28,12 @@ test('the later winter encounter and other chapters keep their own campaign envi
   assert(r.EventPipeline.LoadedDataLayer[proof.region].includes(proof.unloadLayers[0]));assert(!r.EventPipeline.LoadedDataLayer[proof.region].includes(proof.loadLayers[0]));
  }
 });
+
+test('the ritual encounter restores all ten authored group members while preserving unrelated actors',()=>{
+ const population=require('./population-proof.json')[0],boss=catalog.find(b=>b.id===population.id),seed=donor();
+ assert.equal(population.spawners.length,10);assert.equal(boss.supportClasses.length,4);
+ seed.AISystem.SpawnerSaveData={Unrelated:{dead:true},...Object.fromEntries(population.spawners.map(x=>[boss.profile.level+x.name,{dead:true}]))};
+ const r=model.bossSnapshot(seed,boss,{direct:true});assert.deepEqual(r.AISystem.SpawnerSaveData,{Unrelated:{dead:true}});
+ assert.equal(Object.keys(seed.AISystem.SpawnerSaveData).length,11);
+ for(const member of population.spawners)assert(boss.profile.clearActors.includes(member.name));
+});

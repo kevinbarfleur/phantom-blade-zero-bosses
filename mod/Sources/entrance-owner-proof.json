@@ -1,0 +1,46 @@
+[
+  {
+    "id": "BP_Monster_GuiChai_Red",
+    "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/MainCh2/BPF_HongYiGuiChai_ChuChang",
+    "owner": {
+      "kind": "actor",
+      "name": "BP_NPCSpawner_C_UAID_BCFCE7B969EF3ACB02_2070895329",
+      "class": "/Game/PBZContent/Blueprint/FlowGraph/FlowActor/BP_NPCSpawner.BP_NPCSpawner_C"
+    },
+    "sourcePackage": "ProjectPBZ/Content/Maps/B08_09_10/PBZ_Pangzhen_WP/_Generated_/9MNPQBUK8GIWDIWOAMGM1EYTR.umap",
+    "sourceComponent": "BP_PBZFlowComponent"
+  },
+  {
+    "id": "BP_Monster_GuWanYue",
+    "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/PangZhen/BPF_GuWanYueChuChang",
+    "owner": {
+      "kind": "actor",
+      "name": "BP_NPCSpawner_C_UAID_EC9161CFCCC209CC02_1127259535",
+      "class": "/Game/PBZContent/Blueprint/FlowGraph/FlowActor/BP_NPCSpawner.BP_NPCSpawner_C"
+    },
+    "sourcePackage": "ProjectPBZ/Content/Maps/B09/PBZ_Houjie_WP/_Generated_/DP1341XM9V1U1ADWWUXFQ40IJ.umap",
+    "sourceComponent": "BP_PBZFlowComponent"
+  },
+  {
+    "id": "BP_Monster_HuaShan_Blue",
+    "graph": "/Game/PBZContent/Blueprint/FlowGraph/Narrative/ZDDY/BPF_JianZhenChuChang",
+    "owner": {
+      "kind": "actor",
+      "name": "BP_FlowActor_C_UAID_74563CC57EE2FD3B02_1145877551",
+      "class": "/Game/PBZContent/Blueprint/FlowGraph/FlowActor/BP_FlowActor.BP_FlowActor_C"
+    },
+    "sourcePackage": "ProjectPBZ/Content/Maps/B04_05/PBZ_Zhengdaodaying_WP/_Generated_/29A4E1ZFI1F45NQD6796H4QPC.umap",
+    "sourceComponent": "BP_PBZFlowComponent"
+  },
+  {
+    "id": "BP_Monster_ZuoShang_Ending",
+    "graph": "/Game/PBZContent/Blueprint/FlowGraph/QuestFlowGraph/DuanHunYa/BPF_ZuoShang_TheEnd_Chuchang",
+    "owner": {
+      "kind": "actor",
+      "name": "BP_NPCSpawner_C_UAID_BCFCE707898301DD02_1353401098",
+      "class": "/Game/PBZContent/Blueprint/FlowGraph/FlowActor/BP_NPCSpawner.BP_NPCSpawner_C"
+    },
+    "sourcePackage": "ProjectPBZ/Content/Maps/B08_09_12_13/PBZ_Duanhun_WP/_Generated_/A25NJN7BDHP5VSIR8HF0G2MF5.umap",
+    "sourceComponent": "BP_PBZFlowComponent"
+  }
+]

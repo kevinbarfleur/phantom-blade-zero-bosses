@@ -5,6 +5,60 @@ const config=require("./qa-config"),bosses=require("./boss-catalog").filter(b=>b
 const enabled=config.mode!=="manual";
 const automated=["survey","arrival","combat","retry","direct","system-flow"].includes(config.mode);
 let systemFlowPawn=null,systemFlowTicks=0;
+let entryProbeTicks=0;
+const entrySuite={index:0,results:[],boss:null};
+function entrySuiteTick(context,session,api){
+    if(config.ids.length<2||entrySuite.done)return;
+    if(session.boss.id!==config.ids[entrySuite.index])return;
+    if(entrySuite.boss!==session.boss.id){entrySuite.boss=session.boss.id;entrySuite.started=Date.now();entrySuite.last=Date.now();entrySuite.activeMs=0;entrySuite.health=0;entrySuite.damaged=false;entrySuite.confirmed=0;}
+    const now=Date.now(),delta=Math.max(0,Math.min(5000,now-entrySuite.last));entrySuite.last=now;
+    if(session.worldLoadingComplete&&!session.cinematicActive&&!require('./cinema').pending(context)&&!UE.GameplayStatics.IsGamePaused(context))entrySuite.activeMs+=delta;
+    const player=UE.GameplayStatics.GetPlayerCharacter(context,0),health=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health',UE.BasicAttributeSet.StaticClass()));
+    entrySuite.health=Math.max(health,entrySuite.health);if(health<entrySuite.health-1&&!session.cinematicActive)entrySuite.damaged=true;
+    const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player),tag=new UE.GameplayTag();tag.TagName='CharacterState.InCombat';
+    const introduced=!session.boss.profile.directEntry?.sequences?.length||session.ux.directIntroObserved;
+    const alive=probe(context,session.boss).some(a=>!a.hidden&&!a.dead&&a.controller);
+    const playable=!!session.directArrival?.released&&!!session.ux.directReady&&!UE.GameplayStatics.IsGamePaused(context);
+    const facingReady=!!session.boss.profile.directEntry?.sequences?.length||session.ux.entryFacingObserved?.opponentVisible===true||session.ux.nativeEntryFacingObserved?.opponentVisible===true;
+    const ready=playable&&facingReady&&introduced&&alive&&entrySuite.damaged&&!session.cinematicActive&&(asc?.HasMatchingGameplayTag(tag)||Object.keys(session.engaged||{}).length>0);
+    if(ready&&!entrySuite.confirmed)entrySuite.confirmed=Date.now();
+    if(!ready)entrySuite.confirmed=0;
+    if(!(ready&&Date.now()-entrySuite.confirmed>=6000)&&!session.ux.entryFailure&&entrySuite.activeMs<180000&&now-entrySuite.started<600000)return;
+    const result={id:session.boss.id,ready:!!ready,playerDamaged:entrySuite.damaged,introObserved:!!session.ux.directIntroObserved,nativeEntryTriggered:session.ux.nativeEntranceTriggered||null,physicalEntryCrossed:!!session.ux.nativeEntryCrossed,paused:UE.GameplayStatics.IsGamePaused(context),ux:{...session.ux},actors:probe(context,session.boss)};
+    entrySuite.results.push(result);entrySuite.index++;entrySuite.done=entrySuite.index>=config.ids.length;
+    const sl=UE.SubsystemBlueprintLibrary.GetGameInstanceSubsystem(context,UE.PBZSaveLoadSubsystem.StaticClass()),ok=puerts.$ref(false),value=puerts.$ref(new UE.JsonObjectWrapper());
+    UE.JSONUtility.ParseStringToJson(JSON.stringify({done:entrySuite.done,time:Date.now(),index:entrySuite.index,total:config.ids.length,results:entrySuite.results}),ok,value);
+    if(puerts.$unref(ok)){sl.SaveAdvancedObjectDataAndSync('CodexBossLabEntrySuiteQA',puerts.$unref(value));sl.SaveAdvancedSaveGameNow();}
+    if(entrySuite.done){api.showMenu(context);return;}
+    setTimeout(()=>api.travel(context,2,bosses.find(b=>b.id===config.ids[entrySuite.index]),false,config.skipIntroduction===true),1000);
+}
+function entranceState(flow,session,component){
+    const g=new UE.Guid(),parts=session.boss.profile.directEntry.node.split('-');
+    ['A','B','C','D'].forEach((key,i)=>g[key]=parseInt(parts[i],16));
+    const n=flow.GetNode(g),next=n.GetConnectionNodeByOutputName('Out');
+    return {state:n.GetActivationState(),done:n.IsExecuteDone(),valid:n.IsNodeValid(),empty:n.OutputConnectionIsEmpty('Out'),next:next?.GetName(),nextState:next?.GetActivationState(),nextDone:next?.IsExecuteDone(),componentLocked:component.GetBranchLock()};
+}
+function entryProbe(context,session){
+    if(++entryProbeTicks%120!==0)return;
+    const read=fn=>{try{return fn();}catch(error){return String(error);}};
+    try{
+        const player=UE.GameplayStatics.GetPlayerCharacter(context,0),controller=UE.GameplayStatics.GetPlayerController(context,0);
+        const actors=selectedActors(context,session.boss).map(({actor})=>{
+            const mesh=actor.Mesh,p=actor.K2_GetActorLocation();return {name:actor.GetName(),hidden:actor.bHidden,position:{X:p.X,Y:p.Y,Z:p.Z},mesh:read(()=>mesh?.GetName()),collision:read(()=>actor.GetActorEnableCollision()),movement:read(()=>actor.CharacterMovement?.MovementMode),movementTick:read(()=>actor.CharacterMovement?.IsComponentTickEnabled()),halfHeight:read(()=>actor.CapsuleComponent?.GetScaledCapsuleHalfHeight()),animMode:read(()=>mesh?.AnimationMode),animClass:read(()=>mesh?.AnimClass?.GetName()),animInstance:read(()=>mesh?.GetAnimInstance?.()?.GetClass()?.GetName()),pauseAnims:read(()=>mesh?.bPauseAnims),tick:read(()=>mesh?.IsComponentTickEnabled?.())};
+        });
+        const arrival=session.directArrival;
+        const manager=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.SGameAIWorldSubsystem.StaticClass()),spawner=manager?.GetSpawner(session.boss.profile.primarySpawnerID);
+        const pipeline=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.EventPipelineManager.StaticClass()),affect=pipeline.GetCurrentAffectFlowNode();
+        const dialogue=pipeline?.DialogueWidget,dialogueState=read(()=>dialogue&&Object.fromEntries(['CanSkip','ClickToSkip','OwnerOnceFinish','PlayerOnceFinish','AudioFinish','PlayerEmotionFinish','NPCEmotionFinish','LevelSequenceFinish','bLegacySkipLine'].map(k=>[k,dialogue[k]])));
+        const flowState=actor=>read(()=>{const component=actor?.GetComponentByClass(UE.FlowComponent.StaticClass()),flow=component?.GetRootFlowInstance(),nodes=flow?.GetActiveNodes();return {actor:actor?.GetName(),component:component?.GetName(),root:component?.RootFlow?.GetName(),entry:read(()=>entranceState(flow,session,component)),instance:flow?.GetName(),locked:component?.GetCurrentLockBranchNode()?.GetName(),active:nodes&&Array.from({length:nodes.Num()},(_,i)=>({name:nodes.Get(i).GetName(),state:nodes.Get(i).GetActivationState(),sequence:read(()=>String(nodes.Get(i).LevelSequence?.AssetPathName)),loaded:read(()=>nodes.Get(i).LoadedLevelSequence?.GetName()),pendingNormal:read(()=>nodes.Get(i).PendingNormalAdded),hasPlay:read(()=>nodes.Get(i).HasPlay),guid:read(()=>{const g=nodes.Get(i).GetGuid();return {A:g.A,B:g.B,C:g.C,D:g.D};})}))};});
+        const asc=UE.AbilitySystemBlueprintLibrary.GetAbilitySystemComponent(player),nativeTag=name=>{const tag=new UE.GameplayTag();tag.TagName=name;return asc?.HasMatchingGameplayTag(tag);};
+        const sequences=[],cls=UE.Class.Find('/Game/PBZContent/Blueprint/FlowGraph/UI/WBP_FlowSequencer.WBP_FlowSequencer_C');
+        if(cls){const out=puerts.$ref(UE.NewArray(UE.UserWidget));UE.WidgetBlueprintLibrary.GetAllWidgetsOfClass(context,out,cls,false);const all=puerts.$unref(out);for(let i=0;i<all.Num();i++){const w=all.Get(i);sequences.push({name:w.GetName(),active:w.IsActivated(),visible:w.IsVisible(),opacity:w.GetRenderOpacity(),sequence:read(()=>w.InLevelSeq?.GetName()),playing:read(()=>w.InLevelSeqPlayer?.IsPlaying()),paused:read(()=>w.InLevelSeqPlayer?.IsPaused()),canSkip:w.CanSkip});}}
+        let apis;
+        if(!session.entryProbeApis){session.entryProbeApis=true;apis={};for(const name of ['FlowAsset','FlowNode','FlowComponent','EventPipelineManager','PBZLevelSequenceManager','CommonRotator','GameSettingValueDiscreteDynamic'])apis[name]=read(()=>Object.getOwnPropertyNames(UE[name].prototype));}
+        ui(context,'entry-probe',session,{actors,dialogueState,combatActors:probe(context,session.boss),environment:environmentProbe(context,session.boss),apis,sequences,pipeline:{input:pipeline.EventPipeLineInputType,currentNode:affect?.GetName(),nodeStatus:read(()=>affect?.K2_GetStatusString()),actor:read(()=>affect?.TryGetRootFlowActorOwner()?.GetName()),flow:read(()=>affect?.GetFlowAsset()?.GetName()),entranceOwnerFlow:flowState(session.entranceOwner),namedPawn:read(()=>pipeline.GetNPCActorByName(session.boss.profile.primarySpawnerID)?.GetName()),namedSpawner:read(()=>pipeline.GetNPCSpawnerByName(session.boss.profile.primarySpawnerID)?.GetName()),spawnerFlow:flowState(spawner),pawnFlow:flowState(spawner?.GetPawn())},player:{movement:player.CharacterMovement?.MovementMode,moveIgnored:read(()=>controller.IsMoveInputIgnored()),lookIgnored:read(()=>controller.IsLookInputIgnored()),paused:UE.GameplayStatics.IsGamePaused(context),inSequence:nativeTag('CharacterState.InLevelSequence'),inCombat:nativeTag('CharacterState.InCombat')},facingSample:session.entryFacingSample,arrival:arrival&&{ticks:arrival.ticks,released:arrival.released,placed:arrival.placed,coverRequested:arrival.coverRequested,streamingReady:arrival.streamingReady,crossingTicks:arrival.crossingTicks,introPending:arrival.introPending,introWait:arrival.introWait},spawner:{found:!!spawner,pawn:read(()=>spawner?.GetPawn()?.GetName())},cover:read(()=>UE.PBZTeleportCoverSubsystem.IsAnyTeleportCoverActive(context))});
+    }catch(error){ui(context,'entry-probe-error',session,{error:String(error)});}
+}
 const exitTrace={pawn:null,start:0,samples:[]};
 function cinemaExitTrace(context,session){
     if(!exitTrace.apis){exitTrace.apis=true;const apis={};for(const name of ['PBZTeleportCoverSubsystem','PBZLevelSequenceManager','PBZMediaSequenceQueryLibrary','PlayerCameraManager'])try{apis[name]={instance:Object.getOwnPropertyNames(UE[name].prototype),static:Object.getOwnPropertyNames(UE[name])};}catch(_){}ui(context,'intro-exit-apis',session,{apis});}
@@ -27,6 +81,7 @@ function cinemaExitTrace(context,session){
 }
 const direct={results:[],index:0,ticks:0,lastBoss:null,done:false,capturing:false};
 const trainingFlow={phase:"waiting",done:false};
+let flowChoiceMade=false;
 const held={};
 const survey={started:false,index:0,ticks:0,results:[],capturing:false,lastBoss:null};
 const combat={index:0,ticks:0,results:[],lastBoss:null,stage:"waiting",lastKill:0};
@@ -348,11 +403,19 @@ function tick(context,controller,session,capture,api){
         }
     }
     if(config.mode==="training-flow"){trainingFlowTick(context,session,capture,api);return;}
-    if(["combat","arrival","direct","system-flow","review","ux"].includes(config.mode)){
+    if(["combat","arrival","direct","system-flow","review","ux"].includes(config.mode)||config.testHits66){
         const player=UE.GameplayStatics.GetPlayerCharacter(context,0),name=player&&player.GetName();
         if(name&&combat.protectedPlayer!==name){
             UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute("Health_Min",UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,1);
+            if(config.mode==='arrival'){
+                const maximum=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health_Max',UE.BasicAttributeSet.StaticClass()));
+                UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health',UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,maximum);
+            }
             combat.protectedPlayer=name;
+        }
+        if(config.testHits66&&session.run?.phase!=='failed'&&!session.cinematicActive){
+            const maximum=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health_Max',UE.BasicAttributeSet.StaticClass())),health=UE.PBZBlueprintFunctionLibrary.GetAttributeFromCharacter(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health',UE.BasicAttributeSet.StaticClass()));
+            if(health<maximum*0.5)UE.AttributeUtils.ModifyCharacterAttributeValue(player,UE.PBZBlueprintFunctionLibrary.MakeAttribute('Health',UE.BasicAttributeSet.StaticClass()),UE.EGameplayModOp.Override,maximum);
         }
     }
     if(automated&&!session.completed&&(session.arrivalAnchorPending||(config.mode==="survey"&&session.cinematicActive))){
@@ -378,7 +441,7 @@ function tick(context,controller,session,capture,api){
         return;
     }
     if(config.mode==="direct"){directTick(context,session,capture,api);return;}
-    if(config.mode==="arrival")return;
+    if(config.mode==="arrival"){entryProbe(context,session);if(entryProbeTicks%30===0)entrySuiteTick(context,session,api);return;}
     surveyTick(context,session,capture,api);
     if(config.mode==="survey")return;
     combatTick(context,session,capture,api);
@@ -502,10 +565,21 @@ exports.automated=automated;
 exports.mode=config.mode;
 exports.ui=ui;
 exports.focusSelector=widget=>{
-    if(!["ux","flow","review","training"].includes(config.mode)||!config.ids.length||!widget?.codexBossItems||widget.codexScreen==="victory")return;
+    if(!["ux","flow","review","training"].includes(config.mode)||!config.ids.length||!widget?.codexBossItems||['victory','failure','entry-error'].includes(widget.codexScreen)||(config.mode==='flow'&&flowChoiceMade))return;
     const item=widget.codexBossItems.find(item=>item.codexBossEntry?.id===config.ids[0]);
     if(item){widget.CommonListView_89.BP_SetSelectedItem(item);widget.CommonListView_89.BP_ScrollItemIntoView(item);}
-    if(item&&["flow","review","training"].includes(config.mode))setTimeout(()=>{if(UE.KismetSystemLibrary.IsValid(widget)&&widget.IsActivated())widget.codexSelectBoss(item.codexBossEntry,widget);},3000);
+    if(item&&["flow","review","training"].includes(config.mode)){if(config.mode==='flow')flowChoiceMade=true;setTimeout(()=>{if(UE.KismetSystemLibrary.IsValid(widget)&&widget.IsActivated())widget.codexSelectBoss(item.codexBossEntry,widget);},3000);}
 };
 exports.menu=menu;
 exports.mark=mark;
+exports.runSetup=(widget,session)=>{
+    if(config.mode!=='flow')return;
+    const inspect=phase=>{if(!UE.KismetSystemLibrary.IsValid(widget)||!widget.IsActivated())return;ui(widget,phase,session,{focus:widget.codexRunFocus,draft:{...widget.codexRunDraft},rows:widget.codexRunRows?.map(row=>({id:row.id,index:row.rotator.GetSelectedIndex(),label:UE.KismetTextLibrary.Conv_TextToString(row.rotator.GetSelectedText())})),holdRequired:widget.codexHoldButton?.GetRequiredHoldTime()});};
+    setTimeout(()=>inspect('configuration-layout'),1800);
+    setTimeout(()=>{if(!UE.KismetSystemLibrary.IsValid(widget)||!widget.IsActivated())return;widget.codexRunRows[0].rotator.ShiftTextRight();if(config.testHits66){const difficulty=widget.codexRunRows[1].rotator;while(difficulty.GetSelectedIndex()<3)difficulty.ShiftTextRight();}widget.codexRunRows[2].rotator.SetFocus();widget.codexRunRows[2].rotator.ShiftTextRight();inspect('configuration-qa-values');},7000);
+    if(config.autoConfirm)setTimeout(()=>{
+        if(!UE.KismetSystemLibrary.IsValid(widget)||!widget.IsActivated())return;
+        const button=widget.codexHoldButton;button.SetFocus();button.ButtonPressed.Broadcast();let progress=0;
+        const timer=setInterval(()=>{if(!UE.KismetSystemLibrary.IsValid(widget)||!widget.IsActivated()){clearInterval(timer);return;}button.OnActionProgress(Math.min(1,++progress/10));if(progress>=10){clearInterval(timer);button.ButtonReleased.Broadcast();}},150);
+    },18000);
+};

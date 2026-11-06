@@ -24,7 +24,8 @@ function flags(context,session,player){
     const manager=UE.SubsystemBlueprintLibrary.GetWorldSubsystem(context,UE.PBZLevelSequenceManager.StaticClass());
     const sequence=!!manager?.IsInSequence()||!!asc?.HasMatchingGameplayTag(tag('CharacterState.InLevelSequence'))||cinema.pending(context)||!!(session.cinematicActive&&!['sequence','player-state'].includes(session.cinemaSource));
     const introduced=!session.boss.profile.directEntry?.sequences?.length||!!session.ux?.directIntroObserved;
-    const arrived=!!session.worldLoadingComplete&&!session.arrivalAnchorPending;
+    const visible=!session.directArrival?.releasedAt||Date.now()-session.directArrival.releasedAt>=300;
+    const arrived=!!session.worldLoadingComplete&&!session.arrivalAnchorPending&&(!session.boss.profile.directEntry||(!!session.directArrival?.released&&!!session.ux?.directReady&&visible));
     const combat=['combat','finishing'].includes(session.run.phase)||!!session.ux?.directCombatStarted||Object.keys(session.engaged||{}).length>0||!!asc?.HasMatchingGameplayTag(tag('CharacterState.InCombat'))||(qte&&session.ux?.directReady);
     session.runInteractiveActive=qte;
     return {ready:arrived&&combat&&introduced&&(!sequence||qte),interactive:qte,cinematic:sequence,paused:UE.GameplayStatics.IsGamePaused(context),loading:!arrived,dead:!!asc?.HasMatchingGameplayTag(tag('CharacterState.Dead'))};

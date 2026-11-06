@@ -1,7 +1,2 @@
-BOSSES 0.7.0-preview.3 - PREVERSION NON VALIDEE EN JEU
-
-Lire LIRE-MOI.md. La 0.6.2 reste disponible pour jouer sans ces nouvelles fonctions experimentales.
-
-ZIP officiel PBZModLoader 1.0.0 de LLKKFF a telecharger separement. Ouvrir Lancer-Bosses.cmd normalement et valider Windows. Ne pas installer le chargeur manuellement. Fermer le jeu puis attendre la restauration. Apres arret brutal : Restaurer-Campagne.cmd. Conserver .state jusqu a restauration.
-
-Choisir un boss puis la difficulte, le chronometre et l enchainement. 66 HITS = regles Explorateur des enfers + budget commun de 66 coups. Le 66e termine le defi. Recommencer un combat conserve les coups. Une nouvelle selection validee commence une nouvelle serie.
+BOSSES 0.7.0-preview.4 - PREVERSION
+Lire LIRE-MOI.md avant installation. Fermer le jeu puis attendre la restauration avant la campagne. En cas de crash, Restaurer-Campagne.cmd depuis ce dossier. Conserver .state et .dependencies jusqu a restauration.

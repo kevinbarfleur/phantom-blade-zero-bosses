@@ -25,15 +25,15 @@
           "Z": -14440.355
         },
         "Rotation": {
-          "Pitch": 0.0,
-          "Yaw": 175.0,
-          "Roll": 0.0
+          "Pitch": 0,
+          "Yaw": 175,
+          "Roll": 0
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 175.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 175,
+        "Roll": 0
       },
       "primarySpawnerID": "ZuoShangyoung_Seq003",
       "spawners": [
@@ -143,15 +143,15 @@
           "Z": -12948.233
         },
         "Rotation": {
-          "Pitch": 0.0,
-          "Yaw": 175.0,
-          "Roll": 0.0
+          "Pitch": 0,
+          "Yaw": 175,
+          "Roll": 0
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 175.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 175,
+        "Roll": 0
       },
       "primarySpawnerID": "ZuoShang_Seq004-2",
       "spawners": [
@@ -283,15 +283,15 @@
           "Z": 9710.347
         },
         "Rotation": {
-          "Pitch": 0.0,
-          "Yaw": -135.0,
-          "Roll": 0.0
+          "Pitch": 0,
+          "Yaw": -135,
+          "Roll": 0
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": -135.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": -135,
+        "Roll": 0
       },
       "primarySpawnerID": "HookMan_seq006",
       "spawners": [
@@ -501,15 +501,15 @@
           "Z": -21953.07
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -64.4398681149344
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 280.56015,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "PengMeng_Seq014",
       "spawners": [
@@ -635,7 +635,7 @@
         "sequences": [
           "/Game/PBZContent/Sequencer/GenerateSequencer/Seq014/Seqs/Seq014.Seq014"
         ],
-        "distanceToBoss": 2467.0,
+        "distanceToBoss": 2467,
         "volumeOwner": "fixed-volume",
         "crossing": {
           "X": -48667.95650352982,
@@ -697,15 +697,15 @@
           "Z": 1999417.6
         },
         "Rotation": {
-          "Pitch": 0.0,
+          "Pitch": 0,
           "Yaw": 67.18396,
-          "Roll": 0.0
+          "Roll": 0
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 67.18396,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "YuCong_Seqs027",
       "spawners": [
@@ -804,7 +804,7 @@
       "groups": [
         {
           "area": "XiguA",
-          "offset": 14.0
+          "offset": 14
         }
       ],
       "source": "native-mob-group-area"
@@ -1101,7 +1101,7 @@
           "Location": {
             "X": -69651.69,
             "Y": 210061.08,
-            "Z": -19330.0
+            "Z": -19330
           },
           "Rotation": {
             "Roll": 0,
@@ -1121,7 +1121,7 @@
         "crossing": {
           "X": -67365.38246921597,
           "Y": 208741.0808050456,
-          "Z": -19330.0
+          "Z": -19330
         }
       },
       "attachedEntranceFlows": [
@@ -1178,15 +1178,15 @@
           "Z": 2016816.9
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -164.22982151952093
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 180.77017,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "Scavenger_Seq101",
       "spawners": [
@@ -1307,15 +1307,15 @@
           "Z": -1333.9148
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -115.12597385113396
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 229.87402,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "HuaQianXiao_Seq027",
       "spawners": [
@@ -1430,7 +1430,7 @@
         "sequences": [
           "/Game/PBZContent/Sequencer/GenerateSequencer/Seq027/Seqs/Seq027.Seq027"
         ],
-        "distanceToBoss": 1179.0,
+        "distanceToBoss": 1179,
         "volumeOwner": "fixed-volume",
         "crossing": {
           "X": -130517.06014770932,
@@ -1493,15 +1493,15 @@
           "Z": 1623.3036
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 83.61571570600314
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 68.61571,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "LuanShi_Seq030",
       "spawners": [
@@ -1689,15 +1689,15 @@
           "Z": 8.462378
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 21.13746143339825
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 6.1374626,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "JingYe",
       "spawners": [
@@ -1837,15 +1837,15 @@
           "Z": -1666.9095
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -11.600035127604572
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": -26.600035,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "ChiLian_Seq034",
       "spawners": [
@@ -2035,15 +2035,15 @@
           "Z": -2751.7598
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -106.13345362373333
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 238.86655,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "",
       "spawners": [
@@ -2152,15 +2152,15 @@
           "Z": -1852.566
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -178.89868522797755
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 166.10132,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "ZhangMeng1a",
       "spawners": [
@@ -2255,15 +2255,15 @@
           "Z": 469.59232
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -38.56375471182858
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": -53.56375,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "ZhangMeng2a",
       "spawners": [
@@ -2371,15 +2371,15 @@
           "Z": 1056.8807
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -100.56727386686009
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 244.43272,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "FemaleVesselYuZan_Seq043",
       "spawners": [
@@ -2465,7 +2465,7 @@
       "groups": [
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -2497,15 +2497,15 @@
           "Z": 2001727.1
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -149.9999982544937
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 195.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 195,
+        "Roll": 0
       },
       "primarySpawnerID": "YanRu",
       "spawners": [
@@ -2789,15 +2789,15 @@
           "Z": 1056.8807
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -100.56727386686009
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 244.43272,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "MuXiaoKui_Seq045",
       "spawners": [
@@ -2962,15 +2962,15 @@
       "groups": [
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -3006,15 +3006,15 @@
           "Z": 1056.8807
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -100.56727386686009
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 244.43272,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "Yuu_Seq046-1",
       "spawners": [
@@ -3110,8 +3110,8 @@
       "distance": 5329,
       "verified": false,
       "arena": {
-        "X": -67610.0,
-        "Y": 77970.0,
+        "X": -67610,
+        "Y": 77970,
         "Z": 741.6677
       },
       "loadLayers": [
@@ -3162,15 +3162,15 @@
       "groups": [
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -3202,15 +3202,15 @@
           "Z": 1056.8807
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -100.56727386686009
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 244.43272,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "TieGui_Seq046-1",
       "spawners": [
@@ -3358,15 +3358,15 @@
       "groups": [
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "LujiacunB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -3400,15 +3400,15 @@
           "Z": -5991.262
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 137.2927837614188
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 122.292786,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "GuiChaiRed_Seq051",
       "spawners": [
@@ -3508,7 +3508,8 @@
           "X": -166368.70991013382,
           "Y": 134062.0030107645,
           "Z": -5982.496
-        }
+        },
+        "dispatch": "native-overlap"
       }
     },
     "chapter": {
@@ -3557,15 +3558,15 @@
           "Z": -5989.6987
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -73.877066475221
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 271.12292,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "ZhanQiGuiChai",
       "spawners": [
@@ -3682,15 +3683,15 @@
           "Z": 1002.3498
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -93.20910457601902
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 251.7909,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "ShuangGou",
       "spawners": [
@@ -3821,15 +3822,15 @@
           "Z": 3011447.5
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 154.16603888191804
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 139.16605,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "HuoDaoDuiZhang_Seq103",
       "spawners": [
@@ -3862,7 +3863,7 @@
       "arena": {
         "X": -176310.69,
         "Y": 76554.31,
-        "Z": 3011337.0
+        "Z": 3011337
       },
       "loadLayers": [],
       "unloadLayers": [],
@@ -3872,7 +3873,7 @@
           "Location": {
             "X": -176399.80345693952,
             "Y": 77198.17240128794,
-            "Z": 3011447.0
+            "Z": 3011447
           },
           "Rotation": {
             "Roll": 0,
@@ -3924,15 +3925,15 @@
           "Z": -3295.8738
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -50.51674757393945
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 294.48325,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "",
       "spawners": [
@@ -4036,15 +4037,15 @@
           "Z": -3467.6807
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -125.13478236338733
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 219.86522,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "GuWanYue_Seq060",
       "spawners": [
@@ -4175,26 +4176,44 @@
           "Z": -4041.7913
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 32.79547071134652
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 17.79547,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "",
       "spawners": [
-        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1604296805"
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1604296805",
+        "BP_AISpawner_C_UAID_60CF8480990935CD02_1680730380",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_1992411394",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_2010358395",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_2092331396",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_2095786397",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1506608803",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1588351804",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1653755807",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1668370808"
       ],
       "domains": [
         "BP_MobDomain_C_UAID_EC9161CFEDC068B202_1506506802"
       ],
       "clearActors": [
         "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1604296805",
-        "BP_MobDomain_C_UAID_EC9161CFEDC068B202_1506506802"
+        "BP_MobDomain_C_UAID_EC9161CFEDC068B202_1506506802",
+        "BP_AISpawner_C_UAID_60CF8480990935CD02_1680730380",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_1992411394",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_2010358395",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_2092331396",
+        "BP_AISpawner_C_UAID_60CF84809909B2E002_2095786397",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1506608803",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1588351804",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1653755807",
+        "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1668370808"
       ],
       "clearTags": [],
       "nodeIDs": [],
@@ -4245,7 +4264,13 @@
         }
       ],
       "source": "native-mob-group-area"
-    }
+    },
+    "supportClasses": [
+      "/PBZCombatAsset/ActorData/Mobs/037_GuiChai/Blueprints/BP_Monster_GuiChai_Black_TwinBlade.BP_Monster_GuiChai_Black_TwinBlade_C",
+      "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C",
+      "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_ShuangCi.BP_Monster_EMei_ShuangCi_C",
+      "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_Crossbow.BP_Monster_EMei_Crossbow_C"
+    ]
   },
   {
     "id": "BP_Monster_YouLong_SecondBrother",
@@ -4273,15 +4298,15 @@
           "Z": -6672.8643
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -99.99999903855607
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 245.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 245,
+        "Roll": 0
       },
       "primarySpawnerID": "",
       "spawners": [
@@ -4371,15 +4396,15 @@
           "Z": 1992952.2
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 22.435568813263927
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 7.4355683,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "LeiTing",
       "spawners": [
@@ -4535,15 +4560,15 @@
           "Z": -5012.24
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -33.80300897459759
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": -48.80301,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "ChangHong_Seq106",
       "spawners": [
@@ -4628,7 +4653,8 @@
           "X": -256995.56156974589,
           "Y": 48295.594039235126,
           "Z": -6078.781
-        }
+        },
+        "dispatch": "native-overlap"
       }
     },
     "chapter": {
@@ -4683,15 +4709,15 @@
           "Z": -3286.3484
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -137.60804367114324
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 207.39195,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "LionDanceBattle_Seq062",
       "spawners": [
@@ -4844,15 +4870,15 @@
           "Z": 8006.3477
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -85.21725492236158
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 259.78275,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "XiaoXue_Seq073",
       "spawners": [
@@ -4997,15 +5023,15 @@
           "Z": 7294.615
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 54.73302813066989
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 39.73303,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "WanJun_Seq074",
       "spawners": [
@@ -5145,15 +5171,15 @@
           "Z": 8562.012
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 144.9766657698679
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 129.97667,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "NvJianKe",
       "spawners": [
@@ -5229,7 +5255,8 @@
         "node": "1FA1CFA7-4B9586DF-1173CC9A-CCB9B2A7",
         "sequences": [],
         "distanceToBoss": 3170.7,
-        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434C17102_1744213165"
+        "volumeOwner": "BP_FlowActor_C_UAID_E89C25A75434C17102_1744213165",
+        "nativeElevatedApproach": true
       }
     },
     "chapter": {
@@ -5280,15 +5307,15 @@
           "Z": 7929.2925
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -60.023329399837785
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 284.97665,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "Jianou_Seq076",
       "spawners": [
@@ -5446,11 +5473,11 @@
       "groups": [
         {
           "area": "ZhengdaodayingB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "ZhengdaodayingB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -5486,15 +5513,15 @@
           "Z": 11425.274
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 154.99579855281036
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 139.99579,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "WuLengShuang_Seq079",
       "spawners": [
@@ -5624,7 +5651,7 @@
       "groups": [
         {
           "area": "ZhengdaodayingB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -5656,15 +5683,15 @@
           "Z": 8301.367
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -105.53445170689977
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 239.46555,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "FemaleVesselYuBi_Seq081-2-1",
       "spawners": [
@@ -5832,7 +5859,7 @@
       "groups": [
         {
           "area": "ZhengdaodayingB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -5864,15 +5891,15 @@
           "Z": 15011.817
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 77.54275951280084
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 62.54276,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "MaleThugEliteIntro_MaleThugElite",
       "spawners": [
@@ -5976,15 +6003,15 @@
           "Z": 18412.664
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 95.6109652812458
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 80.61097,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "BladeManIntro_BladeMan",
       "spawners": [
@@ -6017,8 +6044,8 @@
       "distance": 1288,
       "verified": false,
       "arena": {
-        "X": -62860.0,
-        "Y": -57070.0,
+        "X": -62860,
+        "Y": -57070,
         "Z": 18273.086
       },
       "loadLayers": [
@@ -6101,15 +6128,15 @@
           "Z": 25275.3
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 10.000000859241112
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": -4.9999995,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "",
       "spawners": [
@@ -6207,15 +6234,15 @@
           "Z": 29130.787
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -84.99999852087748
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 260.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 260,
+        "Roll": 0
       },
       "primarySpawnerID": "JadeIntro_Jade",
       "spawners": [
@@ -6305,7 +6332,7 @@
           "Location": {
             "X": -60718.15,
             "Y": -99074.97,
-            "Z": 29640.0
+            "Z": 29640
           },
           "Rotation": {
             "Roll": 0,
@@ -6325,7 +6352,7 @@
         "crossing": {
           "X": -60707.40309541318,
           "Y": -99364.77080062313,
-          "Z": 29640.0
+          "Z": 29640
         }
       }
     },
@@ -6343,7 +6370,7 @@
       "groups": [
         {
           "area": "JialongshanB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -6377,15 +6404,15 @@
           "Z": 21007.146
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 134.99999631754457
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 120.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 120,
+        "Roll": 0
       },
       "primarySpawnerID": "MBoss_Seq093",
       "spawners": [
@@ -6491,7 +6518,7 @@
           "Location": {
             "X": -60718.15,
             "Y": -99074.97,
-            "Z": 29640.0
+            "Z": 29640
           },
           "Rotation": {
             "Roll": 0,
@@ -6511,7 +6538,7 @@
         "crossing": {
           "X": -60728.89690458682,
           "Y": -98785.16919937688,
-          "Z": 29640.0
+          "Z": 29640
         }
       },
       "attachedEntranceFlows": [
@@ -6536,11 +6563,11 @@
       "groups": [
         {
           "area": "JialongshanB",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "JialongshanB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -6572,15 +6599,15 @@
           "Z": 2529.3015
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -167.5211518401316
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 177.47885,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "",
       "spawners": [
@@ -6667,15 +6694,15 @@
           "Z": 2000933.9
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -5.388338620010899
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": -20.388338,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "GuHe",
       "spawners": [
@@ -6818,15 +6845,15 @@
           "Z": 847.25183
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 36.069946036333164
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 21.069948,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "XiongZhang",
       "spawners": [
@@ -6911,15 +6938,15 @@
           "Z": 932.13446
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 109.4631002362399
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 94.463104,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "ArrowManDuYan_Seq082",
       "spawners": [
@@ -7013,7 +7040,7 @@
       "groups": [
         {
           "area": "MeiguhuC",
-          "offset": 4.0
+          "offset": 4
         }
       ],
       "source": "native-mob-group-area"
@@ -7045,15 +7072,15 @@
           "Z": 1029.1152
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -109.62888978970375
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 235.37111,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "YouLong",
       "spawners": [
@@ -7132,7 +7159,7 @@
       "groups": [
         {
           "area": "MeiguhuB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -7164,15 +7191,15 @@
           "Z": 881.0736
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -2.1202866210023017
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": -17.120287,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "YanQianSui",
       "spawners": [
@@ -7304,15 +7331,15 @@
           "Z": 894.8551
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 59.79284605898293
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 44.792847,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "FengXueDaoKe_Seq126",
       "spawners": [
@@ -7396,7 +7423,7 @@
         "sequences": [
           "/Game/PBZContent/Sequencer/GenerateSequencer/Seq126/Seqs/Seq126.Seq126"
         ],
-        "distanceToBoss": 1822.0,
+        "distanceToBoss": 1822,
         "volumeOwner": "BP_FlowActor_C_UAID_60CF848A6689E0CC02_2139638566",
         "crossing": {
           "X": -151863.7000428728,
@@ -7453,20 +7480,20 @@
       "broken": false,
       "transform": {
         "Location": {
-          "X": -180975.0,
+          "X": -180975,
           "Y": -2549.2078,
-          "Z": 2001117.0
+          "Z": 2001117
         },
         "Rotation": {
-          "Pitch": 0.0,
+          "Pitch": 0,
           "Yaw": 20.282022,
-          "Roll": 0.0
+          "Roll": 0
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 20.282022,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "HanSui",
       "spawners": [
@@ -7498,9 +7525,9 @@
       "distance": null,
       "verified": false,
       "arena": {
-        "X": -179775.0,
+        "X": -179775,
         "Y": -2549.2078,
-        "Z": 2001017.0
+        "Z": 2001017
       },
       "loadLayers": [
         "/Game/DataLayers/T01_FirstStage_WP/DL_3721Unload.DL_3721Unload"
@@ -7562,15 +7589,15 @@
           "Z": -1666.9095
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -11.600035127604572
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": -26.600035,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "SanTouMoOu",
       "spawners": [
@@ -7712,15 +7739,15 @@
       "groups": [
         {
           "area": "Xuesesenlin",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "Xuesesenlin",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "Xuesesenlin",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -7752,15 +7779,15 @@
           "Z": 6823.826
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 119.99999945791907
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 105.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 105,
+        "Roll": 0
       },
       "primarySpawnerID": "RenOuJiao",
       "spawners": [
@@ -7854,15 +7881,15 @@
           "Z": 3269.3738
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -119.99999945791907
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 225.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 225,
+        "Roll": 0
       },
       "primarySpawnerID": "YuDing_Seq119",
       "spawners": [
@@ -7922,7 +7949,10 @@
         "waypoints": [],
         "kind": "native-arena-approach",
         "sequences": []
-      }
+      },
+      "automaticIntroduction": [
+        "/Game/PBZContent/Sequencer/GenerateSequencer/Seq119/Seqs/Seq119.Seq119"
+      ]
     },
     "chapter": {
       "id": "PoJu",
@@ -7988,15 +8018,15 @@
           "Z": 4531.4404
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -68.12499331460369
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 276.875,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "LeiDang_Seq123-3",
       "spawners": [
@@ -8147,7 +8177,7 @@
       "groups": [
         {
           "area": "XimengshanzhuangC",
-          "offset": 1.0
+          "offset": 1
         },
         {
           "area": "DengDingShanDao",
@@ -8185,15 +8215,15 @@
           "Z": 39876.594
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 171.8295378171405
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 156.82954,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "PowerSawMan_Seq113",
       "spawners": [
@@ -8306,7 +8336,8 @@
           "X": -196346.3400921181,
           "Y": -100006.16883867598,
           "Z": 33373.75
-        }
+        },
+        "dispatch": "native-overlap"
       }
     },
     "chapter": {
@@ -8359,15 +8390,15 @@
           "Z": 62138.098
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -75.8253006359866
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 269.1747,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "LengTu_Seq144",
       "spawners": [
@@ -8461,15 +8492,15 @@
           "Z": 62138.098
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -75.8253006359866
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 269.1747,
-        "Roll": 0.0
+        "Roll": 0
       },
       "primarySpawnerID": "MengHua_Seq146-N",
       "spawners": [
@@ -8485,6 +8516,7 @@
       ],
       "clearTags": [
         "achievment.大梦终须醒.完成",
+        "dhs.击杀.梦华",
         "dhs.字幕.出现1",
         "dhs.梦华.seq148后",
         "dhy.左殇.seqs022后",
@@ -8573,7 +8605,10 @@
         "waypoints": [],
         "kind": "native-arena-approach",
         "sequences": []
-      }
+      },
+      "automaticIntroduction": [
+        "/Game/PBZContent/Sequencer/GenerateSequencer/Seq146-N/Seqs/Seq146-N.Seq146-N"
+      ]
     },
     "chapter": {
       "id": "DuanHun",
@@ -8622,7 +8657,7 @@
       "arena": {
         "X": -193036.5,
         "Y": -117948.414,
-        "Z": 4499905.0
+        "Z": 4499905
       },
       "loadLayers": [],
       "unloadLayers": [],
@@ -8636,22 +8671,22 @@
           "Z": 4500034.5
         },
         "Rotation": {
-          "Roll": -0.0,
-          "Pitch": 0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": -77.12633886350714
         }
       },
       "camera": {
-        "Pitch": 0.0,
+        "Pitch": 0,
         "Yaw": 267.87366,
-        "Roll": 0.0
+        "Roll": 0
       },
       "nativeController": true,
       "entryWaypoints": [
         {
           "X": -193003.6,
           "Y": -115937.52,
-          "Z": 4500000.0
+          "Z": 4500000
         }
       ],
       "graphs": [
@@ -8775,7 +8810,7 @@
           "Location": {
             "X": -193003.6,
             "Y": -115937.52,
-            "Z": 4500009.0
+            "Z": 4500009
           },
           "Rotation": {
             "Roll": 0,
@@ -8796,8 +8831,9 @@
         "crossing": {
           "X": -193003.5996039053,
           "Y": -115297.52000000012,
-          "Z": 4500009.0
-        }
+          "Z": 4500009
+        },
+        "dispatch": "native-overlap"
       }
     },
     "chapter": {
@@ -8836,18 +8872,18 @@
         "Location": {
           "X": -39094.63,
           "Y": 233204.89,
-          "Z": 10009134.0
+          "Z": 10009134
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 134.99999631754457
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 120.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 120,
+        "Roll": 0
       },
       "spawners": [
         "BP_AISpawner_C_UAID_E89C25A7512095DC02_423d05e8b5826f73_2053622039",
@@ -9026,7 +9062,7 @@
       "arena": {
         "X": -39102.8,
         "Y": 236352.8,
-        "Z": 10008832.0
+        "Z": 10008832
       },
       "nativeSpawnerID": "MoTianOld_Seq018-Mask",
       "loadLayers": [],
@@ -9036,7 +9072,7 @@
           "Location": {
             "X": -39101.11301335984,
             "Y": 235702.8021891759,
-            "Z": 10008942.0
+            "Z": 10008942
           },
           "Rotation": {
             "Roll": 0,
@@ -9094,18 +9130,18 @@
         "Location": {
           "X": -39094.63,
           "Y": 233204.89,
-          "Z": 10009134.0
+          "Z": 10009134
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 134.99999631754457
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 120.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 120,
+        "Roll": 0
       },
       "spawners": [
         "BP_AISpawner_C_UAID_E89C25A7512095DC02_423d05e8b5826f73_2053622039",
@@ -9285,7 +9321,7 @@
       "arena": {
         "X": -39096.68,
         "Y": 236476.4,
-        "Z": 10008825.0
+        "Z": 10008825
       },
       "nativeSpawnerID": "MoTian2",
       "loadLayers": [],
@@ -9295,7 +9331,7 @@
           "Location": {
             "X": -39096.272695807624,
             "Y": 235826.40012761287,
-            "Z": 10008935.0
+            "Z": 10008935
           },
           "Rotation": {
             "Roll": 0,
@@ -9353,18 +9389,18 @@
         "Location": {
           "X": -39094.63,
           "Y": 233204.89,
-          "Z": 10009134.0
+          "Z": 10009134
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 134.99999631754457
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 120.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 120,
+        "Roll": 0
       },
       "spawners": [
         "BP_AISpawner_C_UAID_E89C25A7512095DC02_423d05e8b5826f73_2053622039",
@@ -9545,7 +9581,7 @@
       "arena": {
         "X": -39097.29,
         "Y": 236417.81,
-        "Z": 10008824.0
+        "Z": 10008824
       },
       "nativeSpawnerID": "MoTian3",
       "loadLayers": [],
@@ -9555,7 +9591,7 @@
           "Location": {
             "X": -39096.75186042371,
             "Y": 235767.81022276482,
-            "Z": 10008934.0
+            "Z": 10008934
           },
           "Rotation": {
             "Roll": 0,
@@ -9584,7 +9620,7 @@
       "groups": [
         {
           "area": "Meiguhu",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -9613,18 +9649,18 @@
         "Location": {
           "X": -39094.63,
           "Y": 233204.89,
-          "Z": 10009134.0
+          "Z": 10009134
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 134.99999631754457
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 120.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 120,
+        "Roll": 0
       },
       "spawners": [
         "BP_AISpawner_C_UAID_E89C25A7512095DC02_423d05e8b5826f73_2053622039",
@@ -9806,7 +9842,7 @@
       "arena": {
         "X": -39095.49,
         "Y": 236533.66,
-        "Z": 10008823.0
+        "Z": 10008823
       },
       "nativeSpawnerID": "MoTian4",
       "loadLayers": [],
@@ -9816,7 +9852,7 @@
           "Location": {
             "X": -39095.32207010958,
             "Y": 235883.66002169266,
-            "Z": 10008933.0
+            "Z": 10008933
           },
           "Rotation": {
             "Roll": 0,
@@ -9845,7 +9881,7 @@
       "groups": [
         {
           "area": "XimengshanzhuangC",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"
@@ -9874,18 +9910,18 @@
         "Location": {
           "X": -39094.63,
           "Y": 233204.89,
-          "Z": 10009134.0
+          "Z": 10009134
         },
         "Rotation": {
-          "Roll": 0.0,
-          "Pitch": -0.0,
+          "Roll": 0,
+          "Pitch": 0,
           "Yaw": 134.99999631754457
         }
       },
       "camera": {
-        "Pitch": 0.0,
-        "Yaw": 120.0,
-        "Roll": 0.0
+        "Pitch": 0,
+        "Yaw": 120,
+        "Roll": 0
       },
       "spawners": [
         "BP_AISpawner_C_UAID_E89C25A7512095DC02_423d05e8b5826f73_2053622039",
@@ -10068,7 +10104,7 @@
       "arena": {
         "X": -39102.7,
         "Y": 236594.47,
-        "Z": 10008830.0
+        "Z": 10008830
       },
       "nativeSpawnerID": "MoTianOld_Seq018",
       "loadLayers": [],
@@ -10078,7 +10114,7 @@
           "Location": {
             "X": -39101.15246752298,
             "Y": 235944.47184220012,
-            "Z": 10008940.0
+            "Z": 10008940
           },
           "Rotation": {
             "Roll": 0,
@@ -10107,7 +10143,7 @@
       "groups": [
         {
           "area": "DuanhunshanB",
-          "offset": 1.0
+          "offset": 1
         }
       ],
       "source": "native-mob-group-area"

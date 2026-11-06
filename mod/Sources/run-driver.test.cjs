@@ -12,8 +12,8 @@ function harness(){
  AbilitySystemBlueprintLibrary:{GetAbilitySystemComponent:()=>asc},AttributeUtils:{ModifyCharacterAttributeValue:(...args)=>calls.push(['attribute',...args])},PBZBlueprintFunctionLibrary:{MakeAttribute:n=>n},
  FactionUtils:{GetFaction:o=>o.faction,GetFactionRelation:(a,b)=>b.faction==='enemy'?2:0},BlueprintGameplayTagLibrary:{IsGameplayTagValid:t=>!!t},ETeamAttitude:{Hostile:2,Friendly:0},
  AbilityAsync_WaitGameplayEvent:{WaitGameplayEventToActor(p,t){assert.equal(p,player);assert.equal(t.TagName,'GameplayEvent.Actor.Hit.Target');const task={EventReceived:delegate(),Activate(){this.active=true;},Cancel(){this.cancelled=true;}};tasks.push(task);return task;}}};
- const exports={},session={active:true,boss:{id:'a',classes:['boss'],profile:{directEntry:{sequences:['intro']}}},worldLoadingComplete:true,arrivalAnchorPending:false,ux:{directReady:true,directCombatStarted:true,directIntroObserved:true},run:model.create({timer:'series',hits66:true},'a')};
- vm.runInNewContext(fs.readFileSync(__dirname+'/run-driver.js','utf8'),{exports,require:n=>({'ue':UE,'puerts':{$ref:value=>({value}),$unref:r=>r.value},'./run-model':model,'./run-hud':{stop(){},update(){}},'./cinema':{pending:()=>pending}}[n])});
+ const exports={},session={active:true,boss:{id:'a',classes:['boss'],profile:{directEntry:{sequences:['intro']}}},worldLoadingComplete:true,arrivalAnchorPending:false,directArrival:{released:true},ux:{directReady:true,directCombatStarted:true,directIntroObserved:true},run:model.create({timer:'series',hits66:true},'a')};
+ vm.runInNewContext(fs.readFileSync(__dirname+'/run-driver.js','utf8'),{exports,Date:{now:()=>now},require:n=>({'ue':UE,'puerts':{$ref:value=>({value}),$unref:r=>r.value},'./run-model':model,'./run-hud':{stop(){},update(){}},'./cinema':{pending:()=>pending}}[n])});
  const context={};exports.install(context,session);
  return {api:exports,session,tasks,calls,player,boss,friend,actor,UE,tick(ms=100){now+=ms;exports.tick(context,session);},hit(source=boss,target=player){tasks.at(-1).EventReceived.emit({Instigator:source,Target:target});},set now(v){now=v;},set sequence(v){sequence=v;},set qte(v){qte=v;},set paused(v){paused=v;},set pending(v){pending=v;}};
 }
@@ -44,6 +44,18 @@ test('scripted hits during a cinematic or a paused menu neither spend the budget
 test('arrival readiness alone cannot start a stopwatch before native combat has begun',()=>{
  const h=harness();h.session.ux.directCombatStarted=false;h.tick(3000);h.tick(4000);assert.equal(h.session.run.phase,'waiting');assert.equal(h.session.run.totalMs,0);
  h.session.ux.directCombatStarted=true;h.tick();assert.equal(h.session.run.phase,'combat');assert.equal(h.session.run.totalMs,0);h.tick(700);assert.equal(h.session.run.totalMs,700);
+});
+
+test('a combat signal behind the arrival cover cannot start time or spend hits before controls are released',()=>{
+ const h=harness();h.session.directArrival.released=false;h.tick();h.tick(5000);h.hit();
+ assert.equal(h.session.run.phase,'waiting');assert.equal(h.session.run.totalMs,0);assert.equal(h.session.run.hits,0);
+ h.session.directArrival.released=true;h.tick();h.tick(1000);h.hit();assert.equal(h.session.run.totalMs,1000);assert.equal(h.session.run.hits,1);
+});
+
+test('the last three tenths of the arrival fade are excluded from time and hit accounting',()=>{
+ const h=harness();h.now=1000;h.session.directArrival.releasedAt=1000;h.tick(0);h.tick(250);h.hit();
+ assert.equal(h.session.run.phase,'waiting');assert.equal(h.session.run.hits,0);
+ h.tick(100);assert.equal(h.session.run.phase,'combat');assert.equal(h.session.run.totalMs,0);h.tick(1000);assert.equal(h.session.run.totalMs,1000);
 });
 test('a cyclic ownership graph cannot spin or make a friendly projectile hostile',()=>{
  const h=harness(),a=h.actor('a'),b=h.actor('b');a.GetOwner=()=>b;b.GetOwner=()=>a;

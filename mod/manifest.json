@@ -1,11 +1,13 @@
 {
-  "version": "0.7.0-preview.3",
-  "revision": "run-r5-preview-26367565",
+  "version": "0.7.0-preview.4",
+  "revision": "run-r6-preview",
   "gameAppId": 4115450,
   "gameBuild": 26367565,
   "deployment": "temporary-pbzmodloader",
   "qa": {
     "mode": "manual",
+    "instrumentationMode": "manual",
+    "developmentGuardian": false,
     "debugShortcuts": false
   },
   "files": [
@@ -591,15 +593,15 @@
     },
     {
       "path": "ProjectPBZ/PBZModLoader/mods/CodexBosses/main.js",
-      "sha256": "24d06d204f02589304a5502cfe882ebefa74775c12d8cfc719647d63d9a63533",
+      "sha256": "97956d37f0da84a21ef20323cf1817866a4acc469e56b513a12203e410691977",
       "source": "mod"
     }
   ],
   "validation": {
-    "runtimeCompatible": null,
+    "runtimeCompatible": true,
     "gameplayValidated": false,
     "report": "Validation/validation.json",
-    "note": "New timer, hit event integration and native UI have not been validated in the running game."
+    "note": "Representative entrances and run configuration tested in game; all complete encounters remain uncertified."
   },
   "hotkey": "F8",
   "catalog": {

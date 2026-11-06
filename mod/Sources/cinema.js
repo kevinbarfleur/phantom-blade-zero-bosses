@@ -3,11 +3,13 @@ const UE=require("ue"),puerts=require("puerts");
 const path="/Game/PBZContent/Blueprint/FlowGraph/UI/WBP_FlowSequencer.WBP_FlowSequencer_C";
 function prepareIntroduction(widget,session){
     if(!session.active||session.completed||session.boss?.training||session.mode!=="direct-fight")return;
-    const expected=session.boss?.profile?.directEntry?.sequences||[];
-    if(!expected.length)return;
+    const expected=[...(session.boss?.profile?.directEntry?.sequences||[]),...(session.boss?.profile?.automaticIntroduction||[])];
     const sequence=widget.InLevelSeq,node=widget["In Level Sequence Node"]||widget.InLevelSequenceNode;
-    if(!sequence||!node||!UE.KismetSystemLibrary.IsValid(node))return;
+    if(!sequence)return;
     const sequencePath=UE.KismetSystemLibrary.GetPathName(sequence);
+    session.ux={...session.ux,observedIntroduction:sequencePath};
+    if(!node||!UE.KismetSystemLibrary.IsValid(node))return;
+    if(!expected.length)return;
     if(!expected.some(p=>p.toLowerCase()===sequencePath.toLowerCase()))return;
     const owner=UE.KismetSystemLibrary.GetPathName(widget);
     if(session.introPresentation?.owner!==owner)session.introPresentation={owner,widget,boss:session.boss,started:false,released:false};

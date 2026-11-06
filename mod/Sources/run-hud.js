@@ -27,11 +27,11 @@ function attach(host,session){
     }
 }
 function update(session,context){
-    if(view&&!valid(view.box))view=null;
+    if(view&&(!valid(view.box)||!valid(view.host)||(view.host.IsActivated&&!view.host.IsActivated())))stop();
     const now=Date.now();
     if(!view&&context&&session.active&&!session.boss.training&&model.enabled(session.run)&&(now<lastSearch||now-lastSearch>1000)){
         lastSearch=now;const cls=UE.Class.Find('/Game/PBZContent/UI/FrontEnd/W_FrontEndHUDLayout.W_FrontEndHUDLayout_C');
-        if(cls){const out=puerts.$ref(UE.NewArray(UE.UserWidget));UE.WidgetBlueprintLibrary.GetAllWidgetsOfClass(context,out,cls,false);const all=puerts.$unref(out);for(let i=0;i<all.Num();i++)if(valid(all.Get(i))){attach(all.Get(i),session);break;}}
+        if(cls){const out=puerts.$ref(UE.NewArray(UE.UserWidget));UE.WidgetBlueprintLibrary.GetAllWidgetsOfClass(context,out,cls,false);const all=puerts.$unref(out);for(let i=0;i<all.Num();i++){const host=all.Get(i);if(valid(host)&&(!host.IsActivated||host.IsActivated())){attach(host,session);break;}}}
     }
     if(!view)return;
     const s=session.run,visible=session.active&&!session.boss.training&&model.enabled(s)&&!(session.cinematicActive&&!session.runInteractiveActive);

@@ -1,0 +1,49 @@
+[
+  {
+    "id": "BP_Monster_Maddoctor_Elite",
+    "domain": "BP_MobDomain_C_UAID_EC9161CFEDC068B202_1506506802",
+    "source": "native SpawnInfo.MobDomain membership",
+    "spawners": [
+      {
+        "name": "BP_AISpawner_C_UAID_60CF8480990935CD02_1680730380",
+        "class": "/PBZCombatAsset/ActorData/Mobs/037_GuiChai/Blueprints/BP_Monster_GuiChai_Black_TwinBlade.BP_Monster_GuiChai_Black_TwinBlade_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_1992411394",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_2010358395",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_2092331396",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_60CF84809909B2E002_2095786397",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1506608803",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_ShuangCi.BP_Monster_EMei_ShuangCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1588351804",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_ShuangCi.BP_Monster_EMei_ShuangCi_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1604296805",
+        "class": "/PBZCombatAsset/ActorData/Mobs/058_MadDoctor/BP_Monster_Maddoctor_Elite.BP_Monster_Maddoctor_Elite_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1653755807",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_Crossbow.BP_Monster_EMei_Crossbow_C"
+      },
+      {
+        "name": "BP_AISpawner_C_UAID_EC9161CFEDC068B202_1668370808",
+        "class": "/PBZCombatAsset/ActorData/Mobs/034_EMei/BP_Monster_EMei_EMeiCi.BP_Monster_EMei_EMeiCi_C"
+      }
+    ]
+  }
+]
